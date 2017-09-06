@@ -1,1 +1,1 @@
-# openapi-directory-lite
+Lite version of OpenAPI Directory API.
