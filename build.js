@@ -89,7 +89,7 @@ function addSwagger(apiList, swagger, filename) {
     var apiEntry = apiList[id] = apiList[id] || {};
     var versionEntry = buildVersionEntry(swagger, filename);
 
-    apiEntry.spec = versionEntry.swaggerYamlUrl;
+    apiEntry.version = versionEntry.version;
     apiEntry.categories = versionEntry.info['x-apisguru-categories'];
     apiEntry.title = versionEntry.info.title;
 
@@ -99,6 +99,7 @@ function addSwagger(apiList, swagger, filename) {
 function buildVersionEntry(swagger) {
     var basename = 'specs/' + util.getSwaggerPath(swagger, 'swagger');
     var name = util.getSwaggerPath(swagger).split('/');
+    var version = name[name.length - 2];
     name = name[0] + '/' + name.slice(1, name.length - 1).join('-');
 
     util.saveYaml(deployDir(`spec/${name}.yaml`), swagger);
@@ -106,6 +107,7 @@ function buildVersionEntry(swagger) {
     return {
         swaggerUrl: rootUrl(`${basename}.json`),
         swaggerYamlUrl: `${name}`,
+        version: version,
         info: swagger.info,
         externalDocs: swagger.externalDocs,
     };
