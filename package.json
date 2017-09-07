@@ -1,0 +1,37 @@
+{
+  "name": "openapi-directory-lite",
+  "description": "Lite version of OpenAPI Directory API",
+  "version": "1.0.0",
+  "bugs": {
+    "url": "https://github.com/darosh/openapi-directory-lite/issues"
+  },
+  "devDependencies": {
+    "bluebird": "^3.5.0",
+    "deep-sort-object": "^1.0.2",
+    "editor": "^1.0.0",
+    "js-yaml": "^3.9.1",
+    "json-stringify-pretty-compact": "^1.0.4",
+    "lodash": "^4.17.4",
+    "mkdirp": "^0.5.1",
+    "mktemp": "^0.4.0",
+    "napa": "^3.0.0",
+    "sanitize-filename": "^1.6.1",
+    "shelljs": "^0.7.8",
+    "urijs": "^1.18.12"
+  },
+  "homepage": "https://github.com/darosh/openapi-directory-lite#readme",
+  "license": "MIT",
+  "main": "index.json",
+  "napa": {
+    "openapi-directory": "APIs-guru/openapi-directory"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darosh/openapi-directory-lite.git"
+  },
+  "scripts": {
+    "build": "node build.js",
+    "install": "napa"
+  }
+}
