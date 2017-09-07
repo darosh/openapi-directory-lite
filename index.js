@@ -1,47 +1,59 @@
-const path = require('path');
+const path = require('path')
 
 const config = {
   api: 'https://darosh.github.io/openapi-directory-lite',
   index: 'index.json',
   specs: 'specs',
   ext: '.yaml'
-};
+}
 
-const odl = module.exports = {
-  ...config,
-  fileName(key, value) {
-    return `${[...key.split(':'), value.version].join('/')}${odl.ext}`;
-  },
-  filePath(key, value) {
-    return path.join(__dirname, odl.specs, odl.fileName(key, value));
-  },
-  apiPath(key, value) {
-    return `${odl.api}/${odl.specs}/${odl.fileName(key, value)}`;
-  },
-  indexPath() {
-    return `${odl.api}/${odl.index}`;
-  },
-  data() {
-    return require('./index.json')
-  },
-  filePaths() {
-    const specs = odl.data().specs;
-    const paths = [];
+function fileName (key, value) {
+  return `${[...key.split(':'), value.version].join('/')}${config.ext}`
+}
 
-    for (const key in specs) {
-      paths.push(odl.filePath(key, specs[key]));
-    }
+function filePath (key, value) {
+  return path.join(__dirname, config.specs, fileName(key, value))
+}
 
-    return paths;
-  },
-  apiPaths() {
-    const specs = odl.data().specs;
-    const paths = [];
+function apiPath (key, value) {
+  return `${config.api}/${config.specs}/${fileName(key, value)}`
+}
 
-    for (const key in specs) {
-      paths.push(odl.apiPath(key, specs[key]));
-    }
+function indexPath () {
+  return `${config.api}/${config.index}`
+}
 
-    return paths;
+function data () {
+  return require('./index.json')
+}
+
+function filePaths () {
+  const specs = data().specs
+  const paths = []
+
+  for (const key in specs) {
+    paths.push(filePath(key, specs[key]))
   }
-};
+
+  return paths
+}
+
+function apiPaths () {
+  const specs = data().specs
+  const paths = []
+
+  for (const key in specs) {
+    paths.push(apiPath(key, specs[key]))
+  }
+
+  return paths
+}
+
+module.exports.apiPath = apiPath
+module.exports.indexPath = indexPath
+module.exports.filePaths = filePaths
+module.exports.filePath = filePath
+module.exports.apiPaths = apiPaths
+module.exports.fileName = fileName
+module.exports.data = data
+module.exports.config = config
