@@ -10,13 +10,16 @@ const config = {
 const odl = module.exports = {
   ...config,
   fileName(key, value) {
-    return `${[...key.split(':'), value.version].join('/')}${config.ext}`;
+    return `${[...key.split(':'), value.version].join('/')}${odl.ext}`;
   },
   filePath(key, value) {
-    return path.join(__dirname, config.specs, odl.fileName(key, value));
+    return path.join(__dirname, odl.specs, odl.fileName(key, value));
   },
   apiPath(key, value) {
-    return `${config.api}/${config.specs}/${odl.fileName(key, value)}`;
+    return `${odl.api}/${odl.specs}/${odl.fileName(key, value)}`;
+  },
+  indexPath() {
+    return `${odl.api}/${odl.index}`;
   },
   data() {
     return require('./index.json')
