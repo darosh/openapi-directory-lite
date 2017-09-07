@@ -32,7 +32,7 @@
   },
   "scripts": {
     "build": "node build.js",
-    "install": "napa",
+    "init": "napa",
     "test": "node test.js"
   }
 }
