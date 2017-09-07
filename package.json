@@ -1,7 +1,7 @@
 {
   "name": "openapi-directory-lite",
   "description": "Lite version of OpenAPI Directory API",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "bugs": {
     "url": "https://github.com/darosh/openapi-directory-lite/issues"
   },

@@ -8,7 +8,8 @@ const config = {
 }
 
 function fileName (key, value) {
-  return `${[...key.split(':'), value.version].join('/')}${config.ext}`
+  // return `${[...key.split(':'), value.version].join('/')}${config.ext}`
+  return [...key.split(':'), value.version].join('/') + config.ext
 }
 
 function filePath (key, value) {
@@ -16,11 +17,13 @@ function filePath (key, value) {
 }
 
 function apiPath (key, value) {
-  return `${config.api}/${config.specs}/${fileName(key, value)}`
+  // return `${config.api}/${config.specs}/${fileName(key, value)}`
+  return config.api + '/' + config.specs + '/' + fileName(key, value)
 }
 
 function indexPath () {
-  return `${config.api}/${config.index}`
+  // return `${config.api}/${config.index}`
+  return config.api + '/' + config.index
 }
 
 function data () {
