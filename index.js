@@ -9,7 +9,7 @@ const config = {
 
 function fileName (key, value) {
   // return `${[...key.split(':'), value.version].join('/')}${config.ext}`
-  return [...key.split(':'), value.version].join('/') + config.ext
+  return key.split(':').concat(value.version).join('/') + config.ext
 }
 
 function filePath (key, value) {
