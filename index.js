@@ -1,6 +1,6 @@
-const path = require('path')
+var path = require('path')
 
-const config = {
+var config = {
   api: 'https://darosh.github.io/openapi-directory-lite',
   index: 'index.json',
   specs: 'specs',
@@ -31,10 +31,10 @@ function data () {
 }
 
 function filePaths () {
-  const specs = data().specs
-  const paths = []
+  var specs = data().specs
+  var paths = []
 
-  for (const key in specs) {
+  for (var key in specs) {
     paths.push(filePath(key, specs[key]))
   }
 
@@ -42,10 +42,10 @@ function filePaths () {
 }
 
 function apiPaths () {
-  const specs = data().specs
-  const paths = []
+  var specs = data().specs
+  var paths = []
 
-  for (const key in specs) {
+  for (var key in specs) {
     paths.push(apiPath(key, specs[key]))
   }
 
