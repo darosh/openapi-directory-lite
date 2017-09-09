@@ -4,7 +4,7 @@ var config = {
   api: 'https://darosh.github.io/openapi-directory-lite',
   index: 'index.json',
   specs: 'specs',
-  ext: '.yaml'
+  ext: '.json'
 }
 
 function fileName (key, value) {

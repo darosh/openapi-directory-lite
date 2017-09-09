@@ -102,7 +102,8 @@ function buildVersionEntry(swagger) {
     var version = name[name.length - 2];
     name = name[0] + '/' + name.slice(1, name.length - 1).join('/');
 
-    util.saveYaml(deployDir(`specs/${name}.yaml`), swagger);
+    // util.saveYaml(deployDir(`specs/${name}.yaml`), swagger);
+    save(deployDir(`specs/${name}.json`), swagger);
 
     return {
         swaggerUrl: rootUrl(`${basename}.json`),
