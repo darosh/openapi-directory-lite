@@ -552,6 +552,6 @@
     "zalando.com": {"version": "v1.0", "categories": ["ecommerce"], "title": "Zalando Shop"},
     "zappiti.com": {"version": "4.15.174", "categories": ["entertainment"], "title": "Zappiti Player"},
     "zoomconnect.com": {"version": "1", "categories": ["messaging", "marketing"], "title": "Zoom Connect"},
-    "zuora.com": {"version": "2017-08-16", "categories": ["financial"], "title": "Zuora API Reference"}
+    "zuora.com": {"version": "2017-09-06", "categories": ["financial"], "title": "Zuora API Reference"}
   }
 }

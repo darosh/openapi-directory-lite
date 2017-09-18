@@ -9,7 +9,7 @@
     "title": "Discovery Market Research",
     "version": "0.1",
     "x-apisguru-categories": ["open_data"],
-    "x-logo": {"url": "http://www.gsa.gov/resources/images/GSAlogo.gif"},
+    "x-logo": {"url": "https://www.gsa.gov/sites/gsa.gov/templates/resources/images/nav-logo.jpg"},
     "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "swagger", "url": "https://discovery.gsa.gov/docs/api-docs/", "version": "1.2"}],
     "x-providerName": "cloud.gov",
     "x-preferred": true

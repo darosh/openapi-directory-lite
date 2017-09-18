@@ -182,6 +182,30 @@
         {"$ref": "#/parameters/X-Amz-SignedHeaders"}
       ]
     },
+    "/2013-04-01/queryloggingconfig": {
+      "get": {
+        "operationId": "ListQueryLoggingConfigs",
+        "description": "<p>Lists the configurations for DNS query logging that are associated with the current AWS account or the configuration that is associated with a specified hosted zone.</p> <p>For more information about DNS query logs, see <a>CreateQueryLoggingConfig</a>. Additional information, including the format of DNS query logs, appears in <a href=\"http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/query-logs.html\">Logging DNS Queries</a> in the <i>Amazon Route 53 Developer Guide</i>.</p>",
+        "responses": {
+          "200": {"description": "Success", "schema": {"$ref": "#/definitions/ListQueryLoggingConfigsResponse"}},
+          "480": {"description": "InvalidInput", "schema": {"$ref": "#/definitions/InvalidInput"}},
+          "481": {"description": "InvalidPaginationToken", "schema": {"$ref": "#/definitions/InvalidPaginationToken"}},
+          "482": {"description": "NoSuchHostedZone", "schema": {"$ref": "#/definitions/NoSuchHostedZone"}}
+        },
+        "parameters": [{"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/ListQueryLoggingConfigsRequest"}}]
+      },
+      "parameters": [
+        {"$ref": "#/parameters/Action"},
+        {"$ref": "#/parameters/Version"},
+        {"$ref": "#/parameters/X-Amz-Content-Sha256"},
+        {"$ref": "#/parameters/X-Amz-Date"},
+        {"$ref": "#/parameters/X-Amz-Algorithm"},
+        {"$ref": "#/parameters/X-Amz-Credential"},
+        {"$ref": "#/parameters/X-Amz-Security-Token"},
+        {"$ref": "#/parameters/X-Amz-Signature"},
+        {"$ref": "#/parameters/X-Amz-SignedHeaders"}
+      ]
+    },
     "/2013-04-01/delegationset": {
       "get": {
         "operationId": "ListReusableDelegationSets",
@@ -335,6 +359,29 @@
           "481": {"description": "InvalidInput", "schema": {"$ref": "#/definitions/InvalidInput"}}
         },
         "parameters": [{"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/UpdateHostedZoneCommentRequest"}}, {"name": "Id", "in": "path", "type": "string", "required": true}]
+      },
+      "parameters": [
+        {"$ref": "#/parameters/Action"},
+        {"$ref": "#/parameters/Version"},
+        {"$ref": "#/parameters/X-Amz-Content-Sha256"},
+        {"$ref": "#/parameters/X-Amz-Date"},
+        {"$ref": "#/parameters/X-Amz-Algorithm"},
+        {"$ref": "#/parameters/X-Amz-Credential"},
+        {"$ref": "#/parameters/X-Amz-Security-Token"},
+        {"$ref": "#/parameters/X-Amz-Signature"},
+        {"$ref": "#/parameters/X-Amz-SignedHeaders"}
+      ]
+    },
+    "/2013-04-01/queryloggingconfig/{Id}": {
+      "get": {
+        "operationId": "GetQueryLoggingConfig",
+        "description": "<p>Gets information about a specified configuration for DNS query logging.</p> <p>For more information about DNS query logs, see <a>CreateQueryLoggingConfig</a> and <a href=\"http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/query-logs.html\">Logging DNS Queries</a>.</p>",
+        "responses": {
+          "200": {"description": "Success", "schema": {"$ref": "#/definitions/GetQueryLoggingConfigResponse"}},
+          "480": {"description": "NoSuchQueryLoggingConfig", "schema": {"$ref": "#/definitions/NoSuchQueryLoggingConfig"}},
+          "481": {"description": "InvalidInput", "schema": {"$ref": "#/definitions/InvalidInput"}}
+        },
+        "parameters": [{"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/GetQueryLoggingConfigRequest"}}, {"name": "Id", "in": "path", "type": "string", "required": true}]
       },
       "parameters": [
         {"$ref": "#/parameters/Action"},
@@ -1077,6 +1124,7 @@
       },
       "description": "A complex type that contains information about the CloudWatch alarm that Amazon Route 53 is monitoring for this health check."
     },
+    "CloudWatchLogsLogGroupArn": {"type": "string"},
     "CloudWatchRegion": {
       "type": "string",
       "enum": ["us-east-1", "us-east-2", "us-west-1", "us-west-2", "ca-central-1", "eu-central-1", "eu-west-1", "eu-west-2", "ap-south-1", "ap-southeast-1", "ap-southeast-2", "ap-northeast-1", "ap-northeast-2", "sa-east-1"],
@@ -1087,7 +1135,7 @@
     "ConcurrentModification": {
       "type": "object",
       "properties": {"message": {"$ref": "#/definitions/ErrorMessage", "description": "Descriptive message for the error response."}},
-      "description": "Another user submitted a request to update the object at the same time that you did. Retry the request. "
+      "description": "Another user submitted a request to create, update, or delete the object at the same time that you did. Retry the request. "
     },
     "ConflictingDomainExists": {
       "type": "object",
@@ -1154,6 +1202,27 @@
         "VPC": {"$ref": "#/definitions/VPC", "description": "A complex type that contains information about an Amazon VPC that you associated with this hosted zone."}
       },
       "description": "A complex type containing the response information for the hosted zone."
+    },
+    "CreateQueryLoggingConfigRequest": {
+      "type": "object",
+      "required": ["HostedZoneId", "CloudWatchLogsLogGroupArn"],
+      "properties": {
+        "HostedZoneId": {"$ref": "#/definitions/ResourceId", "description": "The ID of the hosted zone that you want to log queries for. You can log queries only for public hosted zones."},
+        "CloudWatchLogsLogGroupArn": {
+          "$ref": "#/definitions/CloudWatchLogsLogGroupArn",
+          "description": "<p>The Amazon Resource Name (ARN) for the log group that you want to Amazon Route 53 to send query logs to. This is the format of the ARN:</p> <p>arn:aws:logs:<i>region</i>:<i>account-id</i>:log-group:<i>log_group_name</i> </p> <p>To get the ARN for a log group, you can use the CloudWatch console, the <a href=\"http://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeLogGroups.html\">DescribeLogGroups</a> API action, the <a href=\"http://docs.aws.amazon.com/cli/latest/reference/logs/describe-log-groups.html\">describe-log-groups</a> command, or the applicable command in one of the AWS SDKs.</p>"
+        }
+      }
+    },
+    "CreateQueryLoggingConfigResponse": {
+      "type": "object",
+      "required": ["QueryLoggingConfig"],
+      "properties": {
+        "QueryLoggingConfig": {
+          "$ref": "#/definitions/QueryLoggingConfig",
+          "description": "A complex type that contains the ID for a query logging configuration, the ID of the hosted zone that you want to log queries for, and the ARN for the log group that you want Amazon Route 53 to send query logs to."
+        }
+      }
     },
     "CreateReusableDelegationSetRequest": {
       "type": "object",
@@ -1288,6 +1357,8 @@
       "properties": {"ChangeInfo": {"$ref": "#/definitions/ChangeInfo", "description": "A complex type that contains the ID, the status, and the date and time of a request to delete a hosted zone."}},
       "description": "A complex type that contains the response to a <code>DeleteHostedZone</code> request."
     },
+    "DeleteQueryLoggingConfigRequest": {"type": "object", "properties": {}},
+    "DeleteQueryLoggingConfigResponse": {"type": "object", "properties": {}},
     "DeleteReusableDelegationSetRequest": {"type": "object", "properties": {}, "description": "A request to delete a reusable delegation set."},
     "DeleteReusableDelegationSetResponse": {"type": "object", "properties": {}, "description": "An empty element."},
     "DeleteTrafficPolicyInstanceRequest": {"type": "object", "properties": {}, "description": "A request to delete a specified traffic policy instance."},
@@ -1445,6 +1516,14 @@
         "VPCs": {"$ref": "#/definitions/VPCs", "description": "A complex type that contains information about the VPCs that are associated with the specified hosted zone."}
       },
       "description": "A complex type that contain the response to a <code>GetHostedZone</code> request."
+    },
+    "GetQueryLoggingConfigRequest": {"type": "object", "properties": {}},
+    "GetQueryLoggingConfigResponse": {
+      "type": "object",
+      "required": ["QueryLoggingConfig"],
+      "properties": {
+        "QueryLoggingConfig": {"$ref": "#/definitions/QueryLoggingConfig", "description": "A complex type that contains information about the query logging configuration that you specified in a <a>GetQueryLoggingConfig</a> request."}
+      }
     },
     "GetReusableDelegationSetRequest": {"type": "object", "properties": {}, "description": "A request to get information about a specified reusable delegation set."},
     "GetReusableDelegationSetResponse": {
@@ -1640,6 +1719,11 @@
     },
     "IPAddressCidr": {"type": "string"},
     "IncompatibleVersion": {"type": "object", "properties": {"message": {"$ref": "#/definitions/ErrorMessage"}}, "description": "The resource you're trying to access is unsupported on this Amazon Route 53 endpoint."},
+    "InsufficientCloudWatchLogsResourcePolicy": {
+      "type": "object",
+      "properties": {"message": {"$ref": "#/definitions/ErrorMessage"}},
+      "description": "<p>Amazon Route 53 doesn't have the permissions required to create log streams and send query logs to log streams. Possible causes include the following:</p> <ul> <li> <p>There is no resource policy that specifies the log group ARN in the value for <code>Resource</code>.</p> </li> <li> <p>The resource policy that includes the log group ARN in the value for <code>Resource</code> doesn't have the necessary permissions.</p> </li> <li> <p>The resource policy hasn't finished propagating yet.</p> </li> </ul>"
+    },
     "InsufficientDataHealthStatus": {"type": "string", "enum": ["Healthy", "Unhealthy", "LastKnownStatus"]},
     "InvalidArgument": {"type": "object", "properties": {"message": {"$ref": "#/definitions/ErrorMessage", "description": "Descriptive message for the error response."}}, "description": "Parameter name is invalid."},
     "InvalidChangeBatch": {
@@ -1649,7 +1733,7 @@
     },
     "InvalidDomainName": {"type": "object", "properties": {"message": {"$ref": "#/definitions/ErrorMessage", "description": "Descriptive message for the error response."}}, "description": "The specified domain name is not valid."},
     "InvalidInput": {"type": "object", "properties": {"message": {"$ref": "#/definitions/ErrorMessage", "description": "Descriptive message for the error response."}}, "description": "The input is not valid."},
-    "InvalidPaginationToken": {"type": "object", "properties": {"message": {"$ref": "#/definitions/ErrorMessage"}}},
+    "InvalidPaginationToken": {"type": "object", "properties": {"message": {"$ref": "#/definitions/ErrorMessage"}}, "description": "The value that you specified to get the second or subsequent page of results is invalid."},
     "InvalidTrafficPolicyDocument": {
       "type": "object",
       "properties": {"message": {"$ref": "#/definitions/ErrorMessage", "description": "Descriptive message for the error response."}},
@@ -1766,6 +1850,21 @@
           "description": "<p>If <code>IsTruncated</code> is <code>true</code>, the value of <code>NextMarker</code> identifies the first hosted zone in the next group of hosted zones. Submit another <code>ListHostedZones</code> request, and specify the value of <code>NextMarker</code> from the response in the <code>marker</code> parameter.</p> <p>This element is present only if <code>IsTruncated</code> is <code>true</code>.</p>"
         },
         "MaxItems": {"$ref": "#/definitions/PageMaxItems", "description": "The value that you specified for the <code>maxitems</code> parameter in the call to <code>ListHostedZones</code> that produced the current response."}
+      }
+    },
+    "ListQueryLoggingConfigsRequest": {"type": "object", "properties": {}},
+    "ListQueryLoggingConfigsResponse": {
+      "type": "object",
+      "required": ["QueryLoggingConfigs"],
+      "properties": {
+        "QueryLoggingConfigs": {
+          "$ref": "#/definitions/QueryLoggingConfigs",
+          "description": "An array that contains one <a>QueryLoggingConfig</a> element for each configuration for DNS query logging that is associated with the current AWS account."
+        },
+        "NextToken": {
+          "$ref": "#/definitions/PaginationToken",
+          "description": "<p>If a response includes the last of the query logging configurations that are associated with the current AWS account, <code>NextToken</code> doesn't appear in the response.</p> <p>If a response doesn't include the last of the configurations, you can get more configurations by submitting another <a>ListQueryLoggingConfigs</a> request. Get the value of <code>NextToken</code> that Amazon Route 53 returned in the previous response and include it in <code>NextToken</code> in the next request.</p>"
+        }
       }
     },
     "ListResourceRecordSetsRequest": {"type": "object", "properties": {}, "description": "A request for the resource record sets that are associated with a specified hosted zone."},
@@ -1972,6 +2071,7 @@
     "Nameserver": {"type": "string", "minLength": 0, "maxLength": 255},
     "Namespace": {"type": "string", "minLength": 1, "maxLength": 255},
     "NoSuchChange": {"type": "object", "properties": {"message": {"$ref": "#/definitions/ErrorMessage"}}, "description": "A change with the specified change ID does not exist."},
+    "NoSuchCloudWatchLogsLogGroup": {"type": "object", "properties": {"message": {"$ref": "#/definitions/ErrorMessage"}}, "description": "There is no CloudWatch Logs log group with the specified ARN."},
     "NoSuchDelegationSet": {
       "type": "object",
       "properties": {"message": {"$ref": "#/definitions/ErrorMessage", "description": "Descriptive message for the error response."}},
@@ -1992,6 +2092,7 @@
       "properties": {"message": {"$ref": "#/definitions/ErrorMessage", "description": "Descriptive message for the error response."}},
       "description": "No hosted zone exists with the ID that you specified."
     },
+    "NoSuchQueryLoggingConfig": {"type": "object", "properties": {"message": {"$ref": "#/definitions/ErrorMessage"}}, "description": "There is no DNS query logging configuration with the specified ID."},
     "NoSuchTrafficPolicy": {
       "type": "object",
       "properties": {"message": {"$ref": "#/definitions/ErrorMessage", "description": "Descriptive message for the error response."}},
@@ -2024,6 +2125,23 @@
       "properties": {"message": {"$ref": "#/definitions/ErrorMessage", "description": "Descriptive message for the error response."}},
       "description": "You're trying to associate a VPC with a public hosted zone. Amazon Route 53 doesn't support associating a VPC with a public hosted zone."
     },
+    "QueryLoggingConfig": {
+      "type": "object",
+      "required": ["Id", "HostedZoneId", "CloudWatchLogsLogGroupArn"],
+      "properties": {
+        "Id": {"$ref": "#/definitions/QueryLoggingConfigId", "description": "The ID for a configuration for DNS query logging."},
+        "HostedZoneId": {"$ref": "#/definitions/ResourceId", "description": "The ID of the hosted zone that CloudWatch Logs is logging queries for. "},
+        "CloudWatchLogsLogGroupArn": {"$ref": "#/definitions/CloudWatchLogsLogGroupArn", "description": "The Amazon Resource Name (ARN) of the CloudWatch Logs log group that Amazon Route 53 is publishing logs to."}
+      },
+      "description": "A complex type that contains information about a configuration for DNS query logging."
+    },
+    "QueryLoggingConfigAlreadyExists": {
+      "type": "object",
+      "properties": {"message": {"$ref": "#/definitions/ErrorMessage"}},
+      "description": "You can create only one query logging configuration for a hosted zone, and a query logging configuration already exists for this hosted zone."
+    },
+    "QueryLoggingConfigId": {"type": "string", "minLength": 1, "maxLength": 36},
+    "QueryLoggingConfigs": {"type": "array", "items": {"$ref": "#/definitions/QueryLoggingConfig"}},
     "RData": {"type": "string", "maxLength": 4000},
     "RRType": {"type": "string", "enum": ["SOA", "A", "TXT", "NS", "CNAME", "MX", "NAPTR", "PTR", "SRV", "SPF", "AAAA", "CAA"]},
     "RecordData": {"type": "array", "items": {"$ref": "#/definitions/RecordDataEntry"}},
@@ -2274,7 +2392,7 @@
     "TrafficPolicyInstanceAlreadyExists": {
       "type": "object",
       "properties": {"message": {"$ref": "#/definitions/ErrorMessage", "description": "Descriptive message for the error response."}},
-      "description": "Traffic policy instance with given Id already exists."
+      "description": "There is already a traffic policy instance with the specified ID."
     },
     "TrafficPolicyInstanceCount": {"type": "integer"},
     "TrafficPolicyInstanceId": {"type": "string", "minLength": 1, "maxLength": 36},

@@ -57,7 +57,11 @@
           "484": {"description": "BadRequestException", "schema": {"$ref": "#/definitions/BadRequestException"}},
           "485": {"description": "PreconditionFailedException", "schema": {"$ref": "#/definitions/PreconditionFailedException"}}
         },
-        "parameters": [{"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/CreateBotVersionRequest"}}, {"name": "name", "in": "path", "type": "string", "required": true}]
+        "parameters": [
+          {"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/CreateBotVersionRequest"}},
+          {"name": "name", "in": "path", "type": "string", "required": true},
+          {"name": "name", "in": "query", "type": "string", "required": true}
+        ]
       },
       "parameters": [
         {"$ref": "#/parameters/Action"},
@@ -84,7 +88,11 @@
           "484": {"description": "BadRequestException", "schema": {"$ref": "#/definitions/BadRequestException"}},
           "485": {"description": "PreconditionFailedException", "schema": {"$ref": "#/definitions/PreconditionFailedException"}}
         },
-        "parameters": [{"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/CreateIntentVersionRequest"}}, {"name": "name", "in": "path", "type": "string", "required": true}]
+        "parameters": [
+          {"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/CreateIntentVersionRequest"}},
+          {"name": "name", "in": "path", "type": "string", "required": true},
+          {"name": "name", "in": "query", "type": "string", "required": true}
+        ]
       },
       "parameters": [
         {"$ref": "#/parameters/Action"},
@@ -111,7 +119,11 @@
           "484": {"description": "BadRequestException", "schema": {"$ref": "#/definitions/BadRequestException"}},
           "485": {"description": "PreconditionFailedException", "schema": {"$ref": "#/definitions/PreconditionFailedException"}}
         },
-        "parameters": [{"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/CreateSlotTypeVersionRequest"}}, {"name": "name", "in": "path", "type": "string", "required": true}]
+        "parameters": [
+          {"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/CreateSlotTypeVersionRequest"}},
+          {"name": "name", "in": "path", "type": "string", "required": true},
+          {"name": "name", "in": "query", "type": "string", "required": true}
+        ]
       },
       "parameters": [
         {"$ref": "#/parameters/Action"},
@@ -138,7 +150,11 @@
           "484": {"description": "BadRequestException", "schema": {"$ref": "#/definitions/BadRequestException"}},
           "485": {"description": "ResourceInUseException", "schema": {"$ref": "#/definitions/ResourceInUseException"}}
         },
-        "parameters": [{"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/DeleteBotRequest"}}, {"name": "name", "in": "path", "type": "string", "required": true}]
+        "parameters": [
+          {"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/DeleteBotRequest"}},
+          {"name": "name", "in": "path", "type": "string", "required": true},
+          {"name": "name", "in": "query", "type": "string", "required": true}
+        ]
       },
       "parameters": [
         {"$ref": "#/parameters/Action"},
@@ -167,7 +183,8 @@
         "parameters": [
           {"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/PutBotAliasRequest"}},
           {"name": "name", "in": "path", "type": "string", "required": true},
-          {"name": "botName", "in": "path", "type": "string", "required": true}
+          {"name": "botName", "in": "path", "type": "string", "required": true},
+          {"name": "name", "in": "query", "type": "string", "required": true}
         ]
       },
       "parameters": [
@@ -197,7 +214,8 @@
           {"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/GetBotChannelAssociationRequest"}},
           {"name": "name", "in": "path", "type": "string", "required": true},
           {"name": "botName", "in": "path", "type": "string", "required": true},
-          {"name": "aliasName", "in": "path", "type": "string", "required": true}
+          {"name": "aliasName", "in": "path", "type": "string", "required": true},
+          {"name": "name", "in": "query", "type": "string", "required": true}
         ]
       },
       "parameters": [
@@ -228,7 +246,9 @@
         "parameters": [
           {"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/DeleteBotVersionRequest"}},
           {"name": "name", "in": "path", "type": "string", "required": true},
-          {"name": "version", "in": "path", "type": "string", "required": true}
+          {"name": "version", "in": "path", "type": "string", "required": true},
+          {"name": "name", "in": "query", "type": "string", "required": true},
+          {"name": "version", "in": "query", "type": "string", "required": true}
         ]
       },
       "parameters": [
@@ -256,7 +276,11 @@
           "484": {"description": "BadRequestException", "schema": {"$ref": "#/definitions/BadRequestException"}},
           "485": {"description": "ResourceInUseException", "schema": {"$ref": "#/definitions/ResourceInUseException"}}
         },
-        "parameters": [{"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/DeleteIntentRequest"}}, {"name": "name", "in": "path", "type": "string", "required": true}]
+        "parameters": [
+          {"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/DeleteIntentRequest"}},
+          {"name": "name", "in": "path", "type": "string", "required": true},
+          {"name": "name", "in": "query", "type": "string", "required": true}
+        ]
       },
       "parameters": [
         {"$ref": "#/parameters/Action"},
@@ -284,7 +308,9 @@
         "parameters": [
           {"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/GetIntentRequest"}},
           {"name": "name", "in": "path", "type": "string", "required": true},
-          {"name": "version", "in": "path", "type": "string", "required": true}
+          {"name": "version", "in": "path", "type": "string", "required": true},
+          {"name": "name", "in": "query", "type": "string", "required": true},
+          {"name": "version", "in": "query", "type": "string", "required": true}
         ]
       },
       "parameters": [
@@ -312,7 +338,11 @@
           "484": {"description": "BadRequestException", "schema": {"$ref": "#/definitions/BadRequestException"}},
           "485": {"description": "ResourceInUseException", "schema": {"$ref": "#/definitions/ResourceInUseException"}}
         },
-        "parameters": [{"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/DeleteSlotTypeRequest"}}, {"name": "name", "in": "path", "type": "string", "required": true}]
+        "parameters": [
+          {"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/DeleteSlotTypeRequest"}},
+          {"name": "name", "in": "path", "type": "string", "required": true},
+          {"name": "name", "in": "query", "type": "string", "required": true}
+        ]
       },
       "parameters": [
         {"$ref": "#/parameters/Action"},
@@ -342,7 +372,9 @@
         "parameters": [
           {"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/DeleteSlotTypeVersionRequest"}},
           {"name": "name", "in": "path", "type": "string", "required": true},
-          {"name": "version", "in": "path", "type": "string", "required": true}
+          {"name": "version", "in": "path", "type": "string", "required": true},
+          {"name": "name", "in": "query", "type": "string", "required": true},
+          {"name": "version", "in": "query", "type": "string", "required": true}
         ]
       },
       "parameters": [
@@ -400,7 +432,8 @@
         "parameters": [
           {"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/GetBotRequest"}},
           {"name": "name", "in": "path", "type": "string", "required": true},
-          {"name": "versionoralias", "in": "path", "type": "string", "required": true}
+          {"name": "versionoralias", "in": "path", "type": "string", "required": true},
+          {"name": "name", "in": "query", "type": "string", "required": true}
         ]
       },
       "parameters": [
@@ -489,7 +522,8 @@
           {"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/GetBotVersionsRequest"}},
           {"name": "maxResults", "type": "string", "in": "query", "description": "Pagination limit", "required": false},
           {"name": "nextToken", "type": "string", "in": "query", "description": "Pagination token", "required": false},
-          {"name": "name", "in": "path", "type": "string", "required": true}
+          {"name": "name", "in": "path", "type": "string", "required": true},
+          {"name": "name", "in": "query", "type": "string", "required": true}
         ]
       },
       "parameters": [
@@ -614,6 +648,31 @@
         {"$ref": "#/parameters/X-Amz-SignedHeaders"}
       ]
     },
+    "/exports/": {
+      "get": {
+        "operationId": "GetExport",
+        "description": "Exports the contents of a Amazon Lex resource in a specified format. ",
+        "responses": {
+          "200": {"description": "Success", "schema": {"$ref": "#/definitions/GetExportResponse"}},
+          "480": {"description": "NotFoundException", "schema": {"$ref": "#/definitions/NotFoundException"}},
+          "481": {"description": "LimitExceededException", "schema": {"$ref": "#/definitions/LimitExceededException"}},
+          "482": {"description": "InternalFailureException", "schema": {"$ref": "#/definitions/InternalFailureException"}},
+          "483": {"description": "BadRequestException", "schema": {"$ref": "#/definitions/BadRequestException"}}
+        },
+        "parameters": [{"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/GetExportRequest"}}]
+      },
+      "parameters": [
+        {"$ref": "#/parameters/Action"},
+        {"$ref": "#/parameters/Version"},
+        {"$ref": "#/parameters/X-Amz-Content-Sha256"},
+        {"$ref": "#/parameters/X-Amz-Date"},
+        {"$ref": "#/parameters/X-Amz-Algorithm"},
+        {"$ref": "#/parameters/X-Amz-Credential"},
+        {"$ref": "#/parameters/X-Amz-Security-Token"},
+        {"$ref": "#/parameters/X-Amz-Signature"},
+        {"$ref": "#/parameters/X-Amz-SignedHeaders"}
+      ]
+    },
     "/intents/{name}/versions/": {
       "get": {
         "operationId": "GetIntentVersions",
@@ -629,7 +688,8 @@
           {"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/GetIntentVersionsRequest"}},
           {"name": "maxResults", "type": "string", "in": "query", "description": "Pagination limit", "required": false},
           {"name": "nextToken", "type": "string", "in": "query", "description": "Pagination token", "required": false},
-          {"name": "name", "in": "path", "type": "string", "required": true}
+          {"name": "name", "in": "path", "type": "string", "required": true},
+          {"name": "name", "in": "query", "type": "string", "required": true}
         ]
       },
       "parameters": [
@@ -687,7 +747,9 @@
         "parameters": [
           {"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/GetSlotTypeRequest"}},
           {"name": "name", "in": "path", "type": "string", "required": true},
-          {"name": "version", "in": "path", "type": "string", "required": true}
+          {"name": "version", "in": "path", "type": "string", "required": true},
+          {"name": "name", "in": "query", "type": "string", "required": true},
+          {"name": "version", "in": "query", "type": "string", "required": true}
         ]
       },
       "parameters": [
@@ -717,7 +779,8 @@
           {"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/GetSlotTypeVersionsRequest"}},
           {"name": "maxResults", "type": "string", "in": "query", "description": "Pagination limit", "required": false},
           {"name": "nextToken", "type": "string", "in": "query", "description": "Pagination token", "required": false},
-          {"name": "name", "in": "path", "type": "string", "required": true}
+          {"name": "name", "in": "path", "type": "string", "required": true},
+          {"name": "name", "in": "query", "type": "string", "required": true}
         ]
       },
       "parameters": [
@@ -797,7 +860,11 @@
           "483": {"description": "BadRequestException", "schema": {"$ref": "#/definitions/BadRequestException"}},
           "484": {"description": "PreconditionFailedException", "schema": {"$ref": "#/definitions/PreconditionFailedException"}}
         },
-        "parameters": [{"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/PutBotRequest"}}, {"name": "name", "in": "path", "type": "string", "required": true}]
+        "parameters": [
+          {"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/PutBotRequest"}},
+          {"name": "name", "in": "path", "type": "string", "required": true},
+          {"name": "name", "in": "query", "type": "string", "required": true}
+        ]
       },
       "parameters": [
         {"$ref": "#/parameters/Action"},
@@ -823,7 +890,11 @@
           "483": {"description": "BadRequestException", "schema": {"$ref": "#/definitions/BadRequestException"}},
           "484": {"description": "PreconditionFailedException", "schema": {"$ref": "#/definitions/PreconditionFailedException"}}
         },
-        "parameters": [{"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/PutIntentRequest"}}, {"name": "name", "in": "path", "type": "string", "required": true}]
+        "parameters": [
+          {"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/PutIntentRequest"}},
+          {"name": "name", "in": "path", "type": "string", "required": true},
+          {"name": "name", "in": "query", "type": "string", "required": true}
+        ]
       },
       "parameters": [
         {"$ref": "#/parameters/Action"},
@@ -849,7 +920,11 @@
           "483": {"description": "BadRequestException", "schema": {"$ref": "#/definitions/BadRequestException"}},
           "484": {"description": "PreconditionFailedException", "schema": {"$ref": "#/definitions/PreconditionFailedException"}}
         },
-        "parameters": [{"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/PutSlotTypeRequest"}}, {"name": "name", "in": "path", "type": "string", "required": true}]
+        "parameters": [
+          {"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/PutSlotTypeRequest"}},
+          {"name": "name", "in": "path", "type": "string", "required": true},
+          {"name": "name", "in": "query", "type": "string", "required": true}
+        ]
       },
       "parameters": [
         {"$ref": "#/parameters/Action"},
@@ -1074,6 +1149,8 @@
       "description": "<p>Each slot type can have a set of values. Each enumeration value represents a value the slot type can take. </p> <p>For example, a pizza ordering bot could have a slot type that specifies the type of crust that the pizza should have. The slot type could include the values </p> <ul> <li> <p>thick</p> </li> <li> <p>thin</p> </li> <li> <p>stuffed</p> </li> </ul>"
     },
     "EnumerationValues": {"type": "array", "items": {"$ref": "#/definitions/EnumerationValue"}, "minItems": 1, "maxItems": 10000},
+    "ExportStatus": {"type": "string", "enum": ["IN_PROGRESS", "READY", "FAILED"]},
+    "ExportType": {"type": "string", "enum": ["ALEXA_SKILLS_KIT"]},
     "FollowUpPrompt": {
       "type": "object",
       "required": ["prompt", "rejectionStatement"],
@@ -1238,6 +1315,25 @@
       "properties": {
         "slotTypes": {"$ref": "#/definitions/BuiltinSlotTypeMetadataList", "description": "An array of <code>BuiltInSlotTypeMetadata</code> objects, one entry for each slot type returned."},
         "nextToken": {"$ref": "#/definitions/NextToken", "description": "If the response is truncated, the response includes a pagination token that you can use in your next request to fetch the next page of slot types."}
+      }
+    },
+    "GetExportRequest": {"type": "object", "properties": {}},
+    "GetExportResponse": {
+      "type": "object",
+      "properties": {
+        "name": {"$ref": "#/definitions/Name", "description": "The name of the bot being exported."},
+        "version": {"$ref": "#/definitions/NumericalVersion", "description": "The version of the bot being exported."},
+        "resourceType": {"$ref": "#/definitions/ResourceType", "description": "The type of the exported resource."},
+        "exportType": {"$ref": "#/definitions/ExportType", "description": "The format of the exported data."},
+        "exportStatus": {
+          "$ref": "#/definitions/ExportStatus",
+          "description": "<p>The status of the export. </p> <ul> <li> <p> <code>IN_PROGRESS</code> - The export is in progress.</p> </li> <li> <p> <code>READY</code> - The export is complete.</p> </li> <li> <p> <code>FAILED</code> - The export could not be completed.</p> </li> </ul>"
+        },
+        "failureReason": {"$ref": "#/definitions/String", "description": "If <code>status</code> is <code>FAILED</code>, Amazon Lex provides the reason that it failed to export the resource."},
+        "url": {
+          "$ref": "#/definitions/String",
+          "description": "An S3 pre-signed URL that provides the location of the exported resource. The exported resource is a ZIP archive that contains the exported resource in JSON format. The structure of the archive may change. Your code should not rely on the archive structure."
+        }
       }
     },
     "GetIntentRequest": {"type": "object", "example": {"version": "$LATEST", "name": "DocOrderPizza"}, "properties": {}},
@@ -1411,7 +1507,7 @@
       "properties": {"intentName": {"$ref": "#/definitions/IntentName", "description": "The name of the intent."}, "intentVersion": {"$ref": "#/definitions/Version", "description": "The version of the intent."}},
       "description": "Identifies the specific version of an intent."
     },
-    "IntentList": {"type": "array", "items": {"$ref": "#/definitions/Intent"}, "minItems": 1, "maxItems": 100},
+    "IntentList": {"type": "array", "items": {"$ref": "#/definitions/Intent"}},
     "IntentMetadata": {
       "type": "object",
       "properties": {
@@ -1442,7 +1538,7 @@
     },
     "MessageList": {"type": "array", "items": {"$ref": "#/definitions/Message"}, "minItems": 1, "maxItems": 5},
     "MessageVersion": {"type": "string", "minLength": 1, "maxLength": 5},
-    "Name": {"type": "string", "pattern": "[a-zA-Z]+", "minLength": 1, "maxLength": 64},
+    "Name": {"type": "string", "pattern": "[a-zA-Z_]+", "minLength": 1, "maxLength": 64},
     "NextToken": {"type": "string"},
     "NotFoundException": {"type": "object", "properties": {"message": {"$ref": "#/definitions/String"}}, "description": "The resource specified in the request was not found. Check the resource and try again."},
     "NumericalVersion": {"type": "string", "pattern": "[0-9]+", "minLength": 1, "maxLength": 64},
@@ -1791,7 +1887,7 @@
         },
         "valueSelectionStrategy": {
           "$ref": "#/definitions/SlotValueSelectionStrategy",
-          "description": "<p>Determines the strategy that Amazon Lex uses to return slot type values. The field can be set to one of the following values:</p> <ul> <li> <p> <code>ORIGINAL_VALUE</code> - Returns the value entered by the user.</p> </li> <li> <p> <code>TOP_RESOLUTION</code> - If there is a resolution list for the slot, return the first value in the resolution list as the slot type value. If there is no resolution list, null is returned.</p> </li> </ul> <p>If you don't specify the <code>valueSelectionStrategy</code> is not provided, the default is <code>ORIGINAL_VALUE</code>.</p>"
+          "description": "<p>Determines the slot resolution strategy that Amazon Lex uses to return slot type values. The field can be set to one of the following values:</p> <ul> <li> <p> <code>ORIGINAL_VALUE</code> - Returns the value entered by the user, if the user value is similar to the slot value.</p> </li> <li> <p> <code>TOP_RESOLUTION</code> - If there is a resolution list for the slot, return the first value in the resolution list as the slot type value. If there is no resolution list, null is returned.</p> </li> </ul> <p>If you don't specify the <code>valueSelectionStrategy</code>, the default is <code>ORIGINAL_VALUE</code>.</p>"
         }
       }
     },
@@ -1814,7 +1910,7 @@
         "createdDate": {"$ref": "#/definitions/Timestamp", "description": "The date that the slot type was created."},
         "version": {"$ref": "#/definitions/Version", "description": "The version of the slot type. For a new slot type, the version is always <code>$LATEST</code>. "},
         "checksum": {"$ref": "#/definitions/String", "description": "Checksum of the <code>$LATEST</code> version of the slot type."},
-        "valueSelectionStrategy": {"$ref": "#/definitions/SlotValueSelectionStrategy", "description": "The strategy that Amazon Lex uses to determine the value of the slot. For more information, see <a>PutSlotType</a>."}
+        "valueSelectionStrategy": {"$ref": "#/definitions/SlotValueSelectionStrategy", "description": "The slot resolution strategy that Amazon Lex uses to determine the value of the slot. For more information, see <a>PutSlotType</a>."}
       }
     },
     "ReferenceType": {"type": "string", "enum": ["Intent", "Bot", "BotAlias", "BotChannel"]},
@@ -1831,6 +1927,7 @@
       },
       "description": "Describes the resource that refers to the resource that you are attempting to delete. This object is returned as part of the <code>ResourceInUseException</code> exception. "
     },
+    "ResourceType": {"type": "string", "enum": ["BOT"]},
     "ResponseCard": {"type": "string", "minLength": 1, "maxLength": 50000},
     "SessionTTL": {"type": "integer", "minimum": 60, "maximum": 86400},
     "Slot": {
