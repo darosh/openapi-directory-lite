@@ -26,37 +26,8 @@ function indexPath () {
   return config.api + '/' + config.index
 }
 
-function data () {
-  return require('./index.json')
-}
-
-function filePaths () {
-  var specs = data().specs
-  var paths = []
-
-  for (var key in specs) {
-    paths.push(filePath(key, specs[key]))
-  }
-
-  return paths
-}
-
-function apiPaths () {
-  var specs = data().specs
-  var paths = []
-
-  for (var key in specs) {
-    paths.push(apiPath(key, specs[key]))
-  }
-
-  return paths
-}
-
 module.exports.apiPath = apiPath
 module.exports.indexPath = indexPath
-module.exports.filePaths = filePaths
 module.exports.filePath = filePath
-module.exports.apiPaths = apiPaths
 module.exports.fileName = fileName
-module.exports.data = data
 module.exports.config = config
