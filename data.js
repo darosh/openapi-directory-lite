@@ -9,7 +9,7 @@ function filePaths () {
   var paths = []
 
   for (var key in specs) {
-    paths.push(odl.filePath(key, specs[key]))
+    paths.push({key, path: odl.filePath(key, specs[key])})
   }
 
   return paths
