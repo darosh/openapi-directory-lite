@@ -676,7 +676,7 @@
         "x-code-samples": [
           {
             "lang": "PHP",
-            "source": "$bankAccountForm = new Rebilly\\Entities\\BankAccount();\n$bankAccountForm->setCustomerId('customerId');\n$bankAccountForm->setContactId('contactId');\n$bankAccountForm->setRoutingNumber('0123456');\n$bankAccountForm->setAccountNumber('0123456');\n$bankAccountForm->setAccountType('checking');\n\ntry {\n    $bankAccount = $client->bankAccounts()->create($bankAccountForm);\n} catch (UnprocessableEntityException $e) {\n    echo $e->getMessage();\n}\n"
+            "source": "$bankAccountForm = new Rebilly\\Entities\\BankAccount();\n$bankAccountForm->setCustomerId('customerId');\n$bankAccountForm->setRoutingNumber('0123456');\n$bankAccountForm->setAccountNumber('0123456');\n$bankAccountForm->setAccountType('checking');\n$bankAccountForm->setBillingAddress([\n    'firstName' => 'John',\n    'lastName' => 'Doe',\n    'organization' => 'Test LTD',\n    'address' => 'Test street 5',\n    'address2' => 'Test house 5',\n    'city' => 'New York',\n    'region' => 'Long Island',\n    'country' => 'US',\n    'postalCode' => '123456',\n    'emails' => [\n        [\n            'label' => 'main',\n            'value' => 'johndoe@testemail.com',\n            'primary' => true,\n        ],\n        [\n            'label' => 'secondary',\n            'value' => 'otheremail@testemail.com',\n        ],\n    ],\n    'phoneNumbers' => [\n        [\n            'label' => 'work',\n            'value' => '+123456789',\n            'primary' => true,\n        ],\n        [\n            'label' => 'home',\n            'value' => '+9874654321',\n        ],\n    ],\n]);\n\ntry {\n    $bankAccount = $client->bankAccounts()->create($bankAccountForm);\n} catch (UnprocessableEntityException $e) {\n    echo $e->getMessage();\n}\n"
           }
         ]
       }
@@ -733,7 +733,7 @@
         "x-code-samples": [
           {
             "lang": "PHP",
-            "source": "$bankAccountForm = new Rebilly\\Entities\\BankAccount();\n$bankAccountForm->setCustomerId('customerId');\n$bankAccountForm->setContactId('contactId');\n$bankAccountForm->setRoutingNumber('0123456');\n$bankAccountForm->setAccountNumber('0123456');\n$bankAccountForm->setAccountType('checking');\n\ntry {\n    $bankAccount = $client->customers()->create($bankAccountForm, 'bankAccountId');\n} catch (UnprocessableEntityException $e) {\n    echo $e->getMessage();\n}\n"
+            "source": "$bankAccountForm = new Rebilly\\Entities\\BankAccount();\n$bankAccountForm->setCustomerId('customerId');\n$bankAccountForm->setRoutingNumber('0123456');\n$bankAccountForm->setAccountNumber('0123456');\n$bankAccountForm->setAccountType('checking');\n$bankAccountForm->setBillingAddress([\n    'firstName' => 'John',\n    'lastName' => 'Doe',\n    'organization' => 'Test LTD',\n    'address' => 'Test street 5',\n    'address2' => 'Test house 5',\n    'city' => 'New York',\n    'region' => 'Long Island',\n    'country' => 'US',\n    'postalCode' => '123456',\n    'emails' => [\n        [\n            'label' => 'main',\n            'value' => 'johndoe@testemail.com',\n            'primary' => true,\n        ],\n        [\n            'label' => 'secondary',\n            'value' => 'otheremail@testemail.com',\n        ],\n    ],\n    'phoneNumbers' => [\n        [\n            'label' => 'work',\n            'value' => '+123456789',\n            'primary' => true,\n        ],\n        [\n            'label' => 'home',\n            'value' => '+9874654321',\n        ],\n    ],\n]);\n\ntry {\n    $bankAccount = $client->customers()->create($bankAccountForm, 'bankAccountId');\n} catch (UnprocessableEntityException $e) {\n    echo $e->getMessage();\n}\n"
           }
         ]
       }
@@ -1032,7 +1032,7 @@
         "x-code-samples": [
           {
             "lang": "PHP",
-            "source": "$contactForm = new Rebilly\\Entities\\Contact();\n$contactForm->setFirstName('Sherlock');\n$contactForm->setLastName('Holmes');\n$contactForm->setOrganization('TestOrganization');\n\ntry {\n    $contact = $client->contacts()->create($contactForm);\n} catch (UnprocessableEntityException $e) {\n    echo $e->getMessage();\n}\n"
+            "source": "$contactForm = new Rebilly\\Entities\\Contact();\n$contactForm->setFirstName('Sherlock');\n$contactForm->setLastName('Holmes');\n$contactForm->setOrganization('TestOrganization');\n$contactForm->setEmails(\n    [\n        [\n            'label' => 'main',\n            'value' => 'johndoe@testemail.com',\n            'primary' => true,\n        ],\n        [\n            'label' => 'secondary',\n            'value' => 'otheremail@testemail.com',\n        ],\n    ]\n);\n$contactForm->setPhoneNumbers(\n    [\n        [\n            'label' => 'work',\n            'value' => '+123456789',\n            'primary' => true,\n        ],\n        [\n            'label' => 'home',\n            'value' => '+9874654321',\n        ],\n    ]\n);\n\ntry {\n    $contact = $client->contacts()->create($contactForm);\n} catch (UnprocessableEntityException $e) {\n    echo $e->getMessage();\n}\n"
           }
         ]
       }
@@ -1099,7 +1099,7 @@
         "x-code-samples": [
           {
             "lang": "PHP",
-            "source": "$contactForm = new Rebilly\\Entities\\Contact();\n$contactForm->setFirstName('Sherlock');\n$contactForm->setLastName('Holmes');\n$contactForm->setOrganization('TestOrganization');\n\ntry {\n    $contact = $client->contacts()->update('contactId', $contactForm);\n} catch (UnprocessableEntityException $e) {\n    echo $e->getMessage();\n}\n"
+            "source": "$contactForm = new Rebilly\\Entities\\Contact();\n$contactForm->setFirstName('Sherlock');\n$contactForm->setLastName('Holmes');\n$contactForm->setOrganization('TestOrganization');\n$contactForm->setEmails(\n    [\n        [\n            'label' => 'main',\n            'value' => 'johndoe@testemail.com',\n            'primary' => true,\n        ],\n        [\n            'label' => 'secondary',\n            'value' => 'otheremail@testemail.com',\n        ],\n    ]\n);\n$contactForm->setPhoneNumbers(\n    [\n        [\n            'label' => 'work',\n            'value' => '+123456789',\n            'primary' => true,\n        ],\n        [\n            'label' => 'home',\n            'value' => '+9874654321',\n        ],\n    ]\n);\n\ntry {\n    $contact = $client->contacts()->update('contactId', $contactForm);\n} catch (UnprocessableEntityException $e) {\n    echo $e->getMessage();\n}\n"
           }
         ]
       }
@@ -1293,6 +1293,30 @@
             "source": "$couponForm = new Rebilly\\Entities\\Coupons\\Coupon();\n\n$discountArray = [\n    'type' => Rebilly\\Entities\\Coupons\\Discount::TYPE_FIXED,\n    'currency' => 'USD',\n    'amount' => 1.99,\n];\n\n$discountForm = new Rebilly\\Entities\\Coupons\\Discount($discountArray);\n$couponForm->setDiscount($discountForm);\n\n$restrictionArray = [\n    'type' => Rebilly\\Entities\\Coupons\\Restriction::TYPE_DISCOUNTS_PER_REDEMPTION,\n    'quantity' => 2,\n];\n\n$restrictionForm = new Rebilly\\Entities\\Coupons\\Restriction([\n    $restrictionArray,\n]);\n\n$couponForm->setRestrictions($restrictionForm);\n\ntry {\n    $coupon = $client->coupons()->create($couponForm, 'redemptionCode');\n} catch (UnprocessableEntityException $e) {\n    echo $e->getMessage();\n}\n"
           }
         ]
+      }
+    },
+    "/coupons/{redemptionCode}/expiration": {
+      "parameters": [{"description": "The Coupon's redemption code", "in": "path", "name": "redemptionCode", "required": true, "type": "string"}],
+      "post": {
+        "description": "Set a coupon's expiry time with the specified redemption code.\nThe expiredTime of a coupon must be greater than its issuedTime.\nThis cannot be performed on expired coupons.\n",
+        "parameters": [{"description": "Coupon resource", "in": "body", "name": "body", "schema": {"$ref": "#/definitions/CouponExpiration"}}],
+        "responses": {
+          "201": {
+            "description": "Coupon expiration was successfully set",
+            "headers": {
+              "Rate-Limit-Limit": {"description": "The number of allowed requests in the current period", "type": "integer"},
+              "Rate-Limit-Remaining": {"description": "The number of remaining requests in the current period", "type": "integer"},
+              "Rate-Limit-Reset": {"description": "The date in format defined by [RFC 822](https://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.3.1)\nwhen the current period will reset\n", "type": "string"}
+            },
+            "schema": {"$ref": "#/definitions/Coupon"}
+          },
+          "401": {"$ref": "#/responses/AccessForbidden"},
+          "404": {"$ref": "#/responses/NotFound"},
+          "409": {"$ref": "#/responses/Conflict", "description": "The coupon is already expired and has been redeemed, unable to reschedule expiration"},
+          "422": {"description": "Invalid data was sent", "schema": {"$ref": "#/definitions/InvalidError"}}
+        },
+        "summary": "Set a coupon's expiration time.",
+        "tags": ["Coupons"]
       }
     },
     "/credential-hashes/emails": {
@@ -1894,7 +1918,7 @@
         "x-code-samples": [
           {
             "lang": "PHP",
-            "source": "$customerForm = new Rebilly\\Entities\\Customer();\n$customerForm->setFirstName('Sherlock');\n$customerForm->setLastName('Holmes');\n$customerForm->setEmail('sherlock.holmes@gmail.com');\n\ntry {\n    $customer = $client->customers()->create($customerForm);\n} catch (UnprocessableEntityException $e) {\n    echo $e->getMessage();\n}\n"
+            "source": "$customerForm = new Rebilly\\Entities\\Customer();\n$customerForm->setPrimaryAddress([\n    'firstName' => 'John',\n    'lastName' => 'Doe',\n    'organization' => 'Test LTD',\n    'address' => 'Test street 5',\n    'address2' => 'Test house 5',\n    'city' => 'New York',\n    'region' => 'Long Island',\n    'country' => 'US',\n    'postalCode' => '123456',\n    'emails' => [\n        [\n            'label' => 'main',\n            'value' => 'johndoe@testemail.com',\n            'primary' => true,\n        ],\n        [\n            'label' => 'secondary',\n            'value' => 'otheremail@testemail.com',\n        ],\n    ],\n    'phoneNumbers' => [\n        [\n            'label' => 'work',\n            'value' => '+123456789',\n            'primary' => true,\n        ],\n        [\n            'label' => 'home',\n            'value' => '+9874654321',\n        ],\n    ],\n]);\n\ntry {\n    $customer = $client->customers()->create($customerForm);\n} catch (UnprocessableEntityException $e) {\n    echo $e->getMessage();\n}\n"
           }
         ]
       }
@@ -1950,7 +1974,7 @@
         "x-code-samples": [
           {
             "lang": "PHP",
-            "source": "$customerForm = new Rebilly\\Entities\\Customer();\n$customerForm->setFirstName('Sherlock');\n$customerForm->setLastName('Holmes');\n$customerForm->setEmail('sherlock.holmes@gmail.com');\n\ntry {\n    $customer = $client->customers()->update('myCustomerId', $customerForm);\n} catch (UnprocessableEntityException $e) {\n    echo $e->getMessage();\n}\n"
+            "source": "$customerForm = new Rebilly\\Entities\\Customer();\n$customerForm->setPrimaryAddress([\n    'firstName' => 'John',\n    'lastName' => 'Doe',\n    'organization' => 'Test LTD',\n    'address' => 'Test street 5',\n    'address2' => 'Test house 5',\n    'city' => 'New York',\n    'region' => 'Long Island',\n    'country' => 'US',\n    'postalCode' => '123456',\n    'emails' => [\n        [\n            'label' => 'main',\n            'value' => 'johndoe@testemail.com',\n            'primary' => true,\n        ],\n        [\n            'label' => 'secondary',\n            'value' => 'otheremail@testemail.com',\n        ],\n    ],\n    'phoneNumbers' => [\n        [\n            'label' => 'work',\n            'value' => '+123456789',\n            'primary' => true,\n        ],\n        [\n            'label' => 'home',\n            'value' => '+9874654321',\n        ],\n    ],\n]);\n\ntry {\n    $customer = $client->customers()->update('myCustomerId', $customerForm);\n} catch (UnprocessableEntityException $e) {\n    echo $e->getMessage();\n}\n"
           }
         ]
       }
@@ -2684,7 +2708,7 @@
         "x-code-samples": [
           {
             "lang": "PHP",
-            "source": "$invoiceForm = new Rebilly\\Entities\\Invoice();\n$invoiceForm->setCustomerId('customerId');\n$invoiceForm->setWebsiteId('websiteId');\n$invoiceForm->setCurrency('USD');\n\ntry {\n    $invoice = $client->invoices()->create($invoiceForm);\n} catch (UnprocessableEntityException $e) {\n    echo $e->getMessage();\n}\n"
+            "source": "<?\n$invoiceForm = new Rebilly\\Entities\\Invoice();\n$invoiceForm->setCustomerId('customerId');\n$invoiceForm->setWebsiteId('websiteId');\n$invoiceForm->setCurrency('USD');\n$invoiceForm->setBillingAddress([\n    'firstName' => 'John',\n    'lastName' => 'Doe',\n    'organization' => 'Test LTD',\n    'address' => 'Test street 5',\n    'address2' => 'Test house 5',\n    'city' => 'New York',\n    'region' => 'Long Island',\n    'country' => 'US',\n    'postalCode' => '123456',\n    'emails' => [\n        [\n            'label' => 'main',\n            'value' => 'johndoe@testemail.com',\n            'primary' => true,\n        ],\n        [\n            'label' => 'secondary',\n            'value' => 'otheremail@testemail.com',\n        ],\n    ],\n    'phoneNumbers' => [\n        [\n            'label' => 'work',\n            'value' => '+123456789',\n            'primary' => true,\n        ],\n        [\n            'label' => 'home',\n            'value' => '+9874654321',\n        ],\n    ],\n]);\n\ntry {\n    $invoice = $client->invoices()->create($invoiceForm);\n} catch (UnprocessableEntityException $e) {\n    echo $e->getMessage();\n}\n"
           }
         ]
       }
@@ -2743,7 +2767,7 @@
         "x-code-samples": [
           {
             "lang": "PHP",
-            "source": "$invoiceForm = new Rebilly\\Entities\\Invoice();\n$invoiceForm->setCustomerId('customerId');\n$invoiceForm->setWebsiteId('websiteId');\n$invoiceForm->setCurrency('USD');\n\ntry {\n    $invoice = $client->invoices()->update('invoiceId', $invoiceForm);\n} catch (UnprocessableEntityException $e) {\n    echo $e->getMessage();\n}\n"
+            "source": "<?\n$invoiceForm = new Rebilly\\Entities\\Invoice();\n$invoiceForm->setCustomerId('customerId');\n$invoiceForm->setWebsiteId('websiteId');\n$invoiceForm->setCurrency('USD');\n$invoiceForm->setBillingAddress([\n    'firstName' => 'John',\n    'lastName' => 'Doe',\n    'organization' => 'Test LTD',\n    'address' => 'Test street 5',\n    'address2' => 'Test house 5',\n    'city' => 'New York',\n    'region' => 'Long Island',\n    'country' => 'US',\n    'postalCode' => '123456',\n    'emails' => [\n        [\n            'label' => 'main',\n            'value' => 'johndoe@testemail.com',\n            'primary' => true,\n        ],\n        [\n            'label' => 'secondary',\n            'value' => 'otheremail@testemail.com',\n        ],\n    ],\n    'phoneNumbers' => [\n        [\n            'label' => 'work',\n            'value' => '+123456789',\n            'primary' => true,\n        ],\n        [\n            'label' => 'home',\n            'value' => '+9874654321',\n        ],\n    ],\n]);\n\ntry {\n    $invoice = $client->invoices()->update('invoiceId', $invoiceForm);\n} catch (UnprocessableEntityException $e) {\n    echo $e->getMessage();\n}\n"
           }
         ]
       }
@@ -3543,7 +3567,7 @@
         "x-code-samples": [
           {
             "lang": "PHP",
-            "source": "$paymentCardForm = new Rebilly\\Entities\\PaymentCard();\n$paymentCardForm->setCustomerId('customerId');\n$paymentCardForm->setPan('4111111111111111');\n$paymentCardForm->setExpYear(2025);\n$paymentCardForm->setExpMonth(8);\n$paymentCardForm->setBillingContactId('contactId');\n\ntry {\n    $paymentCard = $client->paymentCards()->create($paymentCardForm);\n} catch (UnprocessableEntityException $e) {\n    echo $e->getMessage();\n}\n"
+            "source": "$paymentCardForm = new Rebilly\\Entities\\PaymentCard();\n$paymentCardForm->setCustomerId('customerId');\n$paymentCardForm->setPan('4111111111111111');\n$paymentCardForm->setExpYear(2025);\n$paymentCardForm->setExpMonth(8);\n$paymentCardForm->setBillingAddress([\n    'firstName' => 'John',\n    'lastName' => 'Doe',\n    'organization' => 'Test LTD',\n    'address' => 'Test street 5',\n    'address2' => 'Test house 5',\n    'city' => 'New York',\n    'region' => 'Long Island',\n    'country' => 'US',\n    'postalCode' => '123456',\n    'emails' => [\n        [\n            'label' => 'main',\n            'value' => 'johndoe@testemail.com',\n            'primary' => true,\n        ],\n        [\n            'label' => 'secondary',\n            'value' => 'otheremail@testemail.com',\n        ],\n    ],\n    'phoneNumbers' => [\n        [\n            'label' => 'work',\n            'value' => '+123456789',\n            'primary' => true,\n        ],\n        [\n            'label' => 'home',\n            'value' => '+9874654321',\n        ],\n    ],\n]);\n\ntry {\n    $paymentCard = $client->paymentCards()->create($paymentCardForm);\n} catch (UnprocessableEntityException $e) {\n    echo $e->getMessage();\n}\n"
           }
         ]
       }
@@ -3653,7 +3677,7 @@
         "x-code-samples": [
           {
             "lang": "PHP",
-            "source": "$paymentCardForm = new Rebilly\\Entities\\PaymentCard();\n$paymentCardForm->setCustomerId('customerId');\n$paymentCardForm->setPan('4111111111111111');\n$paymentCardForm->setExpYear(2025);\n$paymentCardForm->setExpMonth(8);\n$paymentCardForm->setBillingContactId('contactId');\n\ntry {\n    $paymentCard = $client->paymentCards()->create($paymentCardForm, 'paymentCardId');\n} catch (UnprocessableEntityException $e) {\n    echo $e->getMessage();\n}\n"
+            "source": "$paymentCardForm = new Rebilly\\Entities\\PaymentCard();\n$paymentCardForm->setCustomerId('customerId');\n$paymentCardForm->setPan('4111111111111111');\n$paymentCardForm->setExpYear(2025);\n$paymentCardForm->setExpMonth(8);\n$paymentCardForm->setBillingAddress([\n    'firstName' => 'John',\n    'lastName' => 'Doe',\n    'organization' => 'Test LTD',\n    'address' => 'Test street 5',\n    'address2' => 'Test house 5',\n    'city' => 'New York',\n    'region' => 'Long Island',\n    'country' => 'US',\n    'postalCode' => '123456',\n    'emails' => [\n        [\n            'label' => 'main',\n            'value' => 'johndoe@testemail.com',\n            'primary' => true,\n        ],\n        [\n            'label' => 'secondary',\n            'value' => 'otheremail@testemail.com',\n        ],\n    ],\n    'phoneNumbers' => [\n        [\n            'label' => 'work',\n            'value' => '+123456789',\n            'primary' => true,\n        ],\n        [\n            'label' => 'home',\n            'value' => '+9874654321',\n        ],\n    ],\n]);\n\ntry {\n    $paymentCard = $client->paymentCards()->create($paymentCardForm, 'paymentCardId');\n} catch (UnprocessableEntityException $e) {\n    echo $e->getMessage();\n}\n"
           }
         ]
       }
@@ -3902,7 +3926,9 @@
             "required": true,
             "schema": {
               "properties": {
+                "amount": {"default": 1, "description": "The amount to authorize", "format": "double", "type": "number"},
                 "currency": {"description": "Currency (three letter code)", "type": "string"},
+                "gatewayAccountId": {"description": "The Gateway Account ID which use to send transactions", "type": "string"},
                 "redirectURLs": {"description": "Redirect URLs", "type": "object"},
                 "websiteId": {"description": "The Website ID", "type": "string"}
               },
@@ -4818,7 +4844,7 @@
         "x-code-samples": [
           {
             "lang": "PHP",
-            "source": "$subscriptionForm = new Rebilly\\Entities\\Subscription();\n$subscriptionForm->setCustomerId('customerId');\n$subscriptionForm->setWebsiteId('websiteId');\n$subscriptionForm->setPlanId('planId');\n\ntry {\n    $subscription = $client->subscriptions()->create($subscriptionForm);\n} catch (UnprocessableEntityException $e) {\n    echo $e->getMessage();\n}\n"
+            "source": "$subscriptionForm = new Rebilly\\Entities\\Subscription();\n$subscriptionForm->setCustomerId('customerId');\n$subscriptionForm->setWebsiteId('websiteId');\n$subscriptionForm->setPlanId('planId');\n$subscriptionForm->setBillingAddress([\n    'firstName' => 'John',\n    'lastName' => 'Doe',\n    'organization' => 'Test LTD',\n    'address' => 'Test street 5',\n    'address2' => 'Test house 5',\n    'city' => 'New York',\n    'region' => 'Long Island',\n    'country' => 'US',\n    'postalCode' => '123456',\n    'emails' => [\n        [\n            'label' => 'main',\n            'value' => 'johndoe@testemail.com',\n            'primary' => true,\n        ],\n        [\n            'label' => 'secondary',\n            'value' => 'otheremail@testemail.com',\n        ],\n    ],\n    'phoneNumbers' => [\n        [\n            'label' => 'work',\n            'value' => '+123456789',\n            'primary' => true,\n        ],\n        [\n            'label' => 'home',\n            'value' => '+9874654321',\n        ],\n    ],\n]);\n\ntry {\n    $subscription = $client->subscriptions()->create($subscriptionForm);\n} catch (UnprocessableEntityException $e) {\n    echo $e->getMessage();\n}\n"
           }
         ]
       }
@@ -4875,7 +4901,7 @@
         "x-code-samples": [
           {
             "lang": "PHP",
-            "source": "$subscriptionForm = new Rebilly\\Entities\\Subscription();\n$subscriptionForm->setCustomerId('customerId');\n$subscriptionForm->setWebsiteId('websiteId');\n$subscriptionForm->setPlanId('planId');\n\ntry {\n    $subscription = $client->subscriptions()->update('subscriptionId', $subscriptionForm);\n} catch (UnprocessableEntityException $e) {\n    echo $e->getMessage();\n}\n"
+            "source": "$subscriptionForm = new Rebilly\\Entities\\Subscription();\n$subscriptionForm->setCustomerId('customerId');\n$subscriptionForm->setWebsiteId('websiteId');\n$subscriptionForm->setPlanId('planId');\n$subscriptionForm->setBillingAddress([\n    'firstName' => 'John',\n    'lastName' => 'Doe',\n    'organization' => 'Test LTD',\n    'address' => 'Test street 5',\n    'address2' => 'Test house 5',\n    'city' => 'New York',\n    'region' => 'Long Island',\n    'country' => 'US',\n    'postalCode' => '123456',\n    'emails' => [\n        [\n            'label' => 'main',\n            'value' => 'johndoe@testemail.com',\n            'primary' => true,\n        ],\n        [\n            'label' => 'secondary',\n            'value' => 'otheremail@testemail.com',\n        ],\n    ],\n    'phoneNumbers' => [\n        [\n            'label' => 'work',\n            'value' => '+123456789',\n            'primary' => true,\n        ],\n        [\n            'label' => 'home',\n            'value' => '+9874654321',\n        ],\n    ],\n]);\n\ntry {\n    $subscription = $client->subscriptions()->update('subscriptionId', $subscriptionForm);\n} catch (UnprocessableEntityException $e) {\n    echo $e->getMessage();\n}\n"
           }
         ]
       }
@@ -5078,7 +5104,7 @@
         "x-code-samples": [
           {
             "lang": "PHP",
-            "source": "$paymentCardTokenForm = new Rebilly\\Entities\\PaymentCardToken();\n$paymentCardTokenForm->setFirstName('John');\n$paymentCardTokenForm->setLastName('Doe');\n$paymentCardTokenForm->setAddress('1313 Main Street');\n$paymentCardTokenForm->setCity('Gotham');\n$paymentCardTokenForm->setPostalCode('12345');\n$paymentCardTokenForm->setRegion('NY');\n$paymentCardTokenForm->setCountry('US');\n\n$paymentInstrumentForm = new Entities\\PaymentInstruments\\PaymentCardPaymentInstrument();\n$paymentInstrumentForm->setPan('4111111111111111');\n$paymentInstrumentForm->setExpYear(2025);\n$paymentInstrumentForm->setExpMonth(8);\n$paymentInstrumentForm->setCvv(123);\n\n$paymentCardTokenForm->setPaymentInstrument($paymentInstrumentForm);\n\ntry {\n    $paymentCardToken = $client->paymentCardTokens()->create($paymentCardTokenForm);\n} catch (UnprocessableEntityException $e) {\n    echo $e->getMessage();\n}\n"
+            "source": "$paymentCardTokenForm = new Rebilly\\Entities\\PaymentCardToken();\n$paymentCardTokenForm->setBillingAddress([\n    'firstName' => 'John',\n    'lastName' => 'Doe',\n    'organization' => 'Test LTD',\n    'address' => 'Test street 5',\n    'address2' => 'Test house 5',\n    'city' => 'New York',\n    'region' => 'Long Island',\n    'country' => 'US',\n    'postalCode' => '123456',\n    'emails' => [\n        [\n            'label' => 'main',\n            'value' => 'johndoe@testemail.com',\n            'primary' => true,\n        ],\n        [\n            'label' => 'secondary',\n            'value' => 'otheremail@testemail.com',\n        ],\n    ],\n    'phoneNumbers' => [\n        [\n            'label' => 'work',\n            'value' => '+123456789',\n            'primary' => true,\n        ],\n        [\n            'label' => 'home',\n            'value' => '+9874654321',\n        ],\n    ],\n]);\n\n$paymentInstrumentForm = new Entities\\PaymentInstruments\\PaymentCardPaymentInstrument();\n$paymentInstrumentForm->setPan('4111111111111111');\n$paymentInstrumentForm->setExpYear(2025);\n$paymentInstrumentForm->setExpMonth(8);\n$paymentInstrumentForm->setCvv(123);\n\n$paymentCardTokenForm->setPaymentInstrument($paymentInstrumentForm);\n\ntry {\n    $paymentCardToken = $client->paymentCardTokens()->create($paymentCardTokenForm);\n} catch (UnprocessableEntityException $e) {\n    echo $e->getMessage();\n}\n"
           }
         ]
       }
@@ -5229,6 +5255,40 @@
           "404": {"$ref": "#/responses/NotFound"}
         },
         "summary": "Retrieve a tracking subscription log with specified identifier string",
+        "tags": ["Tracking"]
+      },
+      "parameters": [{"$ref": "#/parameters/resourceId"}]
+    },
+    "/tracking/webhooks": {
+      "get": {
+        "parameters": [{"$ref": "#/parameters/collectionLimit"}, {"$ref": "#/parameters/collectionOffset"}, {"$ref": "#/parameters/collectionSort"}, {"$ref": "#/parameters/collectionFilter"}, {"$ref": "#/parameters/collectionCriteria"}],
+        "responses": {
+          "200": {
+            "description": "Tracking webhook notifications was retrieved successfully",
+            "headers": {
+              "Pagination-Limit": {"description": "Items per page limit", "type": "integer"},
+              "Pagination-Offset": {"description": "Pagination offset", "type": "integer"},
+              "Pagination-Total": {"description": "Total items count", "type": "integer"},
+              "Rate-Limit-Limit": {"description": "The number of allowed requests in the current period", "type": "integer"},
+              "Rate-Limit-Remaining": {"description": "The number of remaining requests in the current period", "type": "integer"},
+              "Rate-Limit-Reset": {"description": "The date in format defined by [RFC 822](https://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.3.1)\nwhen the current period will reset\n", "type": "string"}
+            },
+            "schema": {"items": {"$ref": "#/definitions/WebhookTracking"}, "type": "array"}
+          },
+          "401": {"$ref": "#/responses/AccessForbidden"}
+        },
+        "summary": "Retrieve a list of tracking webhook notifications",
+        "tags": ["Tracking"]
+      }
+    },
+    "/tracking/webhooks/{id}": {
+      "get": {
+        "responses": {
+          "200": {"description": "Tracking webhook notification was retrieved successfully", "schema": {"$ref": "#/definitions/WebhookTracking"}},
+          "401": {"$ref": "#/responses/AccessForbidden"},
+          "404": {"$ref": "#/responses/NotFound"}
+        },
+        "summary": "Retrieve a tracking webhook notification with specified identifier string",
         "tags": ["Tracking"]
       },
       "parameters": [{"$ref": "#/parameters/resourceId"}]
@@ -6442,6 +6502,11 @@
       "required": ["discount", "issuedTime"],
       "type": "object"
     },
+    "CouponExpiration": {
+      "properties": {"expiredTime": {"description": "The coupon's expiry time, must be greater than the issued time. Null or empty string will immediately expire the coupon.", "format": "date-time", "type": "string"}},
+      "required": ["expiredTime"],
+      "type": "object"
+    },
     "CouponRedemption": {
       "description": "Coupons redemption log",
       "properties": {
@@ -6815,6 +6880,7 @@
         "subscription-created",
         "subscription-renewed",
         "payment-card-expired",
+        "invoice-past-due",
         "payment-declined",
         "transaction-process-requested",
         "risk-score-changed"
@@ -7149,6 +7215,7 @@
         "status": {"description": "Invoice status.", "enum": ["draft", "issued", "past-due", "paid", "abandoned", "voided"], "readOnly": true, "type": "string"},
         "subscriptionId": {"allOf": [{"$ref": "#/definitions/ResourceId"}], "description": "The related Subscription's ID if available, otherwise null", "readOnly": true},
         "taxes": {"description": "Taxes applied to this invoice", "items": {"allOf": [{"$ref": "#/definitions/InvoiceTax"}]}, "readOnly": true, "type": "array"},
+        "updatedTime": {"allOf": [{"$ref": "#/definitions/ServerTimestamp"}], "description": "Invoice updated time"},
         "voidedTime": {"allOf": [{"$ref": "#/definitions/ServerTimestamp"}], "description": "Invoice voided time"},
         "websiteId": {"allOf": [{"$ref": "#/definitions/ResourceId"}], "description": "The website's ID"}
       },
@@ -7202,7 +7269,6 @@
       "properties": {
         "_links": {"description": "The links related to resource", "items": [{"$ref": "#/definitions/SelfLink"}, {"$ref": "#/definitions/ItemsLink"}], "maxItems": 2, "minItems": 2, "readOnly": true, "type": "array"},
         "createdTime": {"allOf": [{"$ref": "#/definitions/ServerTimestamp"}], "description": "Layout created time"},
-        "customFields": {"$ref": "#/definitions/ResourceCustomFields"},
         "id": {"allOf": [{"$ref": "#/definitions/ResourceId"}], "description": "The layout identifier string", "readOnly": true},
         "items": {"description": "The array of layout items (planId and starred)", "items": {"$ref": "#/definitions/LayoutItem"}, "type": "array"},
         "name": {"description": "The name of the layout string", "type": "string"}
@@ -8550,6 +8616,25 @@
     "WebhookHeader": {
       "properties": {"name": {"type": "string"}, "status": {"$ref": "#/definitions/OnOff"}, "value": {"example": {"Header1": "value1", "Header2": "value2;value3"}, "type": "string"}},
       "required": ["name", "value"],
+      "type": "object"
+    },
+    "WebhookTracking": {
+      "description": "Webhook Tracking Requests.",
+      "properties": {
+        "_links": {"description": "The links related to resource", "items": [{"$ref": "#/definitions/SelfLink"}], "maxItems": 1, "minItems": 1, "readOnly": true, "type": "array"},
+        "createdTime": {"allOf": [{"$ref": "#/definitions/ServerTimestamp"}], "description": "The log created time"},
+        "eventType": {"$ref": "#/definitions/EventType"},
+        "headers": {"additionalProperties": {"type": "string"}, "description": "HTTP headers which were used to send webhook", "example": {"My-Header": "Cool-Value"}, "type": "object"},
+        "id": {"allOf": [{"$ref": "#/definitions/ResourceId"}]},
+        "initiatedTime": {"allOf": [{"$ref": "#/definitions/ServerTimestamp"}], "description": "Initiated time"},
+        "method": {"description": "HTTP method which was used to send webhook", "example": "POST", "type": "string"},
+        "payload": {"description": "Event's data information", "type": "object"},
+        "responseBody": {"description": "Response body received", "type": "string"},
+        "responseCode": {"description": "HTTP code response", "type": "integer"},
+        "sentTime": {"allOf": [{"$ref": "#/definitions/ServerTimestamp"}], "description": "Sent time"},
+        "url": {"description": "Url where webhook was sent", "type": "string"}
+      },
+      "readOnly": true,
       "type": "object"
     },
     "Website": {

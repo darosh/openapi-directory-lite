@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Builds container images in the cloud.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Google Cloud Container Builder",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://cloudbuild.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://cloudbuild.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "cloudbuild"
@@ -21,17 +19,9 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {"https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services"},
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {"https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services"},
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -68,7 +58,7 @@
           {"description": "Number of results to return in the list.", "in": "query", "name": "pageSize", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListBuildsResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["projects"]
       },
       "parameters": [
@@ -91,7 +81,7 @@
         "operationId": "cloudbuild.projects.builds.create",
         "parameters": [{"description": "ID of the project.", "in": "path", "name": "projectId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Build"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["projects"]
       }
     },
@@ -101,7 +91,7 @@
         "operationId": "cloudbuild.projects.builds.get",
         "parameters": [{"description": "ID of the project.", "in": "path", "name": "projectId", "required": true, "type": "string"}, {"description": "ID of the build.", "in": "path", "name": "id", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Build"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["projects"]
       },
       "parameters": [
@@ -145,7 +135,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CancelBuildRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Build"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["projects"]
       }
     },
@@ -155,7 +145,7 @@
         "operationId": "cloudbuild.projects.triggers.list",
         "parameters": [{"description": "ID of the project for which to list BuildTriggers.", "in": "path", "name": "projectId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListBuildTriggersResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["projects"]
       },
       "parameters": [
@@ -181,7 +171,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/BuildTrigger"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/BuildTrigger"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["projects"]
       }
     },
@@ -194,7 +184,7 @@
           {"description": "ID of the BuildTrigger to delete.", "in": "path", "name": "triggerId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["projects"]
       },
       "get": {
@@ -205,7 +195,7 @@
           {"description": "ID of the BuildTrigger to get.", "in": "path", "name": "triggerId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/BuildTrigger"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["projects"]
       },
       "parameters": [
@@ -232,7 +222,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/BuildTrigger"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/BuildTrigger"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["projects"]
       }
     },
@@ -247,7 +237,7 @@
           {"description": "The standard list page token.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListOperationsResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["operations"]
       },
       "parameters": [
@@ -290,14 +280,14 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CancelOperationRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["operations"]
       }
     }
   },
   "definitions": {
     "Build": {
-      "description": "A build resource in the Container Builder API.\n\nAt a high level, a Build describes where to find source code, how to build\nit (for example, the builder image to run on the source), and what tag to\napply to the built image when it is pushed to Google Container Registry.\n\nFields can include the following variables which will be expanded when the\nbuild is created:\n\n- $PROJECT_ID: the project ID of the build.\n- $BUILD_ID: the autogenerated ID of the build.\n- $REPO_NAME: the source repository name specified by RepoSource.\n- $BRANCH_NAME: the branch name specified by RepoSource.\n- $TAG_NAME: the tag name specified by RepoSource.\n- $REVISION_ID or $COMMIT_SHA: the commit SHA specified by RepoSource or\n  resolved from the specified branch or tag.",
+      "description": "A build resource in the Container Builder API.\n\nAt a high level, a Build describes where to find source code, how to build\nit (for example, the builder image to run on the source), and what tag to\napply to the built image when it is pushed to Google Container Registry.\n\nFields can include the following variables which will be expanded when the\nbuild is created:\n\n- $PROJECT_ID: the project ID of the build.\n- $BUILD_ID: the autogenerated ID of the build.\n- $REPO_NAME: the source repository name specified by RepoSource.\n- $BRANCH_NAME: the branch name specified by RepoSource.\n- $TAG_NAME: the tag name specified by RepoSource.\n- $REVISION_ID or $COMMIT_SHA: the commit SHA specified by RepoSource or\n  resolved from the specified branch or tag.\n- $SHORT_SHA: first 7 characters of $REVISION_ID or $COMMIT_SHA.",
       "properties": {
         "buildTriggerId": {"description": "The ID of the BuildTrigger that triggered this build, if it was\ntriggered automatically.\n@OutputOnly", "type": "string"},
         "createTime": {"description": "Time at which the request to create the build was received.\n@OutputOnly", "format": "google-datetime", "type": "string"},
@@ -501,7 +491,7 @@
       "description": "Source describes the location of the source in a supported storage\nservice.",
       "properties": {
         "repoSource": {"$ref": "#/definitions/RepoSource", "description": "If provided, get source from this location in a Cloud Repo."},
-        "storageSource": {"$ref": "#/definitions/StorageSource", "description": "If provided, get the source from this location in in Google Cloud\nStorage."}
+        "storageSource": {"$ref": "#/definitions/StorageSource", "description": "If provided, get the source from this location in Google Cloud Storage."}
       },
       "type": "object"
     },

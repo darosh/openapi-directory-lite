@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Builds on top of the Google+ platform for Google Apps Domains.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Google+ Domains",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://developers.google.com/+/images/branding/g+128.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/plusDomains/v1/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/plusDomains/v1/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "plusDomains"
@@ -21,7 +19,7 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {
         "https://www.googleapis.com/auth/plus.circles.read": "View your circles and the people and pages in them",
@@ -35,25 +33,6 @@
         "https://www.googleapis.com/auth/userinfo.email": "View your email address",
         "https://www.googleapis.com/auth/userinfo.profile": "View your basic profile info"
       },
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {
-        "https://www.googleapis.com/auth/plus.circles.read": "View your circles and the people and pages in them",
-        "https://www.googleapis.com/auth/plus.circles.write": "Manage your circles and add people and pages. People and pages you add to your circles will be notified. Others may see this information publicly. People you add to circles can use Hangouts with you.",
-        "https://www.googleapis.com/auth/plus.login": "Know the list of people in your circles, your age range, and language",
-        "https://www.googleapis.com/auth/plus.me": "Know who you are on Google",
-        "https://www.googleapis.com/auth/plus.media.upload": "Send your photos and videos to Google+",
-        "https://www.googleapis.com/auth/plus.profiles.read": "View your own Google+ profile and profiles visible to you",
-        "https://www.googleapis.com/auth/plus.stream.read": "View your Google+ posts, comments, and stream",
-        "https://www.googleapis.com/auth/plus.stream.write": "Manage your Google+ posts, comments, and stream",
-        "https://www.googleapis.com/auth/userinfo.email": "View your email address",
-        "https://www.googleapis.com/auth/userinfo.profile": "View your basic profile info"
-      },
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -79,11 +58,7 @@
         "operationId": "plusDomains.activities.get",
         "parameters": [{"description": "The ID of the activity to get.", "in": "path", "name": "activityId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Activity"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.me"], "Oauth2c": ["https://www.googleapis.com/auth/plus.me"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.stream.read"], "Oauth2c": ["https://www.googleapis.com/auth/plus.stream.read"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.me"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.stream.read"]}],
         "tags": ["activities"]
       },
       "parameters": [
@@ -120,10 +95,7 @@
           {"default": "ascending", "description": "The order in which to sort the list of comments.", "enum": ["ascending", "descending"], "in": "query", "name": "sortOrder", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CommentFeed"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.stream.read"], "Oauth2c": ["https://www.googleapis.com/auth/plus.stream.read"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.stream.read"]}],
         "tags": ["comments"]
       },
       "parameters": [
@@ -140,10 +112,7 @@
         "operationId": "plusDomains.comments.insert",
         "parameters": [{"description": "The ID of the activity to reply to.", "in": "path", "name": "activityId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Comment"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Comment"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.stream.write"], "Oauth2c": ["https://www.googleapis.com/auth/plus.stream.write"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.stream.write"]}],
         "tags": ["comments"]
       }
     },
@@ -171,10 +140,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PeopleFeed"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.stream.read"], "Oauth2c": ["https://www.googleapis.com/auth/plus.stream.read"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.stream.read"]}],
         "tags": ["people"]
       },
       "parameters": [
@@ -193,10 +159,7 @@
         "operationId": "plusDomains.circles.remove",
         "parameters": [{"description": "The ID of the circle to delete.", "in": "path", "name": "circleId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.circles.write"], "Oauth2c": ["https://www.googleapis.com/auth/plus.circles.write"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/plus.circles.write"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["circles"]
       },
       "get": {
@@ -204,10 +167,7 @@
         "operationId": "plusDomains.circles.get",
         "parameters": [{"description": "The ID of the circle to get.", "in": "path", "name": "circleId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Circle"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.circles.read"], "Oauth2c": ["https://www.googleapis.com/auth/plus.circles.read"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/plus.circles.read"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["circles"]
       },
       "parameters": [
@@ -224,10 +184,7 @@
         "operationId": "plusDomains.circles.patch",
         "parameters": [{"description": "The ID of the circle to update.", "in": "path", "name": "circleId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Circle"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Circle"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.circles.write"], "Oauth2c": ["https://www.googleapis.com/auth/plus.circles.write"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/plus.circles.write"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["circles"]
       },
       "put": {
@@ -235,10 +192,7 @@
         "operationId": "plusDomains.circles.update",
         "parameters": [{"description": "The ID of the circle to update.", "in": "path", "name": "circleId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Circle"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Circle"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.circles.write"], "Oauth2c": ["https://www.googleapis.com/auth/plus.circles.write"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/plus.circles.write"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["circles"]
       }
     },
@@ -252,10 +206,7 @@
           {"collectionFormat": "multi", "description": "IDs of the people to remove from the circle. Optional, can be repeated.", "in": "query", "items": {"type": "string"}, "name": "userId", "type": "array"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.circles.write"], "Oauth2c": ["https://www.googleapis.com/auth/plus.circles.write"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/plus.circles.write"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["circles"]
       },
       "get": {
@@ -280,10 +231,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PeopleFeed"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.circles.read"], "Oauth2c": ["https://www.googleapis.com/auth/plus.circles.read"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/plus.circles.read"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["people"]
       },
       "parameters": [
@@ -304,10 +252,7 @@
           {"collectionFormat": "multi", "description": "IDs of the people to add to the circle. Optional, can be repeated.", "in": "query", "items": {"type": "string"}, "name": "userId", "type": "array"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Circle"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.circles.write"], "Oauth2c": ["https://www.googleapis.com/auth/plus.circles.write"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/plus.circles.write"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["circles"]
       }
     },
@@ -317,10 +262,7 @@
         "operationId": "plusDomains.comments.get",
         "parameters": [{"description": "The ID of the comment to get.", "in": "path", "name": "commentId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Comment"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.stream.read"], "Oauth2c": ["https://www.googleapis.com/auth/plus.stream.read"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.stream.read"]}],
         "tags": ["comments"]
       },
       "parameters": [
@@ -340,11 +282,11 @@
         "parameters": [{"description": "The ID of the person to get the profile for. The special value \"me\" can be used to indicate the authenticated user.", "in": "path", "name": "userId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Person"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.me"], "Oauth2c": ["https://www.googleapis.com/auth/plus.me"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.profiles.read"], "Oauth2c": ["https://www.googleapis.com/auth/plus.profiles.read"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.profile"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.profile"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/plus.me"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/plus.profiles.read"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.profile"]}
         ],
         "tags": ["people"]
       },
@@ -382,11 +324,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Activity"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Activity"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.me"], "Oauth2c": ["https://www.googleapis.com/auth/plus.me"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.stream.write"], "Oauth2c": ["https://www.googleapis.com/auth/plus.stream.write"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.me"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.stream.write"]}],
         "tags": ["activities"]
       }
     },
@@ -414,11 +352,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ActivityFeed"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.me"], "Oauth2c": ["https://www.googleapis.com/auth/plus.me"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.stream.read"], "Oauth2c": ["https://www.googleapis.com/auth/plus.stream.read"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.me"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.stream.read"]}],
         "tags": ["activities"]
       },
       "parameters": [
@@ -454,11 +388,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AudiencesFeed"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.circles.read"], "Oauth2c": ["https://www.googleapis.com/auth/plus.circles.read"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.me"], "Oauth2c": ["https://www.googleapis.com/auth/plus.me"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/plus.circles.read"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.me"]}],
         "tags": ["audiences"]
       },
       "parameters": [
@@ -494,11 +424,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CircleFeed"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.circles.read"], "Oauth2c": ["https://www.googleapis.com/auth/plus.circles.read"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.me"], "Oauth2c": ["https://www.googleapis.com/auth/plus.me"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/plus.circles.read"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.me"]}],
         "tags": ["circles"]
       },
       "parameters": [
@@ -518,11 +444,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Circle"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Circle"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.circles.write"], "Oauth2c": ["https://www.googleapis.com/auth/plus.circles.write"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.me"], "Oauth2c": ["https://www.googleapis.com/auth/plus.me"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/plus.circles.write"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.me"]}],
         "tags": ["circles"]
       }
     },
@@ -719,11 +641,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Media"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Media"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.me"], "Oauth2c": ["https://www.googleapis.com/auth/plus.me"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.media.upload"], "Oauth2c": ["https://www.googleapis.com/auth/plus.media.upload"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.me"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.media.upload"]}],
         "tags": ["media"]
       }
     },
@@ -752,11 +670,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PeopleFeed"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.circles.read"], "Oauth2c": ["https://www.googleapis.com/auth/plus.circles.read"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.me"], "Oauth2c": ["https://www.googleapis.com/auth/plus.me"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/plus.circles.read"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.me"]}],
         "tags": ["people"]
       },
       "parameters": [

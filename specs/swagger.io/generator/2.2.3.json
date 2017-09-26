@@ -11,7 +11,7 @@
     "title": "Swagger Generator",
     "version": "2.2.3",
     "x-apisguru-categories": ["developer_tools", "tools"],
-    "x-logo": {"backgroundColor": "#98C600", "url": "http://swagger.io/wp-content/themes/kevinlearynet/assets/img/swagger-logo.png"},
+    "x-logo": {"backgroundColor": "#98C600", "url": "https://pbs.twimg.com/profile_images/524603118596534273/pIea9Ji0_400x400.png"},
     "x-origin": [{"format": "swagger", "url": "https://generator.swagger.io/api/swagger.json", "version": "2.0"}],
     "x-providerName": "swagger.io",
     "x-serviceName": "generator",

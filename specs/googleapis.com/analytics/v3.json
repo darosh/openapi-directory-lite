@@ -6,14 +6,12 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Views and manages your Google Analytics data.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Google Analytics",
     "version": "v3",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-apisguru-categories": ["analytics"],
     "x-logo": {"url": "https://www.gstatic.com/images/icons/material/product/2x/analytics_64dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/analytics/v3/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/analytics/v3/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "analytics"
@@ -22,7 +20,7 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {
         "https://www.googleapis.com/auth/analytics": "View and manage your Google Analytics data",
@@ -32,21 +30,6 @@
         "https://www.googleapis.com/auth/analytics.provision": "Create a new Google Analytics account along with its default property and view",
         "https://www.googleapis.com/auth/analytics.readonly": "View your Google Analytics data"
       },
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {
-        "https://www.googleapis.com/auth/analytics": "View and manage your Google Analytics data",
-        "https://www.googleapis.com/auth/analytics.edit": "Edit Google Analytics management entities",
-        "https://www.googleapis.com/auth/analytics.manage.users": "Manage Google Analytics Account users by email address",
-        "https://www.googleapis.com/auth/analytics.manage.users.readonly": "View Google Analytics user permissions",
-        "https://www.googleapis.com/auth/analytics.provision": "Create a new Google Analytics account along with its default property and view",
-        "https://www.googleapis.com/auth/analytics.readonly": "View your Google Analytics data"
-      },
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -98,10 +81,7 @@
           {"description": "An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.", "in": "query", "minimum": 1, "name": "start-index", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GaData"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics"], "Oauth2c": ["https://www.googleapis.com/auth/analytics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["data"]
       },
       "parameters": [
@@ -149,10 +129,7 @@
           {"description": "An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.", "in": "query", "minimum": 1, "name": "start-index", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/McfData"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics"], "Oauth2c": ["https://www.googleapis.com/auth/analytics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["data"]
       },
       "parameters": [
@@ -178,10 +155,7 @@
           {"description": "A comma-separated list of dimensions or metrics that determine the sort order for real time data.", "in": "query", "name": "sort", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/RealtimeData"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics"], "Oauth2c": ["https://www.googleapis.com/auth/analytics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["data"]
       },
       "parameters": [
@@ -203,10 +177,7 @@
           {"description": "An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.", "in": "query", "minimum": 1, "name": "start-index", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AccountSummaries"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -228,11 +199,7 @@
           {"description": "An index of the first account to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.", "in": "query", "minimum": 1, "name": "start-index", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Accounts"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics"], "Oauth2c": ["https://www.googleapis.com/auth/analytics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -255,10 +222,7 @@
           {"description": "An index of the first account-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.", "in": "query", "minimum": 1, "name": "start-index", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/EntityUserLinks"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.manage.users"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.manage.users.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -275,7 +239,7 @@
         "operationId": "analytics.management.accountUserLinks.insert",
         "parameters": [{"description": "Account ID to create the user link for.", "in": "path", "name": "accountId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/EntityUserLink"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/EntityUserLink"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.manage.users"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users"]}],
         "tags": ["management"]
       }
     },
@@ -288,7 +252,7 @@
           {"description": "Link ID to delete the user link for.", "in": "path", "name": "linkId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.manage.users"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -309,7 +273,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/EntityUserLink"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/EntityUserLink"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.manage.users"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users"]}],
         "tags": ["management"]
       }
     },
@@ -323,10 +287,7 @@
           {"description": "An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.", "in": "query", "minimum": 1, "name": "start-index", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Filters"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -343,7 +304,7 @@
         "operationId": "analytics.management.filters.insert",
         "parameters": [{"description": "Account ID to create filter for.", "in": "path", "name": "accountId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Filter"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Filter"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       }
     },
@@ -356,7 +317,7 @@
           {"description": "ID of the filter to be deleted.", "in": "path", "name": "filterId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Filter"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       },
       "get": {
@@ -367,10 +328,7 @@
           {"description": "Filter ID to retrieve filters for.", "in": "path", "name": "filterId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Filter"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -391,7 +349,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Filter"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Filter"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       },
       "put": {
@@ -403,7 +361,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Filter"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Filter"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       }
     },
@@ -423,11 +381,7 @@
           {"description": "An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.", "in": "query", "minimum": 1, "name": "start-index", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Webproperties"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics"], "Oauth2c": ["https://www.googleapis.com/auth/analytics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -444,7 +398,7 @@
         "operationId": "analytics.management.webproperties.insert",
         "parameters": [{"description": "Account ID to create the web property for.", "in": "path", "name": "accountId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Webproperty"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Webproperty"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       }
     },
@@ -457,10 +411,7 @@
           {"description": "ID to retrieve the web property for.", "in": "path", "name": "webPropertyId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Webproperty"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -481,7 +432,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Webproperty"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Webproperty"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       },
       "put": {
@@ -493,7 +444,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Webproperty"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Webproperty"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       }
     },
@@ -514,11 +465,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CustomDataSources"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics"], "Oauth2c": ["https://www.googleapis.com/auth/analytics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -551,10 +498,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AnalyticsDataimportDeleteUploadDataRequest"}}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics"], "Oauth2c": ["https://www.googleapis.com/auth/analytics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       }
     },
@@ -570,11 +514,7 @@
           {"description": "A 1-based index of the first upload to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.", "in": "query", "minimum": 1, "name": "start-index", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Uploads"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics"], "Oauth2c": ["https://www.googleapis.com/auth/analytics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -596,10 +536,7 @@
           {"description": "Custom data source Id to which the data being uploaded belongs.", "in": "path", "name": "customDataSourceId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Upload"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics"], "Oauth2c": ["https://www.googleapis.com/auth/analytics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       }
     },
@@ -614,11 +551,7 @@
           {"description": "Upload Id to retrieve.", "in": "path", "name": "uploadId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Upload"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics"], "Oauth2c": ["https://www.googleapis.com/auth/analytics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -642,10 +575,7 @@
           {"description": "An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.", "in": "query", "minimum": 1, "name": "start-index", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CustomDimensions"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics"], "Oauth2c": ["https://www.googleapis.com/auth/analytics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -666,7 +596,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CustomDimension"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CustomDimension"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       }
     },
@@ -680,10 +610,7 @@
           {"description": "The ID of the custom dimension to retrieve.", "in": "path", "name": "customDimensionId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CustomDimension"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -712,7 +639,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CustomDimension"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CustomDimension"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       },
       "put": {
@@ -732,7 +659,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CustomDimension"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CustomDimension"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       }
     },
@@ -747,10 +674,7 @@
           {"description": "An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.", "in": "query", "minimum": 1, "name": "start-index", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CustomMetrics"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics"], "Oauth2c": ["https://www.googleapis.com/auth/analytics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -771,7 +695,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CustomMetric"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CustomMetric"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       }
     },
@@ -785,10 +709,7 @@
           {"description": "The ID of the custom metric to retrieve.", "in": "path", "name": "customMetricId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CustomMetric"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -811,7 +732,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CustomMetric"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CustomMetric"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       },
       "put": {
@@ -825,7 +746,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CustomMetric"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CustomMetric"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       }
     },
@@ -846,10 +767,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/EntityAdWordsLinks"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -870,7 +788,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/EntityAdWordsLink"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/EntityAdWordsLink"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       }
     },
@@ -884,7 +802,7 @@
           {"description": "Web property AdWords link ID.", "in": "path", "name": "webPropertyAdWordsLinkId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       },
       "get": {
@@ -896,10 +814,7 @@
           {"description": "Web property-AdWords link ID.", "in": "path", "name": "webPropertyAdWordsLinkId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/EntityAdWordsLink"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -921,7 +836,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/EntityAdWordsLink"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/EntityAdWordsLink"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       },
       "put": {
@@ -934,7 +849,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/EntityAdWordsLink"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/EntityAdWordsLink"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       }
     },
@@ -955,10 +870,7 @@
           {"description": "An index of the first webProperty-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.", "in": "query", "minimum": 1, "name": "start-index", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/EntityUserLinks"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.manage.users"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.manage.users.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -979,7 +891,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/EntityUserLink"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/EntityUserLink"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.manage.users"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users"]}],
         "tags": ["management"]
       }
     },
@@ -993,7 +905,7 @@
           {"description": "Link ID to delete the user link for.", "in": "path", "name": "linkId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.manage.users"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -1015,7 +927,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/EntityUserLink"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/EntityUserLink"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.manage.users"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users"]}],
         "tags": ["management"]
       }
     },
@@ -1042,11 +954,7 @@
           {"description": "An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.", "in": "query", "minimum": 1, "name": "start-index", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Profiles"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics"], "Oauth2c": ["https://www.googleapis.com/auth/analytics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -1067,7 +975,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Profile"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Profile"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       }
     },
@@ -1081,7 +989,7 @@
           {"description": "ID of the view (profile) to be deleted.", "in": "path", "name": "profileId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       },
       "get": {
@@ -1093,10 +1001,7 @@
           {"description": "View (Profile) ID to retrieve the view (profile) for.", "in": "path", "name": "profileId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Profile"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -1118,7 +1023,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Profile"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Profile"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       },
       "put": {
@@ -1131,7 +1036,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Profile"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Profile"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       }
     },
@@ -1159,10 +1064,7 @@
           {"description": "An index of the first profile-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.", "in": "query", "minimum": 1, "name": "start-index", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/EntityUserLinks"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.manage.users"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.manage.users.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -1184,7 +1086,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/EntityUserLink"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/EntityUserLink"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.manage.users"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users"]}],
         "tags": ["management"]
       }
     },
@@ -1199,7 +1101,7 @@
           {"description": "Link ID to delete the user link for.", "in": "path", "name": "linkId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.manage.users"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -1222,7 +1124,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/EntityUserLink"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/EntityUserLink"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.manage.users"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.manage.users"]}],
         "tags": ["management"]
       }
     },
@@ -1238,11 +1140,7 @@
           {"description": "An index of the first experiment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.", "in": "query", "minimum": 1, "name": "start-index", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Experiments"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics"], "Oauth2c": ["https://www.googleapis.com/auth/analytics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -1264,10 +1162,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Experiment"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Experiment"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics"], "Oauth2c": ["https://www.googleapis.com/auth/analytics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       }
     },
@@ -1282,10 +1177,7 @@
           {"description": "ID of the experiment to delete", "in": "path", "name": "experimentId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics"], "Oauth2c": ["https://www.googleapis.com/auth/analytics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       },
       "get": {
@@ -1298,11 +1190,7 @@
           {"description": "Experiment ID to retrieve the experiment for.", "in": "path", "name": "experimentId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Experiment"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics"], "Oauth2c": ["https://www.googleapis.com/auth/analytics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -1325,10 +1213,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Experiment"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Experiment"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics"], "Oauth2c": ["https://www.googleapis.com/auth/analytics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       },
       "put": {
@@ -1342,10 +1227,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Experiment"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Experiment"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics"], "Oauth2c": ["https://www.googleapis.com/auth/analytics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       }
     },
@@ -1373,11 +1255,7 @@
           {"description": "An index of the first goal to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.", "in": "query", "minimum": 1, "name": "start-index", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Goals"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics"], "Oauth2c": ["https://www.googleapis.com/auth/analytics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -1399,7 +1277,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Goal"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Goal"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       }
     },
@@ -1414,10 +1292,7 @@
           {"description": "Goal ID to retrieve the goal for.", "in": "path", "name": "goalId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Goal"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -1440,7 +1315,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Goal"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Goal"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       },
       "put": {
@@ -1454,7 +1329,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Goal"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Goal"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       }
     },
@@ -1482,10 +1357,7 @@
           {"description": "An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.", "in": "query", "minimum": 1, "name": "start-index", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ProfileFilterLinks"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -1507,7 +1379,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ProfileFilterLink"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ProfileFilterLink"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       }
     },
@@ -1522,7 +1394,7 @@
           {"description": "ID of the profile filter link to delete.", "in": "path", "name": "linkId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       },
       "get": {
@@ -1535,10 +1407,7 @@
           {"description": "ID of the profile filter link.", "in": "path", "name": "linkId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ProfileFilterLink"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -1561,7 +1430,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ProfileFilterLink"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ProfileFilterLink"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       },
       "put": {
@@ -1575,7 +1444,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ProfileFilterLink"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ProfileFilterLink"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       }
     },
@@ -1591,11 +1460,7 @@
           {"description": "An index of the first unsampled report to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.", "in": "query", "minimum": 1, "name": "start-index", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UnsampledReports"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics"], "Oauth2c": ["https://www.googleapis.com/auth/analytics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -1617,10 +1482,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/UnsampledReport"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UnsampledReport"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics"], "Oauth2c": ["https://www.googleapis.com/auth/analytics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       }
     },
@@ -1635,7 +1497,7 @@
           {"description": "ID of the unsampled report to be deleted.", "in": "path", "name": "unsampledReportId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       },
       "get": {
@@ -1648,11 +1510,7 @@
           {"description": "ID of the unsampled report to retrieve.", "in": "path", "name": "unsampledReportId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UnsampledReport"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics"], "Oauth2c": ["https://www.googleapis.com/auth/analytics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -1677,10 +1535,7 @@
           {"default": "all", "in": "query", "name": "type", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/RemarketingAudiences"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -1701,7 +1556,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/RemarketingAudience"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/RemarketingAudience"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       }
     },
@@ -1715,7 +1570,7 @@
           {"description": "Web property ID to which the remarketing audience belongs.", "in": "path", "name": "webPropertyId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       },
       "get": {
@@ -1727,10 +1582,7 @@
           {"description": "The ID of the remarketing audience to retrieve.", "in": "path", "name": "remarketingAudienceId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/RemarketingAudience"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -1752,7 +1604,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/RemarketingAudience"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/RemarketingAudience"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       },
       "put": {
@@ -1765,7 +1617,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/RemarketingAudience"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/RemarketingAudience"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}],
         "tags": ["management"]
       }
     },
@@ -1778,11 +1630,7 @@
           {"description": "An index of the first segment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.", "in": "query", "minimum": 1, "name": "start-index", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Segments"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics"], "Oauth2c": ["https://www.googleapis.com/auth/analytics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["management"]
       },
       "parameters": [
@@ -1801,11 +1649,7 @@
         "operationId": "analytics.metadata.columns.list",
         "parameters": [{"description": "Report type. Allowed Values: 'ga'. Where 'ga' corresponds to the Core Reporting API", "in": "path", "name": "reportType", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Columns"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics"], "Oauth2c": ["https://www.googleapis.com/auth/analytics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.edit"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.edit"]}, {"Oauth2": ["https://www.googleapis.com/auth/analytics.readonly"]}],
         "tags": ["metadata"]
       },
       "parameters": [
@@ -1833,7 +1677,7 @@
         "operationId": "analytics.provisioning.createAccountTicket",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AccountTicket"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AccountTicket"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.provision"], "Oauth2c": ["https://www.googleapis.com/auth/analytics.provision"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/analytics.provision"]}],
         "tags": ["provisioning"]
       }
     }

@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Upload, process, query, and search Genomics data in the cloud.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Genomics",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://genomics.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://genomics.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "genomics"
@@ -21,7 +19,7 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {
         "https://www.googleapis.com/auth/bigquery": "View and manage your data in Google BigQuery",
@@ -30,20 +28,6 @@
         "https://www.googleapis.com/auth/genomics": "View and manage Genomics data",
         "https://www.googleapis.com/auth/genomics.readonly": "View Genomics data"
       },
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {
-        "https://www.googleapis.com/auth/bigquery": "View and manage your data in Google BigQuery",
-        "https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services",
-        "https://www.googleapis.com/auth/devstorage.read_write": "Manage your data in Google Cloud Storage",
-        "https://www.googleapis.com/auth/genomics": "View and manage Genomics data",
-        "https://www.googleapis.com/auth/genomics.readonly": "View Genomics data"
-      },
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -102,10 +86,7 @@
         "operationId": "genomics.annotations.create",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Annotation"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Annotation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["annotations"]
       }
     },
@@ -130,11 +111,7 @@
         "operationId": "genomics.annotations.search",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SearchAnnotationsRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SearchAnnotationsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/genomics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"]}],
         "tags": ["annotations"]
       }
     },
@@ -144,10 +121,7 @@
         "operationId": "genomics.annotations.delete",
         "parameters": [{"description": "The ID of the annotation to be deleted.", "in": "path", "name": "annotationId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["annotations"]
       },
       "get": {
@@ -155,11 +129,7 @@
         "operationId": "genomics.annotations.get",
         "parameters": [{"description": "The ID of the annotation to be retrieved.", "in": "path", "name": "annotationId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Annotation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/genomics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"]}],
         "tags": ["annotations"]
       },
       "parameters": [
@@ -191,10 +161,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Annotation"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Annotation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["annotations"]
       }
     },
@@ -219,10 +186,7 @@
         "operationId": "genomics.annotations.batchCreate",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/BatchCreateAnnotationsRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/BatchCreateAnnotationsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["annotations"]
       }
     },
@@ -247,10 +211,7 @@
         "operationId": "genomics.annotationsets.create",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AnnotationSet"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AnnotationSet"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["annotationsets"]
       }
     },
@@ -275,11 +236,7 @@
         "operationId": "genomics.annotationsets.search",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SearchAnnotationSetsRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SearchAnnotationSetsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/genomics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"]}],
         "tags": ["annotationsets"]
       }
     },
@@ -289,10 +246,7 @@
         "operationId": "genomics.annotationsets.delete",
         "parameters": [{"description": "The ID of the annotation set to be deleted.", "in": "path", "name": "annotationSetId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["annotationsets"]
       },
       "get": {
@@ -300,11 +254,7 @@
         "operationId": "genomics.annotationsets.get",
         "parameters": [{"description": "The ID of the annotation set to be retrieved.", "in": "path", "name": "annotationSetId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AnnotationSet"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/genomics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"]}],
         "tags": ["annotationsets"]
       },
       "parameters": [
@@ -331,10 +281,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AnnotationSet"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AnnotationSet"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["annotationsets"]
       }
     },
@@ -359,10 +306,7 @@
         "operationId": "genomics.callsets.create",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CallSet"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CallSet"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["callsets"]
       }
     },
@@ -387,11 +331,7 @@
         "operationId": "genomics.callsets.search",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SearchCallSetsRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SearchCallSetsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/genomics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"]}],
         "tags": ["callsets"]
       }
     },
@@ -401,10 +341,7 @@
         "operationId": "genomics.callsets.delete",
         "parameters": [{"description": "The ID of the call set to be deleted.", "in": "path", "name": "callSetId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["callsets"]
       },
       "get": {
@@ -412,11 +349,7 @@
         "operationId": "genomics.callsets.get",
         "parameters": [{"description": "The ID of the call set.", "in": "path", "name": "callSetId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CallSet"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/genomics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"]}],
         "tags": ["callsets"]
       },
       "parameters": [
@@ -448,10 +381,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CallSet"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CallSet"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["callsets"]
       }
     },
@@ -470,11 +400,7 @@
           {"description": "Required. The Google Cloud project ID to list datasets for.", "in": "query", "name": "projectId", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListDatasetsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/genomics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"]}],
         "tags": ["datasets"]
       },
       "parameters": [
@@ -497,10 +423,7 @@
         "operationId": "genomics.datasets.create",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Dataset"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Dataset"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["datasets"]
       }
     },
@@ -510,10 +433,7 @@
         "operationId": "genomics.datasets.delete",
         "parameters": [{"description": "The ID of the dataset to be deleted.", "in": "path", "name": "datasetId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["datasets"]
       },
       "get": {
@@ -521,11 +441,7 @@
         "operationId": "genomics.datasets.get",
         "parameters": [{"description": "The ID of the dataset.", "in": "path", "name": "datasetId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Dataset"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/genomics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"]}],
         "tags": ["datasets"]
       },
       "parameters": [
@@ -557,10 +473,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Dataset"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Dataset"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["datasets"]
       }
     },
@@ -588,10 +501,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/UndeleteDatasetRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Dataset"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["datasets"]
       }
     },
@@ -616,11 +526,7 @@
         "operationId": "genomics.readgroupsets.search",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SearchReadGroupSetsRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SearchReadGroupSetsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/genomics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"]}],
         "tags": ["readgroupsets"]
       }
     },
@@ -632,10 +538,7 @@
           {"description": "The ID of the read group set to be deleted. The caller must have WRITE\npermissions to the dataset associated with this read group set.", "in": "path", "name": "readGroupSetId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["readgroupsets"]
       },
       "get": {
@@ -643,11 +546,7 @@
         "operationId": "genomics.readgroupsets.get",
         "parameters": [{"description": "The ID of the read group set.", "in": "path", "name": "readGroupSetId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ReadGroupSet"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/genomics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"]}],
         "tags": ["readgroupsets"]
       },
       "parameters": [
@@ -685,10 +584,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ReadGroupSet"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ReadGroupSet"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["readgroupsets"]
       }
     },
@@ -721,11 +617,7 @@
           {"description": "The name of the reference to query, within the reference set associated\nwith this query. Optional.", "in": "query", "name": "referenceName", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListCoverageBucketsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/genomics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"]}],
         "tags": ["readgroupsets"]
       },
       "parameters": [
@@ -768,11 +660,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ExportReadGroupSetRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_write"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["readgroupsets"]
       }
     },
@@ -797,11 +685,7 @@
         "operationId": "genomics.readgroupsets.import",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ImportReadGroupSetsRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_write"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["readgroupsets"]
       }
     },
@@ -826,11 +710,7 @@
         "operationId": "genomics.reads.search",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SearchReadsRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SearchReadsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/genomics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"]}],
         "tags": ["reads"]
       }
     },
@@ -855,11 +735,7 @@
         "operationId": "genomics.references.search",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SearchReferencesRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SearchReferencesResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/genomics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"]}],
         "tags": ["references"]
       }
     },
@@ -869,11 +745,7 @@
         "operationId": "genomics.references.get",
         "parameters": [{"description": "The ID of the reference.", "in": "path", "name": "referenceId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Reference"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/genomics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"]}],
         "tags": ["references"]
       },
       "parameters": [
@@ -914,11 +786,7 @@
           {"description": "The start position (0-based) of this query. Defaults to 0.", "in": "query", "name": "start", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListBasesResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/genomics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"]}],
         "tags": ["references"]
       },
       "parameters": [
@@ -958,11 +826,7 @@
         "operationId": "genomics.referencesets.search",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SearchReferenceSetsRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SearchReferenceSetsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/genomics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"]}],
         "tags": ["referencesets"]
       }
     },
@@ -972,11 +836,7 @@
         "operationId": "genomics.referencesets.get",
         "parameters": [{"description": "The ID of the reference set.", "in": "path", "name": "referenceSetId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ReferenceSet"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/genomics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"]}],
         "tags": ["referencesets"]
       },
       "parameters": [
@@ -1016,10 +876,7 @@
         "operationId": "genomics.variants.create",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Variant"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Variant"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["variants"]
       }
     },
@@ -1044,11 +901,7 @@
         "operationId": "genomics.variants.search",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SearchVariantsRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SearchVariantsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/genomics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"]}],
         "tags": ["variants"]
       }
     },
@@ -1058,10 +911,7 @@
         "operationId": "genomics.variants.delete",
         "parameters": [{"description": "The ID of the variant to be deleted.", "in": "path", "name": "variantId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["variants"]
       },
       "get": {
@@ -1069,11 +919,7 @@
         "operationId": "genomics.variants.get",
         "parameters": [{"description": "The ID of the variant.", "in": "path", "name": "variantId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Variant"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/genomics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"]}],
         "tags": ["variants"]
       },
       "parameters": [
@@ -1105,10 +951,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Variant"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Variant"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["variants"]
       }
     },
@@ -1133,11 +976,7 @@
         "operationId": "genomics.variants.import",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ImportVariantsRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_write"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["variants"]
       }
     },
@@ -1162,10 +1001,7 @@
         "operationId": "genomics.variants.merge",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/MergeVariantsRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["variants"]
       }
     },
@@ -1190,10 +1026,7 @@
         "operationId": "genomics.variantsets.create",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/VariantSet"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/VariantSet"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["variantsets"]
       }
     },
@@ -1218,11 +1051,7 @@
         "operationId": "genomics.variantsets.search",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SearchVariantSetsRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SearchVariantSetsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/genomics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"]}],
         "tags": ["variantsets"]
       }
     },
@@ -1232,10 +1061,7 @@
         "operationId": "genomics.variantsets.delete",
         "parameters": [{"description": "The ID of the variant set to be deleted.", "in": "path", "name": "variantSetId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["variantsets"]
       },
       "get": {
@@ -1243,11 +1069,7 @@
         "operationId": "genomics.variantsets.get",
         "parameters": [{"description": "Required. The ID of the variant set.", "in": "path", "name": "variantSetId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/VariantSet"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/genomics.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics.readonly"]}],
         "tags": ["variantsets"]
       },
       "parameters": [
@@ -1279,10 +1101,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/VariantSet"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/VariantSet"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["variantsets"]
       }
     },
@@ -1316,11 +1135,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ExportVariantSetRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/bigquery"], "Oauth2c": ["https://www.googleapis.com/auth/bigquery"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/bigquery"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["variantsets"]
       }
     },
@@ -1340,10 +1155,7 @@
           {"description": "The standard list page token.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListOperationsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["operations"]
       },
       "parameters": [
@@ -1386,10 +1198,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CancelOperationRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["operations"]
       }
     },
@@ -1417,10 +1226,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/GetIamPolicyRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Policy"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["datasets"]
       }
     },
@@ -1448,10 +1254,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SetIamPolicyRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Policy"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["datasets"]
       }
     },
@@ -1479,10 +1282,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/TestIamPermissionsRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TestIamPermissionsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/genomics"], "Oauth2c": ["https://www.googleapis.com/auth/genomics"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/genomics"]}],
         "tags": ["datasets"]
       }
     }
@@ -1856,7 +1656,7 @@
         "name": {"description": "The server-assigned name, which is only unique within the same service that originally returns it. For example&#58; `operations/CJHU7Oi_ChDrveSpBRjfuL-qzoWAgEw`", "type": "string"},
         "response": {
           "additionalProperties": {"description": "Properties of the object. Contains field @type with type URL."},
-          "description": "If importing ReadGroupSets, an ImportReadGroupSetsResponse is returned. If importing Variants, an ImportVariantsResponse is returned. For pipelines and exports, an empty response is returned.",
+          "description": "If importing ReadGroupSets, an ImportReadGroupSetsResponse is returned. If importing Variants, an ImportVariantsResponse is returned. For pipelines and exports, an Empty response is returned.",
           "type": "object"
         }
       },

@@ -648,8 +648,9 @@
         "ImageName": {"$ref": "#/definitions/String", "description": "Unique name of the image used by the fleet."},
         "InstanceType": {
           "$ref": "#/definitions/String",
-          "description": "<p>The instance type of compute resources for the fleet. Fleet instances are launched from this instance type. Available instance types are:</p> <ul> <li> <p>stream.standard.medium</p> </li> <li> <p>stream.standard.large</p> </li> <li> <p>stream.compute.large</p> </li> <li> <p>stream.compute.xlarge</p> </li> <li> <p>stream.compute.2xlarge</p> </li> <li> <p>stream.compute.4xlarge</p> </li> <li> <p>stream.compute.8xlarge</p> </li> <li> <p>stream.memory.large</p> </li> <li> <p>stream.memory.xlarge</p> </li> <li> <p>stream.memory.2xlarge</p> </li> <li> <p>stream.memory.4xlarge</p> </li> <li> <p>stream.memory.8xlarge</p> </li> <li> <p>stream.graphics-pro.4xlarge</p> </li> <li> <p>stream.graphics-pro.8xlarge</p> </li> <li> <p>stream.graphics-pro.16xlarge</p> </li> <li> <p>stream.graphics-desktop.2xlarge</p> </li> </ul>"
+          "description": "<p>The instance type to use when launching fleet instances. The following instance types are available:</p> <ul> <li> <p>stream.standard.medium</p> </li> <li> <p>stream.standard.large</p> </li> <li> <p>stream.compute.large</p> </li> <li> <p>stream.compute.xlarge</p> </li> <li> <p>stream.compute.2xlarge</p> </li> <li> <p>stream.compute.4xlarge</p> </li> <li> <p>stream.compute.8xlarge</p> </li> <li> <p>stream.memory.large</p> </li> <li> <p>stream.memory.xlarge</p> </li> <li> <p>stream.memory.2xlarge</p> </li> <li> <p>stream.memory.4xlarge</p> </li> <li> <p>stream.memory.8xlarge</p> </li> <li> <p>stream.graphics-design.large</p> </li> <li> <p>stream.graphics-design.xlarge</p> </li> <li> <p>stream.graphics-design.2xlarge</p> </li> <li> <p>stream.graphics-design.4xlarge</p> </li> <li> <p>stream.graphics-desktop.2xlarge</p> </li> <li> <p>stream.graphics-pro.4xlarge</p> </li> <li> <p>stream.graphics-pro.8xlarge</p> </li> <li> <p>stream.graphics-pro.16xlarge</p> </li> </ul>"
         },
+        "FleetType": {"$ref": "#/definitions/FleetType"},
         "ComputeCapacity": {"$ref": "#/definitions/ComputeCapacity", "description": "The parameters for the capacity allocated to the fleet."},
         "VpcConfig": {"$ref": "#/definitions/VpcConfig", "description": "The VPC configuration for the fleet."},
         "MaxUserDurationInSeconds": {"$ref": "#/definitions/Integer", "description": "The maximum time for which a streaming session can run. The input can be any numeric value in seconds between 600 and 57600."},
@@ -819,7 +820,8 @@
         "DisplayName": {"$ref": "#/definitions/String", "description": "The name displayed to end users on the AppStream 2.0 portal."},
         "Description": {"$ref": "#/definitions/String", "description": "The description displayed to end users on the AppStream 2.0 portal."},
         "ImageName": {"$ref": "#/definitions/String", "description": "The image used by the fleet."},
-        "InstanceType": {"$ref": "#/definitions/String", "description": "The instance type of compute resources for the fleet. The fleet instances are launched from this instance type. "},
+        "InstanceType": {"$ref": "#/definitions/String", "description": "The instance type to use when launching fleet instances."},
+        "FleetType": {"$ref": "#/definitions/FleetType"},
         "ComputeCapacityStatus": {"$ref": "#/definitions/ComputeCapacityStatus", "description": "The capacity information for the fleet."},
         "MaxUserDurationInSeconds": {"$ref": "#/definitions/Integer", "description": "The maximum time for which a streaming session can run. The value can be any numeric value in seconds between 600 and 57600."},
         "DisconnectTimeoutInSeconds": {
@@ -860,6 +862,7 @@
         "IMAGE_NOT_FOUND",
         "INVALID_SUBNET_CONFIGURATION",
         "SECURITY_GROUPS_NOT_FOUND",
+        "IGW_NOT_ATTACHED",
         "IAM_SERVICE_ROLE_MISSING_DESCRIBE_SECURITY_GROUPS_ACTION",
         "DOMAIN_JOIN_ERROR_FILE_NOT_FOUND",
         "DOMAIN_JOIN_ERROR_ACCESS_DENIED",
@@ -878,6 +881,7 @@
     "FleetErrors": {"type": "array", "items": {"$ref": "#/definitions/FleetError"}},
     "FleetList": {"type": "array", "description": "A list of fleets.", "items": {"$ref": "#/definitions/Fleet"}},
     "FleetState": {"type": "string", "enum": ["STARTING", "RUNNING", "STOPPING", "STOPPED"]},
+    "FleetType": {"type": "string", "enum": ["ALWAYS_ON", "ON_DEMAND"]},
     "Image": {
       "type": "object",
       "required": ["Name"],
@@ -1055,7 +1059,7 @@
         "Name": {"$ref": "#/definitions/String", "description": "The name of the fleet."},
         "InstanceType": {
           "$ref": "#/definitions/String",
-          "description": "<p>The instance type of compute resources for the fleet. Fleet instances are launched from this instance type. Available instance types are:</p> <ul> <li> <p>stream.standard.medium</p> </li> <li> <p>stream.standard.large</p> </li> <li> <p>stream.compute.large</p> </li> <li> <p>stream.compute.xlarge</p> </li> <li> <p>stream.compute.2xlarge</p> </li> <li> <p>stream.compute.4xlarge</p> </li> <li> <p>stream.compute.8xlarge</p> </li> <li> <p>stream.memory.large</p> </li> <li> <p>stream.memory.xlarge</p> </li> <li> <p>stream.memory.2xlarge</p> </li> <li> <p>stream.memory.4xlarge</p> </li> <li> <p>stream.memory.8xlarge</p> </li> <li> <p>stream.graphics-pro.4xlarge</p> </li> <li> <p>stream.graphics-pro.8xlarge</p> </li> <li> <p>stream.graphics-pro.16xlarge</p> </li> <li> <p>stream.graphics-desktop.2xlarge</p> </li> </ul>"
+          "description": "<p>The instance type to use when launching fleet instances. The following instance types are available:</p> <ul> <li> <p>stream.standard.medium</p> </li> <li> <p>stream.standard.large</p> </li> <li> <p>stream.compute.large</p> </li> <li> <p>stream.compute.xlarge</p> </li> <li> <p>stream.compute.2xlarge</p> </li> <li> <p>stream.compute.4xlarge</p> </li> <li> <p>stream.compute.8xlarge</p> </li> <li> <p>stream.memory.large</p> </li> <li> <p>stream.memory.xlarge</p> </li> <li> <p>stream.memory.2xlarge</p> </li> <li> <p>stream.memory.4xlarge</p> </li> <li> <p>stream.memory.8xlarge</p> </li> <li> <p>stream.graphics-design.large</p> </li> <li> <p>stream.graphics-design.xlarge</p> </li> <li> <p>stream.graphics-design.2xlarge</p> </li> <li> <p>stream.graphics-design.4xlarge</p> </li> <li> <p>stream.graphics-desktop.2xlarge</p> </li> <li> <p>stream.graphics-pro.4xlarge</p> </li> <li> <p>stream.graphics-pro.8xlarge</p> </li> <li> <p>stream.graphics-pro.16xlarge</p> </li> </ul>"
         },
         "ComputeCapacity": {"$ref": "#/definitions/ComputeCapacity", "description": "The parameters for the capacity allocated to the fleet. "},
         "VpcConfig": {"$ref": "#/definitions/VpcConfig", "description": "The VPC configuration for the fleet."},

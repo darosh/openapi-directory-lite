@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Converts audio to text by applying powerful neural network models.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Google Cloud Speech",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://speech.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://speech.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "speech"
@@ -21,17 +19,9 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {"https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services"},
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {"https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services"},
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -68,7 +58,7 @@
           {"description": "The standard list page token.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListOperationsResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["operations"]
       },
       "parameters": [
@@ -93,7 +83,7 @@
         "operationId": "speech.operations.delete",
         "parameters": [{"description": "The name of the operation resource to be deleted.", "in": "path", "name": "name", "required": true, "type": "string", "x-reservedExpansion": true}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["operations"]
       },
       "get": {
@@ -101,7 +91,7 @@
         "operationId": "speech.operations.get",
         "parameters": [{"description": "The name of the operation resource.", "in": "path", "name": "name", "required": true, "type": "string", "x-reservedExpansion": true}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["operations"]
       },
       "parameters": [
@@ -144,7 +134,7 @@
           {"description": "The name of the operation resource to be cancelled.", "in": "path", "name": "name", "required": true, "type": "string", "x-reservedExpansion": true}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["operations"]
       }
     },
@@ -169,7 +159,7 @@
         "operationId": "speech.speech.longrunningrecognize",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/LongRunningRecognizeRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["speech"]
       }
     },
@@ -194,7 +184,7 @@
         "operationId": "speech.speech.recognize",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/RecognizeRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/RecognizeResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["speech"]
       }
     }
@@ -225,7 +215,7 @@
     "Operation": {
       "description": "This resource represents a long-running operation that is the result of a\nnetwork API call.",
       "properties": {
-        "done": {"description": "If the value is `false`, it means the operation is still in progress.\nIf true, the operation is completed, and either `error` or `response` is\navailable.", "type": "boolean"},
+        "done": {"description": "If the value is `false`, it means the operation is still in progress.\nIf `true`, the operation is completed, and either `error` or `response` is\navailable.", "type": "boolean"},
         "error": {"$ref": "#/definitions/Status", "description": "The error result of the operation in case of failure or cancellation."},
         "metadata": {
           "additionalProperties": {"description": "Properties of the object. Contains field @type with type URL."},

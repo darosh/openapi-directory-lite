@@ -1002,6 +1002,7 @@
           "title": "Federal Penalty",
           "type": "string"
         },
+        "Lead": {"description": "The lead agency (e.g., EPA, State) conducting the inspection", "example": "EPA", "title": "Lead Agency", "type": "string"},
         "MaxScore": {"description": "[Col. 121]", "example": "1", "title": "Max Score", "type": "string"},
         "PrimaryLaw": {
           "description": "Identifies the primary statute/law violated and cited in the enforcement action. Many of EPA's judicial actions are based on incidents that are violations of more than one statute. One law entered into the ICIS record is designated the primary law, which is considered the law that is most seriously violated and/or for which the most significant relief is sought.",
@@ -1048,6 +1049,7 @@
           "title": "Settlement Date",
           "type": "string"
         },
+        "StateLocPenaltyAmt": {"title": "State Local Penalty Amount", "type": "string"},
         "TotalCompActionAmt": {
           "description": "For civil enforcement actions, the value of the costs incurred by the defendant/respondent to attain compliance with the law and restore the environment. This value does not include penalties, cost recovery, or costs associated with SEPs.",
           "example": "279450",
@@ -1082,6 +1084,8 @@
         "DateClosed",
         "EnfOutcome",
         "CostRecovery",
+        "Lead",
+        "StateLocPenaltyAmt",
         "SEPCategories",
         "SEPTexts",
         "MaxScore"

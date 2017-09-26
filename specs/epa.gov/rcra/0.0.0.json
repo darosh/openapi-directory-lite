@@ -1979,7 +1979,7 @@
         "QueryID": {"description": "Sequential number assigned to entire search result", "example": "245", "title": "Query Identifier", "type": "string"},
         "QueryRows": {"description": "Number of query results returned", "example": "5", "title": "Query Row Count", "type": "string"}
       },
-      "required": ["Message", "QueryRows", "QueryID", "Facilities", "PageNo"],
+      "required": ["Message", "QueryRows", "QueryID", "PageNo", "Facilities"],
       "type": "object"
     },
     "rcr5_Feature": {

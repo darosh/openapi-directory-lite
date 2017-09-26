@@ -6,14 +6,12 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Accesses the schemaless NoSQL database to provide fully managed, robust, scalable storage for your application.\n",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Google Cloud Datastore",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-apisguru-categories": ["storage"],
     "x-logo": {"url": "https://cloud.google.com/_static/images/new-gcp-logo.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://datastore.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://datastore.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "datastore"
@@ -22,17 +20,9 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {"https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services", "https://www.googleapis.com/auth/datastore": "View and manage your Google Cloud Datastore data"},
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {"https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services", "https://www.googleapis.com/auth/datastore": "View and manage your Google Cloud Datastore data"},
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -82,10 +72,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AllocateIdsRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AllocateIdsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/datastore"], "Oauth2c": ["https://www.googleapis.com/auth/datastore"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/datastore"]}],
         "tags": ["projects"]
       }
     },
@@ -113,10 +100,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/BeginTransactionRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/BeginTransactionResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/datastore"], "Oauth2c": ["https://www.googleapis.com/auth/datastore"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/datastore"]}],
         "tags": ["projects"]
       }
     },
@@ -144,10 +128,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CommitRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CommitResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/datastore"], "Oauth2c": ["https://www.googleapis.com/auth/datastore"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/datastore"]}],
         "tags": ["projects"]
       }
     },
@@ -175,10 +156,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/LookupRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/LookupResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/datastore"], "Oauth2c": ["https://www.googleapis.com/auth/datastore"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/datastore"]}],
         "tags": ["projects"]
       }
     },
@@ -206,10 +184,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/RollbackRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/RollbackResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/datastore"], "Oauth2c": ["https://www.googleapis.com/auth/datastore"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/datastore"]}],
         "tags": ["projects"]
       }
     },
@@ -237,10 +212,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/RunQueryRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/RunQueryResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/datastore"], "Oauth2c": ["https://www.googleapis.com/auth/datastore"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/datastore"]}],
         "tags": ["projects"]
       }
     },
@@ -250,10 +222,7 @@
         "operationId": "datastore.projects.operations.delete",
         "parameters": [{"description": "The name of the operation resource to be deleted.", "in": "path", "name": "name", "required": true, "type": "string", "x-reservedExpansion": true}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/datastore"], "Oauth2c": ["https://www.googleapis.com/auth/datastore"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/datastore"]}],
         "tags": ["projects"]
       },
       "get": {
@@ -261,10 +230,7 @@
         "operationId": "datastore.projects.operations.get",
         "parameters": [{"description": "The name of the operation resource.", "in": "path", "name": "name", "required": true, "type": "string", "x-reservedExpansion": true}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GoogleLongrunningOperation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/datastore"], "Oauth2c": ["https://www.googleapis.com/auth/datastore"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/datastore"]}],
         "tags": ["projects"]
       },
       "parameters": [
@@ -294,10 +260,7 @@
           {"description": "The standard list page token.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GoogleLongrunningListOperationsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/datastore"], "Oauth2c": ["https://www.googleapis.com/auth/datastore"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/datastore"]}],
         "tags": ["projects"]
       },
       "parameters": [
@@ -337,10 +300,7 @@
         "operationId": "datastore.projects.operations.cancel",
         "parameters": [{"description": "The name of the operation resource to be cancelled.", "in": "path", "name": "name", "required": true, "type": "string", "x-reservedExpansion": true}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/datastore"], "Oauth2c": ["https://www.googleapis.com/auth/datastore"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/datastore"]}],
         "tags": ["projects"]
       }
     }
@@ -442,23 +402,19 @@
       "description": "Metadata common to all Datastore Admin operations.",
       "properties": {
         "endTime": {"description": "The time the operation ended, either successfully or otherwise.", "format": "google-datetime", "type": "string"},
-        "labels": {"additionalProperties": {"type": "string"}, "description": "The client-assigned labels which were provided when the operation was\ncreated.  May also include additional labels.", "type": "object"},
-        "operationType": {
-          "description": "The type of the operation.  Can be used as a filter in\nListOperationsRequest.",
-          "enum": ["OPERATION_TYPE_UNSPECIFIED", "EXPORT_ENTITIES", "IMPORT_ENTITIES", "BUILD_INDEX", "CLEAR_INDEX"],
-          "type": "string"
-        },
+        "labels": {"additionalProperties": {"type": "string"}, "description": "The client-assigned labels which were provided when the operation was\ncreated. May also include additional labels.", "type": "object"},
+        "operationType": {"description": "The type of the operation. Can be used as a filter in\nListOperationsRequest.", "enum": ["OPERATION_TYPE_UNSPECIFIED", "EXPORT_ENTITIES", "IMPORT_ENTITIES"], "type": "string"},
         "startTime": {"description": "The time that work began on the operation.", "format": "google-datetime", "type": "string"},
         "state": {"description": "The current state of the Operation.", "enum": ["STATE_UNSPECIFIED", "INITIALIZING", "PROCESSING", "CANCELLING", "FINALIZING", "SUCCESSFUL", "FAILED", "CANCELLED"], "type": "string"}
       },
       "type": "object"
     },
     "GoogleDatastoreAdminV1beta1EntityFilter": {
-      "description": "Identifies a subset of entities in a project.  This is specified as\ncombinations of kind + namespace (either or both of which may be all, as\ndescribed in the following examples).\nExample usage:\n\nEntire project:\n  kinds=[], namespace_ids=[]\n\nKinds Foo and Bar in all namespaces:\n  kinds=['Foo', 'Bar'], namespace_ids=[]\n\nKinds Foo and Bar only in the default namespace:\n  kinds=['Foo', 'Bar'], namespace_ids=['']\n\nKinds Foo and Bar in both the default and Baz namespaces:\n  kinds=['Foo', 'Bar'], namespace_ids=['', 'Baz']\n\nThe entire Baz namespace:\n  kinds=[], namespace_ids=['Baz']",
+      "description": "Identifies a subset of entities in a project. This is specified as\ncombinations of kinds and namespaces (either or both of which may be all, as\ndescribed in the following examples).\nExample usage:\n\nEntire project:\n  kinds=[], namespace_ids=[]\n\nKinds Foo and Bar in all namespaces:\n  kinds=['Foo', 'Bar'], namespace_ids=[]\n\nKinds Foo and Bar only in the default namespace:\n  kinds=['Foo', 'Bar'], namespace_ids=['']\n\nKinds Foo and Bar in both the default and Baz namespaces:\n  kinds=['Foo', 'Bar'], namespace_ids=['', 'Baz']\n\nThe entire Baz namespace:\n  kinds=[], namespace_ids=['Baz']",
       "properties": {
         "kinds": {"description": "If empty, then this represents all kinds.", "items": {"type": "string"}, "type": "array"},
         "namespaceIds": {
-          "description": "An empty list represents all namespaces.  This is the preferred\nusage for projects that don't use namespaces.\n\nAn empty string element represents the default namespace.  This should be\nused if the project has data in non-default namespaces, but doesn't want to\ninclude them.\nEach namespace in this list must be unique.",
+          "description": "An empty list represents all namespaces. This is the preferred\nusage for projects that don't use namespaces.\n\nAn empty string element represents the default namespace. This should be\nused if the project has data in non-default namespaces, but doesn't want to\ninclude them.\nEach namespace in this list must be unique.",
           "items": {"type": "string"},
           "type": "array"
         }
@@ -503,8 +459,8 @@
     "GoogleDatastoreAdminV1beta1Progress": {
       "description": "Measures the progress of a particular metric.",
       "properties": {
-        "workCompleted": {"description": "Note that this may be greater than work_estimated.", "format": "int64", "type": "string"},
-        "workEstimated": {"description": "An estimate of how much work needs to be performed.  May be zero if the\nwork estimate is unavailable.", "format": "int64", "type": "string"}
+        "workCompleted": {"description": "The amount of work that has been completed. Note that this may be greater\nthan work_estimated.", "format": "int64", "type": "string"},
+        "workEstimated": {"description": "An estimate of how much work needs to be performed. May be zero if the\nwork estimate is unavailable.", "format": "int64", "type": "string"}
       },
       "type": "object"
     },
@@ -519,7 +475,7 @@
     "GoogleLongrunningOperation": {
       "description": "This resource represents a long-running operation that is the result of a\nnetwork API call.",
       "properties": {
-        "done": {"description": "If the value is `false`, it means the operation is still in progress.\nIf true, the operation is completed, and either `error` or `response` is\navailable.", "type": "boolean"},
+        "done": {"description": "If the value is `false`, it means the operation is still in progress.\nIf `true`, the operation is completed, and either `error` or `response` is\navailable.", "type": "boolean"},
         "error": {"$ref": "#/definitions/Status", "description": "The error result of the operation in case of failure or cancellation."},
         "metadata": {
           "additionalProperties": {"description": "Properties of the object. Contains field @type with type URL."},

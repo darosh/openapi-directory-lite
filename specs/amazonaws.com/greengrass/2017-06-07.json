@@ -709,6 +709,25 @@
         {"$ref": "#/parameters/X-Amz-Signature"},
         {"$ref": "#/parameters/X-Amz-SignedHeaders"}
       ]
+    },
+    "/greengrass/groups/{GroupId}/deployments/$reset": {
+      "post": {
+        "operationId": "ResetDeployments",
+        "description": "Resets a group's deployments.",
+        "responses": {"200": {"description": "Success", "schema": {"$ref": "#/definitions/ResetDeploymentsResponse"}}, "480": {"description": "BadRequestException", "schema": {"$ref": "#/definitions/BadRequestException"}}},
+        "parameters": [{"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/ResetDeploymentsRequest"}}, {"name": "GroupId", "in": "path", "type": "string", "required": true}]
+      },
+      "parameters": [
+        {"$ref": "#/parameters/Action"},
+        {"$ref": "#/parameters/Version"},
+        {"$ref": "#/parameters/X-Amz-Content-Sha256"},
+        {"$ref": "#/parameters/X-Amz-Date"},
+        {"$ref": "#/parameters/X-Amz-Algorithm"},
+        {"$ref": "#/parameters/X-Amz-Credential"},
+        {"$ref": "#/parameters/X-Amz-Security-Token"},
+        {"$ref": "#/parameters/X-Amz-Signature"},
+        {"$ref": "#/parameters/X-Amz-SignedHeaders"}
+      ]
     }
   },
   "definitions": {
@@ -718,7 +737,7 @@
     "AssociateServiceRoleToAccountResponse": {"type": "object", "properties": {"AssociatedAt": {"$ref": "#/definitions/__string", "description": "Time when the service role was associated to the account."}}},
     "BadRequestException": {
       "type": "object",
-      "properties": {"ErrorDetails": {"$ref": "#/definitions/ErrorDetails", "description": "Error Details"}, "Message": {"$ref": "#/definitions/__string", "description": "Message"}},
+      "properties": {"ErrorDetails": {"$ref": "#/definitions/ErrorDetails", "description": "Error Details"}, "Message": {"$ref": "#/definitions/__string", "description": "Message containing information about the error"}},
       "description": "General Error"
     },
     "ConnectivityInfo": {
@@ -773,13 +792,13 @@
       "type": "object",
       "properties": {
         "DeploymentId": {"$ref": "#/definitions/__string", "description": "Id of the deployment if you wish to redeploy a previous deployment."},
-        "DeploymentType": {"$ref": "#/definitions/DeploymentType", "description": "Type of deployment"},
+        "DeploymentType": {"$ref": "#/definitions/DeploymentType", "description": "Type of deployment. When used in CreateDeployment, only NewDeployment and Redeployment are valid. "},
         "GroupVersionId": {"$ref": "#/definitions/__string", "description": "Group Version you wish to deploy."}
       }
     },
     "CreateDeploymentResponse": {
       "type": "object",
-      "properties": {"DeploymentArn": {"$ref": "#/definitions/__string", "description": "Arn of the deployment."}, "DeploymentId": {"$ref": "#/definitions/__string", "description": "Id of the deployment."}}
+      "properties": {"DeploymentArn": {"$ref": "#/definitions/__string", "description": "The arn of the deployment."}, "DeploymentId": {"$ref": "#/definitions/__string", "description": "The id of the deployment."}}
     },
     "CreateDeviceDefinitionRequest": {
       "type": "object",
@@ -960,11 +979,12 @@
         "CreatedAt": {"$ref": "#/definitions/__string", "description": "Timestamp when the deployment was created."},
         "DeploymentArn": {"$ref": "#/definitions/__string", "description": "Arn of the deployment."},
         "DeploymentId": {"$ref": "#/definitions/__string", "description": "Id of the deployment."},
+        "DeploymentType": {"$ref": "#/definitions/DeploymentType", "description": "The type of deployment."},
         "GroupArn": {"$ref": "#/definitions/__string", "description": "Arn of the group for this deployment."}
       },
       "description": "Information on the deployment"
     },
-    "DeploymentType": {"type": "string", "enum": ["NewDeployment", "Redeployment"]},
+    "DeploymentType": {"type": "string", "enum": ["NewDeployment", "Redeployment", "ResetDeployment", "ForceResetDeployment"]},
     "Deployments": {"type": "array", "items": {"$ref": "#/definitions/Deployment"}},
     "Device": {
       "type": "object",
@@ -1021,7 +1041,7 @@
     },
     "GeneralError": {
       "type": "object",
-      "properties": {"ErrorDetails": {"$ref": "#/definitions/ErrorDetails", "description": "Error Details"}, "Message": {"$ref": "#/definitions/__string", "description": "Message"}},
+      "properties": {"ErrorDetails": {"$ref": "#/definitions/ErrorDetails", "description": "Error Details"}, "Message": {"$ref": "#/definitions/__string", "description": "Message containing information about the error"}},
       "description": "General Error"
     },
     "GetAssociatedRoleRequest": {"type": "object", "properties": {}},
@@ -1035,7 +1055,7 @@
     "GetConnectivityInfoRequest": {"type": "object", "properties": {}},
     "GetConnectivityInfoResponse": {
       "type": "object",
-      "properties": {"ConnectivityInfo": {"$ref": "#/definitions/ListOfConnectivityInfo", "description": "Connectivity info array"}, "Message": {"$ref": "#/definitions/__string", "description": "Response Text"}}
+      "properties": {"ConnectivityInfo": {"$ref": "#/definitions/ListOfConnectivityInfo", "description": "Connectivity info list"}, "Message": {"$ref": "#/definitions/__string", "description": "Response Text"}}
     },
     "GetCoreDefinitionRequest": {"type": "object", "properties": {}},
     "GetCoreDefinitionResponse": {
@@ -1066,6 +1086,8 @@
       "type": "object",
       "properties": {
         "DeploymentStatus": {"$ref": "#/definitions/__string", "description": "Status of the deployment."},
+        "DeploymentType": {"$ref": "#/definitions/DeploymentType", "description": "The type of the deployment."},
+        "ErrorDetails": {"$ref": "#/definitions/ErrorDetails", "description": "The error Details"},
         "ErrorMessage": {"$ref": "#/definitions/__string", "description": "Error Message"},
         "UpdatedAt": {"$ref": "#/definitions/__string", "description": "Last time the deployment status was updated."}
       }
@@ -1113,7 +1135,7 @@
       "properties": {
         "Arn": {"$ref": "#/definitions/__string", "description": "Arn of the function definition version."},
         "CreationTimestamp": {"$ref": "#/definitions/__string", "description": "Timestamp when the funtion definition version was created."},
-        "Definition": {"$ref": "#/definitions/FunctionDefinitionVersion"},
+        "Definition": {"$ref": "#/definitions/FunctionDefinitionVersion", "description": "Information on the definition."},
         "Id": {"$ref": "#/definitions/__string", "description": "Id of the function definition the version belongs to."},
         "Version": {"$ref": "#/definitions/__string", "description": "Version of the function definition version."}
       }
@@ -1244,7 +1266,7 @@
         "LatestVersionArn": {"$ref": "#/definitions/__string", "description": "Latest version arn of the group."},
         "Name": {"$ref": "#/definitions/__string", "description": "Name of a group."}
       },
-      "description": "Information of a group"
+      "description": "Information on the group"
     },
     "GroupVersion": {
       "type": "object",
@@ -1259,7 +1281,7 @@
     },
     "InternalServerErrorException": {
       "type": "object",
-      "properties": {"ErrorDetails": {"$ref": "#/definitions/ErrorDetails", "description": "Error Details"}, "Message": {"$ref": "#/definitions/__string", "description": "Message"}},
+      "properties": {"ErrorDetails": {"$ref": "#/definitions/ErrorDetails", "description": "Error Details"}, "Message": {"$ref": "#/definitions/__string", "description": "Message containing information about the error"}},
       "description": "General Error"
     },
     "ListCoreDefinitionVersionsRequest": {"type": "object", "properties": {}},
@@ -1284,13 +1306,13 @@
         "Definitions": {"$ref": "#/definitions/ListOfDefinitionInformation", "description": "Definitions"},
         "NextToken": {"$ref": "#/definitions/__string", "description": "The token for the next set of results, or ''null'' if there are no additional results."}
       },
-      "description": "List of definition response"
+      "description": "List of definition responses"
     },
     "ListDeploymentsRequest": {"type": "object", "properties": {}},
     "ListDeploymentsResponse": {
       "type": "object",
       "properties": {
-        "Deployments": {"$ref": "#/definitions/Deployments", "description": "Information on deployments"},
+        "Deployments": {"$ref": "#/definitions/Deployments", "description": "List of deployments for the requested groups"},
         "NextToken": {"$ref": "#/definitions/__string", "description": "The token for the next set of results, or ''null'' if there are no additional results."}
       }
     },
@@ -1413,6 +1435,15 @@
     "LoggerLevel": {"type": "string", "enum": ["DEBUG", "INFO", "WARN", "ERROR", "FATAL"]},
     "LoggerType": {"type": "string", "enum": ["FileSystem", "AWSCloudWatch"]},
     "MapOf__string": {"type": "array", "items": {"type": "object", "properties": {"key": {"$ref": "#/definitions/__string"}, "value": {"$ref": "#/definitions/__string"}}}},
+    "ResetDeploymentsRequest": {
+      "type": "object",
+      "properties": {"Force": {"$ref": "#/definitions/__boolean", "description": "When set to true, perform a best-effort only core reset."}},
+      "description": "Information needed to perform a reset of a group's deployments."
+    },
+    "ResetDeploymentsResponse": {
+      "type": "object",
+      "properties": {"DeploymentArn": {"$ref": "#/definitions/__string", "description": "The arn of the reset deployment."}, "DeploymentId": {"$ref": "#/definitions/__string", "description": "The id of the reset deployment."}}
+    },
     "Subscription": {
       "type": "object",
       "properties": {
@@ -1428,7 +1459,7 @@
       "properties": {"Subscriptions": {"$ref": "#/definitions/ListOfSubscription", "description": "Subscriptions in the version."}},
       "description": "Information on subscription definition version"
     },
-    "UpdateConnectivityInfoRequest": {"type": "object", "properties": {"ConnectivityInfo": {"$ref": "#/definitions/ListOfConnectivityInfo", "description": "Connectivity info array"}}, "description": "connectivity info request"},
+    "UpdateConnectivityInfoRequest": {"type": "object", "properties": {"ConnectivityInfo": {"$ref": "#/definitions/ListOfConnectivityInfo", "description": "Connectivity info list"}}, "description": "connectivity info request"},
     "UpdateConnectivityInfoResponse": {"type": "object", "properties": {"Message": {"$ref": "#/definitions/__string", "description": "Response Text"}, "Version": {"$ref": "#/definitions/__string", "description": "New Version"}}},
     "UpdateCoreDefinitionRequest": {"type": "object", "properties": {"Name": {"$ref": "#/definitions/__string", "description": "name of the definition"}}},
     "UpdateCoreDefinitionResponse": {"type": "object", "properties": {}},

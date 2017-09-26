@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Manages Google Cloud Dataflow projects on Google Cloud Platform.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Google Dataflow",
     "version": "v1b3",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://dataflow.googleapis.com/$discovery/rest?version=v1b3", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://dataflow.googleapis.com/$discovery/rest?version=v1b3", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "dataflow"
@@ -21,7 +19,7 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services",
@@ -29,19 +27,6 @@
         "https://www.googleapis.com/auth/compute.readonly": "View your Google Compute Engine resources",
         "https://www.googleapis.com/auth/userinfo.email": "View your email address"
       },
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {
-        "https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services",
-        "https://www.googleapis.com/auth/compute": "View and manage your Google Compute Engine resources",
-        "https://www.googleapis.com/auth/compute.readonly": "View your Google Compute Engine resources",
-        "https://www.googleapis.com/auth/userinfo.email": "View your email address"
-      },
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -92,10 +77,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SendWorkerMessagesResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       }
@@ -125,10 +110,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListJobsResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       },
@@ -159,10 +144,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Job"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       }
@@ -179,10 +164,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Job"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       },
@@ -212,10 +197,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Job"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       }
@@ -246,10 +231,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GetDebugConfigResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       }
@@ -280,10 +265,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SendDebugCaptureResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       }
@@ -315,10 +300,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListJobMessagesResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       },
@@ -350,10 +335,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/JobMetrics"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       },
@@ -399,10 +384,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/LeaseWorkItemResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       }
@@ -433,10 +418,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ReportWorkItemStatusResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       }
@@ -466,10 +451,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListJobsResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       },
@@ -515,10 +500,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SendWorkerMessagesResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       }
@@ -548,10 +533,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListJobsResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       },
@@ -582,10 +567,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Job"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       }
@@ -602,10 +587,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Job"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       },
@@ -635,10 +620,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Job"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       }
@@ -670,10 +655,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GetDebugConfigResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       }
@@ -705,10 +690,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SendDebugCaptureResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       }
@@ -740,10 +725,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListJobMessagesResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       },
@@ -775,10 +760,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/JobMetrics"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       },
@@ -825,10 +810,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/LeaseWorkItemResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       }
@@ -860,10 +845,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ReportWorkItemStatusResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       }
@@ -894,10 +879,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Job"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       }
@@ -914,10 +899,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GetTemplateResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       },
@@ -965,10 +950,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/LaunchTemplateResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       }
@@ -998,10 +983,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Job"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       }
@@ -1018,10 +1003,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GetTemplateResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       },
@@ -1069,10 +1054,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/LaunchTemplateResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]}
         ],
         "tags": ["projects"]
       }
@@ -1196,8 +1181,13 @@
         "name": {"description": "Counter name. Not necessarily globally-unique, but unique within the\ncontext of the other fields.\nRequired.", "type": "string"},
         "origin": {"description": "One of the standard Origins defined above.", "enum": ["SYSTEM", "USER"], "type": "string"},
         "originNamespace": {"description": "A string containing a more specific namespace of the counter's origin.", "type": "string"},
+        "originalShuffleStepName": {"description": "The GroupByKey step name from the original graph.", "type": "string"},
         "originalStepName": {"description": "System generated name of the original step in the user's graph, before\noptimization.", "type": "string"},
         "portion": {"description": "Portion of this counter, either key or value.", "enum": ["ALL", "KEY", "VALUE"], "type": "string"},
+        "sideInput": {
+          "$ref": "#/definitions/SideInputId",
+          "description": "ID of a side input being read from/written to. Side inputs are identified\nby a pair of (reader, input_index). The reader is usually equal to the\noriginal name, but it may be different, if a ParDo emits it's Iterator /\nMap side input object."
+        },
         "workerId": {"description": "ID of a particular worker.", "type": "string"}
       },
       "type": "object"
@@ -1306,7 +1296,6 @@
       "description": "A metric value representing a distribution.",
       "properties": {
         "count": {"$ref": "#/definitions/SplitInt64", "description": "The count of the number of elements present in the distribution."},
-        "logBuckets": {"description": "(Optional) Logarithmic histogram of values.\nEach log may be in no more than one bucket. Order does not matter.", "items": {"$ref": "#/definitions/LogBucket"}, "type": "array"},
         "max": {"$ref": "#/definitions/SplitInt64", "description": "The maximum value present in the distribution."},
         "min": {"$ref": "#/definitions/SplitInt64", "description": "The minimum value present in the distribution."},
         "sum": {"$ref": "#/definitions/SplitInt64", "description": "Use an int64 since we'd prefer the added precision. If overflow is a common\nproblem we can detect it and use an additional int64 or a double."},
@@ -1641,14 +1630,6 @@
       },
       "type": "object"
     },
-    "LogBucket": {
-      "description": "Bucket of values for Distribution's logarithmic histogram.",
-      "properties": {
-        "count": {"description": "Number of values in this bucket.", "format": "int64", "type": "string"},
-        "log": {"description": "floor(log2(value)); defined to be zero for nonpositive values.\n  log(-1) = 0\n  log(0) = 0\n  log(1) = 0\n  log(2) = 1\n  log(3) = 1\n  log(4) = 2\n  log(5) = 2", "format": "int32", "type": "integer"}
-      },
-      "type": "object"
-    },
     "MapTask": {
       "description": "MapTask consists of an ordered set of instructions, each of which\ndescribes one particular low-level operation for the worker to\nperform in order to accomplish the MapTask's WorkItem.\n\nEach instruction must appear in the list before any instructions which\ndepends on its output.",
       "properties": {
@@ -1925,6 +1906,14 @@
     "ShellTask": {
       "description": "A task which consists of a shell command for the worker to execute.",
       "properties": {"command": {"description": "The shell command to run.", "type": "string"}, "exitCode": {"description": "Exit code for the task.", "format": "int32", "type": "integer"}},
+      "type": "object"
+    },
+    "SideInputId": {
+      "description": "Uniquely identifies a side input.",
+      "properties": {
+        "declaringStepName": {"description": "The step that receives and usually consumes this side input.", "type": "string"},
+        "inputIndex": {"description": "The index of the side input, from the list of non_parallel_inputs.", "format": "int32", "type": "integer"}
+      },
       "type": "object"
     },
     "SideInputInfo": {
@@ -2330,6 +2319,7 @@
           "$ref": "#/definitions/Position",
           "description": "A worker may split an active map task in two parts, \"primary\" and\n\"residual\", continuing to process the primary part and returning the\nresidual part into the pool of available work.\nThis event is called a \"dynamic split\" and is critical to the dynamic\nwork rebalancing feature. The two obtained sub-tasks are called\n\"parts\" of the split.\nThe parts, if concatenated, must represent the same input as would\nbe read by the current task if the split did not happen.\nThe exact way in which the original task is decomposed into the two\nparts is specified either as a position demarcating them\n(stop_position), or explicitly as two DerivedSources, if this\ntask consumes a user-defined source type (dynamic_source_split).\n\nThe \"current\" task is adjusted as a result of the split: after a task\nwith range [A, B) sends a stop_position update at C, its range is\nconsidered to be [A, C), e.g.:\n* Progress should be interpreted relative to the new range, e.g.\n  \"75% completed\" means \"75% of [A, C) completed\"\n* The worker should interpret proposed_stop_position relative to the\n  new range, e.g. \"split at 68%\" should be interpreted as\n  \"split at 68% of [A, C)\".\n* If the worker chooses to split again using stop_position, only\n  stop_positions in [A, C) will be accepted.\n* Etc.\ndynamic_source_split has similar semantics: e.g., if a task with\nsource S splits using dynamic_source_split into {P, R}\n(where P and R must be together equivalent to S), then subsequent\nprogress and proposed_stop_position should be interpreted relative\nto P, and in a potential subsequent dynamic_source_split into {P', R'},\nP' and R' must be together equivalent to P, etc."
         },
+        "totalThrottlerWaitTimeSeconds": {"description": "Total time the worker spent being throttled by external systems.", "format": "double", "type": "number"},
         "workItemId": {"description": "Identifies the WorkItem.", "type": "string"}
       },
       "type": "object"
@@ -2374,7 +2364,8 @@
         "time": {"description": "The timestamp of the worker_message.", "format": "google-datetime", "type": "string"},
         "workerHealthReport": {"$ref": "#/definitions/WorkerHealthReport", "description": "The health of a worker."},
         "workerMessageCode": {"$ref": "#/definitions/WorkerMessageCode", "description": "A worker message code."},
-        "workerMetrics": {"$ref": "#/definitions/ResourceUtilizationReport", "description": "Resource metrics reported by workers."}
+        "workerMetrics": {"$ref": "#/definitions/ResourceUtilizationReport", "description": "Resource metrics reported by workers."},
+        "workerShutdownNotice": {"$ref": "#/definitions/WorkerShutdownNotice", "description": "Shutdown notice by workers."}
       },
       "type": "object"
     },
@@ -2397,7 +2388,8 @@
       "description": "A worker_message response allows the server to pass information to the\nsender.",
       "properties": {
         "workerHealthReportResponse": {"$ref": "#/definitions/WorkerHealthReportResponse", "description": "The service's response to a worker's health report."},
-        "workerMetricsResponse": {"$ref": "#/definitions/ResourceUtilizationReportResponse", "description": "Service's response to reporting worker metrics (currently empty)."}
+        "workerMetricsResponse": {"$ref": "#/definitions/ResourceUtilizationReportResponse", "description": "Service's response to reporting worker metrics (currently empty)."},
+        "workerShutdownNoticeResponse": {"$ref": "#/definitions/WorkerShutdownNoticeResponse", "description": "Service's response to shutdown notice (currently empty)."}
       },
       "type": "object"
     },
@@ -2462,6 +2454,17 @@
       },
       "type": "object"
     },
+    "WorkerShutdownNotice": {
+      "description": "Shutdown notification from workers. This is to be sent by the shutdown\nscript of the worker VM so that the backend knows that the VM is being\nshut down.",
+      "properties": {
+        "reason": {
+          "description": "Optional reason to be attached for the shutdown notice.\nFor example: \"PREEMPTION\" would indicate the VM is being shut down because\nof preemption. Other possible reasons may be added in the future.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WorkerShutdownNoticeResponse": {"description": "Service-side response to WorkerMessage issuing shutdown notice.", "properties": {}, "type": "object"},
     "WriteInstruction": {
       "description": "An instruction that writes records.\nTakes one input, produces no outputs.",
       "properties": {"input": {"$ref": "#/definitions/InstructionInput", "description": "The input."}, "sink": {"$ref": "#/definitions/Sink", "description": "The sink to write to."}},

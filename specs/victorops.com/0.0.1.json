@@ -89,7 +89,7 @@
         "tags": ["Incidents"]
       },
       "post": {
-        "description": "Create a new incident.\n\nThis call replicates the function of our\n<a href=\"https://help.victorops.com/knowledge-base/manual-incident-creation/\">manual incident creation process</a>\nMonitoring tools and custom integrations\nshould be configured using our\n<a href=\"https://help.victorops.com/knowledge-base/victorops-restendpoint-integration/\">REST Endpoint</a>\n\nThis API may be called a maximum of 6 times per minute.\n",
+        "description": "Create a new incident.\n\nThis call replicates the function of our\n<a href=\"https://help.victorops.com/knowledge-base/manual-incident-creation/\">manual incident creation process</a>.\nMonitoring tools and custom integrations\nshould be configured using our\n<a href=\"https://help.victorops.com/knowledge-base/victorops-restendpoint-integration/\">REST Endpoint</a>.\n\nThis API may be called a maximum of 6 times per minute.\n",
         "parameters": [{"$ref": "#/parameters/apiId"}, {"$ref": "#/parameters/apiKey"}, {"$ref": "#/parameters/createIncidentPayload"}],
         "responses": {
           "200": {"description": "Information about the incident created\n", "schema": {"$ref": "#/definitions/CreatedIncident"}},

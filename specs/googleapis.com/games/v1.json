@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "The API for Google Play Game Services.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Google Play Game Services",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.gstatic.com/images/icons/material/product/2x/play_games_64dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/games/v1/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/games/v1/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "games"
@@ -21,25 +19,13 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {
         "https://www.googleapis.com/auth/drive.appdata": "View and manage its own configuration data in your Google Drive",
         "https://www.googleapis.com/auth/games": "Share your Google+ profile information and view and manage your game activity",
         "https://www.googleapis.com/auth/plus.login": "Know the list of people in your circles, your age range, and language"
       },
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {
-        "https://www.googleapis.com/auth/drive.appdata": "View and manage its own configuration data in your Google Drive",
-        "https://www.googleapis.com/auth/games": "Share your Google+ profile information and view and manage your game activity",
-        "https://www.googleapis.com/auth/plus.login": "Know the list of people in your circles, your age range, and language"
-      },
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -93,10 +79,7 @@
           {"description": "The token returned by the previous request.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AchievementDefinitionsListResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["achievementDefinitions"]
       },
       "parameters": [
@@ -124,10 +107,7 @@
         "operationId": "games.achievements.updateMultiple",
         "parameters": [{"description": "The last-seen mutation timestamp.", "in": "query", "name": "consistencyToken", "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AchievementUpdateMultipleRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AchievementUpdateMultipleResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["achievements"]
       }
     },
@@ -156,10 +136,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AchievementIncrementResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["achievements"]
       }
     },
@@ -181,10 +158,7 @@
           {"description": "The last-seen mutation timestamp.", "in": "query", "name": "consistencyToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AchievementRevealResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["achievements"]
       }
     },
@@ -207,10 +181,7 @@
           {"description": "The last-seen mutation timestamp.", "in": "query", "name": "consistencyToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AchievementSetStepsAtLeastResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["achievements"]
       }
     },
@@ -232,10 +203,7 @@
           {"description": "The last-seen mutation timestamp.", "in": "query", "name": "consistencyToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AchievementUnlockResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["achievements"]
       }
     },
@@ -254,10 +222,7 @@
         "operationId": "games.applications.played",
         "parameters": [{"description": "The last-seen mutation timestamp.", "in": "query", "name": "consistencyToken", "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["applications"]
       }
     },
@@ -272,10 +237,7 @@
           {"description": "Restrict application details returned to the specific platform.", "enum": ["ANDROID", "IOS", "WEB_APP"], "in": "query", "name": "platformType", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Application"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["applications"]
       },
       "parameters": [
@@ -297,10 +259,7 @@
           {"description": "The last-seen mutation timestamp.", "in": "query", "name": "consistencyToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ApplicationVerifyResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["applications"]
       },
       "parameters": [
@@ -331,10 +290,7 @@
           {"description": "The token returned by the previous request.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/EventDefinitionListResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["events"]
       },
       "parameters": [
@@ -365,10 +321,7 @@
           {"description": "The token returned by the previous request.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PlayerEventListResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["events"]
       },
       "parameters": [
@@ -389,10 +342,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/EventRecordRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/EventUpdateResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["events"]
       }
     },
@@ -414,10 +364,7 @@
           {"description": "The token returned by the previous request.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/LeaderboardListResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["leaderboards"]
       },
       "parameters": [
@@ -449,10 +396,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/PlayerScoreSubmissionList"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PlayerScoreListResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["scores"]
       }
     },
@@ -466,10 +410,7 @@
           {"description": "The preferred language to use for strings returned by this method.", "in": "query", "name": "language", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Leaderboard"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["leaderboards"]
       },
       "parameters": [
@@ -509,10 +450,7 @@
           {"description": "Additional information about the score you're submitting. Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.", "in": "query", "name": "scoreTag", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PlayerScoreResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["scores"]
       }
     },
@@ -537,10 +475,7 @@
           {"description": "The token returned by the previous request.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/LeaderboardScores"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["scores"]
       },
       "parameters": [
@@ -581,10 +516,7 @@
           {"description": "True if the top scores should be returned when the player is not in the leaderboard. Defaults to true.", "in": "query", "name": "returnTopIfAbsent", "type": "boolean"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/LeaderboardScores"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["scores"]
       },
       "parameters": [
@@ -603,10 +535,7 @@
         "operationId": "games.metagame.getMetagameConfig",
         "parameters": [{"description": "The last-seen mutation timestamp.", "in": "query", "name": "consistencyToken", "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/MetagameConfig"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["metagame"]
       },
       "parameters": [
@@ -638,10 +567,7 @@
           {"description": "The token returned by the previous request.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PlayerListResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["players"]
       },
       "parameters": [
@@ -664,10 +590,7 @@
           {"description": "The preferred language to use for strings returned by this method.", "in": "query", "name": "language", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Player"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["players"]
       },
       "parameters": [
@@ -706,10 +629,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PlayerAchievementListResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["achievements"]
       },
       "parameters": [
@@ -742,10 +662,7 @@
           {"description": "The token returned by the previous request.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CategoryListResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["metagame"]
       },
       "parameters": [
@@ -780,10 +697,7 @@
           {"description": "The token returned by the previous request.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PlayerLeaderboardScoreListResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["scores"]
       },
       "parameters": [
@@ -815,10 +729,7 @@
           {"description": "The token returned by the previous request.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/QuestListResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["quests"]
       },
       "parameters": [
@@ -850,11 +761,7 @@
           {"description": "The token returned by the previous request.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SnapshotListResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"]}, {"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["snapshots"]
       },
       "parameters": [
@@ -882,10 +789,7 @@
         "operationId": "games.pushtokens.update",
         "parameters": [{"description": "The last-seen mutation timestamp.", "in": "query", "name": "consistencyToken", "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/PushToken"}}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["pushtokens"]
       }
     },
@@ -904,10 +808,7 @@
         "operationId": "games.pushtokens.remove",
         "parameters": [{"description": "The last-seen mutation timestamp.", "in": "query", "name": "consistencyToken", "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/PushTokenId"}}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["pushtokens"]
       }
     },
@@ -930,10 +831,7 @@
           {"description": "The preferred language to use for strings returned by this method.", "in": "query", "name": "language", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Quest"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["quests"]
       }
     },
@@ -957,10 +855,7 @@
           {"description": "The last-seen mutation timestamp.", "in": "query", "name": "consistencyToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["questMilestones"]
       }
     },
@@ -979,10 +874,7 @@
           {"description": "The last-seen mutation timestamp.", "in": "query", "name": "consistencyToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/RevisionCheckResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["revisions"]
       },
       "parameters": [
@@ -1013,10 +905,7 @@
           {"description": "The token returned by the previous request.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/RoomList"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["rooms"]
       },
       "parameters": [
@@ -1048,10 +937,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/RoomCreateRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Room"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["rooms"]
       }
     },
@@ -1065,10 +951,7 @@
           {"description": "The preferred language to use for strings returned by this method.", "in": "query", "name": "language", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Room"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["rooms"]
       },
       "parameters": [
@@ -1100,10 +983,7 @@
           {"description": "The preferred language to use for strings returned by this method.", "in": "query", "name": "language", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Room"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["rooms"]
       }
     },
@@ -1125,10 +1005,7 @@
           {"description": "The last-seen mutation timestamp.", "in": "query", "name": "consistencyToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["rooms"]
       }
     },
@@ -1152,10 +1029,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/RoomJoinRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Room"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["rooms"]
       }
     },
@@ -1179,10 +1053,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/RoomLeaveRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Room"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["rooms"]
       }
     },
@@ -1206,10 +1077,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/RoomP2PStatuses"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/RoomStatus"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["rooms"]
       }
     },
@@ -1223,11 +1091,7 @@
           {"description": "The preferred language to use for strings returned by this method.", "in": "query", "name": "language", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Snapshot"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"]}, {"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["snapshots"]
       },
       "parameters": [
@@ -1272,10 +1136,7 @@
           {"description": "The token returned by the previous request.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TurnBasedMatchList"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["turnBasedMatches"]
       },
       "parameters": [
@@ -1307,10 +1168,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/TurnBasedMatchCreateRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TurnBasedMatch"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["turnBasedMatches"]
       }
     },
@@ -1346,10 +1204,7 @@
           {"description": "The token returned by the previous request.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TurnBasedMatchSync"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["turnBasedMatches"]
       },
       "parameters": [
@@ -1373,10 +1228,7 @@
           {"description": "The preferred language to use for strings returned by this method.", "in": "query", "name": "language", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TurnBasedMatch"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["turnBasedMatches"]
       },
       "parameters": [
@@ -1407,10 +1259,7 @@
           {"description": "The last-seen mutation timestamp.", "in": "query", "name": "consistencyToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["turnBasedMatches"]
       }
     },
@@ -1433,10 +1282,7 @@
           {"description": "The preferred language to use for strings returned by this method.", "in": "query", "name": "language", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TurnBasedMatch"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["turnBasedMatches"]
       }
     },
@@ -1458,10 +1304,7 @@
           {"description": "The last-seen mutation timestamp.", "in": "query", "name": "consistencyToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["turnBasedMatches"]
       }
     },
@@ -1485,10 +1328,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/TurnBasedMatchResults"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TurnBasedMatch"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["turnBasedMatches"]
       }
     },
@@ -1511,10 +1351,7 @@
           {"description": "The preferred language to use for strings returned by this method.", "in": "query", "name": "language", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TurnBasedMatch"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["turnBasedMatches"]
       }
     },
@@ -1537,10 +1374,7 @@
           {"description": "The preferred language to use for strings returned by this method.", "in": "query", "name": "language", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TurnBasedMatch"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["turnBasedMatches"]
       }
     },
@@ -1570,10 +1404,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TurnBasedMatch"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["turnBasedMatches"]
       }
     },
@@ -1602,10 +1433,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TurnBasedMatchRematch"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["turnBasedMatches"]
       }
     },
@@ -1629,10 +1457,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/TurnBasedMatchTurn"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TurnBasedMatch"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["turnBasedMatches"]
       }
     }

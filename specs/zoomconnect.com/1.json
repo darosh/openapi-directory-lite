@@ -9,7 +9,7 @@
     "version": "1",
     "x-apisguru-categories": ["messaging", "marketing"],
     "x-logo": {"url": "http://zoomconnect.com/assets/logo.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "swagger", "url": "https://www.zoomconnect.com/zoom/api-docs", "version": "1.2"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "swagger", "url": "https://www.zoomconnect.com/zoom/api-docs", "version": "1.2"}],
     "x-providerName": "zoomconnect.com",
     "x-tags": ["SMS", "bulk SMS"],
     "x-preferred": true

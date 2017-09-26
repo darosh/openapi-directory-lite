@@ -41,22 +41,121 @@
     "sort": {"description": "Sort order for Podcasts results", "enum": ["title", "-title", "available_from_date", "-available_from_date"], "in": "query", "name": "sort", "required": false, "type": "string"},
     "until": {"description": "ISO 8601 Date yyyy-mm-dd.  Returns items between given 'since' and 'until' date params", "in": "query", "name": "until", "required": false, "type": "string"}
   },
+  "tags": [
+    {"name": "Experience"},
+    {"description": "<a href=\"https://confluence.dev.bbc.co.uk/display/RMServices/Playspace+API+Client+Documetation\">Client Documentation</a>", "name": "Playspace"},
+    {"name": "Categories"},
+    {"name": "Networks"},
+    {"name": "Broadcasts"},
+    {"name": "Collections"},
+    {"name": "Podcasts"},
+    {"name": "Programmes"},
+    {"name": "Personalised Categories"},
+    {"name": "Personalised Networks"},
+    {"name": "Personalised Plays"},
+    {"name": "Radio"},
+    {"name": "Music"},
+    {"name": "Music Export"}
+  ],
   "paths": {
-    "/categories.json": {
+    "/broadcasts": {
+      "get": {
+        "description": "All broadcasts\n",
+        "parameters": [
+          {"description": "API_KEY", "in": "header", "name": "X-API-Key", "required": true, "type": "string"},
+          {"description": "Paginated results offset", "in": "query", "name": "offset", "required": false, "type": "integer"},
+          {"description": "Paginated results limit", "in": "query", "name": "limit", "required": false, "type": "integer"},
+          {"description": "Filter by Service ID. E.g. bbc_radio_fourfm", "in": "query", "name": "service_id", "required": false, "type": "string"},
+          {"description": "Filter by date. E.g. 2016-06-17", "in": "query", "name": "date", "required": false, "type": "string"},
+          {
+            "description": "Sort by provided query. E.g. 'start_at' sorts in ascending order, and '-start_at' sorts in descending order",
+            "enum": ["start_at", "-start_at", "end_at", "-end_at"],
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {"description": "OK", "schema": {"$ref": "#/definitions/BroadcastsResponse"}},
+          "401": {"description": "There was an error with the supplied `Authorization` header.", "schema": {"$ref": "#/definitions/ErrorResponse"}},
+          "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/ErrorResponse"}}
+        },
+        "schemes": ["https"],
+        "summary": "Broadcasts",
+        "tags": ["Broadcasts"]
+      }
+    },
+    "/broadcasts/latest": {
+      "get": {
+        "description": "Broadcasts for the current day\n",
+        "parameters": [
+          {"description": "API_KEY", "in": "header", "name": "X-API-Key", "required": true, "type": "string"},
+          {"description": "Paginated results offset", "in": "query", "name": "offset", "required": false, "type": "integer"},
+          {"description": "Paginated results limit", "in": "query", "name": "limit", "required": false, "type": "integer"},
+          {"description": "Filter by Service ID. E.g. bbc_radio_fourfm", "in": "query", "name": "service_id", "required": false, "type": "string"},
+          {"description": "Filter what is on air. E.g. 'now' returns current programme being broadcasted.", "enum": ["now", "previous", "next"], "in": "query", "name": "on_air", "required": false, "type": "string"},
+          {"description": "Filter what will be on air next in minutes. E.g. '240' returns programmes broadcasted in the next four hurs", "in": "query", "name": "next", "required": false, "type": "string"},
+          {"description": "Filter what was on air previously in minutes. E.g. '240' returns programmes broadcasted in the previous four hurs", "in": "query", "name": "previous", "required": false, "type": "string"},
+          {
+            "description": "Sort by provided query. E.g. 'start_at' sorts in ascending order, and '-start_at' sorts in descending order",
+            "enum": ["start_at", "-start_at", "end_at", "-end_at"],
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {"description": "OK", "schema": {"$ref": "#/definitions/BroadcastsResponse"}},
+          "401": {"description": "There was an error with the supplied `Authorization` header.", "schema": {"$ref": "#/definitions/ErrorResponse"}},
+          "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/ErrorResponse"}}
+        },
+        "schemes": ["https"],
+        "summary": "Latest Broadcasts",
+        "tags": ["Broadcasts"]
+      }
+    },
+    "/broadcasts/{pid}": {
+      "get": {
+        "description": "Find broadcast by PID\n",
+        "operationId": "getBroadcastByPid",
+        "parameters": [{"description": "API_KEY", "in": "header", "name": "X-API-Key", "required": true, "type": "string"}, {"description": "pid", "in": "path", "name": "pid", "required": true, "type": "string"}],
+        "responses": {
+          "200": {"description": "OK", "schema": {"$ref": "#/definitions/BroadcastsResponse"}},
+          "401": {"description": "There was an error with the supplied `Authorization` header.", "schema": {"$ref": "#/definitions/ErrorResponse"}},
+          "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/ErrorResponse"}}
+        },
+        "schemes": ["https"],
+        "summary": "Broadcasts by PID",
+        "tags": ["Broadcasts"]
+      }
+    },
+    "/categories": {
       "get": {
         "description": "Retrieve Categories\n",
-        "operationId": "getCategories",
         "parameters": [
           {"description": "API_KEY", "in": "header", "name": "X-API-Key", "required": true, "type": "string"},
           {"description": "Filter by provided query. E.g. 'promoted' returns promoted categories", "enum": ["promoted"], "in": "query", "name": "kind", "required": false, "type": "string"}
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/CategoriesResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/CategoryErrorResponse"}}},
-        "schemes": ["http"],
-        "summary": "Categories",
+        "summary": "List of categories",
         "tags": ["Categories"]
       }
     },
-    "/collections/{pid}/members.json": {
+    "/categories/{id}": {
+      "get": {
+        "description": "Retrieve Categories by ID\n",
+        "parameters": [
+          {"description": "API_KEY", "in": "header", "name": "X-API-Key", "required": true, "type": "string"},
+          {"description": "Retrieve information about the category. E.g. 'sport-football-europeanchampionship'", "in": "path", "name": "id", "required": true, "type": "string"}
+        ],
+        "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/CategoriesResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/CategoryErrorResponse"}}},
+        "summary": "Category by ID",
+        "tags": ["Categories"]
+      }
+    },
+    "/collections/{pid}/members": {
       "get": {
         "description": "Episodes and Clips from Collection\n",
         "operationId": "getCollectionMembers",
@@ -74,6 +173,17 @@
         "schemes": ["https"],
         "summary": "Collection Members",
         "tags": ["Collections"]
+      }
+    },
+    "/experience/homepage": {
+      "get": {
+        "description": "Homepage Experience\n",
+        "operationId": "getExperienceHomepage",
+        "parameters": [{"description": "API_KEY", "in": "header", "name": "X-API-Key", "required": true, "type": "string"}],
+        "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/ExperienceResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/ErrorResponse"}}},
+        "schemes": ["https"],
+        "summary": "Homepage Experience",
+        "tags": ["Experience"]
       }
     },
     "/music/popular/artists": {
@@ -97,7 +207,7 @@
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/MusicPopularityArtists"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/MusicPopularityError"}}},
         "schemes": ["http"],
         "summary": "Popular Artists",
-        "tags": ["Music Popularity"]
+        "tags": ["Music"]
       }
     },
     "/music/popular/artists/{id}": {
@@ -120,7 +230,7 @@
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/MusicPopularityArtists"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/MusicPopularityError"}}},
         "schemes": ["http"],
         "summary": "Single Artist Popularity",
-        "tags": ["Music Popularity"]
+        "tags": ["Music"]
       }
     },
     "/music/popular/playlists": {
@@ -144,7 +254,7 @@
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/MusicPopularityPlaylists"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/MusicPopularityError"}}},
         "schemes": ["http"],
         "summary": "Popular Playlists",
-        "tags": ["Music Popularity"]
+        "tags": ["Music"]
       }
     },
     "/music/popular/playlists/{id}": {
@@ -167,7 +277,7 @@
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/MusicPopularityPlaylists"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/MusicPopularityError"}}},
         "schemes": ["http"],
         "summary": "Single Playlist Popularity",
-        "tags": ["Music Popularity"]
+        "tags": ["Music"]
       }
     },
     "/music/popular/tracks": {
@@ -194,7 +304,7 @@
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/MusicPopularityTracks"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/MusicPopularityError"}}},
         "schemes": ["http"],
         "summary": "Popular Tracks",
-        "tags": ["Music Popularity"]
+        "tags": ["Music"]
       }
     },
     "/music/popular/tracks/{id}": {
@@ -220,7 +330,49 @@
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/MusicPopularityTracks"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/MusicPopularityError"}}},
         "schemes": ["http"],
         "summary": "Single Track Popularity",
-        "tags": ["Music Popularity"]
+        "tags": ["Music"]
+      }
+    },
+    "/my/categories/follows": {
+      "delete": {
+        "parameters": [
+          {"default": "Bearer OAUTH_TOKEN", "description": "Bearer OAUTH_TOKEN", "in": "header", "name": "Authorization", "required": true, "type": "string"},
+          {"description": "API_KEY", "in": "header", "name": "X-API-Key", "required": true, "type": "string"},
+          {"in": "body", "name": "Body", "required": true, "schema": {"$ref": "#/definitions/Body_1"}}
+        ],
+        "responses": {
+          "202": {"description": "Request successfully sent to UAS."},
+          "400": {"description": "The request was malformed.", "schema": {"$ref": "#/definitions/ErrorResponse"}},
+          "401": {"description": "There was an error with the supplied `Authorization` header.", "schema": {"$ref": "#/definitions/ErrorResponse"}}
+        },
+        "summary": "Unfollow category",
+        "tags": ["Personalised Categories"]
+      },
+      "get": {
+        "description": "List of followed categories for a given user.\n",
+        "parameters": [
+          {"default": "Bearer OAUTH_TOKEN", "description": "Bearer OAUTH_TOKEN", "in": "header", "name": "Authorization", "required": true, "type": "string"},
+          {"description": "API_KEY", "in": "header", "name": "X-API-Key", "required": true, "type": "string"},
+          {"description": "Paginated results offset", "in": "query", "name": "offset", "required": false, "type": "integer"},
+          {"description": "Paginated results limit", "in": "query", "name": "limit", "required": false, "type": "integer"}
+        ],
+        "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedCategoriesResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/ErrorResponse"}}},
+        "summary": "List of followed categories",
+        "tags": ["Personalised Categories"]
+      },
+      "post": {
+        "parameters": [
+          {"default": "Bearer OAUTH_TOKEN", "description": "Bearer OAUTH_TOKEN", "in": "header", "name": "Authorization", "required": true, "type": "string"},
+          {"description": "API_KEY", "in": "header", "name": "X-API-Key", "required": true, "type": "string"},
+          {"in": "body", "name": "Body", "required": true, "schema": {"$ref": "#/definitions/Body"}}
+        ],
+        "responses": {
+          "202": {"description": "Request successfully sent to UAS."},
+          "400": {"description": "The request was malformed.", "schema": {"$ref": "#/definitions/ErrorResponse"}},
+          "401": {"description": "There was an error with the supplied `Authorization` header.", "schema": {"$ref": "#/definitions/ErrorResponse"}}
+        },
+        "summary": "Follow category",
+        "tags": ["Personalised Categories"]
       }
     },
     "/my/music/export": {
@@ -304,7 +456,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedMusicResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedMusicErrorResponse"}}},
         "summary": "Favourite Tracks or Clips",
-        "tags": ["Personalised Music"]
+        "tags": ["Music"]
       },
       "post": {
         "description": "Add multiple tracks and/or clips to a BBC Music user's favourites.\n\nN.B. Any HTML tags submitted in metadata will be removed\n",
@@ -317,7 +469,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedMusicResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedMusicErrorResponse"}}},
         "summary": "Favourite Tracks or Clips",
-        "tags": ["Personalised Music"]
+        "tags": ["Music"]
       },
       "put": {
         "description": "Update tracks or clips from a BBC Music user favourites.\n\nN.B. Any HTML tags submitted in metadata will be removed\n",
@@ -330,7 +482,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedMusicSuccess"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedMusicErrorResponse"}}},
         "summary": "Favourite Tracks or Clips",
-        "tags": ["Personalised Music"]
+        "tags": ["Music"]
       }
     },
     "/my/music/favourites/{type}": {
@@ -348,7 +500,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedMusicResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedMusicErrorResponse"}}},
         "summary": "Favourite Tracks or Clips by Type",
-        "tags": ["Personalised Music"]
+        "tags": ["Music"]
       }
     },
     "/my/music/favourites/{type}/{id}": {
@@ -364,7 +516,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedMusicSuccess"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedMusicErrorResponse"}}},
         "summary": "Favourite Track or Clip",
-        "tags": ["Personalised Music"]
+        "tags": ["Music"]
       },
       "get": {
         "description": "Check to see if a single track or clip entity is in a users favourites - determines UX of add button.\n",
@@ -378,7 +530,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedMusicResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedMusicErrorResponse"}}},
         "summary": "Favourite Track or Clip",
-        "tags": ["Personalised Music"]
+        "tags": ["Music"]
       },
       "post": {
         "description": "Add track or clip to a BBC Music user favourites.\n\nN.B. Any HTML tags submitted in metadata will be removed\n",
@@ -393,7 +545,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedMusicResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedMusicErrorResponse"}}},
         "summary": "Favourite Track or Clip",
-        "tags": ["Personalised Music"]
+        "tags": ["Music"]
       },
       "put": {
         "description": "Update tracks or clips from a BBC Music user favourites.\n\nN.B. Any HTML tags submitted in metadata will be removed\n",
@@ -408,7 +560,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedMusicSuccess"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedMusicErrorResponse"}}},
         "summary": "Favourite Track or Clip",
-        "tags": ["Personalised Music"]
+        "tags": ["Music"]
       }
     },
     "/my/music/follows": {
@@ -428,7 +580,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedMusicResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedMusicErrorResponse"}}},
         "summary": "Followed Networks, Categories, Artists, Playlists and Genres",
-        "tags": ["Personalised Music"]
+        "tags": ["Music"]
       },
       "post": {
         "description": "Add networks, categories, artists, playlists, networks, genres or services in a users follows\n\nN.B. Any HTML tags submitted in metadata will be removed\n",
@@ -445,7 +597,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedMusicSuccess"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedMusicErrorResponse"}}},
         "summary": "Followed Networks, Categories, Artists, Playlists and Genres",
-        "tags": ["Personalised Music"]
+        "tags": ["Music"]
       },
       "put": {
         "description": "Update networks, categories, artists, playlists, networks, genres or services in a users follows\n\nN.B. Any HTML tags submitted in metadata will be removed\n",
@@ -462,7 +614,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedMusicSuccess"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedMusicErrorResponse"}}},
         "summary": "Followed Networks, Categories, Artists, Playlists and Genres",
-        "tags": ["Personalised Music"]
+        "tags": ["Music"]
       }
     },
     "/my/music/follows/{type}": {
@@ -490,7 +642,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedMusicResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedMusicErrorResponse"}}},
         "summary": "Followed Networks, Categories, Artists, Playlists and Genres by Type",
-        "tags": ["Personalised Music"]
+        "tags": ["Music"]
       }
     },
     "/my/music/follows/{type}/{id}": {
@@ -516,7 +668,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedMusicSuccess"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedMusicErrorResponse"}}},
         "summary": "Followed Network, Category, Artist, Playlist and Genre",
-        "tags": ["Personalised Music"]
+        "tags": ["Music"]
       },
       "get": {
         "description": "Check to see if a single network, category, artist, playlist, network, genre or service entity is in a users follows - determines UX of add button.\n",
@@ -540,7 +692,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedMusicResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedMusicErrorResponse"}}},
         "summary": "Followed Network, Category, Artist, Playlist and Genre",
-        "tags": ["Personalised Music"]
+        "tags": ["Music"]
       },
       "post": {
         "description": "Add a single network, category, artist, playlist, network, genre or service entity is in a users follows\n\nN.B. Any HTML tags submitted in metadata will be removed\n",
@@ -565,7 +717,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedMusicSuccess"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedMusicErrorResponse"}}},
         "summary": "Followed Network, Category, Artist, Playlist and Genre",
-        "tags": ["Personalised Music"]
+        "tags": ["Music"]
       },
       "put": {
         "description": "Update a single network, category, artist, playlist, network, genre or service entity is in a users follows\n\nN.B. Any HTML tags submitted in metadata will be removed\n",
@@ -590,7 +742,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedMusicSuccess"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedMusicErrorResponse"}}},
         "summary": "Followed Network, Category, Artist, Playlist and Genre",
-        "tags": ["Personalised Music"]
+        "tags": ["Music"]
       }
     },
     "/my/music/preferences/export": {
@@ -688,14 +840,58 @@
         "tags": ["Music Export"]
       }
     },
-    "/my/plays": {
-      "post": {
-        "description": "Write play events to the [User Activity Service](https://confluence.dev.bbc.co.uk/display/activity/About+the+User+Activity+Service).\n",
-        "operationId": "writePlayEvent",
+    "/my/networks/follows": {
+      "delete": {
         "parameters": [
           {"default": "Bearer OAUTH_TOKEN", "description": "Bearer OAUTH_TOKEN", "in": "header", "name": "Authorization", "required": true, "type": "string"},
           {"description": "API_KEY", "in": "header", "name": "X-API-Key", "required": true, "type": "string"},
-          {"description": "Write Play Request", "in": "body", "name": "writePlayRequest", "required": true, "schema": {"$ref": "#/definitions/writePlayRequest"}}
+          {"description": "Paginated results offset", "in": "query", "name": "offset", "required": false, "type": "integer"},
+          {"description": "Paginated results limit", "in": "query", "name": "limit", "required": false, "type": "integer"},
+          {"in": "body", "name": "Body", "required": true, "schema": {"$ref": "#/definitions/Body_3"}}
+        ],
+        "responses": {
+          "202": {"description": "Request successfully sent to UAS."},
+          "400": {"description": "The request was malformed.", "schema": {"$ref": "#/definitions/ErrorResponse"}},
+          "401": {"description": "There was an error with the supplied `Authorization` header.", "schema": {"$ref": "#/definitions/ErrorResponse"}}
+        },
+        "summary": "Unfollow network",
+        "tags": ["Personalised Networks"]
+      },
+      "get": {
+        "description": "List of followed networks for a given user.\n",
+        "parameters": [
+          {"default": "Bearer OAUTH_TOKEN", "description": "Bearer OAUTH_TOKEN", "in": "header", "name": "Authorization", "required": true, "type": "string"},
+          {"description": "API_KEY", "in": "header", "name": "X-API-Key", "required": true, "type": "string"},
+          {"description": "Paginated results offset", "in": "query", "name": "offset", "required": false, "type": "integer"},
+          {"description": "Paginated results limit", "in": "query", "name": "limit", "required": false, "type": "integer"}
+        ],
+        "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedNetworksResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/ErrorResponse"}}},
+        "summary": "List of followed networks",
+        "tags": ["Personalised Networks"]
+      },
+      "post": {
+        "parameters": [
+          {"default": "Bearer OAUTH_TOKEN", "description": "Bearer OAUTH_TOKEN", "in": "header", "name": "Authorization", "required": true, "type": "string"},
+          {"description": "API_KEY", "in": "header", "name": "X-API-Key", "required": true, "type": "string"},
+          {"description": "Paginated results offset", "in": "query", "name": "offset", "required": false, "type": "integer"},
+          {"description": "Paginated results limit", "in": "query", "name": "limit", "required": false, "type": "integer"},
+          {"in": "body", "name": "Body", "required": true, "schema": {"$ref": "#/definitions/Body_2"}}
+        ],
+        "responses": {
+          "202": {"description": "Request successfully sent to UAS."},
+          "400": {"description": "The request was malformed.", "schema": {"$ref": "#/definitions/ErrorResponse"}},
+          "401": {"description": "There was an error with the supplied `Authorization` header.", "schema": {"$ref": "#/definitions/ErrorResponse"}}
+        },
+        "summary": "Follow network",
+        "tags": ["Personalised Networks"]
+      }
+    },
+    "/my/plays": {
+      "post": {
+        "parameters": [
+          {"default": "Bearer OAUTH_TOKEN", "description": "Bearer OAUTH_TOKEN", "in": "header", "name": "Authorization", "required": true, "type": "string"},
+          {"description": "API_KEY", "in": "header", "name": "X-API-Key", "required": true, "type": "string"},
+          {"in": "body", "name": "Body", "required": true, "schema": {"$ref": "#/definitions/Body_4"}}
         ],
         "responses": {
           "202": {"description": "Request successfully sent to UAS."},
@@ -707,7 +903,45 @@
         "tags": ["Personalised Plays"]
       }
     },
-    "/my/programmes/recommendations.json": {
+    "/my/playspace/containers/suggested": {
+      "get": {
+        "description": "Suggested Playspace Container\n",
+        "operationId": "suggestContainer",
+        "parameters": [
+          {"default": "Bearer OAUTH_TOKEN", "description": "Bearer OAUTH_TOKEN", "in": "header", "name": "Authorization", "required": true, "type": "string"},
+          {"description": "API_KEY", "in": "header", "name": "X-API-Key", "required": true, "type": "string"},
+          {"description": "Clip or Episode PID of the previous or first content item in the Playspace stream.", "in": "query", "name": "previous_pid", "required": true, "type": "string"},
+          {"description": "Container ID of the previous container in the Playspace stream.", "in": "query", "name": "previous_container", "required": false, "type": "string"}
+        ],
+        "responses": {
+          "200": {"description": "OK", "schema": {"$ref": "#/definitions/PlayspaceContainer"}},
+          "401": {"description": "There was an error with the supplied `Authorization` header.", "schema": {"$ref": "#/definitions/ErrorResponse"}}
+        },
+        "schemes": ["https"],
+        "summary": "Suggested Playspace Container",
+        "tags": ["Playspace"]
+      }
+    },
+    "/my/playspace/containers/{id}": {
+      "get": {
+        "description": "Playspace Container by ID\n",
+        "operationId": "getContainer",
+        "parameters": [
+          {"default": "Bearer OAUTH_TOKEN", "description": "Bearer OAUTH_TOKEN", "in": "header", "name": "Authorization", "required": true, "type": "string"},
+          {"description": "API_KEY", "in": "header", "name": "X-API-Key", "required": true, "type": "string"},
+          {"description": "Playspace Container ID", "in": "path", "name": "id", "required": true, "type": "string"}
+        ],
+        "responses": {
+          "200": {"description": "OK", "schema": {"$ref": "#/definitions/PlayspaceContainer"}},
+          "401": {"description": "There was an error with the supplied `Authorization` header.", "schema": {"$ref": "#/definitions/ErrorResponse"}},
+          "404": {"description": "No Playspace container with given ID could be found.", "schema": {"$ref": "#/definitions/ErrorResponse"}}
+        },
+        "schemes": ["https"],
+        "summary": "Playspace Container by ID",
+        "tags": ["Playspace"]
+      }
+    },
+    "/my/programmes/recommendations": {
       "get": {
         "description": "Recommended Programmes from the Audience Platforms' Recomendations Service\n",
         "operationId": "getRecommendations",
@@ -724,7 +958,7 @@
           "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/ErrorResponse"}}
         },
         "summary": "Recommended Programmes",
-        "tags": ["Recommendations"]
+        "tags": ["Programmes"]
       }
     },
     "/my/radio/favourites": {
@@ -743,7 +977,7 @@
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedRadioResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedRadioErrorResponse"}}},
         "schemes": ["https"],
         "summary": "Favourite Episodes and Clips",
-        "tags": ["Personalised Radio"]
+        "tags": ["Radio"]
       },
       "post": {
         "description": "Add User favourites\n\nN.B. Any HTML tags submitted in metadata will be removed\n",
@@ -756,7 +990,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedRadioSuccessResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedRadioErrorResponse"}}},
         "summary": "Favourite Episodes and Clips",
-        "tags": ["Personalised Radio"]
+        "tags": ["Radio"]
       },
       "put": {
         "description": "Update user favourites\n\nN.B. Any HTML tags submitted in metadata will be removed\n",
@@ -769,7 +1003,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedRadioSuccessResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedRadioErrorResponse"}}},
         "summary": "Favourite Episodes and Clips",
-        "tags": ["Personalised Radio"]
+        "tags": ["Radio"]
       }
     },
     "/my/radio/favourites/{type}": {
@@ -788,7 +1022,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedRadioResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedRadioErrorResponse"}}},
         "summary": "Favourite Episodes and Clips by Type",
-        "tags": ["Personalised Radio"]
+        "tags": ["Radio"]
       }
     },
     "/my/radio/favourites/{type}/{pid}": {
@@ -804,7 +1038,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedRadioSuccessResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedRadioErrorResponse"}}},
         "summary": "Favourite Episode or Clip",
-        "tags": ["Personalised Radio"]
+        "tags": ["Radio"]
       },
       "get": {
         "description": "Check to see if a single clip or episode entity is in a users favourites - determines UX of add button.\n\nN.B.  Swagger schemas cannot currently handle multiple combinations of object in an array i.e. a mix of Episode\nand Clip Summaries so we are defining data as a Programme Summary here.  This will be resolved in V3 with full support for\n anyOf https://www.openapis.org/blog/2017/01/24/a-new-year-a-new-specification\n",
@@ -819,7 +1053,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedRadioResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedRadioErrorResponse"}}},
         "summary": "Favourite Episode or Clip",
-        "tags": ["Personalised Radio"]
+        "tags": ["Radio"]
       },
       "post": {
         "description": "Add User favourite\n\nN.B. Any HTML tags submitted in metadata will be removed\n",
@@ -834,7 +1068,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedRadioSuccessResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedRadioErrorResponse"}}},
         "summary": "Favourite Episode or Clip",
-        "tags": ["Personalised Radio"]
+        "tags": ["Radio"]
       },
       "put": {
         "description": "Update user favourite\n\nN.B. Any HTML tags submitted in metadata will be removed\n",
@@ -849,7 +1083,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedRadioSuccessResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedRadioErrorResponse"}}},
         "summary": "Favourite Episode or Clip",
-        "tags": ["Personalised Radio"]
+        "tags": ["Radio"]
       }
     },
     "/my/radio/follows": {
@@ -867,7 +1101,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedRadioResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedRadioErrorResponse"}}},
         "summary": "Followed Brands and Series",
-        "tags": ["Personalised Radio"]
+        "tags": ["Radio"]
       },
       "post": {
         "description": "Add 'brand' or 'series' items to a users iPlayer Radio follows\n\nN.B. Any HTML tags submitted in metadata will be removed\n",
@@ -880,7 +1114,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedRadioSuccessResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedRadioErrorResponse"}}},
         "summary": "Followed Brands and Series",
-        "tags": ["Personalised Radio"]
+        "tags": ["Radio"]
       },
       "put": {
         "description": "Update 'brands' or 'series' items from a users iPlayer Radio follows\n\nN.B. Any HTML tags submitted in metadata will be removed\n",
@@ -893,7 +1127,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedRadioSuccessResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedRadioErrorResponse"}}},
         "summary": "Followed Brands and Series",
-        "tags": ["Personalised Radio"]
+        "tags": ["Radio"]
       }
     },
     "/my/radio/follows/{type}": {
@@ -912,7 +1146,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedRadioResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedRadioErrorResponse"}}},
         "summary": "Followed Brands or Series by Type",
-        "tags": ["Personalised Radio"]
+        "tags": ["Radio"]
       }
     },
     "/my/radio/follows/{type}/{pid}": {
@@ -928,7 +1162,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedRadioSuccessResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedRadioErrorResponse"}}},
         "summary": "Followed Brand or Series",
-        "tags": ["Personalised Radio"]
+        "tags": ["Radio"]
       },
       "get": {
         "description": "Check to see if a single brand or series entity is in a users follows - determines UX of add button.\n",
@@ -942,7 +1176,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedRadioResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedRadioErrorResponse"}}},
         "summary": "Followed Brand or Series",
-        "tags": ["Personalised Radio"]
+        "tags": ["Radio"]
       },
       "post": {
         "description": "Add 'brand' or 'series' items from a users iPlayer Radio follows\n\nN.B. Any HTML tags submitted in metadata will be removed\n",
@@ -957,7 +1191,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedRadioSuccessResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedRadioErrorResponse"}}},
         "summary": "Followed Brand or Series",
-        "tags": ["Personalised Radio"]
+        "tags": ["Radio"]
       },
       "put": {
         "description": "Update 'brand' or 'series' items from a users iPlayer Radio follows\n\nN.B. Any HTML tags submitted in metadata will be removed\n",
@@ -972,7 +1206,7 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedRadioSuccessResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedRadioErrorResponse"}}},
         "summary": "Followed Brand or Series",
-        "tags": ["Personalised Radio"]
+        "tags": ["Radio"]
       }
     },
     "/my/radio/plays": {
@@ -990,10 +1224,10 @@
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PersonalisedRadioResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PersonalisedRadioErrorResponse"}}},
         "summary": "Played Episode or Clip",
-        "tags": ["Personalised Radio"]
+        "tags": ["Radio"]
       }
     },
-    "/podcasts.json": {
+    "/podcasts": {
       "get": {
         "description": "Retrieve all Podcasts\n",
         "operationId": "getPodcasts",
@@ -1009,23 +1243,21 @@
           {"description": "Local, National or Regional Coverage", "enum": ["local", "national", "regional"], "in": "query", "name": "coverage", "required": false, "type": "string"}
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PodcastsResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PodcastErrorResponse"}}},
-        "schemes": ["http"],
         "summary": "All Podcasts",
         "tags": ["Podcasts"]
       }
     },
-    "/podcasts/featured.json": {
+    "/podcasts/featured": {
       "get": {
         "description": "Retrieve featured podcasts\n",
         "operationId": "getPodcastsFeatured",
         "parameters": [{"description": "API_KEY", "in": "header", "name": "X-API-Key", "required": true, "type": "string"}],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PodcastsFeaturedResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PodcastErrorResponse"}}},
-        "schemes": ["http"],
         "summary": "Featured Podcasts",
         "tags": ["Podcasts"]
       }
     },
-    "/podcasts/{pid}.json": {
+    "/podcasts/{pid}": {
       "get": {
         "description": "Retrieve data about the podcast with the supplied PID\n",
         "operationId": "getPodcastByPid",
@@ -1036,12 +1268,11 @@
           {"description": "Paginated results limit", "in": "query", "name": "limit", "required": false, "type": "integer"}
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PodcastsResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PodcastErrorResponse"}}},
-        "schemes": ["http"],
         "summary": "Podcast",
         "tags": ["Podcasts"]
       }
     },
-    "/podcasts/{pid}/episodes.json": {
+    "/podcasts/{pid}/episodes": {
       "get": {
         "description": "Retrieve all episodes for a specific podcast\n",
         "operationId": "getPodcastEpisodes",
@@ -1052,21 +1283,8 @@
           {"description": "Paginated results limit", "in": "query", "name": "limit", "required": false, "type": "integer"}
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PodcastEpisodesResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PodcastErrorResponse"}}},
-        "schemes": ["http"],
         "summary": "Podcast Episodes",
         "tags": ["Podcasts"]
-      }
-    },
-    "/radio/categories.json": {
-      "get": {
-        "deprecated": true,
-        "description": "All iPlayer Radio categories - contains business logic for blend of PIPs genres and formats.\n",
-        "operationId": "getRadioCategories",
-        "parameters": [{"description": "API_KEY", "in": "header", "name": "X-API-Key", "required": true, "type": "string"}],
-        "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/RadioCategoriesResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/RadioErrorResponse"}}},
-        "schemes": ["http"],
-        "summary": "Categories",
-        "tags": ["Radio"]
       }
     },
     "/radio/networks.json": {
@@ -1079,12 +1297,11 @@
           {"description": "Returns all networks available internationally", "in": "query", "name": "international", "required": false, "type": "boolean"}
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/NetworksResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/RadioErrorResponse"}}},
-        "schemes": ["http"],
         "summary": "Networks",
-        "tags": ["Radio"]
+        "tags": ["Networks"]
       }
     },
-    "/radio/popular.json": {
+    "/radio/popular": {
       "get": {
         "description": "Retrieve Popular Episodes & Clips\n",
         "operationId": "getPopularEpisodesClips",
@@ -1112,12 +1329,11 @@
           {"description": "Search query String", "in": "query", "name": "q", "required": false, "type": "string"}
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/PopularResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/PopularErrorResponse"}}},
-        "schemes": ["http"],
         "summary": "Popular Episodes & Clips",
-        "tags": ["Popularity"]
+        "tags": ["Programmes"]
       }
     },
-    "/radio/programmes.json": {
+    "/radio/programmes": {
       "get": {
         "description": "Provides a paginated list of programmes by PID (brand, series, episode and clip). Accepts various filters and sorting methods.\n\nN.B.  Swagger schemas cannot currently handle multiple combinations of object in an array i.e. a mix of Episode\nand Clip Summaries so we are defining results as an array of Programme Summary here.  This will be resolved in V3 with full support for\n anyOf https://www.openapis.org/blog/2017/01/24/a-new-year-a-new-specification\n",
         "operationId": "getRadioProgrammes",
@@ -1139,120 +1355,18 @@
           {"description": "Filter by programme type. Accepts comma separated values", "enum": ["brand", "series", "episode", "clip", "episode,clip"], "in": "query", "name": "type", "required": false, "type": "string"}
         ],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/ProgrammesResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/RadioErrorResponse"}}},
-        "schemes": ["http"],
-        "summary": "Programmes",
-        "tags": ["Radio"]
+        "summary": "Radio programmes",
+        "tags": ["Programmes"]
       }
     },
-    "/radio/programmes/{pid}.json": {
+    "/radio/programmes/{pid}": {
       "get": {
         "description": "Find programmes by PID (brand, series, episode and clip)\n\nN.B.  Swagger schemas cannot currently handle multiple combinations of object in an array i.e. a mix of Episode\nand Clip Summaries so we are defining results as an array of Programme Summary here.  This will be resolved in V3 with full support for\n anyOf https://www.openapis.org/blog/2017/01/24/a-new-year-a-new-specification\n",
         "operationId": "getRadioProgrammesByPid",
         "parameters": [{"description": "API_KEY", "in": "header", "name": "X-API-Key", "required": true, "type": "string"}, {"description": "pid", "in": "path", "name": "pid", "required": true, "type": "string"}],
         "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/ProgrammesResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/RadioErrorResponse"}}},
-        "schemes": ["http"],
-        "summary": "Programme by Pid",
-        "tags": ["Radio"]
-      }
-    },
-    "/radio/v1/programmes.json": {
-      "get": {
-        "deprecated": true,
-        "description": "Find programmes by PID (brand, series, episode and clip). Accepts one or many pids separated by commas.\n\nN.B.  Swagger schemas cannot currently handle multiple combinations of object in an array i.e. a mix of Episode\nand Clip Summaries so we are defining results as an array of Programme Summary here.  This will be resolved in V3 with full support for\n anyOf https://www.openapis.org/blog/2017/01/24/a-new-year-a-new-specification\n",
-        "operationId": "getRadioProgrammesV1",
-        "parameters": [
-          {"description": "API_KEY", "in": "header", "name": "X-API-Key", "required": true, "type": "string"},
-          {"description": "Returns programme information for one or more pids", "in": "query", "name": "pids", "required": true, "type": "string"}
-        ],
-        "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/ProgrammesResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/RadioErrorResponse"}}},
-        "schemes": ["http"],
-        "summary": "Programmes",
-        "tags": ["Radio"]
-      }
-    },
-    "/radio/v1/programmes/{pid}.json": {
-      "get": {
-        "deprecated": true,
-        "description": "Find programmes by PID (brand, series, episode and clip)\n\nN.B.  Swagger schemas cannot currently handle multiple combinations of object in an array i.e. a mix of Episode\nand Clip Summaries so we are defining results as an array of Programme Summary here.  This will be resolved in V3 with full support for\n anyOf https://www.openapis.org/blog/2017/01/24/a-new-year-a-new-specification\n",
-        "operationId": "getRadioProgrammesByPidV1",
-        "parameters": [{"description": "API_KEY", "in": "header", "name": "X-API-Key", "required": true, "type": "string"}, {"description": "pid", "in": "path", "name": "pid", "required": true, "type": "string"}],
-        "responses": {"200": {"description": "OK", "schema": {"$ref": "#/definitions/ProgrammesResponse"}}, "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/RadioErrorResponse"}}},
-        "schemes": ["http"],
-        "summary": "Programme by Pid",
-        "tags": ["Radio"]
-      }
-    },
-    "/v2/broadcasts": {
-      "get": {
-        "description": "All broadcasts\n",
-        "parameters": [
-          {"description": "API_KEY", "in": "header", "name": "X-API-Key", "required": true, "type": "string"},
-          {"description": "Paginated results offset", "in": "query", "name": "offset", "required": false, "type": "integer"},
-          {"description": "Paginated results limit", "in": "query", "name": "limit", "required": false, "type": "integer"},
-          {"description": "Filter by Service ID. E.g. bbc_radio_fourfm", "in": "query", "name": "service_id", "required": false, "type": "string"},
-          {"description": "Filter by date. E.g. 2016-06-17", "in": "query", "name": "date", "required": false, "type": "string"},
-          {
-            "description": "Sort by provided query. E.g. 'start_at' sorts in ascending order, and '-start_at' sorts in descending order",
-            "enum": ["start_at", "-start_at", "end_at", "-end_at"],
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {"description": "OK", "schema": {"$ref": "#/definitions/BroadcastsResponse"}},
-          "401": {"description": "There was an error with the supplied `Authorization` header.", "schema": {"$ref": "#/definitions/ErrorResponse"}},
-          "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/ErrorResponse"}}
-        },
-        "schemes": ["https"],
-        "summary": "Broadcasts",
-        "tags": ["Schedules"]
-      }
-    },
-    "/v2/broadcasts/latest": {
-      "get": {
-        "description": "Broadcasts for the current day\n",
-        "parameters": [
-          {"description": "API_KEY", "in": "header", "name": "X-API-Key", "required": true, "type": "string"},
-          {"description": "Paginated results offset", "in": "query", "name": "offset", "required": false, "type": "integer"},
-          {"description": "Paginated results limit", "in": "query", "name": "limit", "required": false, "type": "integer"},
-          {"description": "Filter by Service ID. E.g. bbc_radio_fourfm", "in": "query", "name": "service_id", "required": false, "type": "string"},
-          {"description": "Filter what is on air. E.g. 'now' returns current programme being broadcasted.", "enum": ["now", "previous", "next"], "in": "query", "name": "on_air", "required": false, "type": "string"},
-          {"description": "Filter what will be on air next in minutes. E.g. '240' returns programmes broadcasted in the next four hurs", "in": "query", "name": "next", "required": false, "type": "string"},
-          {"description": "Filter what was on air previously in minutes. E.g. '240' returns programmes broadcasted in the previous four hurs", "in": "query", "name": "previous", "required": false, "type": "string"},
-          {
-            "description": "Sort by provided query. E.g. 'start_at' sorts in ascending order, and '-start_at' sorts in descending order",
-            "enum": ["start_at", "-start_at", "end_at", "-end_at"],
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {"description": "OK", "schema": {"$ref": "#/definitions/BroadcastsResponse"}},
-          "401": {"description": "There was an error with the supplied `Authorization` header.", "schema": {"$ref": "#/definitions/ErrorResponse"}},
-          "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/ErrorResponse"}}
-        },
-        "schemes": ["https"],
-        "summary": "Latest Broadcasts",
-        "tags": ["Schedules"]
-      }
-    },
-    "/v2/broadcasts/{pid}": {
-      "get": {
-        "description": "Find broadcast by PID\n",
-        "operationId": "getBroadcastByPid",
-        "parameters": [{"description": "API_KEY", "in": "header", "name": "X-API-Key", "required": true, "type": "string"}, {"description": "pid", "in": "path", "name": "pid", "required": true, "type": "string"}],
-        "responses": {
-          "200": {"description": "OK", "schema": {"$ref": "#/definitions/BroadcastsResponse"}},
-          "401": {"description": "There was an error with the supplied `Authorization` header.", "schema": {"$ref": "#/definitions/ErrorResponse"}},
-          "default": {"description": "Unexpected error", "schema": {"$ref": "#/definitions/ErrorResponse"}}
-        },
-        "schemes": ["https"],
-        "summary": "Broadcasts by PID",
-        "tags": ["Schedules"]
+        "summary": "Available radio programme by Pid",
+        "tags": ["Programmes"]
       }
     }
   },
@@ -1276,6 +1390,21 @@
         "version_type": {"type": "string"}
       },
       "required": ["available", "available_from_date", "available_to_date", "duration", "has_guidance", "media_set", "type", "version_pid", "version_type"],
+      "type": "object"
+    },
+    "Body": {"properties": {"category_id": {"type": "string"}, "platform": {"enum": ["responsiveweb", "app"], "type": "string"}}, "required": ["category_id", "platform"], "type": "object"},
+    "Body_1": {"properties": {"category_id": {"type": "string"}, "platform": {"enum": ["responsiveweb", "app"], "type": "string"}}, "required": ["category_id", "platform"], "type": "object"},
+    "Body_2": {"properties": {"platform": {"enum": ["responsiveweb", "app"], "type": "string"}, "service_id": {"type": "string"}}, "required": ["platform", "service_id"], "type": "object"},
+    "Body_3": {"properties": {"platform": {"enum": ["responsiveweb", "app"], "type": "string"}, "service_id": {"type": "string"}}, "required": ["platform", "service_id"], "type": "object"},
+    "Body_4": {
+      "properties": {
+        "action": {"enum": ["started", "ended", "paused", "heartbeat"], "type": "string"},
+        "elapsed_time": {"type": "integer"},
+        "pid": {"type": "string"},
+        "resource_type": {"enum": ["episode", "clip"], "type": "string"},
+        "version_pid": {"type": "string"}
+      },
+      "required": ["action", "elapsed_time", "pid", "resource_type", "version_pid"],
       "type": "object"
     },
     "BrandSummary": {
@@ -1327,13 +1456,14 @@
       "properties": {
         "category_type": {"type": "string"},
         "child_categories": {"items": {"$ref": "#/definitions/ChildCategory"}, "type": "array"},
+        "depth": {"type": "integer"},
         "id": {"type": "string"},
         "pip_id": {"type": "string"},
         "title": {"type": "string"},
         "type": {"type": "string"},
         "url_key": {"type": "string"}
       },
-      "required": ["category_type", "child_categories", "id", "pip_id", "title", "type", "url_key"],
+      "required": ["category_type", "child_categories", "depth", "id", "pip_id", "title", "type", "url_key"],
       "type": "object"
     },
     "CategoryError": {
@@ -1342,18 +1472,23 @@
       "type": "object"
     },
     "CategoryErrorResponse": {"properties": {"$schema": {"type": "string"}, "errors": {"items": {"$ref": "#/definitions/CategoryError"}, "type": "array"}}, "required": ["$schema", "errors"], "type": "object"},
-    "CategorySummary": {"properties": {"category_type": {"type": "string"}, "key": {"type": "string"}, "title": {"type": "string"}, "type": {"type": "string"}}, "required": ["category_type", "key", "title", "type"], "type": "object"},
+    "CategorySummary": {
+      "properties": {"category_type": {"type": "string"}, "id": {"type": "string"}, "key": {"type": "string"}, "title": {"type": "string"}, "type": {"type": "string"}},
+      "required": ["category_type", "id", "key", "title", "type"],
+      "type": "object"
+    },
     "ChildCategory": {
       "properties": {
         "category_type": {"type": "string"},
         "child_categories": {"items": {"$ref": "#/definitions/ChildCategory"}, "type": "array"},
+        "depth": {"type": "integer"},
         "id": {"type": "string"},
         "pip_id": {"type": "string"},
         "title": {"type": "string"},
         "type": {"type": "string"},
         "url_key": {"type": "string"}
       },
-      "required": ["category_type", "child_categories", "id", "pip_id", "title", "type", "url_key"],
+      "required": ["category_type", "child_categories", "depth", "id", "pip_id", "title", "type", "url_key"],
       "type": "object"
     },
     "ClipSummary": {
@@ -1374,6 +1509,7 @@
     },
     "Contact": {"properties": {"handle": {"type": "string"}, "name": {"type": "string"}, "service": {"type": "string"}, "url": {"type": "string"}}, "required": ["handle", "name", "service", "url"], "type": "object"},
     "DateRange": {"properties": {"end": {"type": "string"}, "start": {"type": "string"}}, "required": ["end", "start"], "type": "object"},
+    "DisplayModule": {"properties": {"description": {"type": "string"}, "title": {"type": "string"}, "type": {"type": "string"}, "uri": {"type": "string"}}, "type": "object"},
     "Empty": {"type": "object", "x-nullable": true},
     "EpisodeSummary": {
       "properties": {
@@ -1393,6 +1529,7 @@
     },
     "Error": {"properties": {"href": {"type": "string"}, "id": {"type": "string"}, "message": {"type": "string"}, "replied_at": {"type": "string"}}, "required": ["href", "id", "message", "replied_at"], "type": "object"},
     "ErrorResponse": {"properties": {"$schema": {"type": "string"}, "errors": {"items": {"$ref": "#/definitions/Error"}, "type": "array"}}, "required": ["$schema", "errors"], "type": "object"},
+    "ExperienceResponse": {"properties": {"$schema": {"type": "string"}, "data": {"items": {"$ref": "#/definitions/DisplayModule"}, "type": "array"}}, "required": ["$schema", "data"], "type": "object"},
     "ExternalPartner": {"properties": {"type": {"type": "string"}, "value": {"type": "string"}}, "required": ["type", "value"], "type": "object"},
     "Image": {"properties": {"id": {"type": "string"}, "image_type": {"type": "string"}, "template_url": {"type": "string"}, "type": {"type": "string"}}, "required": ["id", "image_type", "template_url", "type"], "type": "object"},
     "MetaData": {
@@ -1585,6 +1722,12 @@
       "type": "object"
     },
     "Origin": {"properties": {"type": {"type": "string"}}, "required": ["type"], "type": "object"},
+    "PersonalisedCategories": {"properties": {"created": {"type": "string"}, "type": {"type": "string"}}, "required": ["created", "type"], "type": "object"},
+    "PersonalisedCategoriesResponse": {
+      "properties": {"$schema": {"type": "string"}, "limit": {"type": "integer"}, "offset": {"type": "integer"}, "total": {"type": "integer"}},
+      "required": ["$schema", "limit", "offset", "total"],
+      "type": "object"
+    },
     "PersonalisedMusicActivity": {
       "properties": {
         "action": {"type": "string"},
@@ -1712,6 +1855,12 @@
       "type": "object"
     },
     "PersonalisedMusicVersion": {"properties": {"classical": {"type": "boolean"}, "duration": {"type": "string"}, "radio": {"type": "boolean"}, "vpid": {"type": "string"}}, "type": "object"},
+    "PersonalisedNetworks": {"properties": {"created": {"type": "string"}, "type": {"type": "string"}}, "required": ["created", "type"], "type": "object"},
+    "PersonalisedNetworksResponse": {
+      "properties": {"$schema": {"type": "string"}, "limit": {"type": "integer"}, "offset": {"type": "integer"}, "results": {"items": {"$ref": "#/definitions/PersonalisedNetworks"}, "type": "array"}, "total": {"type": "integer"}},
+      "required": ["$schema", "limit", "offset", "results", "total"],
+      "type": "object"
+    },
     "PersonalisedRadioActivity": {
       "properties": {
         "action": {"type": "string"},
@@ -1762,6 +1911,11 @@
       "type": "object"
     },
     "PersonalisedRadioSuccessResponse": {"properties": {"$schema": {"type": "string"}, "method": {"type": "string"}, "replied_at": {"type": "string"}}, "required": ["$schema", "method", "replied_at"], "type": "object"},
+    "PlayableItem": {
+      "properties": {"description": {"type": "string"}, "image_url": {"type": "string"}, "pid": {"type": "string"}, "title": {"type": "string"}, "type": {"type": "string"}, "version_pid": {"type": "string"}},
+      "type": "object"
+    },
+    "PlayspaceContainer": {"properties": {"id": {"type": "string"}, "members": {"items": {"$ref": "#/definitions/PlayableItem"}, "type": "array"}, "title": {"type": "string"}, "type": {"type": "string"}}, "type": "object"},
     "Podcast": {
       "properties": {
         "category_summaries": {"items": {"$ref": "#/definitions/CategorySummary"}, "type": "array"},
@@ -1875,47 +2029,12 @@
       "required": ["$schema", "limit", "offset", "results", "total"],
       "type": "object"
     },
-    "RadioCategoriesResponse": {
-      "properties": {"$schema": {"type": "string"}, "limit": {"type": "integer"}, "offset": {"type": "integer"}, "results": {"items": {"$ref": "#/definitions/RadioCategory"}, "type": "array"}, "total": {"type": "integer"}},
-      "required": ["$schema", "limit", "offset", "results", "total"],
-      "type": "object"
-    },
-    "RadioCategory": {
-      "properties": {
-        "available_episodes": {"$ref": "#/definitions/Empty"},
-        "child_categories": {"items": {"$ref": "#/definitions/RadioChildCategory"}, "type": "array"},
-        "id": {"type": "string"},
-        "latest_episode": {"$ref": "#/definitions/Empty"},
-        "original_categories": {"items": {"$ref": "#/definitions/RadioOriginalCategory"}, "type": "array"},
-        "title": {"type": "string"},
-        "translation_key": {"type": "string"},
-        "type": {"type": "string"}
-      },
-      "required": ["available_episodes", "child_categories", "id", "latest_episode", "original_categories", "title", "translation_key", "type"],
-      "type": "object"
-    },
-    "RadioChildCategory": {
-      "properties": {
-        "id": {"type": "string"},
-        "original_categories": {"items": {"$ref": "#/definitions/RadioOriginalCategory"}, "type": "array"},
-        "title": {"type": "string"},
-        "translation_key": {"type": "string"},
-        "type": {"type": "string"}
-      },
-      "required": ["id", "original_categories", "title", "translation_key", "type"],
-      "type": "object"
-    },
     "RadioError": {
       "properties": {"code": {"type": "string"}, "detail": {"type": "string"}, "href": {"type": "string"}, "id": {"type": "string"}, "status": {"type": "integer"}, "timestamp": {"type": "integer"}, "title": {"type": "string"}},
       "required": ["code", "detail", "href", "id", "status", "timestamp", "title"],
       "type": "object"
     },
     "RadioErrorResponse": {"properties": {"$schema": {"type": "string"}, "errors": {"items": {"$ref": "#/definitions/RadioError"}, "type": "array"}}, "required": ["$schema", "errors"], "type": "object"},
-    "RadioOriginalCategory": {
-      "properties": {"category_type": {"type": "string"}, "id": {"type": "string"}, "key": {"type": "string"}, "title": {"type": "string"}, "type": {"type": "string"}},
-      "required": ["category_type", "id", "key", "title", "type"],
-      "type": "object"
-    },
     "SeriesSummary": {
       "properties": {
         "ancestors": {"items": {"$ref": "#/definitions/AncestorSummary"}, "type": "array"},
@@ -1945,17 +2064,6 @@
         "type": {"type": "string"}
       },
       "required": ["active", "coverage", "date_ranges", "default", "default_language", "id", "region", "short_title", "title", "type"],
-      "type": "object"
-    },
-    "writePlayRequest": {
-      "properties": {
-        "action": {"enum": ["started", "ended", "paused", "heartbeat"], "type": "string"},
-        "elapsed_time": {"type": "integer"},
-        "pid": {"type": "string"},
-        "resource_type": {"enum": ["episode", "clip"], "type": "string"},
-        "version_pid": {"type": "string"}
-      },
-      "required": ["action", "elapsed_time", "pid", "resource_type", "version_pid"],
       "type": "object"
     }
   }

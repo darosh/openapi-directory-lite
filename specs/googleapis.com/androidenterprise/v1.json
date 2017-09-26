@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Manages the deployment of apps to Android for Work users.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Google Play EMM",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.gstatic.com/android/market_images/web/play_logo_x2.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/androidenterprise/v1/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/androidenterprise/v1/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "androidenterprise"
@@ -21,17 +19,9 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {"https://www.googleapis.com/auth/androidenterprise": "Manage corporate Android devices"},
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {"https://www.googleapis.com/auth/androidenterprise": "Manage corporate Android devices"},
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -72,7 +62,7 @@
         "operationId": "androidenterprise.enterprises.list",
         "parameters": [{"description": "The exact primary domain name of the enterprise to look up.", "in": "query", "name": "domain", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/EnterprisesListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["enterprises"]
       },
       "parameters": [
@@ -92,7 +82,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Enterprise"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Enterprise"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["enterprises"]
       }
     },
@@ -111,7 +101,7 @@
         "operationId": "androidenterprise.enterprises.acknowledgeNotificationSet",
         "parameters": [{"description": "The notification set ID as returned by Enterprises.PullNotificationSet. This must be provided.", "in": "query", "name": "notificationSetId", "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["enterprises"]
       }
     },
@@ -133,7 +123,7 @@
           {"description": "The Enterprise token appended to the Callback URL.", "in": "query", "name": "enterpriseToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Enterprise"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["enterprises"]
       }
     },
@@ -155,7 +145,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Enterprise"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Enterprise"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["enterprises"]
       }
     },
@@ -182,7 +172,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/NotificationSet"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["enterprises"]
       }
     },
@@ -208,7 +198,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SignupInfo"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["enterprises"]
       }
     },
@@ -218,7 +208,7 @@
         "operationId": "androidenterprise.enterprises.delete",
         "parameters": [{"description": "The ID of the enterprise.", "in": "path", "name": "enterpriseId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["enterprises"]
       },
       "get": {
@@ -226,7 +216,7 @@
         "operationId": "androidenterprise.enterprises.get",
         "parameters": [{"description": "The ID of the enterprise.", "in": "path", "name": "enterpriseId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Enterprise"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["enterprises"]
       },
       "parameters": [
@@ -254,7 +244,7 @@
         "operationId": "androidenterprise.enterprises.setAccount",
         "parameters": [{"description": "The ID of the enterprise.", "in": "path", "name": "enterpriseId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/EnterpriseAccount"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/EnterpriseAccount"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["enterprises"]
       }
     },
@@ -264,7 +254,7 @@
         "operationId": "androidenterprise.enterprises.getAndroidDevicePolicyConfig",
         "parameters": [{"description": "The ID of the enterprise.", "in": "path", "name": "enterpriseId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AndroidDevicePolicyConfig"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["enterprises"]
       },
       "parameters": [
@@ -281,7 +271,7 @@
         "operationId": "androidenterprise.enterprises.setAndroidDevicePolicyConfig",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AndroidDevicePolicyConfig"}}, {"description": "The ID of the enterprise.", "in": "path", "name": "enterpriseId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AndroidDevicePolicyConfig"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["enterprises"]
       }
     },
@@ -300,7 +290,7 @@
         "operationId": "androidenterprise.enterprises.createWebToken",
         "parameters": [{"description": "The ID of the enterprise.", "in": "path", "name": "enterpriseId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AdministratorWebTokenSpec"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AdministratorWebToken"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["enterprises"]
       }
     },
@@ -310,7 +300,7 @@
         "operationId": "androidenterprise.grouplicenses.list",
         "parameters": [{"description": "The ID of the enterprise.", "in": "path", "name": "enterpriseId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GroupLicensesListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["grouplicenses"]
       },
       "parameters": [
@@ -332,7 +322,7 @@
           {"description": "The ID of the product the group license is for, e.g. \"app:com.google.android.gm\".", "in": "path", "name": "groupLicenseId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GroupLicense"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["grouplicenses"]
       },
       "parameters": [
@@ -354,7 +344,7 @@
           {"description": "The ID of the product the group license is for, e.g. \"app:com.google.android.gm\".", "in": "path", "name": "groupLicenseId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GroupLicenseUsersListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["grouplicenseusers"]
       },
       "parameters": [
@@ -400,7 +390,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ProductsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["products"]
       },
       "parameters": [
@@ -423,7 +413,7 @@
           {"description": "The BCP47 tag for the user's preferred language (e.g. \"en-US\", \"de\").", "in": "query", "name": "language", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Product"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["products"]
       },
       "parameters": [
@@ -446,7 +436,7 @@
           {"description": "The BCP47 tag for the user's preferred language (e.g. \"en-US\", \"de\").", "in": "query", "name": "language", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AppRestrictionsSchema"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["products"]
       },
       "parameters": [
@@ -478,7 +468,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ProductsApproveRequest"}}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["products"]
       }
     },
@@ -501,7 +491,7 @@
           {"description": "The BCP 47 language code used for permission names and descriptions in the returned iframe, for instance \"en-US\".", "in": "query", "name": "languageCode", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ProductsGenerateApprovalUrlResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["products"]
       }
     },
@@ -514,7 +504,7 @@
           {"description": "The ID of the product.", "in": "path", "name": "productId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ProductPermissions"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["products"]
       },
       "parameters": [
@@ -545,7 +535,7 @@
           {"description": "The ID of the product.", "in": "path", "name": "productId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["products"]
       }
     },
@@ -564,7 +554,7 @@
         "operationId": "androidenterprise.enterprises.sendTestPushNotification",
         "parameters": [{"description": "The ID of the enterprise.", "in": "path", "name": "enterpriseId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/EnterprisesSendTestPushNotificationResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["enterprises"]
       }
     },
@@ -577,7 +567,7 @@
           {"description": "The type of credential to return with the service account. Required.", "enum": ["googleCredentials", "pkcs12"], "in": "query", "name": "keyType", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ServiceAccount"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["enterprises"]
       },
       "parameters": [
@@ -596,7 +586,7 @@
         "operationId": "androidenterprise.serviceaccountkeys.list",
         "parameters": [{"description": "The ID of the enterprise.", "in": "path", "name": "enterpriseId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ServiceAccountKeysListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["serviceaccountkeys"]
       },
       "parameters": [
@@ -613,7 +603,7 @@
         "operationId": "androidenterprise.serviceaccountkeys.insert",
         "parameters": [{"description": "The ID of the enterprise.", "in": "path", "name": "enterpriseId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ServiceAccountKey"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ServiceAccountKey"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["serviceaccountkeys"]
       }
     },
@@ -626,7 +616,7 @@
           {"description": "The ID of the key.", "in": "path", "name": "keyId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["serviceaccountkeys"]
       },
       "parameters": [
@@ -645,7 +635,7 @@
         "operationId": "androidenterprise.enterprises.getStoreLayout",
         "parameters": [{"description": "The ID of the enterprise.", "in": "path", "name": "enterpriseId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/StoreLayout"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["enterprises"]
       },
       "parameters": [
@@ -662,7 +652,7 @@
         "operationId": "androidenterprise.enterprises.setStoreLayout",
         "parameters": [{"description": "The ID of the enterprise.", "in": "path", "name": "enterpriseId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/StoreLayout"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/StoreLayout"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["enterprises"]
       }
     },
@@ -672,7 +662,7 @@
         "operationId": "androidenterprise.storelayoutpages.list",
         "parameters": [{"description": "The ID of the enterprise.", "in": "path", "name": "enterpriseId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/StoreLayoutPagesListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["storelayoutpages"]
       },
       "parameters": [
@@ -689,7 +679,7 @@
         "operationId": "androidenterprise.storelayoutpages.insert",
         "parameters": [{"description": "The ID of the enterprise.", "in": "path", "name": "enterpriseId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/StorePage"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/StorePage"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["storelayoutpages"]
       }
     },
@@ -702,7 +692,7 @@
           {"description": "The ID of the page.", "in": "path", "name": "pageId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["storelayoutpages"]
       },
       "get": {
@@ -713,7 +703,7 @@
           {"description": "The ID of the page.", "in": "path", "name": "pageId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/StorePage"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["storelayoutpages"]
       },
       "parameters": [
@@ -734,7 +724,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/StorePage"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/StorePage"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["storelayoutpages"]
       },
       "put": {
@@ -746,7 +736,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/StorePage"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/StorePage"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["storelayoutpages"]
       }
     },
@@ -759,7 +749,7 @@
           {"description": "The ID of the page.", "in": "path", "name": "pageId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/StoreLayoutClustersListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["storelayoutclusters"]
       },
       "parameters": [
@@ -780,7 +770,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/StoreCluster"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/StoreCluster"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["storelayoutclusters"]
       }
     },
@@ -794,7 +784,7 @@
           {"description": "The ID of the cluster.", "in": "path", "name": "clusterId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["storelayoutclusters"]
       },
       "get": {
@@ -806,7 +796,7 @@
           {"description": "The ID of the cluster.", "in": "path", "name": "clusterId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/StoreCluster"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["storelayoutclusters"]
       },
       "parameters": [
@@ -828,7 +818,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/StoreCluster"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/StoreCluster"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["storelayoutclusters"]
       },
       "put": {
@@ -841,7 +831,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/StoreCluster"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/StoreCluster"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["storelayoutclusters"]
       }
     },
@@ -860,7 +850,7 @@
         "operationId": "androidenterprise.enterprises.unenroll",
         "parameters": [{"description": "The ID of the enterprise.", "in": "path", "name": "enterpriseId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["enterprises"]
       }
     },
@@ -873,7 +863,7 @@
           {"description": "The exact primary email address of the user to look up.", "in": "query", "name": "email", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UsersListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["users"]
       },
       "parameters": [
@@ -890,7 +880,7 @@
         "operationId": "androidenterprise.users.insert",
         "parameters": [{"description": "The ID of the enterprise.", "in": "path", "name": "enterpriseId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/User"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/User"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["users"]
       }
     },
@@ -903,7 +893,7 @@
           {"description": "The ID of the user.", "in": "path", "name": "userId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["users"]
       },
       "get": {
@@ -914,7 +904,7 @@
           {"description": "The ID of the user.", "in": "path", "name": "userId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/User"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["users"]
       },
       "parameters": [
@@ -935,7 +925,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/User"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/User"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["users"]
       },
       "put": {
@@ -947,7 +937,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/User"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/User"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["users"]
       }
     },
@@ -969,7 +959,7 @@
           {"description": "The ID of the user.", "in": "path", "name": "userId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AuthenticationToken"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["users"]
       }
     },
@@ -982,7 +972,7 @@
           {"description": "The ID of the user.", "in": "path", "name": "userId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ProductSet"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["users"]
       },
       "parameters": [
@@ -1003,7 +993,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ProductSet"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ProductSet"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["users"]
       }
     },
@@ -1016,7 +1006,7 @@
           {"description": "The ID of the user.", "in": "path", "name": "userId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/DevicesListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["devices"]
       },
       "parameters": [
@@ -1039,7 +1029,7 @@
           {"description": "The ID of the device.", "in": "path", "name": "deviceId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Device"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["devices"]
       },
       "parameters": [
@@ -1062,7 +1052,7 @@
           {"description": "The Android ID of the device.", "in": "path", "name": "deviceId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/InstallsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["installs"]
       },
       "parameters": [
@@ -1086,7 +1076,7 @@
           {"description": "The ID of the product represented by the install, e.g. \"app:com.google.android.gm\".", "in": "path", "name": "installId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["installs"]
       },
       "get": {
@@ -1099,7 +1089,7 @@
           {"description": "The ID of the product represented by the install, e.g. \"app:com.google.android.gm\".", "in": "path", "name": "installId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Install"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["installs"]
       },
       "parameters": [
@@ -1122,7 +1112,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Install"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Install"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["installs"]
       },
       "put": {
@@ -1136,7 +1126,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Install"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Install"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["installs"]
       }
     },
@@ -1150,7 +1140,7 @@
           {"description": "The Android ID of the device.", "in": "path", "name": "deviceId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ManagedConfigurationsForDeviceListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["managedconfigurationsfordevice"]
       },
       "parameters": [
@@ -1174,7 +1164,7 @@
           {"description": "The ID of the managed configuration (a product ID), e.g. \"app:com.google.android.gm\".", "in": "path", "name": "managedConfigurationForDeviceId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["managedconfigurationsfordevice"]
       },
       "get": {
@@ -1187,7 +1177,7 @@
           {"description": "The ID of the managed configuration (a product ID), e.g. \"app:com.google.android.gm\".", "in": "path", "name": "managedConfigurationForDeviceId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ManagedConfiguration"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["managedconfigurationsfordevice"]
       },
       "parameters": [
@@ -1210,7 +1200,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ManagedConfiguration"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ManagedConfiguration"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["managedconfigurationsfordevice"]
       },
       "put": {
@@ -1224,7 +1214,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ManagedConfiguration"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ManagedConfiguration"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["managedconfigurationsfordevice"]
       }
     },
@@ -1238,7 +1228,7 @@
           {"description": "The ID of the device.", "in": "path", "name": "deviceId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/DeviceState"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["devices"]
       },
       "parameters": [
@@ -1260,7 +1250,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/DeviceState"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/DeviceState"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["devices"]
       }
     },
@@ -1273,7 +1263,7 @@
           {"description": "The ID of the user.", "in": "path", "name": "userId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/EntitlementsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["entitlements"]
       },
       "parameters": [
@@ -1296,7 +1286,7 @@
           {"description": "The ID of the entitlement (a product ID), e.g. \"app:com.google.android.gm\".", "in": "path", "name": "entitlementId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["entitlements"]
       },
       "get": {
@@ -1308,7 +1298,7 @@
           {"description": "The ID of the entitlement (a product ID), e.g. \"app:com.google.android.gm\".", "in": "path", "name": "entitlementId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Entitlement"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["entitlements"]
       },
       "parameters": [
@@ -1336,7 +1326,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Entitlement"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Entitlement"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["entitlements"]
       },
       "put": {
@@ -1355,7 +1345,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Entitlement"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Entitlement"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["entitlements"]
       }
     },
@@ -1368,7 +1358,7 @@
           {"description": "The ID of the user.", "in": "path", "name": "userId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ManagedConfigurationsForUserListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["managedconfigurationsforuser"]
       },
       "parameters": [
@@ -1391,7 +1381,7 @@
           {"description": "The ID of the managed configuration (a product ID), e.g. \"app:com.google.android.gm\".", "in": "path", "name": "managedConfigurationForUserId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["managedconfigurationsforuser"]
       },
       "get": {
@@ -1403,7 +1393,7 @@
           {"description": "The ID of the managed configuration (a product ID), e.g. \"app:com.google.android.gm\".", "in": "path", "name": "managedConfigurationForUserId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ManagedConfiguration"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["managedconfigurationsforuser"]
       },
       "parameters": [
@@ -1425,7 +1415,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ManagedConfiguration"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ManagedConfiguration"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["managedconfigurationsforuser"]
       },
       "put": {
@@ -1438,7 +1428,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ManagedConfiguration"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ManagedConfiguration"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["managedconfigurationsforuser"]
       }
     },
@@ -1451,7 +1441,7 @@
           {"description": "The ID of the user.", "in": "path", "name": "userId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["users"]
       },
       "parameters": [
@@ -1471,7 +1461,7 @@
           {"description": "The ID of the user.", "in": "path", "name": "userId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UserToken"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["users"]
       }
     },
@@ -1484,7 +1474,7 @@
           {"description": "The BCP47 tag for the user's preferred language (e.g. \"en-US\", \"de\")", "in": "query", "name": "language", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Permission"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"], "Oauth2c": ["https://www.googleapis.com/auth/androidenterprise"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidenterprise"]}],
         "tags": ["permissions"]
       },
       "parameters": [
@@ -1698,7 +1688,7 @@
       "type": "object"
     },
     "GroupLicense": {
-      "description": "A group license object indicates a product that an enterprise admin has approved for use in the enterprise. The product may be free or paid. For free products, a group license object is created in these cases: if the enterprise admin approves a product in Google Play, if the product is added to a collection, or if an entitlement for the product is created for a user via the API. For paid products, a group license object is only created as part of the first bulk purchase of that product in Google Play by the enterprise admin.\n\nThe API can be used to query group licenses; the available information includes the total number of licenses purchased (for paid products) and the total number of licenses that have been provisioned, that is, the total number of user entitlements in existence for the product.\n\nGroup license objects are never deleted. If, for example, a free app is added to a collection and then removed, the group license will remain, allowing the enterprise admin to keep track of any remaining entitlements. An enterprise admin may indicate they are no longer interested in the group license by marking it as unapproved in Google Play.",
+      "description": "Group license objects allow you to keep track of licenses (called entitlements) for both free and paid apps. For a free app, a group license is created when an enterprise admin first approves the product in Google Play or when the first entitlement for the product is created for a user via the API. For a paid app, a group license object is only created when an enterprise admin purchases the product in Google Play for the first time.\n\nUse the API to query group licenses. A Grouplicenses resource includes the total number of licenses purchased (paid apps only) and the total number of licenses currently in use. Iyn other words, the total number of Entitlements that exist for the product.\n\nOnly one group license object is created per product and group license objects are never deleted. If a product is unapproved, its group license remains. This allows enterprise admins to keep track of any remaining entitlements for the product.",
       "properties": {
         "acquisitionKind": {
           "description": "How this group license was acquired. \"bulkPurchase\" means that this Grouplicenses resource was created because the enterprise purchased licenses for this product; otherwise, the value is \"free\" (for free products).",
@@ -1895,11 +1885,7 @@
     "Product": {
       "description": "A Products resource represents an app in the Google Play store that is available to at least some users in the enterprise. (Some apps are restricted to a single enterprise, and no information about them is made available outside that enterprise.)\n\nThe information provided for each product (localized name, icon, link to the full Google Play details page) is intended to allow a basic representation of the product within an EMM user interface.",
       "properties": {
-        "appVersion": {
-          "description": "App versions currently available for this product. The returned list contains only public versions. Alpha and beta versions are not included.",
-          "items": {"$ref": "#/definitions/AppVersion"},
-          "type": "array"
-        },
+        "appVersion": {"description": "App versions currently available for this product.", "items": {"$ref": "#/definitions/AppVersion"}, "type": "array"},
         "authorName": {"description": "The name of the author of the product (for example, the app developer).", "type": "string"},
         "detailsUrl": {"description": "A link to the (consumer) Google Play details page for the product.", "type": "string"},
         "distributionChannel": {

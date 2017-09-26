@@ -1501,7 +1501,8 @@
         "TRIbalFlag": {"example": "1", "title": "Tribal Lands Flag", "type": "string"},
         "TscaFlag": {"description": "Flag indicating whether or not a facility has a TSCA ID", "title": "Toxic Substances Control Act Flag", "type": "string"},
         "TscaIDs": {"description": "Toxic Substances Control Act ID assigned to a facility", "title": "Toxic Substances Control Act ID", "type": "string"},
-        "ViolFlag": {"description": "Indicates if the facility had a violation within the last 3 years. 1 = Yes", "example": "1", "title": "Violation Flag", "type": "string"}
+        "ViolFlag": {"description": "Indicates if the facility had a violation within the last 3 years. 1 = Yes", "example": "1", "title": "Violation Flag", "type": "string"},
+        "WebDocs": {"description": "Contains flags that identify what web accessible documents are available for the facility.", "example": "C6", "title": "Web Documents", "type": "string"}
       },
       "required": [
         "RegistryID",
@@ -1679,6 +1680,7 @@
         "EisIDs",
         "TscaFlag",
         "TscaIDs",
+        "WebDocs",
         "Score",
         "MaxScore"
       ],
@@ -2101,7 +2103,8 @@
         "TRIbalFlag": {"example": "1", "title": "Tribal Lands Flag", "type": "string"},
         "TscaFlag": {"description": "Flag indicating whether or not a facility has a TSCA ID", "title": "Toxic Substances Control Act Flag", "type": "string"},
         "TscaIDs": {"description": "Toxic Substances Control Act ID assigned to a facility", "title": "Toxic Substances Control Act ID", "type": "string"},
-        "ViolFlag": {"description": "Indicates if the facility had a violation within the last 3 years. 1 = Yes", "example": "1", "title": "Violation Flag", "type": "string"}
+        "ViolFlag": {"description": "Indicates if the facility had a violation within the last 3 years. 1 = Yes", "example": "1", "title": "Violation Flag", "type": "string"},
+        "WebDocs": {"description": "Contains flags that identify what web accessible documents are available for the facility.", "example": "C6", "title": "Web Documents", "type": "string"}
       },
       "required": [
         "ObjectId",
@@ -2280,6 +2283,7 @@
         "EisIDs",
         "TscaFlag",
         "TscaIDs",
+        "WebDocs",
         "Score",
         "MaxScore"
       ],
@@ -2681,7 +2685,8 @@
         "TRIbalFlag": {"example": 1, "title": "Tribal Lands Flag", "type": "number"},
         "TscaFlag": {"description": "Flag indicating whether or not a facility has a TSCA ID", "title": "Toxic Substances Control Act Flag", "type": "string"},
         "TscaIDs": {"description": "Toxic Substances Control Act ID assigned to a facility", "title": "Toxic Substances Control Act ID", "type": "string"},
-        "ViolFlag": {"description": "Indicates if the facility had a violation within the last 3 years. 1 = Yes", "example": 1, "title": "Violation Flag", "type": "number"}
+        "ViolFlag": {"description": "Indicates if the facility had a violation within the last 3 years. 1 = Yes", "example": 1, "title": "Violation Flag", "type": "number"},
+        "WebDocs": {"description": "Contains flags that identify what web accessible documents are available for the facility.", "example": "C6", "title": "Web Documents", "type": "string"}
       },
       "required": [
         "RegistryID",
@@ -2857,6 +2862,7 @@
         "EisIDs",
         "TscaFlag",
         "TscaIDs",
+        "WebDocs",
         "Score",
         "MaxScore"
       ],

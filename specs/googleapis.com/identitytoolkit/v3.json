@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Help the third party sites to implement federated login.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Google Identity Toolkit",
     "version": "v3",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/identitytoolkit/v3/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/identitytoolkit/v3/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "identitytoolkit"
@@ -21,17 +19,9 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {"https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services", "https://www.googleapis.com/auth/firebase": "View and administer all your Firebase data and settings"},
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {"https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services", "https://www.googleapis.com/auth/firebase": "View and administer all your Firebase data and settings"},
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -66,7 +56,7 @@
         "operationId": "identitytoolkit.relyingparty.createAuthUri",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/IdentitytoolkitRelyingpartyCreateAuthUriRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CreateAuthUriResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["relyingparty"]
       }
     },
@@ -85,7 +75,7 @@
         "operationId": "identitytoolkit.relyingparty.deleteAccount",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/IdentitytoolkitRelyingpartyDeleteAccountRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/DeleteAccountResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["relyingparty"]
       }
     },
@@ -104,10 +94,7 @@
         "operationId": "identitytoolkit.relyingparty.downloadAccount",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/IdentitytoolkitRelyingpartyDownloadAccountRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/DownloadAccountResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/firebase"], "Oauth2c": ["https://www.googleapis.com/auth/firebase"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/firebase"]}],
         "tags": ["relyingparty"]
       }
     },
@@ -126,7 +113,7 @@
         "operationId": "identitytoolkit.relyingparty.getAccountInfo",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/IdentitytoolkitRelyingpartyGetAccountInfoRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GetAccountInfoResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["relyingparty"]
       }
     },
@@ -145,7 +132,7 @@
         "operationId": "identitytoolkit.relyingparty.getOobConfirmationCode",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Relyingparty"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GetOobConfirmationCodeResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["relyingparty"]
       }
     },
@@ -158,7 +145,7 @@
           {"description": "GCP project number of the request.", "in": "query", "name": "projectNumber", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/IdentitytoolkitRelyingpartyGetProjectConfigResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["relyingparty"]
       },
       "parameters": [
@@ -176,7 +163,7 @@
         "description": "Get recaptcha secure param.",
         "operationId": "identitytoolkit.relyingparty.getRecaptchaParam",
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GetRecaptchaParamResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["relyingparty"]
       },
       "parameters": [
@@ -194,7 +181,7 @@
         "description": "Get token signing public key.",
         "operationId": "identitytoolkit.relyingparty.getPublicKeys",
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/IdentitytoolkitRelyingpartyGetPublicKeysResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["relyingparty"]
       },
       "parameters": [
@@ -222,7 +209,7 @@
         "operationId": "identitytoolkit.relyingparty.resetPassword",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/IdentitytoolkitRelyingpartyResetPasswordRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ResetPasswordResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["relyingparty"]
       }
     },
@@ -241,7 +228,7 @@
         "operationId": "identitytoolkit.relyingparty.sendVerificationCode",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/IdentitytoolkitRelyingpartySendVerificationCodeRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/IdentitytoolkitRelyingpartySendVerificationCodeResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["relyingparty"]
       }
     },
@@ -260,7 +247,7 @@
         "operationId": "identitytoolkit.relyingparty.setAccountInfo",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/IdentitytoolkitRelyingpartySetAccountInfoRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SetAccountInfoResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["relyingparty"]
       }
     },
@@ -279,7 +266,7 @@
         "operationId": "identitytoolkit.relyingparty.setProjectConfig",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/IdentitytoolkitRelyingpartySetProjectConfigRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/IdentitytoolkitRelyingpartySetProjectConfigResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["relyingparty"]
       }
     },
@@ -298,7 +285,7 @@
         "operationId": "identitytoolkit.relyingparty.signOutUser",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/IdentitytoolkitRelyingpartySignOutUserRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/IdentitytoolkitRelyingpartySignOutUserResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["relyingparty"]
       }
     },
@@ -317,7 +304,7 @@
         "operationId": "identitytoolkit.relyingparty.signupNewUser",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/IdentitytoolkitRelyingpartySignupNewUserRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SignupNewUserResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["relyingparty"]
       }
     },
@@ -336,10 +323,7 @@
         "operationId": "identitytoolkit.relyingparty.uploadAccount",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/IdentitytoolkitRelyingpartyUploadAccountRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UploadAccountResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/firebase"], "Oauth2c": ["https://www.googleapis.com/auth/firebase"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/firebase"]}],
         "tags": ["relyingparty"]
       }
     },
@@ -358,7 +342,7 @@
         "operationId": "identitytoolkit.relyingparty.verifyAssertion",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/IdentitytoolkitRelyingpartyVerifyAssertionRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/VerifyAssertionResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["relyingparty"]
       }
     },
@@ -377,7 +361,7 @@
         "operationId": "identitytoolkit.relyingparty.verifyCustomToken",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/IdentitytoolkitRelyingpartyVerifyCustomTokenRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/VerifyCustomTokenResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["relyingparty"]
       }
     },
@@ -396,7 +380,7 @@
         "operationId": "identitytoolkit.relyingparty.verifyPassword",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/IdentitytoolkitRelyingpartyVerifyPasswordRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/VerifyPasswordResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["relyingparty"]
       }
     },
@@ -415,7 +399,7 @@
         "operationId": "identitytoolkit.relyingparty.verifyPhoneNumber",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/IdentitytoolkitRelyingpartyVerifyPhoneNumberRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["relyingparty"]
       }
     }
@@ -664,9 +648,13 @@
       "description": "Request to upload user account in batch.",
       "properties": {
         "allowOverwrite": {"description": "Whether allow overwrite existing account when user local_id exists.", "type": "boolean"},
+        "blockSize": {"format": "int32", "type": "integer"},
+        "cpuMemCost": {"description": "The following 4 fields are for standard scrypt algorithm.", "format": "int32", "type": "integer"},
         "delegatedProjectNumber": {"description": "GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration.", "format": "int64", "type": "string"},
+        "dkLen": {"format": "int32", "type": "integer"},
         "hashAlgorithm": {"description": "The password hash algorithm.", "type": "string"},
         "memoryCost": {"description": "Memory cost for hash calculation. Used by scrypt similar algorithms.", "format": "int32", "type": "integer"},
+        "parallelization": {"format": "int32", "type": "integer"},
         "rounds": {"description": "Rounds for hash calculation. Used by scrypt and similar algorithms.", "format": "int32", "type": "integer"},
         "saltSeparator": {"description": "The salt separator.", "format": "byte", "type": "string"},
         "sanityCheck": {"description": "If true, backend will do sanity check(including duplicate email and federated id) when uploading account.", "type": "boolean"},

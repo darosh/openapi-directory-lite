@@ -6,14 +6,12 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Builds on top of the Google+ platform.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Google+",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-apisguru-categories": ["social"],
     "x-logo": {"url": "https://developers.google.com/+/images/branding/g+128.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/plus/v1/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/plus/v1/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "plus"
@@ -22,7 +20,7 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {
         "https://www.googleapis.com/auth/plus.login": "Know the list of people in your circles, your age range, and language",
@@ -30,19 +28,6 @@
         "https://www.googleapis.com/auth/userinfo.email": "View your email address",
         "https://www.googleapis.com/auth/userinfo.profile": "View your basic profile info"
       },
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {
-        "https://www.googleapis.com/auth/plus.login": "Know the list of people in your circles, your age range, and language",
-        "https://www.googleapis.com/auth/plus.me": "Know who you are on Google",
-        "https://www.googleapis.com/auth/userinfo.email": "View your email address",
-        "https://www.googleapis.com/auth/userinfo.profile": "View your basic profile info"
-      },
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -87,10 +72,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ActivityFeed"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.me"], "Oauth2c": ["https://www.googleapis.com/auth/plus.me"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.me"]}],
         "tags": ["activities"]
       },
       "parameters": [
@@ -109,10 +91,7 @@
         "operationId": "plus.activities.get",
         "parameters": [{"description": "The ID of the activity to get.", "in": "path", "name": "activityId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Activity"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.me"], "Oauth2c": ["https://www.googleapis.com/auth/plus.me"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.me"]}],
         "tags": ["activities"]
       },
       "parameters": [
@@ -149,10 +128,7 @@
           {"default": "ascending", "description": "The order in which to sort the list of comments.", "enum": ["ascending", "descending"], "in": "query", "name": "sortOrder", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CommentFeed"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.me"], "Oauth2c": ["https://www.googleapis.com/auth/plus.me"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.me"]}],
         "tags": ["comments"]
       },
       "parameters": [
@@ -189,10 +165,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PeopleFeed"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.me"], "Oauth2c": ["https://www.googleapis.com/auth/plus.me"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.me"]}],
         "tags": ["people"]
       },
       "parameters": [
@@ -211,10 +184,7 @@
         "operationId": "plus.comments.get",
         "parameters": [{"description": "The ID of the comment to get.", "in": "path", "name": "commentId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Comment"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.me"], "Oauth2c": ["https://www.googleapis.com/auth/plus.me"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.me"]}],
         "tags": ["comments"]
       },
       "parameters": [
@@ -251,10 +221,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PeopleFeed"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.me"], "Oauth2c": ["https://www.googleapis.com/auth/plus.me"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.me"]}],
         "tags": ["people"]
       },
       "parameters": [
@@ -274,10 +241,10 @@
         "parameters": [{"description": "The ID of the person to get the profile for. The special value \"me\" can be used to indicate the authenticated user.", "in": "path", "name": "userId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Person"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.me"], "Oauth2c": ["https://www.googleapis.com/auth/plus.me"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.profile"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.profile"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/plus.me"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.profile"]}
         ],
         "tags": ["people"]
       },
@@ -315,10 +282,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ActivityFeed"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.me"], "Oauth2c": ["https://www.googleapis.com/auth/plus.me"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.me"]}],
         "tags": ["activities"]
       },
       "parameters": [
@@ -356,10 +320,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PeopleFeed"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.me"], "Oauth2c": ["https://www.googleapis.com/auth/plus.me"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.me"]}],
         "tags": ["people"]
       },
       "parameters": [

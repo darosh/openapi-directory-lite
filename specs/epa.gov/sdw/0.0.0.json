@@ -566,7 +566,7 @@
     "sdw3_SDWSearchResults": {
       "description": "Safe Drinking Water Search Results Object",
       "properties": {
-        "ACT": {"description": "Activity status code:\n- A = Active\n- I = Inactive", "example": "A", "type": "string"},
+        "ACT": {"description": "Activity status code:\n- A = Active\n- I = Inactive", "example": "A", "title": "Activity Status Code", "type": "string"},
         "ActivityDesc": {"description": "Description of activity status code (ACT), e.g., active, inactive.", "example": "Active", "title": "Activity Description", "type": "string"},
         "CT": {"description": "County", "example": "CAROLINE", "type": "string"},
         "CTY": {"description": "City", "example": "ALEXANDRIA", "title": "City", "type": "string"},

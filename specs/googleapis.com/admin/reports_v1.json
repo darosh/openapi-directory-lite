@@ -6,14 +6,12 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Fetches reports for the administrators of G Suite customers about the usage, collaboration, security, and risk for their users.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Admin Reports",
     "version": "reports_v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-apisguru-categories": ["analytics"],
     "x-logo": {"url": "https://www.gstatic.com/images/icons/material/product/2x/admin_64dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/admin/reports_v1/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/admin/reports_v1/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "admin"
@@ -22,17 +20,9 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {"https://www.googleapis.com/auth/admin.reports.audit.readonly": "View audit reports for your G Suite domain", "https://www.googleapis.com/auth/admin.reports.usage.readonly": "View usage reports for your G Suite domain"},
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {"https://www.googleapis.com/auth/admin.reports.audit.readonly": "View audit reports for your G Suite domain", "https://www.googleapis.com/auth/admin.reports.usage.readonly": "View usage reports for your G Suite domain"},
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -75,7 +65,7 @@
           {"description": "Return events which occurred at or after this time.", "in": "query", "name": "startTime", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Activities"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/admin.reports.audit.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/admin.reports.audit.readonly"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/admin.reports.audit.readonly"]}],
         "tags": ["activities"]
       },
       "parameters": [
@@ -121,7 +111,7 @@
           {"in": "body", "name": "resource", "schema": {"$ref": "#/definitions/Channel"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Channel"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/admin.reports.audit.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/admin.reports.audit.readonly"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/admin.reports.audit.readonly"]}],
         "tags": ["activities"]
       }
     },
@@ -140,7 +130,7 @@
         "operationId": "admin.channels.stop",
         "parameters": [{"in": "body", "name": "resource", "schema": {"$ref": "#/definitions/Channel"}}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/admin.reports.audit.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/admin.reports.audit.readonly"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/admin.reports.audit.readonly"]}],
         "tags": ["channels"]
       }
     },
@@ -155,7 +145,7 @@
           {"description": "Represents the application name, parameter name pairs to fetch in csv as app_name1:param_name1, app_name2:param_name2.", "in": "query", "name": "parameters", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UsageReports"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/admin.reports.usage.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/admin.reports.usage.readonly"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/admin.reports.usage.readonly"]}],
         "tags": ["customerUsageReports"]
       },
       "parameters": [
@@ -182,7 +172,7 @@
           {"description": "Represents the application name, parameter name pairs to fetch in csv as app_name1:param_name1, app_name2:param_name2.", "in": "query", "name": "parameters", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UsageReports"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/admin.reports.usage.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/admin.reports.usage.readonly"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/admin.reports.usage.readonly"]}],
         "tags": ["userUsageReport"]
       },
       "parameters": [

@@ -9,7 +9,7 @@
     "version": "v1",
     "x-apisguru-categories": ["open_data"],
     "x-logo": {"backgroundColor": "#4C4C4C", "url": "https://pbs.twimg.com/profile_images/432717338270380032/BZWevLrA.jpeg"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "swagger", "url": "http://www.refugerestrooms.org/api/swagger_doc.json", "version": "1.2"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "swagger", "url": "http://www.refugerestrooms.org/api/swagger_doc.json", "version": "1.2"}],
     "x-providerName": "refugerestrooms.org",
     "x-preferred": true
   },

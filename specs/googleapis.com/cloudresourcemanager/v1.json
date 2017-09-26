@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "The Google Cloud Resource Manager API provides methods for creating, reading, and updating project metadata.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Google Cloud Resource Manager",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://cloud.google.com/_static/images/new-gcp-logo.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://cloudresourcemanager.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://cloudresourcemanager.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "cloudresourcemanager"
@@ -21,23 +19,12 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services",
         "https://www.googleapis.com/auth/cloud-platform.read-only": "View your data across Google Cloud Platform services"
       },
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {
-        "https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services",
-        "https://www.googleapis.com/auth/cloud-platform.read-only": "View your data across Google Cloud Platform services"
-      },
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -73,10 +60,7 @@
           {"description": "The name of the resource to list all attached Liens.\nFor example, `projects/1234`.", "in": "query", "name": "parent", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListLiensResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
         "tags": ["liens"]
       },
       "parameters": [
@@ -99,10 +83,7 @@
         "operationId": "cloudresourcemanager.liens.create",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Lien"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Lien"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
         "tags": ["liens"]
       }
     },
@@ -127,10 +108,7 @@
         "operationId": "cloudresourcemanager.organizations.search",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SearchOrganizationsRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SearchOrganizationsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
         "tags": ["organizations"]
       }
     },
@@ -154,10 +132,7 @@
           {"description": "A pagination token returned from a previous call to ListProjects\nthat indicates from where listing should continue.\n\nOptional.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListProjectsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
         "tags": ["projects"]
       },
       "parameters": [
@@ -180,7 +155,7 @@
         "operationId": "cloudresourcemanager.projects.create",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Project"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["projects"]
       }
     },
@@ -190,7 +165,7 @@
         "operationId": "cloudresourcemanager.projects.delete",
         "parameters": [{"description": "The Project ID (for example, `foo-bar-123`).\n\nRequired.", "in": "path", "name": "projectId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["projects"]
       },
       "get": {
@@ -198,10 +173,7 @@
         "operationId": "cloudresourcemanager.projects.get",
         "parameters": [{"description": "The Project ID (for example, `my-project-123`).\n\nRequired.", "in": "path", "name": "projectId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Project"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
         "tags": ["projects"]
       },
       "parameters": [
@@ -227,7 +199,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Project"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Project"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["projects"]
       }
     },
@@ -255,10 +227,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/GetAncestryRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GetAncestryResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
         "tags": ["projects"]
       }
     },
@@ -286,7 +255,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/UndeleteProjectRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["projects"]
       }
     },
@@ -314,10 +283,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/GetIamPolicyRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Policy"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
         "tags": ["projects"]
       }
     },
@@ -345,7 +311,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SetIamPolicyRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Policy"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["projects"]
       }
     },
@@ -379,10 +345,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/TestIamPermissionsRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TestIamPermissionsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
         "tags": ["projects"]
       }
     },
@@ -392,10 +355,7 @@
         "operationId": "cloudresourcemanager.liens.delete",
         "parameters": [{"description": "The name/identifier of the Lien to delete.", "in": "path", "name": "name", "required": true, "type": "string", "x-reservedExpansion": true}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
         "tags": ["liens"]
       },
       "get": {
@@ -403,10 +363,7 @@
         "operationId": "cloudresourcemanager.operations.get",
         "parameters": [{"description": "The name of the operation resource.", "in": "path", "name": "name", "required": true, "type": "string", "x-reservedExpansion": true}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
         "tags": ["operations"]
       },
       "parameters": [
@@ -443,14 +400,14 @@
       ],
       "post": {
         "description": "Clears a `Policy` from a resource.",
-        "operationId": "cloudresourcemanager.organizations.clearOrgPolicy",
+        "operationId": "cloudresourcemanager.folders.clearOrgPolicy",
         "parameters": [
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ClearOrgPolicyRequest"}},
           {"description": "Name of the resource for the `Policy` to clear.", "in": "path", "name": "resource", "required": true, "type": "string", "x-reservedExpansion": true}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
-        "tags": ["organizations"]
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "tags": ["folders"]
       }
     },
     "/v1/{resource}:getEffectiveOrgPolicy": {
@@ -471,17 +428,14 @@
       ],
       "post": {
         "description": "Gets the effective `Policy` on a resource. This is the result of merging\n`Policies` in the resource hierarchy. The returned `Policy` will not have\nan `etag`set because it is a computed `Policy` across multiple resources.",
-        "operationId": "cloudresourcemanager.organizations.getEffectiveOrgPolicy",
+        "operationId": "cloudresourcemanager.folders.getEffectiveOrgPolicy",
         "parameters": [
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/GetEffectiveOrgPolicyRequest"}},
           {"description": "The name of the resource to start computing the effective `Policy`.", "in": "path", "name": "resource", "required": true, "type": "string", "x-reservedExpansion": true}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OrgPolicy"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}
-        ],
-        "tags": ["organizations"]
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
+        "tags": ["folders"]
       }
     },
     "/v1/{resource}:getIamPolicy": {
@@ -515,10 +469,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/GetIamPolicyRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Policy"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
         "tags": ["organizations"]
       }
     },
@@ -540,17 +491,14 @@
       ],
       "post": {
         "description": "Gets a `Policy` on a resource.\n\nIf no `Policy` is set on the resource, a `Policy` is returned with default\nvalues including `POLICY_TYPE_NOT_SET` for the `policy_type oneof`. The\n`etag` value can be used with `SetOrgPolicy()` to create or update a\n`Policy` during read-modify-write.",
-        "operationId": "cloudresourcemanager.organizations.getOrgPolicy",
+        "operationId": "cloudresourcemanager.folders.getOrgPolicy",
         "parameters": [
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/GetOrgPolicyRequest"}},
           {"description": "Name of the resource the `Policy` is set on.", "in": "path", "name": "resource", "required": true, "type": "string", "x-reservedExpansion": true}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OrgPolicy"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}
-        ],
-        "tags": ["organizations"]
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
+        "tags": ["folders"]
       }
     },
     "/v1/{resource}:listAvailableOrgPolicyConstraints": {
@@ -571,17 +519,14 @@
       ],
       "post": {
         "description": "Lists `Constraints` that could be applied on the specified resource.",
-        "operationId": "cloudresourcemanager.organizations.listAvailableOrgPolicyConstraints",
+        "operationId": "cloudresourcemanager.folders.listAvailableOrgPolicyConstraints",
         "parameters": [
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ListAvailableOrgPolicyConstraintsRequest"}},
           {"description": "Name of the resource to list `Constraints` for.", "in": "path", "name": "resource", "required": true, "type": "string", "x-reservedExpansion": true}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListAvailableOrgPolicyConstraintsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}
-        ],
-        "tags": ["organizations"]
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
+        "tags": ["folders"]
       }
     },
     "/v1/{resource}:listOrgPolicies": {
@@ -602,17 +547,14 @@
       ],
       "post": {
         "description": "Lists all the `Policies` set for a particular resource.",
-        "operationId": "cloudresourcemanager.organizations.listOrgPolicies",
+        "operationId": "cloudresourcemanager.folders.listOrgPolicies",
         "parameters": [
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ListOrgPoliciesRequest"}},
           {"description": "Name of the resource to list Policies for.", "in": "path", "name": "resource", "required": true, "type": "string", "x-reservedExpansion": true}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListOrgPoliciesResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}
-        ],
-        "tags": ["organizations"]
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
+        "tags": ["folders"]
       }
     },
     "/v1/{resource}:setIamPolicy": {
@@ -646,7 +588,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SetIamPolicyRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Policy"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["organizations"]
       }
     },
@@ -668,14 +610,14 @@
       ],
       "post": {
         "description": "Updates the specified `Policy` on the resource. Creates a new `Policy` for\nthat `Constraint` on the resource if one does not exist.\n\nNot supplying an `etag` on the request `Policy` results in an unconditional\nwrite of the `Policy`.",
-        "operationId": "cloudresourcemanager.organizations.setOrgPolicy",
+        "operationId": "cloudresourcemanager.folders.setOrgPolicy",
         "parameters": [
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SetOrgPolicyRequest"}},
           {"description": "Resource name of the resource to attach the `Policy`.", "in": "path", "name": "resource", "required": true, "type": "string", "x-reservedExpansion": true}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OrgPolicy"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
-        "tags": ["organizations"]
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "tags": ["folders"]
       }
     },
     "/v1/{resource}:testIamPermissions": {
@@ -709,10 +651,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/TestIamPermissionsRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TestIamPermissionsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
         "tags": ["organizations"]
       }
     }

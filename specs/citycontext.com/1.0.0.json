@@ -8,7 +8,7 @@
     "title": "City Context",
     "version": "1.0.0",
     "x-apisguru-categories": ["open_data"],
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "swagger", "url": "https://www.citycontext.com/swagger/spec.json", "version": "1.2"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "swagger", "url": "https://www.citycontext.com/swagger/spec.json", "version": "1.2"}],
     "x-providerName": "citycontext.com",
     "x-preferred": true
   },

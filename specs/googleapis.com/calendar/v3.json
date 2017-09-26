@@ -6,14 +6,12 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Manipulates events and other calendar data.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Calendar",
     "version": "v3",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-apisguru-categories": ["time_management"],
     "x-logo": {"url": "https://www.gstatic.com/images/icons/material/product/2x/calendar_64dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "calendar"
@@ -22,17 +20,9 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {"https://www.googleapis.com/auth/calendar": "Manage your calendars", "https://www.googleapis.com/auth/calendar.readonly": "View your calendars"},
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {"https://www.googleapis.com/auth/calendar": "Manage your calendars", "https://www.googleapis.com/auth/calendar.readonly": "View your calendars"},
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -67,7 +57,7 @@
         "operationId": "calendar.calendars.insert",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Calendar"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Calendar"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}],
         "tags": ["calendars"]
       }
     },
@@ -85,7 +75,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}],
         "tags": ["calendars"]
       },
       "get": {
@@ -101,10 +91,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Calendar"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/calendar.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}, {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"]}],
         "tags": ["calendars"]
       },
       "parameters": [
@@ -130,7 +117,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Calendar"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Calendar"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}],
         "tags": ["calendars"]
       },
       "put": {
@@ -147,7 +134,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Calendar"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Calendar"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}],
         "tags": ["calendars"]
       }
     },
@@ -185,7 +172,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Acl"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}],
         "tags": ["acl"]
       },
       "parameters": [
@@ -211,7 +198,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AclRule"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AclRule"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}],
         "tags": ["acl"]
       }
     },
@@ -259,7 +246,7 @@
           {"in": "body", "name": "resource", "schema": {"$ref": "#/definitions/Channel"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Channel"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}],
         "tags": ["acl"]
       }
     },
@@ -278,7 +265,7 @@
           {"description": "ACL rule identifier.", "in": "path", "name": "ruleId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}],
         "tags": ["acl"]
       },
       "get": {
@@ -295,10 +282,7 @@
           {"description": "ACL rule identifier.", "in": "path", "name": "ruleId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AclRule"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/calendar.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}, {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"]}],
         "tags": ["acl"]
       },
       "parameters": [
@@ -325,7 +309,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AclRule"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AclRule"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}],
         "tags": ["acl"]
       },
       "put": {
@@ -343,7 +327,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AclRule"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AclRule"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}],
         "tags": ["acl"]
       }
     },
@@ -370,7 +354,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}],
         "tags": ["calendars"]
       }
     },
@@ -467,10 +451,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Events"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/calendar.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}, {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"]}],
         "tags": ["events"]
       },
       "parameters": [
@@ -505,7 +486,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Event"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Event"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}],
         "tags": ["events"]
       }
     },
@@ -534,7 +515,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Event"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Event"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}],
         "tags": ["events"]
       }
     },
@@ -563,7 +544,7 @@
           {"description": "Whether to send notifications about the creation of the event. Optional. The default is False.", "in": "query", "name": "sendNotifications", "type": "boolean"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Event"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}],
         "tags": ["events"]
       }
     },
@@ -670,10 +651,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Channel"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/calendar.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}, {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"]}],
         "tags": ["events"]
       }
     },
@@ -693,7 +671,7 @@
           {"description": "Whether to send notifications about the deletion of the event. Optional. The default is False.", "in": "query", "name": "sendNotifications", "type": "boolean"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}],
         "tags": ["events"]
       },
       "get": {
@@ -724,10 +702,7 @@
           {"description": "Time zone used in the response. Optional. The default is the time zone of the calendar.", "in": "query", "name": "timeZone", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Event"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/calendar.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}, {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"]}],
         "tags": ["events"]
       },
       "parameters": [
@@ -769,7 +744,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Event"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Event"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}],
         "tags": ["events"]
       },
       "put": {
@@ -802,7 +777,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Event"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Event"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}],
         "tags": ["events"]
       }
     },
@@ -862,10 +837,7 @@
           {"description": "Time zone used in the response. Optional. The default is the time zone of the calendar.", "in": "query", "name": "timeZone", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Events"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/calendar.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}, {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"]}],
         "tags": ["events"]
       },
       "parameters": [
@@ -898,7 +870,7 @@
           {"description": "Whether to send notifications about the change of the event's organizer. Optional. The default is False.", "in": "query", "name": "sendNotifications", "type": "boolean"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Event"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}],
         "tags": ["events"]
       }
     },
@@ -917,10 +889,7 @@
         "operationId": "calendar.channels.stop",
         "parameters": [{"in": "body", "name": "resource", "schema": {"$ref": "#/definitions/Channel"}}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/calendar.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}, {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"]}],
         "tags": ["channels"]
       }
     },
@@ -929,10 +898,7 @@
         "description": "Returns the color definitions for calendars and events.",
         "operationId": "calendar.colors.get",
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Colors"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/calendar.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}, {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"]}],
         "tags": ["colors"]
       },
       "parameters": [
@@ -960,10 +926,7 @@
         "operationId": "calendar.freebusy.query",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/FreeBusyRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/FreeBusyResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/calendar.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}, {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"]}],
         "tags": ["freebusy"]
       }
     },
@@ -997,10 +960,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CalendarList"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/calendar.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}, {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"]}],
         "tags": ["calendarList"]
       },
       "parameters": [
@@ -1025,7 +985,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CalendarListEntry"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CalendarListEntry"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}],
         "tags": ["calendarList"]
       }
     },
@@ -1069,10 +1029,7 @@
           {"in": "body", "name": "resource", "schema": {"$ref": "#/definitions/Channel"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Channel"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/calendar.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}, {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"]}],
         "tags": ["calendarList"]
       }
     },
@@ -1090,7 +1047,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}],
         "tags": ["calendarList"]
       },
       "get": {
@@ -1106,10 +1063,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CalendarListEntry"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/calendar.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}, {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"]}],
         "tags": ["calendarList"]
       },
       "parameters": [
@@ -1141,7 +1095,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CalendarListEntry"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CalendarListEntry"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}],
         "tags": ["calendarList"]
       },
       "put": {
@@ -1164,7 +1118,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CalendarListEntry"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CalendarListEntry"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}],
         "tags": ["calendarList"]
       }
     },
@@ -1189,10 +1143,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Settings"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/calendar.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}, {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"]}],
         "tags": ["settings"]
       },
       "parameters": [
@@ -1236,10 +1187,7 @@
           {"in": "body", "name": "resource", "schema": {"$ref": "#/definitions/Channel"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Channel"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/calendar.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}, {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"]}],
         "tags": ["settings"]
       }
     },
@@ -1249,10 +1197,7 @@
         "operationId": "calendar.settings.get",
         "parameters": [{"description": "The id of the user setting.", "in": "path", "name": "setting", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Setting"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar"], "Oauth2c": ["https://www.googleapis.com/auth/calendar"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/calendar.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/calendar"]}, {"Oauth2": ["https://www.googleapis.com/auth/calendar.readonly"]}],
         "tags": ["settings"]
       },
       "parameters": [

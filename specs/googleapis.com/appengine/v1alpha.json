@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "The App Engine Admin API enables developers to provision and manage their App Engine applications.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Google App Engine Admin",
     "version": "v1alpha",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://appengine.googleapis.com/$discovery/rest?version=v1alpha", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://appengine.googleapis.com/$discovery/rest?version=v1alpha", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "appengine"
@@ -21,25 +19,13 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {
         "https://www.googleapis.com/auth/appengine.admin": "View and manage your applications deployed on Google App Engine",
         "https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services",
         "https://www.googleapis.com/auth/cloud-platform.read-only": "View your data across Google Cloud Platform services"
       },
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {
-        "https://www.googleapis.com/auth/appengine.admin": "View and manage your applications deployed on Google App Engine",
-        "https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services",
-        "https://www.googleapis.com/auth/cloud-platform.read-only": "View your data across Google Cloud Platform services"
-      },
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -76,11 +62,7 @@
           {"description": "Controls the set of fields returned in the LIST response.", "enum": ["BASIC_CERTIFICATE", "FULL_CERTIFICATE"], "in": "query", "name": "view", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListAuthorizedCertificatesResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/appengine.admin"], "Oauth2c": ["https://www.googleapis.com/auth/appengine.admin"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/appengine.admin"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
         "tags": ["apps"]
       },
       "parameters": [
@@ -106,7 +88,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AuthorizedCertificate"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AuthorizedCertificate"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["apps"]
       }
     },
@@ -119,7 +101,7 @@
           {"description": "Part of `name`. See documentation of `appsId`.", "in": "path", "name": "authorizedCertificatesId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["apps"]
       },
       "get": {
@@ -131,11 +113,7 @@
           {"description": "Controls the set of fields returned in the GET response.", "enum": ["BASIC_CERTIFICATE", "FULL_CERTIFICATE"], "in": "query", "name": "view", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AuthorizedCertificate"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/appengine.admin"], "Oauth2c": ["https://www.googleapis.com/auth/appengine.admin"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/appengine.admin"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
         "tags": ["apps"]
       },
       "parameters": [
@@ -163,7 +141,7 @@
           {"description": "Standard field mask for the set of fields to be updated. Updates are only supported on the certificate_raw_data and display_name fields.", "in": "query", "name": "updateMask", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AuthorizedCertificate"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["apps"]
       }
     },
@@ -177,11 +155,7 @@
           {"description": "Continuation token for fetching the next page of results.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListAuthorizedDomainsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/appengine.admin"], "Oauth2c": ["https://www.googleapis.com/auth/appengine.admin"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/appengine.admin"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
         "tags": ["apps"]
       },
       "parameters": [
@@ -210,11 +184,7 @@
           {"description": "Continuation token for fetching the next page of results.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListDomainMappingsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/appengine.admin"], "Oauth2c": ["https://www.googleapis.com/auth/appengine.admin"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/appengine.admin"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
         "tags": ["apps"]
       },
       "parameters": [
@@ -246,7 +216,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["apps"]
       }
     },
@@ -259,7 +229,7 @@
           {"description": "Part of `name`. See documentation of `appsId`.", "in": "path", "name": "domainMappingsId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["apps"]
       },
       "get": {
@@ -270,11 +240,7 @@
           {"description": "Part of `name`. See documentation of `appsId`.", "in": "path", "name": "domainMappingsId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/DomainMapping"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/appengine.admin"], "Oauth2c": ["https://www.googleapis.com/auth/appengine.admin"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/appengine.admin"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
         "tags": ["apps"]
       },
       "parameters": [
@@ -308,7 +274,7 @@
           {"description": "Standard field mask for the set of fields to be updated.", "in": "query", "name": "updateMask", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["apps"]
       }
     },
@@ -323,11 +289,7 @@
           {"description": "The standard list page token.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListLocationsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/appengine.admin"], "Oauth2c": ["https://www.googleapis.com/auth/appengine.admin"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/appengine.admin"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
         "tags": ["apps"]
       },
       "parameters": [
@@ -355,11 +317,7 @@
           {"description": "Part of `name`. See documentation of `appsId`.", "in": "path", "name": "locationsId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Location"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/appengine.admin"], "Oauth2c": ["https://www.googleapis.com/auth/appengine.admin"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/appengine.admin"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
         "tags": ["apps"]
       },
       "parameters": [
@@ -389,11 +347,7 @@
           {"description": "The standard list page token.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListOperationsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/appengine.admin"], "Oauth2c": ["https://www.googleapis.com/auth/appengine.admin"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/appengine.admin"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
         "tags": ["apps"]
       },
       "parameters": [
@@ -421,11 +375,7 @@
           {"description": "Part of `name`. See documentation of `appsId`.", "in": "path", "name": "operationsId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/appengine.admin"], "Oauth2c": ["https://www.googleapis.com/auth/appengine.admin"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/appengine.admin"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
         "tags": ["apps"]
       },
       "parameters": [

@@ -11,7 +11,7 @@
     "version": "2.0.0",
     "x-apisguru-categories": ["marketing"],
     "x-logo": {"backgroundColor": "#4BC9C5", "url": "https://docs.jirafe.com/img/jrf-logo--white-100x36.a56c.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "swagger", "url": "https://event.jirafe.com/api-docs", "version": "1.2"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "swagger", "url": "https://event.jirafe.com/api-docs", "version": "1.2"}],
     "x-providerName": "jirafe.com",
     "x-preferred": true
   },

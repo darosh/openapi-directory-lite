@@ -6,14 +6,12 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Lets Android application developers access their Google Play accounts.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Google Play Developer",
     "version": "v2",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-apisguru-categories": ["developer_tools"],
     "x-logo": {"url": "https://www.gstatic.com/android/market_images/web/play_logo_x2.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/androidpublisher/v2/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/androidpublisher/v2/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "androidpublisher"
@@ -22,17 +20,9 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {"https://www.googleapis.com/auth/androidpublisher": "View and manage your Google Play Developer account"},
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {"https://www.googleapis.com/auth/androidpublisher": "View and manage your Google Play Developer account"},
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -66,7 +56,7 @@
         "operationId": "androidpublisher.inappproducts.batch",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/InappproductsBatchRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/InappproductsBatchResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["inappproducts"]
       }
     },
@@ -88,7 +78,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AppEdit"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AppEdit"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       }
     },
@@ -101,7 +91,7 @@
           {"description": "Unique identifier for this edit.", "in": "path", "name": "editId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       },
       "get": {
@@ -112,7 +102,7 @@
           {"description": "Unique identifier for this edit.", "in": "path", "name": "editId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AppEdit"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       },
       "parameters": [
@@ -133,7 +123,7 @@
           {"description": "Unique identifier for this edit.", "in": "path", "name": "editId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ApksListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       },
       "parameters": [
@@ -153,7 +143,7 @@
           {"description": "Unique identifier for this edit.", "in": "path", "name": "editId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Apk"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       }
     },
@@ -176,7 +166,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ApksAddExternallyHostedRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ApksAddExternallyHostedResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       }
     },
@@ -201,7 +191,7 @@
           {"enum": ["proguard"], "in": "path", "name": "deobfuscationFileType", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/DeobfuscationFilesUploadResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       }
     },
@@ -216,7 +206,7 @@
           {"enum": ["main", "patch"], "in": "path", "name": "expansionFileType", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ExpansionFile"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       },
       "parameters": [
@@ -239,7 +229,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ExpansionFile"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ExpansionFile"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       },
       "post": {
@@ -253,7 +243,7 @@
           {"enum": ["main", "patch"], "in": "path", "name": "expansionFileType", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ExpansionFilesUploadResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       },
       "put": {
@@ -267,7 +257,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ExpansionFile"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ExpansionFile"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       }
     },
@@ -281,7 +271,7 @@
           {"description": "The APK version code whose APK-specific listings should be read or modified.", "in": "path", "name": "apkVersionCode", "required": true, "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       },
       "get": {
@@ -293,7 +283,7 @@
           {"description": "The APK version code whose APK-specific listings should be read or modified.", "in": "path", "name": "apkVersionCode", "required": true, "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ApkListingsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       },
       "parameters": [
@@ -323,7 +313,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       },
       "get": {
@@ -342,7 +332,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ApkListing"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       },
       "parameters": [
@@ -371,7 +361,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ApkListing"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ApkListing"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       },
       "put": {
@@ -391,7 +381,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ApkListing"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ApkListing"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       }
     },
@@ -404,7 +394,7 @@
           {"description": "Unique identifier for this edit.", "in": "path", "name": "editId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AppDetails"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       },
       "parameters": [
@@ -425,7 +415,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AppDetails"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AppDetails"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       },
       "put": {
@@ -437,7 +427,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AppDetails"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AppDetails"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       }
     },
@@ -450,7 +440,7 @@
           {"description": "Unique identifier for this edit.", "in": "path", "name": "editId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       },
       "get": {
@@ -461,7 +451,7 @@
           {"description": "Unique identifier for this edit.", "in": "path", "name": "editId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListingsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       },
       "parameters": [
@@ -484,7 +474,7 @@
           {"description": "The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass \"de-AT\".", "in": "path", "name": "language", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       },
       "get": {
@@ -496,7 +486,7 @@
           {"description": "The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass \"de-AT\".", "in": "path", "name": "language", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Listing"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       },
       "parameters": [
@@ -524,7 +514,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Listing"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Listing"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       },
       "put": {
@@ -543,7 +533,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Listing"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Listing"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       }
     },
@@ -570,7 +560,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ImagesDeleteAllResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       },
       "get": {
@@ -595,7 +585,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ImagesListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       },
       "parameters": [
@@ -709,7 +699,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ImagesUploadResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       }
     },
@@ -737,7 +727,7 @@
           {"description": "Unique identifier an image within the set of images attached to this edit.", "in": "path", "name": "imageId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       },
       "parameters": [
@@ -759,7 +749,7 @@
           {"enum": ["alpha", "beta", "production", "rollout"], "in": "path", "name": "track", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Testers"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       },
       "parameters": [
@@ -780,7 +770,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Testers"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Testers"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       },
       "put": {
@@ -792,7 +782,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Testers"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Testers"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       }
     },
@@ -805,7 +795,7 @@
           {"description": "Unique identifier for this edit.", "in": "path", "name": "editId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TracksListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       },
       "parameters": [
@@ -828,7 +818,7 @@
           {"description": "The track type to read or modify.", "enum": ["alpha", "beta", "production", "rollout"], "in": "path", "name": "track", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Track"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       },
       "parameters": [
@@ -850,7 +840,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Track"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Track"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       },
       "put": {
@@ -863,7 +853,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Track"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Track"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       }
     },
@@ -885,7 +875,7 @@
           {"description": "Unique identifier for this edit.", "in": "path", "name": "editId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AppEdit"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       }
     },
@@ -907,7 +897,7 @@
           {"description": "Unique identifier for this edit.", "in": "path", "name": "editId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AppEdit"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["edits"]
       }
     },
@@ -946,7 +936,7 @@
           {"in": "query", "name": "token", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/InappproductsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["inappproducts"]
       },
       "parameters": [
@@ -972,7 +962,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/InAppProduct"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/InAppProduct"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["inappproducts"]
       }
     },
@@ -985,7 +975,7 @@
           {"description": "Unique identifier for the in-app product.", "in": "path", "name": "sku", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["inappproducts"]
       },
       "get": {
@@ -993,7 +983,7 @@
         "operationId": "androidpublisher.inappproducts.get",
         "parameters": [{"in": "path", "name": "packageName", "required": true, "type": "string"}, {"description": "Unique identifier for the in-app product.", "in": "path", "name": "sku", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/InAppProduct"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["inappproducts"]
       },
       "parameters": [
@@ -1020,7 +1010,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/InAppProduct"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/InAppProduct"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["inappproducts"]
       },
       "put": {
@@ -1038,7 +1028,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/InAppProduct"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/InAppProduct"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["inappproducts"]
       }
     },
@@ -1052,7 +1042,7 @@
           {"description": "The token provided to the user's device when the inapp product was purchased.", "in": "path", "name": "token", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ProductPurchase"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["purchases"]
       },
       "parameters": [
@@ -1075,7 +1065,7 @@
           {"description": "The token provided to the user's device when the subscription was purchased.", "in": "path", "name": "token", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SubscriptionPurchase"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["purchases"]
       },
       "parameters": [
@@ -1107,7 +1097,7 @@
           {"description": "The token provided to the user's device when the subscription was purchased.", "in": "path", "name": "token", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["purchases"]
       }
     },
@@ -1131,7 +1121,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SubscriptionPurchasesDeferRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SubscriptionPurchasesDeferResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["purchases"]
       }
     },
@@ -1154,7 +1144,7 @@
           {"description": "The token provided to the user's device when the subscription was purchased.", "in": "path", "name": "token", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["purchases"]
       }
     },
@@ -1177,7 +1167,7 @@
           {"description": "The token provided to the user's device when the subscription was purchased.", "in": "path", "name": "token", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["purchases"]
       }
     },
@@ -1204,7 +1194,7 @@
           {"in": "query", "name": "token", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/VoidedPurchasesListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["purchases"]
       },
       "parameters": [
@@ -1229,7 +1219,7 @@
           {"in": "query", "name": "translationLanguage", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ReviewsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["reviews"]
       },
       "parameters": [
@@ -1252,7 +1242,7 @@
           {"in": "query", "name": "translationLanguage", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Review"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["reviews"]
       },
       "parameters": [
@@ -1284,7 +1274,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ReviewsReplyRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ReviewsReplyResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"], "Oauth2c": ["https://www.googleapis.com/auth/androidpublisher"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/androidpublisher"]}],
         "tags": ["reviews"]
       }
     }
@@ -1605,7 +1595,7 @@
       "properties": {
         "autoRenewing": {"description": "Whether the subscription will automatically be renewed when it reaches its current expiry time.", "type": "boolean"},
         "cancelReason": {
-          "description": "The reason why a subscription was cancelled or is not auto-renewing. Possible values are:  \n- User cancelled the subscription \n- Subscription was cancelled by the system, for example because of a billing problem",
+          "description": "The reason why a subscription was cancelled or is not auto-renewing. Possible values are:  \n- User cancelled the subscription \n- Subscription was cancelled by the system, for example because of a billing problem \n- Subscription was replaced with a new subscription",
           "format": "int32",
           "type": "integer"
         },

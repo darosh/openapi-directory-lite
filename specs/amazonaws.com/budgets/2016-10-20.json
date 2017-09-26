@@ -327,7 +327,8 @@
           "200": {"description": "Success", "schema": {"$ref": "#/definitions/UpdateNotificationResponse"}},
           "480": {"description": "InternalErrorException", "schema": {"$ref": "#/definitions/InternalErrorException"}},
           "481": {"description": "InvalidParameterException", "schema": {"$ref": "#/definitions/InvalidParameterException"}},
-          "482": {"description": "NotFoundException", "schema": {"$ref": "#/definitions/NotFoundException"}}
+          "482": {"description": "NotFoundException", "schema": {"$ref": "#/definitions/NotFoundException"}},
+          "483": {"description": "DuplicateRecordException", "schema": {"$ref": "#/definitions/DuplicateRecordException"}}
         },
         "parameters": [{"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/UpdateNotificationRequest"}}]
       },
@@ -351,7 +352,8 @@
           "200": {"description": "Success", "schema": {"$ref": "#/definitions/UpdateSubscriberResponse"}},
           "480": {"description": "InternalErrorException", "schema": {"$ref": "#/definitions/InternalErrorException"}},
           "481": {"description": "InvalidParameterException", "schema": {"$ref": "#/definitions/InvalidParameterException"}},
-          "482": {"description": "NotFoundException", "schema": {"$ref": "#/definitions/NotFoundException"}}
+          "482": {"description": "NotFoundException", "schema": {"$ref": "#/definitions/NotFoundException"}},
+          "483": {"description": "DuplicateRecordException", "schema": {"$ref": "#/definitions/DuplicateRecordException"}}
         },
         "parameters": [{"name": "body", "in": "body", "required": true, "schema": {"$ref": "#/definitions/UpdateSubscriberRequest"}}]
       },

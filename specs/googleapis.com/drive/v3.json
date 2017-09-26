@@ -6,14 +6,12 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Drive",
     "version": "v3",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-apisguru-categories": ["storage"],
     "x-logo": {"url": "https://www.gstatic.com/images/icons/material/product/2x/drive_32dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/drive/v3/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/drive/v3/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "drive"
@@ -22,7 +20,7 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {
         "https://www.googleapis.com/auth/drive": "View and manage the files in your Google Drive",
@@ -34,23 +32,6 @@
         "https://www.googleapis.com/auth/drive.readonly": "View the files in your Google Drive",
         "https://www.googleapis.com/auth/drive.scripts": "Modify your Google Apps Script scripts' behavior"
       },
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {
-        "https://www.googleapis.com/auth/drive": "View and manage the files in your Google Drive",
-        "https://www.googleapis.com/auth/drive.appdata": "View and manage its own configuration data in your Google Drive",
-        "https://www.googleapis.com/auth/drive.file": "View and manage Google Drive files and folders that you have opened or created with this app",
-        "https://www.googleapis.com/auth/drive.metadata": "View and manage metadata of files in your Google Drive",
-        "https://www.googleapis.com/auth/drive.metadata.readonly": "View metadata for files in your Google Drive",
-        "https://www.googleapis.com/auth/drive.photos.readonly": "View the photos, videos and albums in your Google Photos",
-        "https://www.googleapis.com/auth/drive.readonly": "View the files in your Google Drive",
-        "https://www.googleapis.com/auth/drive.scripts": "Modify your Google Apps Script scripts' behavior"
-      },
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -76,13 +57,13 @@
         "operationId": "drive.about.get",
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/About"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/drive"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"]}
         ],
         "tags": ["about"]
       },
@@ -142,13 +123,13 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ChangeList"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/drive"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"]}
         ],
         "tags": ["changes"]
       },
@@ -172,13 +153,13 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/StartPageToken"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/drive"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"]}
         ],
         "tags": ["changes"]
       },
@@ -248,13 +229,13 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Channel"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/drive"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"]}
         ],
         "tags": ["changes"]
       }
@@ -275,13 +256,13 @@
         "parameters": [{"in": "body", "name": "resource", "schema": {"$ref": "#/definitions/Channel"}}],
         "responses": {"200": {"description": "Successful response"}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/drive"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"]}
         ],
         "tags": ["channels"]
       }
@@ -322,13 +303,13 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/FileList"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/drive"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"]}
         ],
         "tags": ["files"]
       },
@@ -360,11 +341,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/File"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/File"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]}],
         "tags": ["files"]
       }
     },
@@ -377,11 +354,7 @@
           {"default": "drive", "description": "The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'.", "in": "query", "name": "space", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GeneratedIds"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]}],
         "tags": ["files"]
       },
       "parameters": [
@@ -399,7 +372,7 @@
         "description": "Permanently deletes all of the user's trashed files.",
         "operationId": "drive.files.emptyTrash",
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"]}],
         "tags": ["files"]
       },
       "parameters": [
@@ -421,11 +394,7 @@
           {"default": false, "description": "Whether the requesting application supports Team Drives.", "in": "query", "name": "supportsTeamDrives", "type": "boolean"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]}],
         "tags": ["files"]
       },
       "get": {
@@ -444,13 +413,13 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/File"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/drive"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"]}
         ],
         "tags": ["files"]
       },
@@ -479,11 +448,11 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/File"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.scripts"], "Oauth2c": ["https://www.googleapis.com/auth/drive.scripts"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/drive"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.scripts"]}
         ],
         "tags": ["files"]
       }
@@ -500,11 +469,7 @@
           {"description": "The minimum value of 'modifiedTime' for the result comments (RFC 3339 date-time).", "in": "query", "name": "startModifiedTime", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CommentList"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"]}],
         "tags": ["comments"]
       },
       "parameters": [
@@ -521,10 +486,7 @@
         "operationId": "drive.comments.create",
         "parameters": [{"description": "The ID of the file.", "in": "path", "name": "fileId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Comment"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Comment"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]}],
         "tags": ["comments"]
       }
     },
@@ -537,10 +499,7 @@
           {"description": "The ID of the comment.", "in": "path", "name": "commentId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]}],
         "tags": ["comments"]
       },
       "get": {
@@ -552,11 +511,7 @@
           {"default": false, "description": "Whether to return deleted comments. Deleted comments will not include their original content.", "in": "query", "name": "includeDeleted", "type": "boolean"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Comment"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"]}],
         "tags": ["comments"]
       },
       "parameters": [
@@ -577,10 +532,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Comment"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Comment"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]}],
         "tags": ["comments"]
       }
     },
@@ -596,11 +548,7 @@
           {"description": "The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ReplyList"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"]}],
         "tags": ["replies"]
       },
       "parameters": [
@@ -621,10 +569,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Reply"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Reply"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]}],
         "tags": ["replies"]
       }
     },
@@ -638,10 +583,7 @@
           {"description": "The ID of the reply.", "in": "path", "name": "replyId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]}],
         "tags": ["replies"]
       },
       "get": {
@@ -654,11 +596,7 @@
           {"default": false, "description": "Whether to return deleted replies. Deleted replies will not include their original content.", "in": "query", "name": "includeDeleted", "type": "boolean"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Reply"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"]}],
         "tags": ["replies"]
       },
       "parameters": [
@@ -680,10 +618,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Reply"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Reply"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]}],
         "tags": ["replies"]
       }
     },
@@ -716,10 +651,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/File"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/drive"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"]}
         ],
         "tags": ["files"]
       }
@@ -733,11 +668,7 @@
           {"description": "The MIME type of the format requested for this export.", "in": "query", "name": "mimeType", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"]}],
         "tags": ["files"]
       },
       "parameters": [
@@ -769,12 +700,12 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PermissionList"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/drive"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"]}
         ],
         "tags": ["permissions"]
       },
@@ -810,10 +741,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Permission"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Permission"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]}],
         "tags": ["permissions"]
       }
     },
@@ -827,10 +755,7 @@
           {"default": false, "description": "Whether the requesting application supports Team Drives.", "in": "query", "name": "supportsTeamDrives", "type": "boolean"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]}],
         "tags": ["permissions"]
       },
       "get": {
@@ -843,12 +768,12 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Permission"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/drive"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"]}
         ],
         "tags": ["permissions"]
       },
@@ -879,10 +804,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Permission"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Permission"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]}],
         "tags": ["permissions"]
       }
     },
@@ -897,13 +819,13 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/RevisionList"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/drive"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"]}
         ],
         "tags": ["revisions"]
       },
@@ -926,11 +848,7 @@
           {"description": "The ID of the revision.", "in": "path", "name": "revisionId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]}],
         "tags": ["revisions"]
       },
       "get": {
@@ -949,13 +867,13 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Revision"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/drive"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"]}
         ],
         "tags": ["revisions"]
       },
@@ -977,11 +895,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Revision"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Revision"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]}],
         "tags": ["revisions"]
       }
     },
@@ -1012,13 +926,13 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Channel"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.appdata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"], "Oauth2c": ["https://www.googleapis.com/auth/drive.file"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata"], "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.photos.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/drive"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.appdata"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.file"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"]}
         ],
         "tags": ["files"]
       }
@@ -1032,10 +946,7 @@
           {"description": "Page token for Team Drives.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TeamDriveList"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"]}],
         "tags": ["teamdrives"]
       },
       "parameters": [
@@ -1061,7 +972,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/TeamDrive"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TeamDrive"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"]}],
         "tags": ["teamdrives"]
       }
     },
@@ -1071,7 +982,7 @@
         "operationId": "drive.teamdrives.delete",
         "parameters": [{"description": "The ID of the Team Drive", "in": "path", "name": "teamDriveId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"]}],
         "tags": ["teamdrives"]
       },
       "get": {
@@ -1079,10 +990,7 @@
         "operationId": "drive.teamdrives.get",
         "parameters": [{"description": "The ID of the Team Drive", "in": "path", "name": "teamDriveId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TeamDrive"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"]}, {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"]}],
         "tags": ["teamdrives"]
       },
       "parameters": [
@@ -1099,7 +1007,7 @@
         "operationId": "drive.teamdrives.update",
         "parameters": [{"description": "The ID of the Team Drive", "in": "path", "name": "teamDriveId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/TeamDrive"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TeamDrive"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"]}],
         "tags": ["teamdrives"]
       }
     }

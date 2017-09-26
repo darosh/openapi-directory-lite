@@ -6,14 +6,12 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Provides natural language understanding technologies to developers. Examples include sentiment analysis, entity recognition, entity sentiment analysis, and text annotations.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Google Cloud Natural Language",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-apisguru-categories": ["text"],
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://language.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://language.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "language"
@@ -22,23 +20,12 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {
         "https://www.googleapis.com/auth/cloud-language": "Apply machine learning models to reveal the structure and meaning of text",
         "https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services"
       },
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {
-        "https://www.googleapis.com/auth/cloud-language": "Apply machine learning models to reveal the structure and meaning of text",
-        "https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services"
-      },
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -85,10 +72,32 @@
         "operationId": "language.documents.analyzeEntities",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AnalyzeEntitiesRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AnalyzeEntitiesResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-language"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-language"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-language"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "tags": ["documents"]
+      }
+    },
+    "/v1/documents:analyzeEntitySentiment": {
+      "parameters": [
+        {"$ref": "#/parameters/$.xgafv"},
+        {"$ref": "#/parameters/access_token"},
+        {"$ref": "#/parameters/alt"},
+        {"$ref": "#/parameters/bearer_token"},
+        {"$ref": "#/parameters/callback"},
+        {"$ref": "#/parameters/fields"},
+        {"$ref": "#/parameters/key"},
+        {"$ref": "#/parameters/oauth_token"},
+        {"$ref": "#/parameters/pp"},
+        {"$ref": "#/parameters/prettyPrint"},
+        {"$ref": "#/parameters/quotaUser"},
+        {"$ref": "#/parameters/uploadType"},
+        {"$ref": "#/parameters/upload_protocol"}
+      ],
+      "post": {
+        "description": "Finds entities, similar to AnalyzeEntities in the text and analyzes\nsentiment associated with each entity and its mentions.",
+        "operationId": "language.documents.analyzeEntitySentiment",
+        "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AnalyzeEntitySentimentRequest"}}],
+        "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AnalyzeEntitySentimentResponse"}}},
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-language"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["documents"]
       }
     },
@@ -113,10 +122,7 @@
         "operationId": "language.documents.analyzeSentiment",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AnalyzeSentimentRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AnalyzeSentimentResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-language"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-language"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-language"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["documents"]
       }
     },
@@ -141,10 +147,7 @@
         "operationId": "language.documents.analyzeSyntax",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AnalyzeSyntaxRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AnalyzeSyntaxResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-language"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-language"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-language"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["documents"]
       }
     },
@@ -169,10 +172,7 @@
         "operationId": "language.documents.annotateText",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AnnotateTextRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AnnotateTextResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-language"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-language"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-language"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["documents"]
       }
     }
@@ -190,6 +190,25 @@
       "description": "The entity analysis response message.",
       "properties": {
         "entities": {"description": "The recognized entities in the input document.", "items": {"$ref": "#/definitions/Entity"}, "type": "array"},
+        "language": {
+          "description": "The language of the text, which will be the same as the language specified\nin the request or, if not specified, the automatically-detected language.\nSee Document.language field for more details.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AnalyzeEntitySentimentRequest": {
+      "description": "The entity-level sentiment analysis request message.",
+      "properties": {
+        "document": {"$ref": "#/definitions/Document", "description": "Input document."},
+        "encodingType": {"description": "The encoding type used by the API to calculate offsets.", "enum": ["NONE", "UTF8", "UTF16", "UTF32"], "type": "string"}
+      },
+      "type": "object"
+    },
+    "AnalyzeEntitySentimentResponse": {
+      "description": "The entity-level sentiment analysis response message.",
+      "properties": {
+        "entities": {"description": "The recognized entities in the input document with associated sentiments.", "items": {"$ref": "#/definitions/Entity"}, "type": "array"},
         "language": {
           "description": "The language of the text, which will be the same as the language specified\nin the request or, if not specified, the automatically-detected language.\nSee Document.language field for more details.",
           "type": "string"
@@ -355,7 +374,13 @@
             "NOMCSUBJPASS",
             "NUMC",
             "COP",
-            "DISLOCATED"
+            "DISLOCATED",
+            "ASP",
+            "GMOD",
+            "GOBJ",
+            "INFMOD",
+            "MES",
+            "NCOMP"
           ],
           "type": "string"
         }
@@ -393,13 +418,24 @@
           "format": "float",
           "type": "number"
         },
+        "sentiment": {
+          "$ref": "#/definitions/Sentiment",
+          "description": "For calls to AnalyzeEntitySentiment or if\nAnnotateTextRequest.Features.extract_entity_sentiment is set to\ntrue, this field will contain the aggregate sentiment expressed for this\nentity in the provided document."
+        },
         "type": {"description": "The entity type.", "enum": ["UNKNOWN", "PERSON", "LOCATION", "ORGANIZATION", "EVENT", "WORK_OF_ART", "CONSUMER_GOOD", "OTHER"], "type": "string"}
       },
       "type": "object"
     },
     "EntityMention": {
       "description": "Represents a mention for an entity in the text. Currently, proper noun\nmentions are supported.",
-      "properties": {"text": {"$ref": "#/definitions/TextSpan", "description": "The mention text."}, "type": {"description": "The type of the entity mention.", "enum": ["TYPE_UNKNOWN", "PROPER", "COMMON"], "type": "string"}},
+      "properties": {
+        "sentiment": {
+          "$ref": "#/definitions/Sentiment",
+          "description": "For calls to AnalyzeEntitySentiment or if\nAnnotateTextRequest.Features.extract_entity_sentiment is set to\ntrue, this field will contain the sentiment expressed for this mention of\nthe entity in the provided document."
+        },
+        "text": {"$ref": "#/definitions/TextSpan", "description": "The mention text."},
+        "type": {"description": "The type of the entity mention.", "enum": ["TYPE_UNKNOWN", "PROPER", "COMMON"], "type": "string"}
+      },
       "type": "object"
     },
     "Features": {
@@ -407,6 +443,7 @@
       "properties": {
         "extractDocumentSentiment": {"description": "Extract document-level sentiment.", "type": "boolean"},
         "extractEntities": {"description": "Extract entities.", "type": "boolean"},
+        "extractEntitySentiment": {"description": "Extract entities and their associated sentiment.", "type": "boolean"},
         "extractSyntax": {"description": "Extract syntax information.", "type": "boolean"}
       },
       "type": "object"

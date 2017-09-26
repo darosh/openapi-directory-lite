@@ -59,6 +59,5 @@
         }
       }
     }
-  },
-  "x-servers": [{"url": "http://wmataapimgmt01.azure-api.net"}, {"url": "https://wmataapimgmt01.azure-api.net"}]
+  }
 }

@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Provides access to information about profiles and contacts.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Google People",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://people.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://people.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "people"
@@ -21,7 +19,7 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {
         "https://www.googleapis.com/auth/contacts": "Manage your contacts",
@@ -34,24 +32,6 @@
         "https://www.googleapis.com/auth/userinfo.email": "View your email address",
         "https://www.googleapis.com/auth/userinfo.profile": "View your basic profile info"
       },
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {
-        "https://www.googleapis.com/auth/contacts": "Manage your contacts",
-        "https://www.googleapis.com/auth/contacts.readonly": "View your contacts",
-        "https://www.googleapis.com/auth/plus.login": "Know the list of people in your circles, your age range, and language",
-        "https://www.googleapis.com/auth/user.addresses.read": "View your street addresses",
-        "https://www.googleapis.com/auth/user.birthday.read": "View your complete date of birth",
-        "https://www.googleapis.com/auth/user.emails.read": "View your email addresses",
-        "https://www.googleapis.com/auth/user.phonenumbers.read": "View your phone numbers",
-        "https://www.googleapis.com/auth/userinfo.email": "View your email address",
-        "https://www.googleapis.com/auth/userinfo.profile": "View your basic profile info"
-      },
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -92,10 +72,7 @@
           {"description": "A sync token, returned by a previous call to `contactgroups.list`.\nOnly resources changed since the sync token was created will be returned.", "in": "query", "name": "syncToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListContactGroupsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/contacts"], "Oauth2c": ["https://www.googleapis.com/auth/contacts"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/contacts.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/contacts.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/contacts"]}, {"Oauth2": ["https://www.googleapis.com/auth/contacts.readonly"]}],
         "tags": ["contactGroups"]
       },
       "parameters": [
@@ -118,7 +95,7 @@
         "operationId": "people.contactGroups.create",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CreateContactGroupRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ContactGroup"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/contacts"], "Oauth2c": ["https://www.googleapis.com/auth/contacts"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/contacts"]}],
         "tags": ["contactGroups"]
       }
     },
@@ -131,10 +108,7 @@
           {"collectionFormat": "multi", "description": "The resource names of the contact groups to get.", "in": "query", "items": {"type": "string"}, "name": "resourceNames", "type": "array"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/BatchGetContactGroupsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/contacts"], "Oauth2c": ["https://www.googleapis.com/auth/contacts"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/contacts.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/contacts.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/contacts"]}, {"Oauth2": ["https://www.googleapis.com/auth/contacts.readonly"]}],
         "tags": ["contactGroups"]
       },
       "parameters": [
@@ -181,15 +155,15 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GetPeopleResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/contacts"], "Oauth2c": ["https://www.googleapis.com/auth/contacts"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/contacts.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/contacts.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/user.addresses.read"], "Oauth2c": ["https://www.googleapis.com/auth/user.addresses.read"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/user.birthday.read"], "Oauth2c": ["https://www.googleapis.com/auth/user.birthday.read"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/user.emails.read"], "Oauth2c": ["https://www.googleapis.com/auth/user.emails.read"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/user.phonenumbers.read"], "Oauth2c": ["https://www.googleapis.com/auth/user.phonenumbers.read"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.profile"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.profile"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/contacts"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/contacts.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/user.addresses.read"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/user.birthday.read"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/user.emails.read"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/user.phonenumbers.read"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.profile"]}
         ],
         "tags": ["people"]
       },
@@ -230,7 +204,7 @@
         "operationId": "people.people.createContact",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Person"}}, {"description": "The resource name of the owning person resource.", "in": "query", "name": "parent", "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Person"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/contacts"], "Oauth2c": ["https://www.googleapis.com/auth/contacts"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/contacts"]}],
         "tags": ["people"]
       }
     },
@@ -243,7 +217,7 @@
           {"description": "The resource name of the contact group to delete.", "in": "path", "name": "resourceName", "required": true, "type": "string", "x-reservedExpansion": true}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/contacts"], "Oauth2c": ["https://www.googleapis.com/auth/contacts"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/contacts"]}],
         "tags": ["contactGroups"]
       },
       "get": {
@@ -261,15 +235,15 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ContactGroup"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/contacts"], "Oauth2c": ["https://www.googleapis.com/auth/contacts"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/contacts.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/contacts.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/user.addresses.read"], "Oauth2c": ["https://www.googleapis.com/auth/user.addresses.read"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/user.birthday.read"], "Oauth2c": ["https://www.googleapis.com/auth/user.birthday.read"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/user.emails.read"], "Oauth2c": ["https://www.googleapis.com/auth/user.emails.read"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/user.phonenumbers.read"], "Oauth2c": ["https://www.googleapis.com/auth/user.phonenumbers.read"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.email"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.profile"], "Oauth2c": ["https://www.googleapis.com/auth/userinfo.profile"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/contacts"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/contacts.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/user.addresses.read"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/user.birthday.read"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/user.emails.read"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/user.phonenumbers.read"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.email"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/userinfo.profile"]}
         ],
         "tags": ["contactGroups"]
       },
@@ -303,7 +277,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ContactGroup"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/contacts"], "Oauth2c": ["https://www.googleapis.com/auth/contacts"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/contacts"]}],
         "tags": ["contactGroups"]
       }
     },
@@ -338,10 +312,7 @@
           {"description": "A sync token, returned by a previous call to `people.connections.list`.\nOnly resources changed since the sync token was created will be returned.", "in": "query", "name": "syncToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListConnectionsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/contacts"], "Oauth2c": ["https://www.googleapis.com/auth/contacts"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/contacts.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/contacts.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/contacts"]}, {"Oauth2": ["https://www.googleapis.com/auth/contacts.readonly"]}],
         "tags": ["people"]
       },
       "parameters": [
@@ -384,7 +355,7 @@
           {"description": "The resource name of the contact group to modify.", "in": "path", "name": "resourceName", "required": true, "type": "string", "x-reservedExpansion": true}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ModifyContactGroupMembersResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/contacts"], "Oauth2c": ["https://www.googleapis.com/auth/contacts"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/contacts"]}],
         "tags": ["contactGroups"]
       }
     },
@@ -394,7 +365,7 @@
         "operationId": "people.people.deleteContact",
         "parameters": [{"description": "The resource name of the contact to delete.", "in": "path", "name": "resourceName", "required": true, "type": "string", "x-reservedExpansion": true}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/contacts"], "Oauth2c": ["https://www.googleapis.com/auth/contacts"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/contacts"]}],
         "tags": ["people"]
       },
       "parameters": [
@@ -450,7 +421,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Person"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/contacts"], "Oauth2c": ["https://www.googleapis.com/auth/contacts"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/contacts"]}],
         "tags": ["people"]
       }
     }
@@ -836,6 +807,7 @@
     "Photo": {
       "description": "A person's read-only photo. A picture shown next to the person's name to\nhelp others recognize the person.",
       "properties": {
+        "default": {"description": "True if the photo is a default photo;\nfalse if the photo is a user-provided photo.", "type": "boolean"},
         "metadata": {"$ref": "#/definitions/FieldMetadata", "description": "Metadata about the photo."},
         "url": {
           "description": "The URL of the photo. You can change the desired size by appending a query\nparameter `sz=`<var>size</var> at the end of the url. Example:\n`https://lh3.googleusercontent.com/-T_wVWLlmg7w/AAAAAAAAAAI/AAAAAAAABa8/00gzXvDBYqw/s100/photo.jpg?sz=50`",

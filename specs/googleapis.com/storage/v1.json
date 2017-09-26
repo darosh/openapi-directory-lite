@@ -6,14 +6,12 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Stores and retrieves potentially large, immutable data objects.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Cloud Storage",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-apisguru-categories": ["storage"],
     "x-logo": {"url": "https://cloud.google.com/storage/images/cloud-storage-logo.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/storage/v1/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/storage/v1/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "storage"
@@ -22,7 +20,7 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services",
@@ -31,20 +29,6 @@
         "https://www.googleapis.com/auth/devstorage.read_only": "View your data in Google Cloud Storage",
         "https://www.googleapis.com/auth/devstorage.read_write": "Manage your data in Google Cloud Storage"
       },
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {
-        "https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services",
-        "https://www.googleapis.com/auth/cloud-platform.read-only": "View your data across Google Cloud Platform services",
-        "https://www.googleapis.com/auth/devstorage.full_control": "Manage your data and permissions in Google Cloud Storage",
-        "https://www.googleapis.com/auth/devstorage.read_only": "View your data in Google Cloud Storage",
-        "https://www.googleapis.com/auth/devstorage.read_write": "Manage your data in Google Cloud Storage"
-      },
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -69,7 +53,6 @@
         "description": "Retrieves a list of buckets for a given project.",
         "operationId": "storage.buckets.list",
         "parameters": [
-          {"description": "A valid API project identifier.", "in": "query", "name": "project", "required": true, "type": "string"},
           {
             "default": 1000,
             "description": "Maximum number of buckets to return in a single response. The service will use this parameter or 1,000 items, whichever is smaller.",
@@ -80,15 +63,17 @@
           },
           {"description": "A previously-returned page token representing part of the larger set of results to view.", "in": "query", "name": "pageToken", "type": "string"},
           {"description": "Filter results to buckets whose names begin with this prefix.", "in": "query", "name": "prefix", "type": "string"},
-          {"description": "Set of properties to return. Defaults to noAcl.", "enum": ["full", "noAcl"], "in": "query", "name": "projection", "type": "string"}
+          {"description": "A valid API project identifier.", "in": "query", "name": "project", "required": true, "type": "string"},
+          {"description": "Set of properties to return. Defaults to noAcl.", "enum": ["full", "noAcl"], "in": "query", "name": "projection", "type": "string"},
+          {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Buckets"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_only"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_write"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"]}
         ],
         "tags": ["buckets"]
       },
@@ -105,7 +90,7 @@
         "description": "Creates a new bucket.",
         "operationId": "storage.buckets.insert",
         "parameters": [
-          {"description": "A valid API project identifier.", "in": "query", "name": "project", "required": true, "type": "string"},
+          {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Bucket"}},
           {"description": "Apply a predefined set of access controls to this bucket.", "enum": ["authenticatedRead", "private", "projectPrivate", "publicRead", "publicReadWrite"], "in": "query", "name": "predefinedAcl", "type": "string"},
           {
             "description": "Apply a predefined set of default object access controls to this bucket.",
@@ -114,6 +99,7 @@
             "name": "predefinedDefaultObjectAcl",
             "type": "string"
           },
+          {"description": "A valid API project identifier.", "in": "query", "name": "project", "required": true, "type": "string"},
           {
             "description": "Set of properties to return. Defaults to noAcl, unless the bucket resource specifies acl or defaultObjectAcl properties, when it defaults to full.",
             "enum": ["full", "noAcl"],
@@ -121,14 +107,10 @@
             "name": "projection",
             "type": "string"
           },
-          {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Bucket"}}
+          {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Bucket"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_write"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"]}],
         "tags": ["buckets"]
       }
     },
@@ -143,11 +125,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_write"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"]}],
         "tags": ["buckets"]
       },
       "get": {
@@ -162,11 +140,11 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Bucket"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_only"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_write"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"]}
         ],
         "tags": ["buckets"]
       },
@@ -199,10 +177,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Bucket"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}],
         "tags": ["buckets"]
       },
       "put": {
@@ -225,10 +200,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Bucket"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}],
         "tags": ["buckets"]
       }
     },
@@ -241,10 +213,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/BucketAccessControls"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}],
         "tags": ["bucketAccessControls"]
       },
       "parameters": [
@@ -265,10 +234,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/BucketAccessControl"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}],
         "tags": ["bucketAccessControls"]
       }
     },
@@ -288,10 +254,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}],
         "tags": ["bucketAccessControls"]
       },
       "get": {
@@ -309,10 +272,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/BucketAccessControl"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}],
         "tags": ["bucketAccessControls"]
       },
       "parameters": [
@@ -340,10 +300,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/BucketAccessControl"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}],
         "tags": ["bucketAccessControls"]
       },
       "put": {
@@ -362,10 +319,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/BucketAccessControl"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}],
         "tags": ["bucketAccessControls"]
       }
     },
@@ -380,10 +334,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ObjectAccessControls"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}],
         "tags": ["defaultObjectAccessControls"]
       },
       "parameters": [
@@ -404,10 +355,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ObjectAccessControl"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}],
         "tags": ["defaultObjectAccessControls"]
       }
     },
@@ -427,10 +375,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}],
         "tags": ["defaultObjectAccessControls"]
       },
       "get": {
@@ -448,10 +393,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ObjectAccessControl"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}],
         "tags": ["defaultObjectAccessControls"]
       },
       "parameters": [
@@ -479,10 +421,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ObjectAccessControl"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}],
         "tags": ["defaultObjectAccessControls"]
       },
       "put": {
@@ -501,10 +440,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ObjectAccessControl"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}],
         "tags": ["defaultObjectAccessControls"]
       }
     },
@@ -518,11 +454,11 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Policy"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_only"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_write"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"]}
         ],
         "tags": ["buckets"]
       },
@@ -544,11 +480,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Policy"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_write"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"]}],
         "tags": ["buckets"]
       }
     },
@@ -563,11 +495,11 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TestIamPermissionsResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_only"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_write"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"]}
         ],
         "tags": ["buckets"]
       },
@@ -591,11 +523,11 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Notifications"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_only"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_write"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"]}
         ],
         "tags": ["notifications"]
       },
@@ -617,11 +549,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Notification"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_write"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"]}],
         "tags": ["notifications"]
       }
     },
@@ -635,11 +563,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_write"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"]}],
         "tags": ["notifications"]
       },
       "get": {
@@ -652,11 +576,11 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Notification"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_only"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_write"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"]}
         ],
         "tags": ["notifications"]
       },
@@ -698,11 +622,11 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Objects"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_only"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_write"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"]}
         ],
         "tags": ["objects"]
       },
@@ -765,11 +689,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Object"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_write"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"]}],
         "tags": ["objects"]
       }
     },
@@ -811,11 +731,11 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Channel"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_only"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_write"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"]}
         ],
         "tags": ["objects"]
       }
@@ -845,11 +765,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_write"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"]}],
         "tags": ["objects"]
       },
       "get": {
@@ -878,11 +794,11 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Object"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_only"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_write"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"]}
         ],
         "tags": ["objects"]
       },
@@ -928,10 +844,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Object"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}],
         "tags": ["objects"]
       },
       "put": {
@@ -967,10 +880,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Object"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}],
         "tags": ["objects"]
       }
     },
@@ -985,10 +895,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ObjectAccessControls"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}],
         "tags": ["objectAccessControls"]
       },
       "parameters": [
@@ -1011,10 +918,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ObjectAccessControl"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}],
         "tags": ["objectAccessControls"]
       }
     },
@@ -1036,10 +940,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}],
         "tags": ["objectAccessControls"]
       },
       "get": {
@@ -1059,10 +960,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ObjectAccessControl"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}],
         "tags": ["objectAccessControls"]
       },
       "parameters": [
@@ -1092,10 +990,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ObjectAccessControl"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}],
         "tags": ["objectAccessControls"]
       },
       "put": {
@@ -1116,10 +1011,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ObjectAccessControl"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}],
         "tags": ["objectAccessControls"]
       }
     },
@@ -1135,11 +1027,11 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Policy"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_only"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_write"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"]}
         ],
         "tags": ["objects"]
       },
@@ -1163,11 +1055,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Policy"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_write"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"]}],
         "tags": ["objects"]
       }
     },
@@ -1184,11 +1072,11 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TestIamPermissionsResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_only"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_write"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"]}
         ],
         "tags": ["objects"]
       },
@@ -1242,11 +1130,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Object"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_write"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"]}],
         "tags": ["objects"]
       }
     },
@@ -1311,11 +1195,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Object"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_write"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"]}],
         "tags": ["objects"]
       }
     },
@@ -1392,11 +1272,7 @@
           {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/RewriteResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_write"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]}, {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"]}],
         "tags": ["objects"]
       }
     },
@@ -1416,11 +1292,11 @@
         "parameters": [{"in": "body", "name": "resource", "schema": {"$ref": "#/definitions/Channel"}}],
         "responses": {"200": {"description": "Successful response"}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_only"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_write"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"]}
         ],
         "tags": ["channels"]
       }
@@ -1429,14 +1305,17 @@
       "get": {
         "description": "Get the email address of this project's Google Cloud Storage service account.",
         "operationId": "storage.projects.serviceAccount.get",
-        "parameters": [{"description": "Project ID", "in": "path", "name": "projectId", "required": true, "type": "string"}],
+        "parameters": [
+          {"description": "Project ID", "in": "path", "name": "projectId", "required": true, "type": "string"},
+          {"description": "The project to be billed for this request, for Requester Pays buckets.", "in": "query", "name": "userProject", "type": "string"}
+        ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ServiceAccount"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.full_control"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_only"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"], "Oauth2c": ["https://www.googleapis.com/auth/devstorage.read_write"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.full_control"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/devstorage.read_write"]}
         ],
         "tags": ["projects"]
       },
@@ -1778,6 +1657,7 @@
           "description": "An association between a role, which comes with a set of permissions, and members who may assume that role.",
           "items": {
             "properties": {
+              "condition": {},
               "members": {
                 "description": "A collection of identifiers for members who may assume the provided role. Recognized identifiers are as follows:  \n- allUsers — A special identifier that represents anyone on the internet; with or without a Google account.  \n- allAuthenticatedUsers — A special identifier that represents anyone who is authenticated with a Google account or a service account.  \n- user:emailid — An email address that represents a specific account. For example, user:alice@gmail.com or user:joe@example.com.  \n- serviceAccount:emailid — An email address that represents a service account. For example,  serviceAccount:my-other-app@appspot.gserviceaccount.com .  \n- group:emailid — An email address that represents a Google group. For example, group:admins@example.com.  \n- domain:domain — A Google Apps domain name that represents all the users of that domain. For example, domain:google.com or domain:example.com.  \n- projectOwner:projectid — Owners of the given project. For example, projectOwner:my-example-project  \n- projectEditor:projectid — Editors of the given project. For example, projectEditor:my-example-project  \n- projectViewer:projectid — Viewers of the given project. For example, projectViewer:my-example-project",
                 "items": {"type": "string"},

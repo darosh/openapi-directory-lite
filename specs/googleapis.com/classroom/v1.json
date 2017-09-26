@@ -6,14 +6,12 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Manages classes, rosters, and invitations in Google Classroom.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Google Classroom",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-apisguru-categories": ["education"],
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://classroom.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://classroom.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "classroom"
@@ -22,7 +20,7 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {
         "https://www.googleapis.com/auth/classroom.courses": "Manage your Google Classroom classes",
@@ -41,30 +39,6 @@
         "https://www.googleapis.com/auth/classroom.student-submissions.me.readonly": "View your course work and grades in Google Classroom",
         "https://www.googleapis.com/auth/classroom.student-submissions.students.readonly": "View course work and grades for students in the Google Classroom classes you teach or administer"
       },
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {
-        "https://www.googleapis.com/auth/classroom.courses": "Manage your Google Classroom classes",
-        "https://www.googleapis.com/auth/classroom.courses.readonly": "View your Google Classroom classes",
-        "https://www.googleapis.com/auth/classroom.coursework.me": "Manage your course work and view your grades in Google Classroom",
-        "https://www.googleapis.com/auth/classroom.coursework.me.readonly": "View your course work and grades in Google Classroom",
-        "https://www.googleapis.com/auth/classroom.coursework.students": "Manage course work and grades for students in the Google Classroom classes you teach and view the course work and grades for classes you administer",
-        "https://www.googleapis.com/auth/classroom.coursework.students.readonly": "View course work and grades for students in the Google Classroom classes you teach or administer",
-        "https://www.googleapis.com/auth/classroom.guardianlinks.me.readonly": "View your Google Classroom guardians",
-        "https://www.googleapis.com/auth/classroom.guardianlinks.students": "View and manage guardians for students in your Google Classroom classes",
-        "https://www.googleapis.com/auth/classroom.guardianlinks.students.readonly": "View guardians for students in your Google Classroom classes",
-        "https://www.googleapis.com/auth/classroom.profile.emails": "View the email addresses of people in your classes",
-        "https://www.googleapis.com/auth/classroom.profile.photos": "View the profile photos of people in your classes",
-        "https://www.googleapis.com/auth/classroom.rosters": "Manage your Google Classroom class rosters",
-        "https://www.googleapis.com/auth/classroom.rosters.readonly": "View your Google Classroom class rosters",
-        "https://www.googleapis.com/auth/classroom.student-submissions.me.readonly": "View your course work and grades in Google Classroom",
-        "https://www.googleapis.com/auth/classroom.student-submissions.students.readonly": "View course work and grades for students in the Google Classroom classes you teach or administer"
-      },
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -129,10 +103,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListCoursesResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.courses"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.courses"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.courses.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.courses.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.courses"]}, {"Oauth2": ["https://www.googleapis.com/auth/classroom.courses.readonly"]}],
         "tags": ["courses"]
       },
       "parameters": [
@@ -155,7 +126,7 @@
         "operationId": "classroom.courses.create",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Course"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Course"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.courses"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.courses"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.courses"]}],
         "tags": ["courses"]
       }
     },
@@ -179,10 +150,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListCourseAliasesResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.courses"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.courses"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.courses.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.courses.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.courses"]}, {"Oauth2": ["https://www.googleapis.com/auth/classroom.courses.readonly"]}],
         "tags": ["courses"]
       },
       "parameters": [
@@ -208,7 +176,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CourseAlias"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CourseAlias"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.courses"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.courses"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.courses"]}],
         "tags": ["courses"]
       }
     },
@@ -221,7 +189,7 @@
           {"description": "Alias to delete.\nThis may not be the Classroom-assigned identifier.", "in": "path", "name": "alias", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.courses"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.courses"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.courses"]}],
         "tags": ["courses"]
       },
       "parameters": [
@@ -275,10 +243,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListCourseWorkResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.me"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.coursework.me"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.me.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.coursework.me.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.coursework.students"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.coursework.students.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.me"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.me.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students.readonly"]}
         ],
         "tags": ["courses"]
       },
@@ -305,7 +273,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CourseWork"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CourseWork"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.coursework.students"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students"]}],
         "tags": ["courses"]
       }
     },
@@ -358,12 +326,12 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListStudentSubmissionsResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.me"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.coursework.me"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.me.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.coursework.me.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.coursework.students"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.coursework.students.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.student-submissions.me.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.student-submissions.me.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.student-submissions.students.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.student-submissions.students.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.me"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.me.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.student-submissions.me.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.student-submissions.students.readonly"]}
         ],
         "tags": ["courses"]
       },
@@ -394,12 +362,12 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/StudentSubmission"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.me"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.coursework.me"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.me.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.coursework.me.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.coursework.students"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.coursework.students.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.student-submissions.me.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.student-submissions.me.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.student-submissions.students.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.student-submissions.students.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.me"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.me.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.student-submissions.me.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.student-submissions.students.readonly"]}
         ],
         "tags": ["courses"]
       },
@@ -434,10 +402,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/StudentSubmission"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/StudentSubmission"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.me"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.coursework.me"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.coursework.students"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.me"]}, {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students"]}],
         "tags": ["courses"]
       }
     },
@@ -467,10 +432,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ModifyAttachmentsRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/StudentSubmission"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.me"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.coursework.me"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.coursework.students"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.me"]}, {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students"]}],
         "tags": ["courses"]
       }
     },
@@ -500,7 +462,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ReclaimStudentSubmissionRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.me"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.coursework.me"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.me"]}],
         "tags": ["courses"]
       }
     },
@@ -530,7 +492,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ReturnStudentSubmissionRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.coursework.students"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students"]}],
         "tags": ["courses"]
       }
     },
@@ -560,7 +522,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/TurnInStudentSubmissionRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.me"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.coursework.me"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.me"]}],
         "tags": ["courses"]
       }
     },
@@ -573,7 +535,7 @@
           {"description": "Identifier of the course work to delete.\nThis identifier is a Classroom-assigned identifier.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.coursework.students"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students"]}],
         "tags": ["courses"]
       },
       "get": {
@@ -585,10 +547,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CourseWork"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.me"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.coursework.me"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.me.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.coursework.me.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.coursework.students"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.coursework.students.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.me"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.me.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students.readonly"]}
         ],
         "tags": ["courses"]
       },
@@ -622,7 +584,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CourseWork"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.coursework.students"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.coursework.students"]}],
         "tags": ["courses"]
       }
     },
@@ -642,10 +604,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListStudentsResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.emails"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.profile.emails"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.photos"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.profile.photos"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.rosters"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.rosters.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.emails"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.photos"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters.readonly"]}
         ],
         "tags": ["courses"]
       },
@@ -678,11 +640,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Student"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Student"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.emails"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.profile.emails"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.photos"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.profile.photos"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.rosters"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.emails"]}, {"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.photos"]}, {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"]}],
         "tags": ["courses"]
       }
     },
@@ -701,7 +659,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.rosters"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"]}],
         "tags": ["courses"]
       },
       "get": {
@@ -719,10 +677,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Student"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.emails"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.profile.emails"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.photos"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.profile.photos"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.rosters"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.rosters.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.emails"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.photos"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters.readonly"]}
         ],
         "tags": ["courses"]
       },
@@ -758,10 +716,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListTeachersResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.emails"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.profile.emails"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.photos"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.profile.photos"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.rosters"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.rosters.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.emails"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.photos"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters.readonly"]}
         ],
         "tags": ["courses"]
       },
@@ -788,11 +746,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Teacher"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Teacher"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.emails"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.profile.emails"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.photos"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.profile.photos"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.rosters"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.emails"]}, {"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.photos"]}, {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"]}],
         "tags": ["courses"]
       }
     },
@@ -811,7 +765,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.rosters"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"]}],
         "tags": ["courses"]
       },
       "get": {
@@ -829,10 +783,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Teacher"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.emails"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.profile.emails"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.photos"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.profile.photos"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.rosters"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.rosters.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.emails"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.photos"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters.readonly"]}
         ],
         "tags": ["courses"]
       },
@@ -858,7 +812,7 @@
         "operationId": "classroom.courses.delete",
         "parameters": [{"description": "Identifier of the course to delete.\nThis identifier can be either the Classroom-assigned identifier or an\nalias.", "in": "path", "name": "id", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.courses"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.courses"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.courses"]}],
         "tags": ["courses"]
       },
       "get": {
@@ -866,10 +820,7 @@
         "operationId": "classroom.courses.get",
         "parameters": [{"description": "Identifier of the course to return.\nThis identifier can be either the Classroom-assigned identifier or an\nalias.", "in": "path", "name": "id", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Course"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.courses"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.courses"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.courses.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.courses.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.courses"]}, {"Oauth2": ["https://www.googleapis.com/auth/classroom.courses.readonly"]}],
         "tags": ["courses"]
       },
       "parameters": [
@@ -901,7 +852,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Course"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.courses"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.courses"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.courses"]}],
         "tags": ["courses"]
       },
       "put": {
@@ -912,7 +863,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Course"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Course"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.courses"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.courses"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.courses"]}],
         "tags": ["courses"]
       }
     },
@@ -937,10 +888,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListInvitationsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.rosters"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.rosters.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"]}, {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters.readonly"]}],
         "tags": ["invitations"]
       },
       "parameters": [
@@ -963,7 +911,7 @@
         "operationId": "classroom.invitations.create",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Invitation"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Invitation"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.rosters"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"]}],
         "tags": ["invitations"]
       }
     },
@@ -973,7 +921,7 @@
         "operationId": "classroom.invitations.delete",
         "parameters": [{"description": "Identifier of the invitation to delete.", "in": "path", "name": "id", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.rosters"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"]}],
         "tags": ["invitations"]
       },
       "get": {
@@ -981,10 +929,7 @@
         "operationId": "classroom.invitations.get",
         "parameters": [{"description": "Identifier of the invitation to return.", "in": "path", "name": "id", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Invitation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.rosters"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.rosters.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"]}, {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters.readonly"]}],
         "tags": ["invitations"]
       },
       "parameters": [
@@ -1024,7 +969,7 @@
         "operationId": "classroom.invitations.accept",
         "parameters": [{"description": "Identifier of the invitation to accept.", "in": "path", "name": "id", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.rosters"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"]}],
         "tags": ["invitations"]
       }
     },
@@ -1063,10 +1008,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListGuardianInvitationsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.guardianlinks.students"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.guardianlinks.students"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.guardianlinks.students.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.guardianlinks.students.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.guardianlinks.students"]}, {"Oauth2": ["https://www.googleapis.com/auth/classroom.guardianlinks.students.readonly"]}],
         "tags": ["userProfiles"]
       },
       "parameters": [
@@ -1092,7 +1034,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/GuardianInvitation"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GuardianInvitation"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.guardianlinks.students"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.guardianlinks.students"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.guardianlinks.students"]}],
         "tags": ["userProfiles"]
       }
     },
@@ -1105,10 +1047,7 @@
           {"description": "The `id` field of the `GuardianInvitation` being requested.", "in": "path", "name": "invitationId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GuardianInvitation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.guardianlinks.students"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.guardianlinks.students"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.guardianlinks.students.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.guardianlinks.students.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.guardianlinks.students"]}, {"Oauth2": ["https://www.googleapis.com/auth/classroom.guardianlinks.students.readonly"]}],
         "tags": ["userProfiles"]
       },
       "parameters": [
@@ -1141,7 +1080,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/GuardianInvitation"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GuardianInvitation"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.guardianlinks.students"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.guardianlinks.students"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.guardianlinks.students"]}],
         "tags": ["userProfiles"]
       }
     },
@@ -1178,9 +1117,9 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListGuardiansResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.guardianlinks.me.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.guardianlinks.me.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.guardianlinks.students"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.guardianlinks.students"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.guardianlinks.students.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.guardianlinks.students.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.guardianlinks.me.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.guardianlinks.students"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.guardianlinks.students.readonly"]}
         ],
         "tags": ["userProfiles"]
       },
@@ -1215,7 +1154,7 @@
           {"description": "The `id` field from a `Guardian`.", "in": "path", "name": "guardianId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.guardianlinks.students"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.guardianlinks.students"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/classroom.guardianlinks.students"]}],
         "tags": ["userProfiles"]
       },
       "get": {
@@ -1233,9 +1172,9 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Guardian"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.guardianlinks.me.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.guardianlinks.me.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.guardianlinks.students"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.guardianlinks.students"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.guardianlinks.students.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.guardianlinks.students.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.guardianlinks.me.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.guardianlinks.students"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.guardianlinks.students.readonly"]}
         ],
         "tags": ["userProfiles"]
       },
@@ -1270,10 +1209,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UserProfile"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.emails"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.profile.emails"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.photos"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.profile.photos"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.rosters"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/classroom.rosters.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.emails"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.profile.photos"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/classroom.rosters.readonly"]}
         ],
         "tags": ["userProfiles"]
       },

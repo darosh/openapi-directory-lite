@@ -2392,16 +2392,11 @@
       }
     },
     "/user/customer/stores/{storeId}/rights": {
-      "post": {
-        "deprecated": true,
+      "get": {
         "operationId": "GetRights",
-        "parameters": [
-          {"$ref": "#/parameters/storeIdOnlyGeneralParameters"},
-          {"description": "The functionality code list you want to check", "in": "body", "name": "functionalityCodeList", "required": true, "schema": {"items": {"type": "string"}, "type": "array"}}
-        ],
+        "parameters": [{"$ref": "#/parameters/storeIdOnlyGeneralParameters"}],
         "responses": {
           "200": {"description": "The store's rights", "schema": {"items": {"$ref": "#/definitions/functionalityRightInfo"}, "type": "array"}},
-          "403": {"description": "Functionality not found", "schema": {"$ref": "#/definitions/BeezUP.Common.ErrorResponseMessage"}},
           "404": {"description": "Store not found or not authorized", "schema": {"$ref": "#/definitions/BeezUP.Common.ErrorResponseMessage"}},
           "default": {"$ref": "#/responses/GeneralError"}
         },
@@ -2637,7 +2632,7 @@
         "operationId": "GetAutomaticTransitions",
         "parameters": [{"$ref": "#/parameters/ifNoneMatchParameter"}],
         "responses": {
-          "200": {"description": "Successfully fetched list of configured automatic Order status transitions", "schema": {"$ref": "#/definitions/automaticTransitionInfos"}},
+          "200": {"description": "Successfully fetched list of configured automatic Order status transitions", "schema": {"$ref": "#/definitions/automaticTransitionInfoList"}},
           "304": {"$ref": "#/responses/304_NotModified"},
           "default": {"$ref": "#/responses/GeneralError"}
         },
@@ -2692,7 +2687,7 @@
           "default": {"$ref": "#/responses/GeneralError"}
         },
         "security": [{"api_key": []}],
-        "summary": "Send a batch of operations to clear an Order's merchant information",
+        "summary": "Send a batch of operations to clear an Order's merchant information (max 100 items per call)",
         "tags": ["Marketplaces - Orders - Batches"]
       }
     },
@@ -2708,7 +2703,7 @@
           "default": {"$ref": "#/responses/GeneralError"}
         },
         "security": [{"api_key": []}],
-        "summary": "Send a batch of operations to set an Order's merchant information",
+        "summary": "Send a batch of operations to set an Order's merchant information  (max 100 items per call)",
         "tags": ["Marketplaces - Orders - Batches"]
       }
     },
@@ -2952,7 +2947,7 @@
           {"$ref": "#/parameters/changeOrderTypeParameter"},
           {"$ref": "#/parameters/userNameInQueryParameter"},
           {"$ref": "#/parameters/testModeInQueryParameter"},
-          {"in": "body", "name": "request", "required": true, "schema": {"$ref": "#/definitions/changeOrderRequest"}},
+          {"in": "body", "name": "request", "required": false, "schema": {"$ref": "#/definitions/changeOrderRequest"}},
           {"$ref": "#/parameters/ifMatchParameter"}
         ],
         "responses": {
@@ -3558,12 +3553,12 @@
       ]
     },
     "automaticTransitionInfoLinks": {"properties": {"configure": {"$ref": "#/definitions/links.ConfigureAutomaticTransitionsLink"}}, "required": ["configure"], "type": "object"},
-    "automaticTransitionInfos": {
-      "properties": {"automaticTransitionInfos": {"items": {"$ref": "#/definitions/automaticTransitionInfo"}, "type": "array"}, "links": {"$ref": "#/definitions/automaticTransitionInfosLinks"}},
+    "automaticTransitionInfoList": {
+      "properties": {"automaticTransitionInfos": {"items": {"$ref": "#/definitions/automaticTransitionInfo"}, "type": "array"}, "links": {"$ref": "#/definitions/automaticTransitionInfoListLinks"}},
       "required": ["links"],
       "type": "object"
     },
-    "automaticTransitionInfosLinks": {
+    "automaticTransitionInfoListLinks": {
       "properties": {"configure": {"$ref": "#/definitions/links.ConfigureAutomaticTransitionsLink"}, "self": {"$ref": "#/definitions/links.GetAutomaticTransitionsLink"}},
       "required": ["self", "configure"],
       "type": "object"
@@ -3742,7 +3737,7 @@
     "changeOrderListRequestItem": {
       "description": "Contains the order identifier and the change order request",
       "properties": {"changeOrderRequest": {"$ref": "#/definitions/changeOrderRequest"}, "order": {"$ref": "#/definitions/orderIdentifierWithETag"}},
-      "required": ["order", "changeOrderRequest"],
+      "required": ["order"],
       "type": "object"
     },
     "changeOrderReporting": {
@@ -5322,9 +5317,10 @@
     "links.ChangeOrderLink": {
       "allOf": [
         {"$ref": "#/definitions/BeezUP.Common.Link3"},
+        {"properties": {"rel": {"description": "Indicate the relation name related to the link", "example": "self", "type": "string"}}, "type": "object"},
         {
           "example": {
-            "href": "/v2/user/marketplaces/orders/Amazon/1001/00000000000000000000000000000000000000000000000/shipOrder",
+            "href": "/v2/user/marketplaces/orders/Amazon/1001/00000000000000000000000000000000000000000000000/ShipOrder",
             "method": "POST",
             "parameters": {
               "If-Match": {"in": "header", "required": true, "value": "\"ca071a4580129f932a03971968ffef69\""},
@@ -5342,6 +5338,7 @@
               "testMode": {"in": "query", "required": false, "type": "boolean", "value": false},
               "userName": {"in": "query", "required": true, "type": "string"}
             },
+            "rel": "ShipOrder",
             "templated": true
           }
         }
@@ -5895,6 +5892,7 @@
       "properties": {
         "cancelationReasonCodeLOV": {"$ref": "#/definitions/BeezUP.Common.LOVLink3"},
         "carrierCodeLOV": {"$ref": "#/definitions/BeezUP.Common.LOVLink3"},
+        "marketplaceStorePropertyLOV": {"$ref": "#/definitions/BeezUP.Common.LOVLink3"},
         "refundReasonCodeLOV": {"$ref": "#/definitions/BeezUP.Common.LOVLink3"},
         "shippingMethodLOV": {"$ref": "#/definitions/BeezUP.Common.LOVLink3"}
       },
@@ -6285,22 +6283,10 @@
       "type": "object"
     },
     "orderTransitionLinks": {
-      "additionalProperties": {"$ref": "#/definitions/links.ChangeOrderLink"},
       "description": "Contains the authorized change actions for an order",
-      "example": {
-        "cancelOrder": {
-          "href": "/v2/user/marketplaces/orders/Amazon/1001/00000000000000000000000000000000000000000000000/cancelOrder",
-          "method": "POST",
-          "parameters": {
-            "If-Match": {"in": "header", "required": true, "value": "\"ca071a4580129f932a03971968ffef69\""},
-            "request": {"in": "body", "properties": {"order_Cancel_Reason": {"required": true, "type": "string"}}, "schema": "changeOrderRequest", "type": "object"},
-            "testMode": {"in": "query", "required": false, "type": "boolean", "value": false},
-            "userName": {"in": "query", "required": true, "type": "string"}
-          },
-          "templated": true
-        },
-        "shipOrder": {
-          "href": "/v2/user/marketplaces/orders/Amazon/1001/00000000000000000000000000000000000000000000000/shipOrder",
+      "example": [
+        {
+          "href": "/v2/user/marketplaces/orders/Amazon/1001/00000000000000000000000000000000000000000000000/ShipOrder",
           "method": "POST",
           "parameters": {
             "If-Match": {"in": "header", "required": true, "value": "\"ca071a4580129f932a03971968ffef69\""},
@@ -6318,10 +6304,24 @@
             "testMode": {"in": "query", "required": false, "type": "boolean", "value": false},
             "userName": {"in": "query", "required": true, "type": "string"}
           },
+          "rel": "ShipOrder",
+          "templated": true
+        },
+        {
+          "href": "/v2/user/marketplaces/orders/Amazon/1001/00000000000000000000000000000000000000000000000/CancelOrder",
+          "method": "POST",
+          "parameters": {
+            "If-Match": {"in": "header", "required": true, "value": "\"ca071a4580129f932a03971968ffef69\""},
+            "request": {"in": "body", "properties": {"order_Cancel_Reason": {"required": true, "type": "string"}}, "schema": "changeOrderRequest", "type": "object"},
+            "testMode": {"in": "query", "required": false, "type": "boolean", "value": false},
+            "userName": {"in": "query", "required": true, "type": "string"}
+          },
+          "rel": "CancelOrder",
           "templated": true
         }
-      },
-      "type": "object"
+      ],
+      "items": {"$ref": "#/definitions/links.ChangeOrderLink"},
+      "type": "array"
     },
     "order_Buyer_Name": {"description": "Buyer full name", "example": "Monroe", "type": "string"},
     "order_MerchantECommerceSoftwareName": {"description": "The e-commerce software name of the merchant", "example": "Prestashop", "type": "string"},

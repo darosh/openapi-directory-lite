@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Accesses AdSense publishers' inventory and generates performance reports.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "AdSense Management",
     "version": "v1.4",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/adsense/v1.4/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/adsense/v1.4/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "adsense"
@@ -21,17 +19,9 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {"https://www.googleapis.com/auth/adsense": "View and manage your AdSense data", "https://www.googleapis.com/auth/adsense.readonly": "View your AdSense data"},
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {"https://www.googleapis.com/auth/adsense": "View and manage your AdSense data", "https://www.googleapis.com/auth/adsense.readonly": "View your AdSense data"},
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -76,10 +66,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Accounts"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -101,10 +88,7 @@
           {"description": "Whether the tree of sub accounts should be returned.", "in": "query", "name": "tree", "type": "boolean"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Account"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -132,10 +116,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AdClients"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -165,10 +146,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AdUnits"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -191,10 +169,7 @@
           {"description": "Ad unit to retrieve.", "in": "path", "name": "adUnitId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AdUnit"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -217,10 +192,7 @@
           {"description": "Ad unit to get the code for.", "in": "path", "name": "adUnitId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AdCode"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -250,10 +222,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CustomChannels"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -282,10 +251,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CustomChannels"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -308,10 +274,7 @@
           {"description": "Custom channel to retrieve.", "in": "path", "name": "customChannelId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CustomChannel"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -342,10 +305,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AdUnits"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -374,10 +334,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UrlChannels"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -404,10 +361,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Alerts"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -429,7 +383,7 @@
           {"description": "Alert to delete.", "in": "path", "name": "alertId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -448,10 +402,7 @@
         "operationId": "adsense.accounts.payments.list",
         "parameters": [{"description": "Account for which to retrieve the payments.", "in": "path", "name": "accountId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Payments"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -490,10 +441,7 @@
           {"description": "Whether the report should be generated in the AdSense account's local timezone. If false default PST/PDT timezone will be used.", "in": "query", "name": "useTimezoneReporting", "type": "boolean"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AdsenseReportsGenerateResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -521,10 +469,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SavedReports"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -549,10 +494,7 @@
           {"description": "Index of the first row of report data to return.", "in": "query", "maximum": 5000, "minimum": 0, "name": "startIndex", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AdsenseReportsGenerateResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -580,10 +522,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SavedAdStyles"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -605,10 +544,7 @@
           {"description": "Saved ad style to retrieve.", "in": "path", "name": "savedAdStyleId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SavedAdStyle"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -635,10 +571,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AdClients"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["adclients"]
       },
       "parameters": [
@@ -667,10 +600,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AdUnits"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["adunits"]
       },
       "parameters": [
@@ -692,10 +622,7 @@
           {"description": "Ad unit to retrieve.", "in": "path", "name": "adUnitId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AdUnit"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["adunits"]
       },
       "parameters": [
@@ -717,10 +644,7 @@
           {"description": "Ad unit to get the code for.", "in": "path", "name": "adUnitId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AdCode"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["adunits"]
       },
       "parameters": [
@@ -749,10 +673,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CustomChannels"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["adunits"]
       },
       "parameters": [
@@ -780,10 +701,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CustomChannels"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["customchannels"]
       },
       "parameters": [
@@ -805,10 +723,7 @@
           {"description": "Custom channel to retrieve.", "in": "path", "name": "customChannelId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CustomChannel"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["customchannels"]
       },
       "parameters": [
@@ -838,10 +753,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AdUnits"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["customchannels"]
       },
       "parameters": [
@@ -869,10 +781,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UrlChannels"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["urlchannels"]
       },
       "parameters": [
@@ -898,10 +807,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Alerts"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["alerts"]
       },
       "parameters": [
@@ -920,7 +826,7 @@
         "operationId": "adsense.alerts.delete",
         "parameters": [{"description": "Alert to delete.", "in": "path", "name": "alertId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}],
         "tags": ["alerts"]
       },
       "parameters": [
@@ -938,10 +844,7 @@
         "description": "List the metadata for the dimensions available to this AdSense account.",
         "operationId": "adsense.metadata.dimensions.list",
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Metadata"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["metadata"]
       },
       "parameters": [
@@ -959,10 +862,7 @@
         "description": "List the metadata for the metrics available to this AdSense account.",
         "operationId": "adsense.metadata.metrics.list",
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Metadata"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["metadata"]
       },
       "parameters": [
@@ -980,10 +880,7 @@
         "description": "List the payments for this AdSense account.",
         "operationId": "adsense.payments.list",
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Payments"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["payments"]
       },
       "parameters": [
@@ -1022,10 +919,7 @@
           {"description": "Whether the report should be generated in the AdSense account's local timezone. If false default PST/PDT timezone will be used.", "in": "query", "name": "useTimezoneReporting", "type": "boolean"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AdsenseReportsGenerateResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["reports"]
       },
       "parameters": [
@@ -1052,10 +946,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SavedReports"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["reports"]
       },
       "parameters": [
@@ -1079,10 +970,7 @@
           {"description": "Index of the first row of report data to return.", "in": "query", "maximum": 5000, "minimum": 0, "name": "startIndex", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AdsenseReportsGenerateResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["reports"]
       },
       "parameters": [
@@ -1109,10 +997,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SavedAdStyles"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["savedadstyles"]
       },
       "parameters": [
@@ -1131,10 +1016,7 @@
         "operationId": "adsense.savedadstyles.get",
         "parameters": [{"description": "Saved ad style to retrieve.", "in": "path", "name": "savedAdStyleId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SavedAdStyle"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense"], "Oauth2c": ["https://www.googleapis.com/auth/adsense"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adsense.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adsense"]}, {"Oauth2": ["https://www.googleapis.com/auth/adsense.readonly"]}],
         "tags": ["savedadstyles"]
       },
       "parameters": [

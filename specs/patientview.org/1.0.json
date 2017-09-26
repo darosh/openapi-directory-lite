@@ -9,7 +9,7 @@
     "title": "PatientView",
     "version": "1.0",
     "x-logo": {"url": "https://www.patientview.org/images/pv-logo.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "swagger", "url": "https://www.patientview.org/api/api-docs", "version": "1.2"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "swagger", "url": "https://www.patientview.org/api/api-docs", "version": "1.2"}],
     "x-providerName": "patientview.org",
     "x-preferred": true
   },

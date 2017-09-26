@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "The Management API for Google Play Game Services.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Google Play Game Services Management",
     "version": "v1management",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.gstatic.com/images/icons/material/product/2x/play_games_64dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/gamesManagement/v1management/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/gamesManagement/v1management/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "gamesManagement"
@@ -21,23 +19,12 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {
         "https://www.googleapis.com/auth/games": "Share your Google+ profile information and view and manage your game activity",
         "https://www.googleapis.com/auth/plus.login": "Know the list of people in your circles, your age range, and language"
       },
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {
-        "https://www.googleapis.com/auth/games": "Share your Google+ profile information and view and manage your game activity",
-        "https://www.googleapis.com/auth/plus.login": "Know the list of people in your circles, your age range, and language"
-      },
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -71,10 +58,7 @@
         "description": "Resets all achievements for the currently authenticated player for your application. This method is only accessible to whitelisted tester accounts for your application.",
         "operationId": "gamesManagement.achievements.resetAll",
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AchievementResetAllResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["achievements"]
       }
     },
@@ -92,10 +76,7 @@
         "description": "Resets all draft achievements for all players. This method is only available to user accounts for your developer console.",
         "operationId": "gamesManagement.achievements.resetAllForAllPlayers",
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["achievements"]
       }
     },
@@ -114,10 +95,7 @@
         "operationId": "gamesManagement.achievements.resetMultipleForAllPlayers",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AchievementResetMultipleForAllRequest"}}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["achievements"]
       }
     },
@@ -136,10 +114,7 @@
         "operationId": "gamesManagement.achievements.reset",
         "parameters": [{"description": "The ID of the achievement used by this method.", "in": "path", "name": "achievementId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AchievementResetResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["achievements"]
       }
     },
@@ -158,10 +133,7 @@
         "operationId": "gamesManagement.achievements.resetForAllPlayers",
         "parameters": [{"description": "The ID of the achievement used by this method.", "in": "path", "name": "achievementId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["achievements"]
       }
     },
@@ -182,10 +154,7 @@
           {"description": "The token returned by the previous request.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/HiddenPlayerList"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["applications"]
       },
       "parameters": [
@@ -207,10 +176,7 @@
           {"description": "A player ID. A value of me may be used in place of the authenticated player's ID.", "in": "path", "name": "playerId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["players"]
       },
       "parameters": [
@@ -230,10 +196,7 @@
           {"description": "A player ID. A value of me may be used in place of the authenticated player's ID.", "in": "path", "name": "playerId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["players"]
       }
     },
@@ -251,10 +214,7 @@
         "description": "Resets all player progress on all events for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application. All quests for this player will also be reset.",
         "operationId": "gamesManagement.events.resetAll",
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["events"]
       }
     },
@@ -272,10 +232,7 @@
         "description": "Resets all draft events for all players. This method is only available to user accounts for your developer console. All quests that use any of these events will also be reset.",
         "operationId": "gamesManagement.events.resetAllForAllPlayers",
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["events"]
       }
     },
@@ -294,10 +251,7 @@
         "operationId": "gamesManagement.events.resetMultipleForAllPlayers",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/EventsResetMultipleForAllRequest"}}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["events"]
       }
     },
@@ -316,10 +270,7 @@
         "operationId": "gamesManagement.events.reset",
         "parameters": [{"description": "The ID of the event.", "in": "path", "name": "eventId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["events"]
       }
     },
@@ -338,10 +289,7 @@
         "operationId": "gamesManagement.events.resetForAllPlayers",
         "parameters": [{"description": "The ID of the event.", "in": "path", "name": "eventId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["events"]
       }
     },
@@ -360,10 +308,7 @@
         "operationId": "gamesManagement.scores.reset",
         "parameters": [{"description": "The ID of the leaderboard.", "in": "path", "name": "leaderboardId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PlayerScoreResetResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["scores"]
       }
     },
@@ -382,10 +327,7 @@
         "operationId": "gamesManagement.scores.resetForAllPlayers",
         "parameters": [{"description": "The ID of the leaderboard.", "in": "path", "name": "leaderboardId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["scores"]
       }
     },
@@ -403,10 +345,7 @@
         "description": "Resets all player progress on all quests for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application.",
         "operationId": "gamesManagement.quests.resetAll",
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["quests"]
       }
     },
@@ -424,10 +363,7 @@
         "description": "Resets all draft quests for all players. This method is only available to user accounts for your developer console.",
         "operationId": "gamesManagement.quests.resetAllForAllPlayers",
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["quests"]
       }
     },
@@ -446,10 +382,7 @@
         "operationId": "gamesManagement.quests.resetMultipleForAllPlayers",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/QuestsResetMultipleForAllRequest"}}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["quests"]
       }
     },
@@ -468,10 +401,7 @@
         "operationId": "gamesManagement.quests.reset",
         "parameters": [{"description": "The ID of the quest.", "in": "path", "name": "questId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["quests"]
       }
     },
@@ -490,10 +420,7 @@
         "operationId": "gamesManagement.quests.resetForAllPlayers",
         "parameters": [{"description": "The ID of the quest.", "in": "path", "name": "questId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["quests"]
       }
     },
@@ -511,10 +438,7 @@
         "description": "Reset all rooms for the currently authenticated player for your application. This method is only accessible to whitelisted tester accounts for your application.",
         "operationId": "gamesManagement.rooms.reset",
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["rooms"]
       }
     },
@@ -532,10 +456,7 @@
         "description": "Deletes rooms where the only room participants are from whitelisted tester accounts for your application. This method is only available to user accounts for your developer console.",
         "operationId": "gamesManagement.rooms.resetForAllPlayers",
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["rooms"]
       }
     },
@@ -553,10 +474,7 @@
         "description": "Resets all scores for all leaderboards for the currently authenticated players. This method is only accessible to whitelisted tester accounts for your application.",
         "operationId": "gamesManagement.scores.resetAll",
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PlayerScoreResetAllResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["scores"]
       }
     },
@@ -574,10 +492,7 @@
         "description": "Resets scores for all draft leaderboards for all players. This method is only available to user accounts for your developer console.",
         "operationId": "gamesManagement.scores.resetAllForAllPlayers",
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["scores"]
       }
     },
@@ -596,10 +511,7 @@
         "operationId": "gamesManagement.scores.resetMultipleForAllPlayers",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ScoresResetMultipleForAllRequest"}}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["scores"]
       }
     },
@@ -617,10 +529,7 @@
         "description": "Reset all turn-based match data for a user. This method is only accessible to whitelisted tester accounts for your application.",
         "operationId": "gamesManagement.turnBasedMatches.reset",
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["turnBasedMatches"]
       }
     },
@@ -638,10 +547,7 @@
         "description": "Deletes turn-based matches where the only match participants are from whitelisted tester accounts for your application. This method is only available to user accounts for your developer console.",
         "operationId": "gamesManagement.turnBasedMatches.resetForAllPlayers",
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/games"], "Oauth2c": ["https://www.googleapis.com/auth/games"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/plus.login"], "Oauth2c": ["https://www.googleapis.com/auth/plus.login"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/games"]}, {"Oauth2": ["https://www.googleapis.com/auth/plus.login"]}],
         "tags": ["turnBasedMatches"]
       }
     }

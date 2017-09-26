@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "API for viewing and managing your reports in DoubleClick Bid Manager.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "DoubleClick Bid Manager",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.doubleclickbygoogle.com/static/core/img/doubleclick-google-logo-wide.svg"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/doubleclickbidmanager/v1/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/doubleclickbidmanager/v1/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "doubleclickbidmanager"
@@ -21,17 +19,9 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {"https://www.googleapis.com/auth/doubleclickbidmanager": "View and manage your reports in DoubleClick Bid Manager"},
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {"https://www.googleapis.com/auth/doubleclickbidmanager": "View and manage your reports in DoubleClick Bid Manager"},
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -66,7 +56,7 @@
         "operationId": "doubleclickbidmanager.lineitems.downloadlineitems",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/DownloadLineItemsRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/DownloadLineItemsResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/doubleclickbidmanager"], "Oauth2c": ["https://www.googleapis.com/auth/doubleclickbidmanager"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/doubleclickbidmanager"]}],
         "tags": ["lineitems"]
       }
     },
@@ -85,7 +75,7 @@
         "operationId": "doubleclickbidmanager.lineitems.uploadlineitems",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/UploadLineItemsRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UploadLineItemsResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/doubleclickbidmanager"], "Oauth2c": ["https://www.googleapis.com/auth/doubleclickbidmanager"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/doubleclickbidmanager"]}],
         "tags": ["lineitems"]
       }
     },
@@ -94,7 +84,7 @@
         "description": "Retrieves stored queries.",
         "operationId": "doubleclickbidmanager.queries.listqueries",
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListQueriesResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/doubleclickbidmanager"], "Oauth2c": ["https://www.googleapis.com/auth/doubleclickbidmanager"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/doubleclickbidmanager"]}],
         "tags": ["queries"]
       },
       "parameters": [
@@ -113,7 +103,7 @@
         "operationId": "doubleclickbidmanager.reports.listreports",
         "parameters": [{"description": "Query ID with which the reports are associated.", "in": "path", "name": "queryId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListReportsResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/doubleclickbidmanager"], "Oauth2c": ["https://www.googleapis.com/auth/doubleclickbidmanager"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/doubleclickbidmanager"]}],
         "tags": ["reports"]
       },
       "parameters": [
@@ -141,7 +131,7 @@
         "operationId": "doubleclickbidmanager.queries.createquery",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Query"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Query"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/doubleclickbidmanager"], "Oauth2c": ["https://www.googleapis.com/auth/doubleclickbidmanager"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/doubleclickbidmanager"]}],
         "tags": ["queries"]
       }
     },
@@ -151,7 +141,7 @@
         "operationId": "doubleclickbidmanager.queries.deletequery",
         "parameters": [{"description": "Query ID to delete.", "in": "path", "name": "queryId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/doubleclickbidmanager"], "Oauth2c": ["https://www.googleapis.com/auth/doubleclickbidmanager"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/doubleclickbidmanager"]}],
         "tags": ["queries"]
       },
       "get": {
@@ -159,7 +149,7 @@
         "operationId": "doubleclickbidmanager.queries.getquery",
         "parameters": [{"description": "Query ID to retrieve.", "in": "path", "name": "queryId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Query"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/doubleclickbidmanager"], "Oauth2c": ["https://www.googleapis.com/auth/doubleclickbidmanager"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/doubleclickbidmanager"]}],
         "tags": ["queries"]
       },
       "parameters": [
@@ -176,7 +166,7 @@
         "operationId": "doubleclickbidmanager.queries.runquery",
         "parameters": [{"description": "Query ID to run.", "in": "path", "name": "queryId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/RunQueryRequest"}}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/doubleclickbidmanager"], "Oauth2c": ["https://www.googleapis.com/auth/doubleclickbidmanager"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/doubleclickbidmanager"]}],
         "tags": ["queries"]
       }
     },
@@ -195,7 +185,7 @@
         "operationId": "doubleclickbidmanager.sdf.download",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/DownloadRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/DownloadResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/doubleclickbidmanager"], "Oauth2c": ["https://www.googleapis.com/auth/doubleclickbidmanager"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/doubleclickbidmanager"]}],
         "tags": ["sdf"]
       }
     }

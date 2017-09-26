@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Gets the delivery status of titles for Google Play Movies Partners.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Google Play Movies Partner",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://playmoviespartner.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://playmoviespartner.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "playmoviespartner"
@@ -21,17 +19,9 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {"https://www.googleapis.com/auth/playmovies_partner.readonly": "View the digital assets you publish on Google Play Movies and TV"},
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {"https://www.googleapis.com/auth/playmovies_partner.readonly": "View the digital assets you publish on Google Play Movies and TV"},
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -91,7 +81,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListAvailsResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/playmovies_partner.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/playmovies_partner.readonly"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/playmovies_partner.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -119,7 +109,7 @@
           {"description": "REQUIRED. Avail ID.", "in": "path", "name": "availId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Avail"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/playmovies_partner.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/playmovies_partner.readonly"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/playmovies_partner.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -161,7 +151,7 @@
           {"collectionFormat": "multi", "description": "See _List methods rules_ for info about this field.", "in": "query", "items": {"type": "string"}, "name": "studioNames", "type": "array"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListOrdersResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/playmovies_partner.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/playmovies_partner.readonly"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/playmovies_partner.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -189,7 +179,7 @@
           {"description": "REQUIRED. Order ID.", "in": "path", "name": "orderId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Order"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/playmovies_partner.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/playmovies_partner.readonly"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/playmovies_partner.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -233,7 +223,7 @@
           {"collectionFormat": "multi", "description": "See _List methods rules_ for info about this field.", "in": "query", "items": {"type": "string"}, "name": "studioNames", "type": "array"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListStoreInfosResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/playmovies_partner.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/playmovies_partner.readonly"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/playmovies_partner.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -262,7 +252,7 @@
           {"description": "REQUIRED. Edit country.", "in": "path", "name": "country", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/StoreInfo"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/playmovies_partner.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/playmovies_partner.readonly"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/playmovies_partner.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [

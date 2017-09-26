@@ -6,14 +6,12 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Retrieves your YouTube Analytics data.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "YouTube Analytics",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-apisguru-categories": ["analytics"],
     "x-logo": {"url": "https://pbs.twimg.com/profile_images/902547949103841281/TmdokZcM_400x400.jpg"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/youtubeAnalytics/v1/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/youtubeAnalytics/v1/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "youtubeAnalytics"
@@ -22,7 +20,7 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {
         "https://www.googleapis.com/auth/youtube": "Manage your YouTube account",
@@ -31,20 +29,6 @@
         "https://www.googleapis.com/auth/yt-analytics-monetary.readonly": "View monetary and non-monetary YouTube Analytics reports for your YouTube content",
         "https://www.googleapis.com/auth/yt-analytics.readonly": "View YouTube Analytics reports for your YouTube content"
       },
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {
-        "https://www.googleapis.com/auth/youtube": "Manage your YouTube account",
-        "https://www.googleapis.com/auth/youtube.readonly": "View your YouTube account",
-        "https://www.googleapis.com/auth/youtubepartner": "View and manage your assets and associated content on YouTube",
-        "https://www.googleapis.com/auth/yt-analytics-monetary.readonly": "View monetary and non-monetary YouTube Analytics reports for your YouTube content",
-        "https://www.googleapis.com/auth/yt-analytics.readonly": "View YouTube Analytics reports for your YouTube content"
-      },
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -78,10 +62,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/youtube"], "Oauth2c": ["https://www.googleapis.com/auth/youtube"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/youtubepartner"], "Oauth2c": ["https://www.googleapis.com/auth/youtubepartner"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/youtube"]}, {"Oauth2": ["https://www.googleapis.com/auth/youtubepartner"]}],
         "tags": ["groupItems"]
       },
       "get": {
@@ -98,10 +79,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GroupItemListResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/youtube"], "Oauth2c": ["https://www.googleapis.com/auth/youtube"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/youtube.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/youtube.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/youtubepartner"], "Oauth2c": ["https://www.googleapis.com/auth/youtubepartner"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/yt-analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/yt-analytics.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/youtube"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/youtube.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/youtubepartner"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/yt-analytics.readonly"]}
         ],
         "tags": ["groupItems"]
       },
@@ -127,10 +108,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/GroupItem"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GroupItem"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/youtube"], "Oauth2c": ["https://www.googleapis.com/auth/youtube"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/youtubepartner"], "Oauth2c": ["https://www.googleapis.com/auth/youtubepartner"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/youtube"]}, {"Oauth2": ["https://www.googleapis.com/auth/youtubepartner"]}],
         "tags": ["groupItems"]
       }
     },
@@ -148,10 +126,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/youtube"], "Oauth2c": ["https://www.googleapis.com/auth/youtube"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/youtubepartner"], "Oauth2c": ["https://www.googleapis.com/auth/youtubepartner"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/youtube"]}, {"Oauth2": ["https://www.googleapis.com/auth/youtubepartner"]}],
         "tags": ["groups"]
       },
       "get": {
@@ -180,10 +155,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GroupListResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/youtube"], "Oauth2c": ["https://www.googleapis.com/auth/youtube"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/youtube.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/youtube.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/youtubepartner"], "Oauth2c": ["https://www.googleapis.com/auth/youtubepartner"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/yt-analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/yt-analytics.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/youtube"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/youtube.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/youtubepartner"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/yt-analytics.readonly"]}
         ],
         "tags": ["groups"]
       },
@@ -209,10 +184,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Group"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Group"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/youtube"], "Oauth2c": ["https://www.googleapis.com/auth/youtube"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/youtubepartner"], "Oauth2c": ["https://www.googleapis.com/auth/youtubepartner"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/youtube"]}, {"Oauth2": ["https://www.googleapis.com/auth/youtubepartner"]}],
         "tags": ["groups"]
       },
       "put": {
@@ -228,10 +200,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Group"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Group"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/youtube"], "Oauth2c": ["https://www.googleapis.com/auth/youtube"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/youtubepartner"], "Oauth2c": ["https://www.googleapis.com/auth/youtubepartner"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/youtube"]}, {"Oauth2": ["https://www.googleapis.com/auth/youtubepartner"]}],
         "tags": ["groups"]
       }
     },
@@ -292,10 +261,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ResultTable"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/youtube"], "Oauth2c": ["https://www.googleapis.com/auth/youtube"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/youtube.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/youtube.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/yt-analytics-monetary.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/yt-analytics-monetary.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/yt-analytics.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/yt-analytics.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/youtube"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/youtube.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/yt-analytics-monetary.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/yt-analytics.readonly"]}
         ],
         "tags": ["reports"]
       },

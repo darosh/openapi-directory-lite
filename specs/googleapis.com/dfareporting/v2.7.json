@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Manages your DoubleClick Campaign Manager ad campaigns and reports.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "DCM/DFA Reporting And Trafficking",
     "version": "v2.7",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/dfareporting/v2.7/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/dfareporting/v2.7/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "dfareporting"
@@ -21,25 +19,13 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {
         "https://www.googleapis.com/auth/ddmconversions": "Manage DoubleClick Digital Marketing conversions",
         "https://www.googleapis.com/auth/dfareporting": "View and manage DoubleClick for Advertisers reports",
         "https://www.googleapis.com/auth/dfatrafficking": "View and manage your DoubleClick Campaign Manager's (DCM) display ad campaigns"
       },
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {
-        "https://www.googleapis.com/auth/ddmconversions": "Manage DoubleClick Digital Marketing conversions",
-        "https://www.googleapis.com/auth/dfareporting": "View and manage DoubleClick for Advertisers reports",
-        "https://www.googleapis.com/auth/dfatrafficking": "View and manage your DoubleClick Campaign Manager's (DCM) display ad campaigns"
-      },
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -129,7 +115,7 @@
           {"description": "The ID of the report file.", "in": "path", "name": "fileId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/File"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"], "Oauth2c": ["https://www.googleapis.com/auth/dfareporting"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"]}],
         "tags": ["files"]
       },
       "parameters": [
@@ -147,10 +133,7 @@
         "description": "Retrieves list of user profiles for a user.",
         "operationId": "dfareporting.userProfiles.list",
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UserProfileList"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/dfareporting"], "Oauth2c": ["https://www.googleapis.com/auth/dfareporting"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"]}, {"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["userProfiles"]
       },
       "parameters": [
@@ -169,10 +152,7 @@
         "operationId": "dfareporting.userProfiles.get",
         "parameters": [{"description": "The user profile ID.", "in": "path", "name": "profileId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UserProfile"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/dfareporting"], "Oauth2c": ["https://www.googleapis.com/auth/dfareporting"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"]}, {"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["userProfiles"]
       },
       "parameters": [
@@ -194,7 +174,7 @@
           {"description": "Account ID.", "in": "path", "name": "summaryAccountId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AccountActiveAdSummary"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["accountActiveAdSummaries"]
       },
       "parameters": [
@@ -213,7 +193,7 @@
         "operationId": "dfareporting.accountPermissionGroups.list",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AccountPermissionGroupsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["accountPermissionGroups"]
       },
       "parameters": [
@@ -235,7 +215,7 @@
           {"description": "Account permission group ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AccountPermissionGroup"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["accountPermissionGroups"]
       },
       "parameters": [
@@ -254,7 +234,7 @@
         "operationId": "dfareporting.accountPermissions.list",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AccountPermissionsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["accountPermissions"]
       },
       "parameters": [
@@ -276,7 +256,7 @@
           {"description": "Account permission ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AccountPermission"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["accountPermissions"]
       },
       "parameters": [
@@ -311,7 +291,7 @@
           {"description": "Select only user profiles with the specified user role ID.", "in": "query", "name": "userRoleId", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AccountUserProfilesListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["accountUserProfiles"]
       },
       "parameters": [
@@ -332,7 +312,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AccountUserProfile"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AccountUserProfile"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["accountUserProfiles"]
       },
       "post": {
@@ -343,7 +323,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AccountUserProfile"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AccountUserProfile"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["accountUserProfiles"]
       },
       "put": {
@@ -354,7 +334,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AccountUserProfile"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AccountUserProfile"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["accountUserProfiles"]
       }
     },
@@ -367,7 +347,7 @@
           {"description": "User profile ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AccountUserProfile"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["accountUserProfiles"]
       },
       "parameters": [
@@ -400,7 +380,7 @@
           {"default": "ASCENDING", "description": "Order of sorted results.", "enum": ["ASCENDING", "DESCENDING"], "in": "query", "name": "sortOrder", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AccountsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -421,7 +401,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Account"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Account"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["accounts"]
       },
       "put": {
@@ -429,7 +409,7 @@
         "operationId": "dfareporting.accounts.update",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Account"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Account"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["accounts"]
       }
     },
@@ -442,7 +422,7 @@
           {"description": "Account ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Account"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -509,7 +489,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AdsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["ads"]
       },
       "parameters": [
@@ -530,7 +510,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Ad"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Ad"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["ads"]
       },
       "post": {
@@ -538,7 +518,7 @@
         "operationId": "dfareporting.ads.insert",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Ad"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Ad"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["ads"]
       },
       "put": {
@@ -546,7 +526,7 @@
         "operationId": "dfareporting.ads.update",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Ad"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Ad"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["ads"]
       }
     },
@@ -559,7 +539,7 @@
           {"description": "Ad ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Ad"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["ads"]
       },
       "parameters": [
@@ -591,7 +571,7 @@
           {"default": "ASCENDING", "description": "Order of sorted results.", "enum": ["ASCENDING", "DESCENDING"], "in": "query", "name": "sortOrder", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AdvertiserGroupsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["advertiserGroups"]
       },
       "parameters": [
@@ -612,7 +592,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AdvertiserGroup"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AdvertiserGroup"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["advertiserGroups"]
       },
       "post": {
@@ -623,7 +603,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AdvertiserGroup"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AdvertiserGroup"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["advertiserGroups"]
       },
       "put": {
@@ -634,7 +614,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AdvertiserGroup"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AdvertiserGroup"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["advertiserGroups"]
       }
     },
@@ -647,7 +627,7 @@
           {"description": "Advertiser group ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["advertiserGroups"]
       },
       "get": {
@@ -658,7 +638,7 @@
           {"description": "Advertiser group ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AdvertiserGroup"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["advertiserGroups"]
       },
       "parameters": [
@@ -696,7 +676,7 @@
           {"description": "Select only advertisers with these subaccount IDs.", "in": "query", "name": "subaccountId", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AdvertisersListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["advertisers"]
       },
       "parameters": [
@@ -717,7 +697,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Advertiser"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Advertiser"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["advertisers"]
       },
       "post": {
@@ -725,7 +705,7 @@
         "operationId": "dfareporting.advertisers.insert",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Advertiser"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Advertiser"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["advertisers"]
       },
       "put": {
@@ -733,7 +713,7 @@
         "operationId": "dfareporting.advertisers.update",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Advertiser"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Advertiser"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["advertisers"]
       }
     },
@@ -746,7 +726,7 @@
           {"description": "Advertiser ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Advertiser"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["advertisers"]
       },
       "parameters": [
@@ -765,7 +745,7 @@
         "operationId": "dfareporting.browsers.list",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/BrowsersListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["browsers"]
       },
       "parameters": [
@@ -804,7 +784,7 @@
           {"description": "Select only campaigns that belong to this subaccount.", "in": "query", "name": "subaccountId", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CampaignsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["campaigns"]
       },
       "parameters": [
@@ -825,7 +805,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Campaign"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Campaign"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["campaigns"]
       },
       "post": {
@@ -838,7 +818,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Campaign"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Campaign"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["campaigns"]
       },
       "put": {
@@ -846,7 +826,7 @@
         "operationId": "dfareporting.campaigns.update",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Campaign"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Campaign"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["campaigns"]
       }
     },
@@ -862,7 +842,7 @@
           {"default": "ASCENDING", "description": "Order of sorted results.", "enum": ["ASCENDING", "DESCENDING"], "in": "query", "name": "sortOrder", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CampaignCreativeAssociationsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["campaignCreativeAssociations"]
       },
       "parameters": [
@@ -883,7 +863,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CampaignCreativeAssociation"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CampaignCreativeAssociation"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["campaignCreativeAssociations"]
       }
     },
@@ -896,7 +876,7 @@
           {"description": "Landing page campaign ID.", "in": "path", "name": "campaignId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/LandingPagesListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["landingPages"]
       },
       "parameters": [
@@ -918,7 +898,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/LandingPage"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/LandingPage"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["landingPages"]
       },
       "post": {
@@ -930,7 +910,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/LandingPage"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/LandingPage"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["landingPages"]
       },
       "put": {
@@ -942,7 +922,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/LandingPage"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/LandingPage"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["landingPages"]
       }
     },
@@ -956,7 +936,7 @@
           {"description": "Landing page ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["landingPages"]
       },
       "get": {
@@ -968,7 +948,7 @@
           {"description": "Landing page ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/LandingPage"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["landingPages"]
       },
       "parameters": [
@@ -990,7 +970,7 @@
           {"description": "Campaign ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Campaign"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["campaigns"]
       },
       "parameters": [
@@ -1101,7 +1081,7 @@
           {"collectionFormat": "multi", "description": "Select only change logs with these user profile IDs.", "in": "query", "items": {"type": "string"}, "name": "userProfileIds", "type": "array"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ChangeLogsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["changeLogs"]
       },
       "parameters": [
@@ -1123,7 +1103,7 @@
           {"description": "Change log ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ChangeLog"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["changeLogs"]
       },
       "parameters": [
@@ -1148,7 +1128,7 @@
           {"collectionFormat": "multi", "description": "Select only cities from these regions.", "in": "query", "items": {"type": "string"}, "name": "regionDartIds", "type": "array"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CitiesListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["cities"]
       },
       "parameters": [
@@ -1167,7 +1147,7 @@
         "operationId": "dfareporting.connectionTypes.list",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ConnectionTypesListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["connectionTypes"]
       },
       "parameters": [
@@ -1189,7 +1169,7 @@
           {"description": "Connection type ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ConnectionType"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["connectionTypes"]
       },
       "parameters": [
@@ -1221,7 +1201,7 @@
           {"default": "ASCENDING", "description": "Order of sorted results.", "enum": ["ASCENDING", "DESCENDING"], "in": "query", "name": "sortOrder", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ContentCategoriesListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["contentCategories"]
       },
       "parameters": [
@@ -1242,7 +1222,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ContentCategory"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ContentCategory"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["contentCategories"]
       },
       "post": {
@@ -1253,7 +1233,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ContentCategory"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ContentCategory"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["contentCategories"]
       },
       "put": {
@@ -1264,7 +1244,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ContentCategory"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ContentCategory"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["contentCategories"]
       }
     },
@@ -1277,7 +1257,7 @@
           {"description": "Content category ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["contentCategories"]
       },
       "get": {
@@ -1288,7 +1268,7 @@
           {"description": "Content category ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ContentCategory"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["contentCategories"]
       },
       "parameters": [
@@ -1319,7 +1299,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ConversionsBatchInsertRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ConversionsBatchInsertResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/ddmconversions"], "Oauth2c": ["https://www.googleapis.com/auth/ddmconversions"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/ddmconversions"]}],
         "tags": ["conversions"]
       }
     },
@@ -1329,7 +1309,7 @@
         "operationId": "dfareporting.countries.list",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CountriesListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["countries"]
       },
       "parameters": [
@@ -1351,7 +1331,7 @@
           {"description": "Country DART ID.", "in": "path", "name": "dartId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Country"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["countries"]
       },
       "parameters": [
@@ -1384,7 +1364,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CreativeAssetMetadata"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CreativeAssetMetadata"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["creativeAssets"]
       }
     },
@@ -1408,7 +1388,7 @@
           {"default": "ASCENDING", "description": "Order of sorted results.", "enum": ["ASCENDING", "DESCENDING"], "in": "query", "name": "sortOrder", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CreativeFieldsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["creativeFields"]
       },
       "parameters": [
@@ -1429,7 +1409,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CreativeField"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CreativeField"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["creativeFields"]
       },
       "post": {
@@ -1440,7 +1420,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CreativeField"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CreativeField"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["creativeFields"]
       },
       "put": {
@@ -1451,7 +1431,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CreativeField"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CreativeField"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["creativeFields"]
       }
     },
@@ -1470,7 +1450,7 @@
           {"default": "ASCENDING", "description": "Order of sorted results.", "enum": ["ASCENDING", "DESCENDING"], "in": "query", "name": "sortOrder", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CreativeFieldValuesListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["creativeFieldValues"]
       },
       "parameters": [
@@ -1492,7 +1472,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CreativeFieldValue"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CreativeFieldValue"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["creativeFieldValues"]
       },
       "post": {
@@ -1504,7 +1484,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CreativeFieldValue"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CreativeFieldValue"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["creativeFieldValues"]
       },
       "put": {
@@ -1516,7 +1496,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CreativeFieldValue"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CreativeFieldValue"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["creativeFieldValues"]
       }
     },
@@ -1530,7 +1510,7 @@
           {"description": "Creative Field Value ID", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["creativeFieldValues"]
       },
       "get": {
@@ -1542,7 +1522,7 @@
           {"description": "Creative Field Value ID", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CreativeFieldValue"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["creativeFieldValues"]
       },
       "parameters": [
@@ -1564,7 +1544,7 @@
           {"description": "Creative Field ID", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["creativeFields"]
       },
       "get": {
@@ -1575,7 +1555,7 @@
           {"description": "Creative Field ID", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CreativeField"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["creativeFields"]
       },
       "parameters": [
@@ -1609,7 +1589,7 @@
           {"default": "ASCENDING", "description": "Order of sorted results.", "enum": ["ASCENDING", "DESCENDING"], "in": "query", "name": "sortOrder", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CreativeGroupsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["creativeGroups"]
       },
       "parameters": [
@@ -1630,7 +1610,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CreativeGroup"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CreativeGroup"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["creativeGroups"]
       },
       "post": {
@@ -1641,7 +1621,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CreativeGroup"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CreativeGroup"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["creativeGroups"]
       },
       "put": {
@@ -1652,7 +1632,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CreativeGroup"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CreativeGroup"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["creativeGroups"]
       }
     },
@@ -1665,7 +1645,7 @@
           {"description": "Creative group ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CreativeGroup"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["creativeGroups"]
       },
       "parameters": [
@@ -1742,7 +1722,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CreativesListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["creatives"]
       },
       "parameters": [
@@ -1763,7 +1743,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Creative"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Creative"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["creatives"]
       },
       "post": {
@@ -1771,7 +1751,7 @@
         "operationId": "dfareporting.creatives.insert",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Creative"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Creative"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["creatives"]
       },
       "put": {
@@ -1779,7 +1759,7 @@
         "operationId": "dfareporting.creatives.update",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Creative"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Creative"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["creatives"]
       }
     },
@@ -1792,7 +1772,7 @@
           {"description": "Creative ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Creative"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["creatives"]
       },
       "parameters": [
@@ -1825,7 +1805,7 @@
           {"description": "The DFA user profile ID.", "in": "path", "name": "profileId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/DimensionValueList"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"], "Oauth2c": ["https://www.googleapis.com/auth/dfareporting"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"]}],
         "tags": ["dimensionValues"]
       }
     },
@@ -1849,7 +1829,7 @@
           {"default": "ASCENDING", "description": "Order of sorted results.", "enum": ["ASCENDING", "DESCENDING"], "in": "query", "name": "sortOrder", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/DirectorySiteContactsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["directorySiteContacts"]
       },
       "parameters": [
@@ -1871,7 +1851,7 @@
           {"description": "Directory site contact ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/DirectorySiteContact"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["directorySiteContacts"]
       },
       "parameters": [
@@ -1910,7 +1890,7 @@
           {"default": "ASCENDING", "description": "Order of sorted results.", "enum": ["ASCENDING", "DESCENDING"], "in": "query", "name": "sortOrder", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/DirectorySitesListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["directorySites"]
       },
       "parameters": [
@@ -1930,7 +1910,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/DirectorySite"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/DirectorySite"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["directorySites"]
       }
     },
@@ -1943,7 +1923,7 @@
           {"description": "Directory site ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/DirectorySite"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["directorySites"]
       },
       "parameters": [
@@ -1968,7 +1948,7 @@
           {"description": "Select only dynamic targeting keys with this object type.", "enum": ["OBJECT_AD", "OBJECT_ADVERTISER", "OBJECT_CREATIVE", "OBJECT_PLACEMENT"], "in": "query", "name": "objectType", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/DynamicTargetingKeysListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["dynamicTargetingKeys"]
       },
       "parameters": [
@@ -1988,7 +1968,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/DynamicTargetingKey"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/DynamicTargetingKey"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["dynamicTargetingKeys"]
       }
     },
@@ -2016,7 +1996,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["dynamicTargetingKeys"]
       },
       "parameters": [
@@ -2069,7 +2049,7 @@
           {"default": "ASCENDING", "description": "Order of sorted results.", "enum": ["ASCENDING", "DESCENDING"], "in": "query", "name": "sortOrder", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/EventTagsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["eventTags"]
       },
       "parameters": [
@@ -2090,7 +2070,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/EventTag"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/EventTag"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["eventTags"]
       },
       "post": {
@@ -2098,7 +2078,7 @@
         "operationId": "dfareporting.eventTags.insert",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/EventTag"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/EventTag"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["eventTags"]
       },
       "put": {
@@ -2106,7 +2086,7 @@
         "operationId": "dfareporting.eventTags.update",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/EventTag"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/EventTag"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["eventTags"]
       }
     },
@@ -2119,7 +2099,7 @@
           {"description": "Event tag ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["eventTags"]
       },
       "get": {
@@ -2130,7 +2110,7 @@
           {"description": "Event tag ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/EventTag"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["eventTags"]
       },
       "parameters": [
@@ -2156,7 +2136,7 @@
           {"default": "DESCENDING", "description": "Order of sorted results.", "enum": ["ASCENDING", "DESCENDING"], "in": "query", "name": "sortOrder", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/FileList"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"], "Oauth2c": ["https://www.googleapis.com/auth/dfareporting"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"]}],
         "tags": ["files"]
       },
       "parameters": [
@@ -2219,7 +2199,7 @@
           {"description": "Select only floodlight activities with the specified tag string.", "in": "query", "name": "tagString", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/FloodlightActivitiesListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["floodlightActivities"]
       },
       "parameters": [
@@ -2240,7 +2220,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/FloodlightActivity"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/FloodlightActivity"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["floodlightActivities"]
       },
       "post": {
@@ -2251,7 +2231,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/FloodlightActivity"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/FloodlightActivity"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["floodlightActivities"]
       },
       "put": {
@@ -2262,7 +2242,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/FloodlightActivity"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/FloodlightActivity"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["floodlightActivities"]
       }
     },
@@ -2284,7 +2264,7 @@
           {"description": "Floodlight activity ID for which we want to generate a tag.", "in": "query", "name": "floodlightActivityId", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/FloodlightActivitiesGenerateTagResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["floodlightActivities"]
       }
     },
@@ -2297,7 +2277,7 @@
           {"description": "Floodlight activity ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["floodlightActivities"]
       },
       "get": {
@@ -2308,7 +2288,7 @@
           {"description": "Floodlight activity ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/FloodlightActivity"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["floodlightActivities"]
       },
       "parameters": [
@@ -2360,7 +2340,7 @@
           {"description": "Select only floodlight activity groups with the specified floodlight activity group type.", "enum": ["COUNTER", "SALE"], "in": "query", "name": "type", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/FloodlightActivityGroupsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["floodlightActivityGroups"]
       },
       "parameters": [
@@ -2381,7 +2361,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/FloodlightActivityGroup"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/FloodlightActivityGroup"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["floodlightActivityGroups"]
       },
       "post": {
@@ -2392,7 +2372,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/FloodlightActivityGroup"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/FloodlightActivityGroup"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["floodlightActivityGroups"]
       },
       "put": {
@@ -2403,7 +2383,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/FloodlightActivityGroup"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/FloodlightActivityGroup"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["floodlightActivityGroups"]
       }
     },
@@ -2416,7 +2396,7 @@
           {"description": "Floodlight activity Group ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/FloodlightActivityGroup"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["floodlightActivityGroups"]
       },
       "parameters": [
@@ -2445,7 +2425,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/FloodlightConfigurationsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["floodlightConfigurations"]
       },
       "parameters": [
@@ -2466,7 +2446,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/FloodlightConfiguration"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/FloodlightConfiguration"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["floodlightConfigurations"]
       },
       "put": {
@@ -2477,7 +2457,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/FloodlightConfiguration"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/FloodlightConfiguration"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["floodlightConfigurations"]
       }
     },
@@ -2490,7 +2470,7 @@
           {"description": "Floodlight configuration ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/FloodlightConfiguration"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["floodlightConfigurations"]
       },
       "parameters": [
@@ -2509,7 +2489,7 @@
         "operationId": "dfareporting.languages.list",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/LanguagesListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["languages"]
       },
       "parameters": [
@@ -2528,7 +2508,7 @@
         "operationId": "dfareporting.metros.list",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/MetrosListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["metros"]
       },
       "parameters": [
@@ -2547,7 +2527,7 @@
         "operationId": "dfareporting.mobileCarriers.list",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/MobileCarriersListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["mobileCarriers"]
       },
       "parameters": [
@@ -2569,7 +2549,7 @@
           {"description": "Mobile carrier ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/MobileCarrier"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["mobileCarriers"]
       },
       "parameters": [
@@ -2588,7 +2568,7 @@
         "operationId": "dfareporting.operatingSystemVersions.list",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OperatingSystemVersionsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["operatingSystemVersions"]
       },
       "parameters": [
@@ -2610,7 +2590,7 @@
           {"description": "Operating system version ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OperatingSystemVersion"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["operatingSystemVersions"]
       },
       "parameters": [
@@ -2629,7 +2609,7 @@
         "operationId": "dfareporting.operatingSystems.list",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OperatingSystemsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["operatingSystems"]
       },
       "parameters": [
@@ -2651,7 +2631,7 @@
           {"description": "Operating system DART ID.", "in": "path", "name": "dartId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OperatingSystem"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["operatingSystems"]
       },
       "parameters": [
@@ -2709,7 +2689,7 @@
           {"default": "ASCENDING", "description": "Order of sorted results.", "enum": ["ASCENDING", "DESCENDING"], "in": "query", "name": "sortOrder", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PlacementGroupsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["placementGroups"]
       },
       "parameters": [
@@ -2730,7 +2710,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/PlacementGroup"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PlacementGroup"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["placementGroups"]
       },
       "post": {
@@ -2741,7 +2721,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/PlacementGroup"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PlacementGroup"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["placementGroups"]
       },
       "put": {
@@ -2752,7 +2732,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/PlacementGroup"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PlacementGroup"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["placementGroups"]
       }
     },
@@ -2765,7 +2745,7 @@
           {"description": "Placement group ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PlacementGroup"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["placementGroups"]
       },
       "parameters": [
@@ -2797,7 +2777,7 @@
           {"default": "ASCENDING", "description": "Order of sorted results.", "enum": ["ASCENDING", "DESCENDING"], "in": "query", "name": "sortOrder", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PlacementStrategiesListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["placementStrategies"]
       },
       "parameters": [
@@ -2818,7 +2798,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/PlacementStrategy"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PlacementStrategy"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["placementStrategies"]
       },
       "post": {
@@ -2829,7 +2809,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/PlacementStrategy"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PlacementStrategy"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["placementStrategies"]
       },
       "put": {
@@ -2840,7 +2820,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/PlacementStrategy"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PlacementStrategy"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["placementStrategies"]
       }
     },
@@ -2853,7 +2833,7 @@
           {"description": "Placement strategy ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["placementStrategies"]
       },
       "get": {
@@ -2864,7 +2844,7 @@
           {"description": "Placement strategy ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PlacementStrategy"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["placementStrategies"]
       },
       "parameters": [
@@ -2926,7 +2906,7 @@
           {"default": "ASCENDING", "description": "Order of sorted results.", "enum": ["ASCENDING", "DESCENDING"], "in": "query", "name": "sortOrder", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PlacementsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["placements"]
       },
       "parameters": [
@@ -2947,7 +2927,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Placement"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Placement"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["placements"]
       },
       "post": {
@@ -2955,7 +2935,7 @@
         "operationId": "dfareporting.placements.insert",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Placement"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Placement"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["placements"]
       },
       "put": {
@@ -2963,7 +2943,7 @@
         "operationId": "dfareporting.placements.update",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Placement"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Placement"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["placements"]
       }
     },
@@ -3017,7 +2997,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PlacementsGenerateTagsResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["placements"]
       }
     },
@@ -3030,7 +3010,7 @@
           {"description": "Placement ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Placement"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["placements"]
       },
       "parameters": [
@@ -3049,7 +3029,7 @@
         "operationId": "dfareporting.platformTypes.list",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PlatformTypesListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["platformTypes"]
       },
       "parameters": [
@@ -3071,7 +3051,7 @@
           {"description": "Platform type ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PlatformType"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["platformTypes"]
       },
       "parameters": [
@@ -3090,7 +3070,7 @@
         "operationId": "dfareporting.postalCodes.list",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PostalCodesListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["postalCodes"]
       },
       "parameters": [
@@ -3112,7 +3092,7 @@
           {"description": "Postal code ID.", "in": "path", "name": "code", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PostalCode"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["postalCodes"]
       },
       "parameters": [
@@ -3145,7 +3125,7 @@
           {"default": "ASCENDING", "description": "Order of sorted results.", "enum": ["ASCENDING", "DESCENDING"], "in": "query", "name": "sortOrder", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ProjectsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["projects"]
       },
       "parameters": [
@@ -3167,7 +3147,7 @@
           {"description": "Project ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Project"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["projects"]
       },
       "parameters": [
@@ -3198,7 +3178,7 @@
           {"description": "Select only inventory items with this type.", "enum": ["PLANNING_PLACEMENT_TYPE_CREDIT", "PLANNING_PLACEMENT_TYPE_REGULAR"], "in": "query", "name": "type", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/InventoryItemsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["inventoryItems"]
       },
       "parameters": [
@@ -3221,7 +3201,7 @@
           {"description": "Inventory item ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/InventoryItem"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["inventoryItems"]
       },
       "parameters": [
@@ -3257,7 +3237,7 @@
           {"default": "ASCENDING", "description": "Order of sorted results.", "enum": ["ASCENDING", "DESCENDING"], "in": "query", "name": "sortOrder", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OrderDocumentsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["orderDocuments"]
       },
       "parameters": [
@@ -3280,7 +3260,7 @@
           {"description": "Order document ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OrderDocument"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["orderDocuments"]
       },
       "parameters": [
@@ -3314,7 +3294,7 @@
           {"default": "ASCENDING", "description": "Order of sorted results.", "enum": ["ASCENDING", "DESCENDING"], "in": "query", "name": "sortOrder", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OrdersListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["orders"]
       },
       "parameters": [
@@ -3337,7 +3317,7 @@
           {"description": "Order ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Order"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["orders"]
       },
       "parameters": [
@@ -3356,7 +3336,7 @@
         "operationId": "dfareporting.regions.list",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/RegionsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["regions"]
       },
       "parameters": [
@@ -3388,7 +3368,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/RemarketingListShare"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/RemarketingListShare"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["remarketingListShares"]
       },
       "put": {
@@ -3399,7 +3379,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/RemarketingListShare"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/RemarketingListShare"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["remarketingListShares"]
       }
     },
@@ -3412,7 +3392,7 @@
           {"description": "Remarketing list ID.", "in": "path", "name": "remarketingListId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/RemarketingListShare"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["remarketingListShares"]
       },
       "parameters": [
@@ -3446,7 +3426,7 @@
           {"default": "ASCENDING", "description": "Order of sorted results.", "enum": ["ASCENDING", "DESCENDING"], "in": "query", "name": "sortOrder", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/RemarketingListsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["remarketingLists"]
       },
       "parameters": [
@@ -3467,7 +3447,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/RemarketingList"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/RemarketingList"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["remarketingLists"]
       },
       "post": {
@@ -3478,7 +3458,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/RemarketingList"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/RemarketingList"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["remarketingLists"]
       },
       "put": {
@@ -3489,7 +3469,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/RemarketingList"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/RemarketingList"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["remarketingLists"]
       }
     },
@@ -3502,7 +3482,7 @@
           {"description": "Remarketing list ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/RemarketingList"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["remarketingLists"]
       },
       "parameters": [
@@ -3528,7 +3508,7 @@
           {"default": "DESCENDING", "description": "Order of sorted results.", "enum": ["ASCENDING", "DESCENDING"], "in": "query", "name": "sortOrder", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ReportList"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"], "Oauth2c": ["https://www.googleapis.com/auth/dfareporting"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"]}],
         "tags": ["reports"]
       },
       "parameters": [
@@ -3545,7 +3525,7 @@
         "operationId": "dfareporting.reports.insert",
         "parameters": [{"description": "The DFA user profile ID.", "in": "path", "name": "profileId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Report"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Report"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"], "Oauth2c": ["https://www.googleapis.com/auth/dfareporting"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"]}],
         "tags": ["reports"]
       }
     },
@@ -3564,7 +3544,7 @@
         "operationId": "dfareporting.reports.compatibleFields.query",
         "parameters": [{"description": "The DFA user profile ID.", "in": "path", "name": "profileId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Report"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CompatibleFields"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"], "Oauth2c": ["https://www.googleapis.com/auth/dfareporting"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"]}],
         "tags": ["reports"]
       }
     },
@@ -3577,7 +3557,7 @@
           {"description": "The ID of the report.", "in": "path", "name": "reportId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"], "Oauth2c": ["https://www.googleapis.com/auth/dfareporting"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"]}],
         "tags": ["reports"]
       },
       "get": {
@@ -3588,7 +3568,7 @@
           {"description": "The ID of the report.", "in": "path", "name": "reportId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Report"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"], "Oauth2c": ["https://www.googleapis.com/auth/dfareporting"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"]}],
         "tags": ["reports"]
       },
       "parameters": [
@@ -3609,7 +3589,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Report"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Report"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"], "Oauth2c": ["https://www.googleapis.com/auth/dfareporting"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"]}],
         "tags": ["reports"]
       },
       "put": {
@@ -3621,7 +3601,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Report"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Report"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"], "Oauth2c": ["https://www.googleapis.com/auth/dfareporting"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"]}],
         "tags": ["reports"]
       }
     },
@@ -3638,7 +3618,7 @@
           {"default": "DESCENDING", "description": "Order of sorted results.", "enum": ["ASCENDING", "DESCENDING"], "in": "query", "name": "sortOrder", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/FileList"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"], "Oauth2c": ["https://www.googleapis.com/auth/dfareporting"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"]}],
         "tags": ["reports"]
       },
       "parameters": [
@@ -3661,7 +3641,7 @@
           {"description": "The ID of the report file.", "in": "path", "name": "fileId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/File"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"], "Oauth2c": ["https://www.googleapis.com/auth/dfareporting"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"]}],
         "tags": ["reports"]
       },
       "parameters": [
@@ -3693,7 +3673,7 @@
           {"default": false, "description": "If set and true, tries to run the report synchronously.", "in": "query", "name": "synchronous", "type": "boolean"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/File"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"], "Oauth2c": ["https://www.googleapis.com/auth/dfareporting"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfareporting"]}],
         "tags": ["reports"]
       }
     },
@@ -3725,7 +3705,7 @@
           {"description": "Select only sites that have not been mapped to a directory site.", "in": "query", "name": "unmappedSite", "type": "boolean"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SitesListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["sites"]
       },
       "parameters": [
@@ -3746,7 +3726,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Site"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Site"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["sites"]
       },
       "post": {
@@ -3754,7 +3734,7 @@
         "operationId": "dfareporting.sites.insert",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Site"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Site"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["sites"]
       },
       "put": {
@@ -3762,7 +3742,7 @@
         "operationId": "dfareporting.sites.update",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Site"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Site"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["sites"]
       }
     },
@@ -3775,7 +3755,7 @@
           {"description": "Site ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Site"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["sites"]
       },
       "parameters": [
@@ -3800,7 +3780,7 @@
           {"description": "Select only sizes with this width.", "in": "query", "maximum": 32767, "minimum": 0, "name": "width", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SizesListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["sizes"]
       },
       "parameters": [
@@ -3817,7 +3797,7 @@
         "operationId": "dfareporting.sizes.insert",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Size"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Size"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["sizes"]
       }
     },
@@ -3830,7 +3810,7 @@
           {"description": "Size ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Size"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["sizes"]
       },
       "parameters": [
@@ -3862,7 +3842,7 @@
           {"default": "ASCENDING", "description": "Order of sorted results.", "enum": ["ASCENDING", "DESCENDING"], "in": "query", "name": "sortOrder", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SubaccountsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["subaccounts"]
       },
       "parameters": [
@@ -3883,7 +3863,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Subaccount"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Subaccount"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["subaccounts"]
       },
       "post": {
@@ -3891,7 +3871,7 @@
         "operationId": "dfareporting.subaccounts.insert",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Subaccount"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Subaccount"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["subaccounts"]
       },
       "put": {
@@ -3899,7 +3879,7 @@
         "operationId": "dfareporting.subaccounts.update",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Subaccount"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Subaccount"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["subaccounts"]
       }
     },
@@ -3912,7 +3892,7 @@
           {"description": "Subaccount ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Subaccount"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["subaccounts"]
       },
       "parameters": [
@@ -3945,7 +3925,7 @@
           {"default": "ASCENDING", "description": "Order of sorted results.", "enum": ["ASCENDING", "DESCENDING"], "in": "query", "name": "sortOrder", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TargetableRemarketingListsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["targetableRemarketingLists"]
       },
       "parameters": [
@@ -3967,7 +3947,7 @@
           {"description": "Remarketing list ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TargetableRemarketingList"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["targetableRemarketingLists"]
       },
       "parameters": [
@@ -4000,7 +3980,7 @@
           {"default": "ASCENDING", "description": "Order of sorted results.", "enum": ["ASCENDING", "DESCENDING"], "in": "query", "name": "sortOrder", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TargetingTemplatesListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["targetingTemplates"]
       },
       "parameters": [
@@ -4021,7 +4001,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/TargetingTemplate"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TargetingTemplate"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["targetingTemplates"]
       },
       "post": {
@@ -4032,7 +4012,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/TargetingTemplate"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TargetingTemplate"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["targetingTemplates"]
       },
       "put": {
@@ -4043,7 +4023,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/TargetingTemplate"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TargetingTemplate"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["targetingTemplates"]
       }
     },
@@ -4056,7 +4036,7 @@
           {"description": "Targeting template ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TargetingTemplate"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["targetingTemplates"]
       },
       "parameters": [
@@ -4075,7 +4055,7 @@
         "operationId": "dfareporting.userRolePermissionGroups.list",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UserRolePermissionGroupsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["userRolePermissionGroups"]
       },
       "parameters": [
@@ -4097,7 +4077,7 @@
           {"description": "User role permission group ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UserRolePermissionGroup"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["userRolePermissionGroups"]
       },
       "parameters": [
@@ -4119,7 +4099,7 @@
           {"collectionFormat": "multi", "description": "Select only user role permissions with these IDs.", "in": "query", "items": {"type": "string"}, "name": "ids", "type": "array"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UserRolePermissionsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["userRolePermissions"]
       },
       "parameters": [
@@ -4141,7 +4121,7 @@
           {"description": "User role permission ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UserRolePermission"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["userRolePermissions"]
       },
       "parameters": [
@@ -4175,7 +4155,7 @@
           {"description": "Select only user roles that belong to this subaccount.", "in": "query", "name": "subaccountId", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UserRolesListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["userRoles"]
       },
       "parameters": [
@@ -4196,7 +4176,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/UserRole"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UserRole"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["userRoles"]
       },
       "post": {
@@ -4204,7 +4184,7 @@
         "operationId": "dfareporting.userRoles.insert",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/UserRole"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UserRole"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["userRoles"]
       },
       "put": {
@@ -4212,7 +4192,7 @@
         "operationId": "dfareporting.userRoles.update",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/UserRole"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UserRole"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["userRoles"]
       }
     },
@@ -4225,7 +4205,7 @@
           {"description": "User role ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["userRoles"]
       },
       "get": {
@@ -4236,7 +4216,7 @@
           {"description": "User role ID.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UserRole"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["userRoles"]
       },
       "parameters": [
@@ -4255,7 +4235,7 @@
         "operationId": "dfareporting.videoFormats.list",
         "parameters": [{"description": "User profile ID associated with this request.", "in": "path", "name": "profileId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/VideoFormatsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["videoFormats"]
       },
       "parameters": [
@@ -4277,7 +4257,7 @@
           {"description": "Video format ID.", "in": "path", "name": "id", "required": true, "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/VideoFormat"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"], "Oauth2c": ["https://www.googleapis.com/auth/dfatrafficking"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/dfatrafficking"]}],
         "tags": ["videoFormats"]
       },
       "parameters": [
@@ -4307,7 +4287,7 @@
         "availablePermissionIds": {"description": "User role permissions available to the user roles of this account.", "items": {"format": "int64", "type": "string"}, "type": "array"},
         "countryId": {"description": "ID of the country associated with this account.", "format": "int64", "type": "string"},
         "currencyId": {
-          "description": "ID of currency associated with this account. This is a required field.\nAcceptable values are: \n- \"1\" for USD \n- \"2\" for GBP \n- \"3\" for ESP \n- \"4\" for SEK \n- \"5\" for CAD \n- \"6\" for JPY \n- \"7\" for DEM \n- \"8\" for AUD \n- \"9\" for FRF \n- \"10\" for ITL \n- \"11\" for DKK \n- \"12\" for NOK \n- \"13\" for FIM \n- \"14\" for ZAR \n- \"15\" for IEP \n- \"16\" for NLG \n- \"17\" for EUR \n- \"18\" for KRW \n- \"19\" for TWD \n- \"20\" for SGD \n- \"21\" for CNY \n- \"22\" for HKD \n- \"23\" for NZD \n- \"24\" for MYR \n- \"25\" for BRL \n- \"26\" for PTE \n- \"27\" for MXP \n- \"28\" for CLP \n- \"29\" for TRY \n- \"30\" for ARS \n- \"31\" for PEN \n- \"32\" for ILS \n- \"33\" for CHF \n- \"34\" for VEF \n- \"35\" for COP \n- \"36\" for GTQ \n- \"37\" for PLN \n- \"39\" for INR \n- \"40\" for THB \n- \"41\" for IDR \n- \"42\" for CZK \n- \"43\" for RON \n- \"44\" for HUF \n- \"45\" for RUB \n- \"46\" for AED \n- \"47\" for BGN \n- \"48\" for HRK \n- \"49\" for MXN",
+          "description": "ID of currency associated with this account. This is a required field.\nAcceptable values are:\n- \"1\" for USD\n- \"2\" for GBP\n- \"3\" for ESP\n- \"4\" for SEK\n- \"5\" for CAD\n- \"6\" for JPY\n- \"7\" for DEM\n- \"8\" for AUD\n- \"9\" for FRF\n- \"10\" for ITL\n- \"11\" for DKK\n- \"12\" for NOK\n- \"13\" for FIM\n- \"14\" for ZAR\n- \"15\" for IEP\n- \"16\" for NLG\n- \"17\" for EUR\n- \"18\" for KRW\n- \"19\" for TWD\n- \"20\" for SGD\n- \"21\" for CNY\n- \"22\" for HKD\n- \"23\" for NZD\n- \"24\" for MYR\n- \"25\" for BRL\n- \"26\" for PTE\n- \"27\" for MXP\n- \"28\" for CLP\n- \"29\" for TRY\n- \"30\" for ARS\n- \"31\" for PEN\n- \"32\" for ILS\n- \"33\" for CHF\n- \"34\" for VEF\n- \"35\" for COP\n- \"36\" for GTQ\n- \"37\" for PLN\n- \"39\" for INR\n- \"40\" for THB\n- \"41\" for IDR\n- \"42\" for CZK\n- \"43\" for RON\n- \"44\" for HUF\n- \"45\" for RUB\n- \"46\" for AED\n- \"47\" for BGN\n- \"48\" for HRK\n- \"49\" for MXN",
           "format": "int64",
           "type": "string"
         },
@@ -4316,7 +4296,7 @@
         "id": {"description": "ID of this account. This is a read-only, auto-generated field.", "format": "int64", "type": "string"},
         "kind": {"default": "dfareporting#account", "description": "Identifies what kind of resource this is. Value: the fixed string \"dfareporting#account\".", "type": "string"},
         "locale": {
-          "description": "Locale of this account.\nAcceptable values are: \n- \"cs\" (Czech) \n- \"de\" (German) \n- \"en\" (English) \n- \"en-GB\" (English United Kingdom) \n- \"es\" (Spanish) \n- \"fr\" (French) \n- \"it\" (Italian) \n- \"ja\" (Japanese) \n- \"ko\" (Korean) \n- \"pl\" (Polish) \n- \"pt-BR\" (Portuguese Brazil) \n- \"ru\" (Russian) \n- \"sv\" (Swedish) \n- \"tr\" (Turkish) \n- \"zh-CN\" (Chinese Simplified) \n- \"zh-TW\" (Chinese Traditional)",
+          "description": "Locale of this account.\nAcceptable values are:\n- \"cs\" (Czech)\n- \"de\" (German)\n- \"en\" (English)\n- \"en-GB\" (English United Kingdom)\n- \"es\" (Spanish)\n- \"fr\" (French)\n- \"it\" (Italian)\n- \"ja\" (Japanese)\n- \"ko\" (Korean)\n- \"pl\" (Polish)\n- \"pt-BR\" (Portuguese Brazil)\n- \"ru\" (Russian)\n- \"sv\" (Swedish)\n- \"tr\" (Turkish)\n- \"zh-CN\" (Chinese Simplified)\n- \"zh-TW\" (Chinese Traditional)",
           "type": "string"
         },
         "maximumImageSize": {"description": "Maximum image size allowed for this account, in kilobytes. Value must be greater than or equal to 1.", "format": "int64", "type": "string"},
@@ -4396,7 +4376,7 @@
         "id": {"description": "ID of the user profile. This is a read-only, auto-generated field.", "format": "int64", "type": "string"},
         "kind": {"default": "dfareporting#accountUserProfile", "description": "Identifies what kind of resource this is. Value: the fixed string \"dfareporting#accountUserProfile\".", "type": "string"},
         "locale": {
-          "description": "Locale of the user profile. This is a required field.\nAcceptable values are:  \n- \"cs\" (Czech) \n- \"de\" (German) \n- \"en\" (English) \n- \"en-GB\" (English United Kingdom) \n- \"es\" (Spanish) \n- \"fr\" (French) \n- \"it\" (Italian) \n- \"ja\" (Japanese) \n- \"ko\" (Korean) \n- \"pl\" (Polish) \n- \"pt-BR\" (Portuguese Brazil)\n- \"ru\" (Russian) \n- \"sv\" (Swedish) \n- \"tr\" (Turkish) \n- \"zh-CN\" (Chinese Simplified) \n- \"zh-TW\" (Chinese Traditional)",
+          "description": "Locale of the user profile. This is a required field.\nAcceptable values are:\n- \"cs\" (Czech)\n- \"de\" (German)\n- \"en\" (English)\n- \"en-GB\" (English United Kingdom)\n- \"es\" (Spanish)\n- \"fr\" (French)\n- \"it\" (Italian)\n- \"ja\" (Japanese)\n- \"ko\" (Korean)\n- \"pl\" (Polish)\n- \"pt-BR\" (Portuguese Brazil)\n- \"ru\" (Russian)\n- \"sv\" (Swedish)\n- \"tr\" (Turkish)\n- \"zh-CN\" (Chinese Simplified)\n- \"zh-TW\" (Chinese Traditional)",
           "type": "string"
         },
         "name": {
@@ -4567,7 +4547,7 @@
         "defaultClickThroughEventTagId": {"description": "ID of the click-through event tag to apply by default to the landing pages of this advertiser's campaigns.", "format": "int64", "type": "string"},
         "defaultEmail": {"description": "Default email address used in sender field for tag emails.", "type": "string"},
         "floodlightConfigurationId": {
-          "description": "Floodlight configuration ID of this advertiser. The floodlight configuration ID will be created automatically, so on insert this field should be left blank. This field can be set to another advertiser's floodlight configuration ID in order to share that advertiser's floodlight configuration with this advertiser, so long as: \n- This advertiser's original floodlight configuration is not already associated with floodlight activities or floodlight activity groups. \n- This advertiser's original floodlight configuration is not already shared with another advertiser.",
+          "description": "Floodlight configuration ID of this advertiser. The floodlight configuration ID will be created automatically, so on insert this field should be left blank. This field can be set to another advertiser's floodlight configuration ID in order to share that advertiser's floodlight configuration with this advertiser, so long as:\n- This advertiser's original floodlight configuration is not already associated with floodlight activities or floodlight activity groups.\n- This advertiser's original floodlight configuration is not already shared with another advertiser.",
           "format": "int64",
           "type": "string"
         },
@@ -4806,7 +4786,7 @@
       "description": "Click-through URL",
       "properties": {
         "computedClickThroughUrl": {
-          "description": "Read-only convenience field representing the actual URL that will be used for this click-through. The URL is computed as follows: \n- If defaultLandingPage is enabled then the campaign's default landing page URL is assigned to this field.\n- If defaultLandingPage is not enabled and a landingPageId is specified then that landing page's URL is assigned to this field.\n- If neither of the above cases apply, then the customClickThroughUrl is assigned to this field.",
+          "description": "Read-only convenience field representing the actual URL that will be used for this click-through. The URL is computed as follows:\n- If defaultLandingPage is enabled then the campaign's default landing page URL is assigned to this field.\n- If defaultLandingPage is not enabled and a landingPageId is specified then that landing page's URL is assigned to this field.\n- If neither of the above cases apply, then the customClickThroughUrl is assigned to this field.",
           "type": "string"
         },
         "customClickThroughUrl": {"description": "Custom click-through URL. Applicable if the defaultLandingPage field is set to false and the landingPageId field is left unset.", "type": "string"},
@@ -5642,7 +5622,7 @@
         "creativeIdDimensionValue": {"$ref": "#/definitions/DimensionValue", "description": "Dimension value for the ID of the creative. This is a read-only, auto-generated field."},
         "endTime": {"description": "Date and time that the assigned creative should stop serving. Must be later than the start time.", "format": "date-time", "type": "string"},
         "richMediaExitOverrides": {
-          "description": "Rich media exit overrides for this creative assignment.\nApplicable when the creative type is any of the following: \n- DISPLAY\n- RICH_MEDIA_INPAGE\n- RICH_MEDIA_INPAGE_FLOATING\n- RICH_MEDIA_IM_EXPAND\n- RICH_MEDIA_EXPANDING\n- RICH_MEDIA_INTERSTITIAL_FLOAT\n- RICH_MEDIA_MOBILE_IN_APP\n- RICH_MEDIA_MULTI_FLOATING\n- RICH_MEDIA_PEEL_DOWN\n- VPAID_LINEAR\n- VPAID_NON_LINEAR",
+          "description": "Rich media exit overrides for this creative assignment.\nApplicable when the creative type is any of the following:\n- DISPLAY\n- RICH_MEDIA_INPAGE\n- RICH_MEDIA_INPAGE_FLOATING\n- RICH_MEDIA_IM_EXPAND\n- RICH_MEDIA_EXPANDING\n- RICH_MEDIA_INTERSTITIAL_FLOAT\n- RICH_MEDIA_MOBILE_IN_APP\n- RICH_MEDIA_MULTI_FLOATING\n- RICH_MEDIA_PEEL_DOWN\n- VPAID_LINEAR\n- VPAID_NON_LINEAR",
           "items": {"$ref": "#/definitions/RichMediaExitOverride"},
           "type": "array"
         },
@@ -6095,7 +6075,7 @@
         "contactAssignments": {"description": "Directory site contacts.", "items": {"$ref": "#/definitions/DirectorySiteContactAssignment"}, "type": "array"},
         "countryId": {"description": "Country ID of this directory site. This is a read-only field.", "format": "int64", "type": "string"},
         "currencyId": {
-          "description": "Currency ID of this directory site. This is a read-only field.\nPossible values are: \n- \"1\" for USD \n- \"2\" for GBP \n- \"3\" for ESP \n- \"4\" for SEK \n- \"5\" for CAD \n- \"6\" for JPY \n- \"7\" for DEM \n- \"8\" for AUD \n- \"9\" for FRF \n- \"10\" for ITL \n- \"11\" for DKK \n- \"12\" for NOK \n- \"13\" for FIM \n- \"14\" for ZAR \n- \"15\" for IEP \n- \"16\" for NLG \n- \"17\" for EUR \n- \"18\" for KRW \n- \"19\" for TWD \n- \"20\" for SGD \n- \"21\" for CNY \n- \"22\" for HKD \n- \"23\" for NZD \n- \"24\" for MYR \n- \"25\" for BRL \n- \"26\" for PTE \n- \"27\" for MXP \n- \"28\" for CLP \n- \"29\" for TRY \n- \"30\" for ARS \n- \"31\" for PEN \n- \"32\" for ILS \n- \"33\" for CHF \n- \"34\" for VEF \n- \"35\" for COP \n- \"36\" for GTQ \n- \"37\" for PLN \n- \"39\" for INR \n- \"40\" for THB \n- \"41\" for IDR \n- \"42\" for CZK \n- \"43\" for RON \n- \"44\" for HUF \n- \"45\" for RUB \n- \"46\" for AED \n- \"47\" for BGN \n- \"48\" for HRK \n- \"49\" for MXN",
+          "description": "Currency ID of this directory site. This is a read-only field.\nPossible values are:\n- \"1\" for USD\n- \"2\" for GBP\n- \"3\" for ESP\n- \"4\" for SEK\n- \"5\" for CAD\n- \"6\" for JPY\n- \"7\" for DEM\n- \"8\" for AUD\n- \"9\" for FRF\n- \"10\" for ITL\n- \"11\" for DKK\n- \"12\" for NOK\n- \"13\" for FIM\n- \"14\" for ZAR\n- \"15\" for IEP\n- \"16\" for NLG\n- \"17\" for EUR\n- \"18\" for KRW\n- \"19\" for TWD\n- \"20\" for SGD\n- \"21\" for CNY\n- \"22\" for HKD\n- \"23\" for NZD\n- \"24\" for MYR\n- \"25\" for BRL\n- \"26\" for PTE\n- \"27\" for MXP\n- \"28\" for CLP\n- \"29\" for TRY\n- \"30\" for ARS\n- \"31\" for PEN\n- \"32\" for ILS\n- \"33\" for CHF\n- \"34\" for VEF\n- \"35\" for COP\n- \"36\" for GTQ\n- \"37\" for PLN\n- \"39\" for INR\n- \"40\" for THB\n- \"41\" for IDR\n- \"42\" for CZK\n- \"43\" for RON\n- \"44\" for HUF\n- \"45\" for RUB\n- \"46\" for AED\n- \"47\" for BGN\n- \"48\" for HRK\n- \"49\" for MXN",
           "format": "int64",
           "type": "string"
         },
@@ -7691,7 +7671,7 @@
             "every": {"description": "Defines every how many days, weeks or months the report should be run. Needs to be set when \"repeats\" is either \"DAILY\", \"WEEKLY\" or \"MONTHLY\".", "format": "int32", "type": "integer"},
             "expirationDate": {"description": "The expiration date when the scheduled report stops running.", "format": "date", "type": "string"},
             "repeats": {
-              "description": "The interval for which the report is repeated. Note:  \n- \"DAILY\" also requires field \"every\" to be set. \n- \"WEEKLY\" also requires fields \"every\" and \"repeatsOnWeekDays\" to be set. \n- \"MONTHLY\" also requires fields \"every\" and \"runsOnDayOfMonth\" to be set.",
+              "description": "The interval for which the report is repeated. Note:\n- \"DAILY\" also requires field \"every\" to be set.\n- \"WEEKLY\" also requires fields \"every\" and \"repeatsOnWeekDays\" to be set.\n- \"MONTHLY\" also requires fields \"every\" and \"runsOnDayOfMonth\" to be set.",
               "type": "string"
             },
             "repeatsOnWeekDays": {
@@ -7746,7 +7726,7 @@
         },
         "lookbackConfiguration": {"$ref": "#/definitions/LookbackConfiguration", "description": "Default lookback windows for new advertisers in this account."},
         "reportGenerationTimeZoneId": {
-          "description": "Report generation time zone ID of this account. This is a required field that can only be changed by a superuser.\nAcceptable values are:\n\n- \"1\" for \"America/New_York\" \n- \"2\" for \"Europe/London\" \n- \"3\" for \"Europe/Paris\" \n- \"4\" for \"Africa/Johannesburg\" \n- \"5\" for \"Asia/Jerusalem\" \n- \"6\" for \"Asia/Shanghai\" \n- \"7\" for \"Asia/Hong_Kong\" \n- \"8\" for \"Asia/Tokyo\" \n- \"9\" for \"Australia/Sydney\" \n- \"10\" for \"Asia/Dubai\" \n- \"11\" for \"America/Los_Angeles\" \n- \"12\" for \"Pacific/Auckland\" \n- \"13\" for \"America/Sao_Paulo\"",
+          "description": "Report generation time zone ID of this account. This is a required field that can only be changed by a superuser.\nAcceptable values are:\n\n- \"1\" for \"America/New_York\"\n- \"2\" for \"Europe/London\"\n- \"3\" for \"Europe/Paris\"\n- \"4\" for \"Africa/Johannesburg\"\n- \"5\" for \"Asia/Jerusalem\"\n- \"6\" for \"Asia/Shanghai\"\n- \"7\" for \"Asia/Hong_Kong\"\n- \"8\" for \"Asia/Tokyo\"\n- \"9\" for \"Australia/Sydney\"\n- \"10\" for \"Asia/Dubai\"\n- \"11\" for \"America/Los_Angeles\"\n- \"12\" for \"Pacific/Auckland\"\n- \"13\" for \"America/Sao_Paulo\"",
           "format": "int64",
           "type": "string"
         }

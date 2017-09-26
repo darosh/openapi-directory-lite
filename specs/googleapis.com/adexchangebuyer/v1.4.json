@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Accesses your bidding-account information, submits creatives for validation, finds available direct deals, and retrieves performance reports.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Ad Exchange Buyer",
     "version": "v1.4",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.doubleclickbygoogle.com/static/core/img/doubleclick-google-logo-wide.svg"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/adexchangebuyer/v1.4/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/adexchangebuyer/v1.4/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "adexchangebuyer"
@@ -21,17 +19,9 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {"https://www.googleapis.com/auth/adexchange.buyer": "Manage your Ad Exchange buyer account configuration"},
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {"https://www.googleapis.com/auth/adexchange.buyer": "Manage your Ad Exchange buyer account configuration"},
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -69,7 +59,7 @@
         "description": "Retrieves the authenticated user's list of accounts.",
         "operationId": "adexchangebuyer.accounts.list",
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AccountsList"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -88,7 +78,7 @@
         "operationId": "adexchangebuyer.accounts.get",
         "parameters": [{"description": "The account id", "in": "path", "name": "id", "required": true, "type": "integer"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Account"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -109,7 +99,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Account"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Account"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["accounts"]
       },
       "put": {
@@ -121,7 +111,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Account"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Account"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["accounts"]
       }
     },
@@ -130,7 +120,7 @@
         "description": "Retrieves a list of billing information for all accounts of the authenticated user.",
         "operationId": "adexchangebuyer.billingInfo.list",
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/BillingInfoList"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["billingInfo"]
       },
       "parameters": [
@@ -149,7 +139,7 @@
         "operationId": "adexchangebuyer.billingInfo.get",
         "parameters": [{"description": "The account id.", "in": "path", "name": "accountId", "required": true, "type": "integer"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/BillingInfo"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["billingInfo"]
       },
       "parameters": [
@@ -171,7 +161,7 @@
           {"description": "The billing id to get the budget information for.", "in": "path", "name": "billingId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Budget"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["budget"]
       },
       "parameters": [
@@ -192,7 +182,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Budget"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Budget"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["budget"]
       },
       "put": {
@@ -204,7 +194,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Budget"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Budget"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["budget"]
       }
     },
@@ -238,7 +228,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CreativesList"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["creatives"]
       },
       "parameters": [
@@ -255,7 +245,7 @@
         "operationId": "adexchangebuyer.creatives.insert",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Creative"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Creative"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["creatives"]
       }
     },
@@ -268,7 +258,7 @@
           {"description": "The buyer-specific id for this creative.", "in": "path", "name": "buyerCreativeId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Creative"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["creatives"]
       },
       "parameters": [
@@ -300,7 +290,7 @@
           {"description": "The id of the deal id to associate with this creative.", "in": "path", "name": "dealId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["creatives"]
       }
     },
@@ -313,7 +303,7 @@
           {"description": "The buyer-specific id for this creative.", "in": "path", "name": "buyerCreativeId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CreativeDealIds"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["creatives"]
       },
       "parameters": [
@@ -345,7 +335,7 @@
           {"description": "The id of the deal id to disassociate with this creative.", "in": "path", "name": "dealId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["creatives"]
       }
     },
@@ -366,7 +356,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PerformanceReportList"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["performanceReport"]
       },
       "parameters": [
@@ -385,7 +375,7 @@
         "operationId": "adexchangebuyer.pretargetingConfig.list",
         "parameters": [{"description": "The account id to get the pretargeting configs for.", "in": "path", "name": "accountId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PretargetingConfigList"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["pretargetingConfig"]
       },
       "parameters": [
@@ -405,7 +395,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/PretargetingConfig"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PretargetingConfig"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["pretargetingConfig"]
       }
     },
@@ -418,7 +408,7 @@
           {"description": "The specific id of the configuration to delete.", "in": "path", "name": "configId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["pretargetingConfig"]
       },
       "get": {
@@ -429,7 +419,7 @@
           {"description": "The specific id of the configuration to retrieve.", "in": "path", "name": "configId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PretargetingConfig"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["pretargetingConfig"]
       },
       "parameters": [
@@ -450,7 +440,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/PretargetingConfig"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PretargetingConfig"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["pretargetingConfig"]
       },
       "put": {
@@ -462,7 +452,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/PretargetingConfig"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PretargetingConfig"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["pretargetingConfig"]
       }
     },
@@ -481,7 +471,7 @@
         "operationId": "adexchangebuyer.marketplaceprivateauction.updateproposal",
         "parameters": [{"in": "path", "name": "privateAuctionId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/UpdatePrivateAuctionProposalRequest"}}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["marketplaceprivateauction"]
       }
     },
@@ -491,7 +481,7 @@
         "operationId": "adexchangebuyer.products.search",
         "parameters": [{"description": "The pql query used to query for products.", "in": "query", "name": "pqlQuery", "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GetOffersResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["products"]
       },
       "parameters": [
@@ -510,7 +500,7 @@
         "operationId": "adexchangebuyer.products.get",
         "parameters": [{"description": "The id for the product to get the head revision for.", "in": "path", "name": "productId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Product"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["products"]
       },
       "parameters": [
@@ -538,7 +528,7 @@
         "operationId": "adexchangebuyer.proposals.insert",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CreateOrdersRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CreateOrdersResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["proposals"]
       }
     },
@@ -548,7 +538,7 @@
         "operationId": "adexchangebuyer.proposals.search",
         "parameters": [{"description": "Query string to retrieve specific proposals.", "in": "query", "name": "pqlQuery", "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GetOrdersResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["proposals"]
       },
       "parameters": [
@@ -567,7 +557,7 @@
         "operationId": "adexchangebuyer.proposals.get",
         "parameters": [{"description": "Id of the proposal to retrieve.", "in": "path", "name": "proposalId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Proposal"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["proposals"]
       },
       "parameters": [
@@ -589,7 +579,7 @@
           {"description": "Query string to retrieve specific deals.", "in": "query", "name": "pqlQuery", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GetOrderDealsResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["marketplacedeals"]
       },
       "parameters": [
@@ -620,7 +610,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/DeleteOrderDealsRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/DeleteOrderDealsResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["marketplacedeals"]
       }
     },
@@ -642,7 +632,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AddOrderDealsRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AddOrderDealsResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["marketplacedeals"]
       }
     },
@@ -664,7 +654,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/EditAllOrderDealsRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/EditAllOrderDealsResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["marketplacedeals"]
       }
     },
@@ -682,7 +672,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GetOrderNotesResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["marketplacenotes"]
       },
       "parameters": [
@@ -710,7 +700,7 @@
         "operationId": "adexchangebuyer.marketplacenotes.insert",
         "parameters": [{"description": "The proposalId to add notes for.", "in": "path", "name": "proposalId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AddOrderNotesRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AddOrderNotesResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["marketplacenotes"]
       }
     },
@@ -729,7 +719,7 @@
         "operationId": "adexchangebuyer.proposals.setupcomplete",
         "parameters": [{"description": "The proposal id for which the setup is complete", "in": "path", "name": "proposalId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["proposals"]
       }
     },
@@ -766,7 +756,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Proposal"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Proposal"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["proposals"]
       },
       "put": {
@@ -792,7 +782,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Proposal"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Proposal"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["proposals"]
       }
     },
@@ -802,7 +792,7 @@
         "operationId": "adexchangebuyer.pubprofiles.list",
         "parameters": [{"description": "The accountId of the publisher to get profiles for.", "in": "path", "name": "accountId", "required": true, "type": "integer"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GetPublisherProfilesByAccountIdResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.buyer"]}],
         "tags": ["pubprofiles"]
       },
       "parameters": [

@@ -6,14 +6,12 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Manages product items, inventory, and Merchant Center accounts for Google Shopping.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Content API for Shopping",
     "version": "v2",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-apisguru-categories": ["ecommerce"],
     "x-logo": {"url": "https://cloud.google.com/_static/images/new-gcp-logo.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/content/v2/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/content/v2/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "content"
@@ -22,17 +20,9 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {"https://www.googleapis.com/auth/content": "Manage your product listings and accounts for Google Shopping"},
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {"https://www.googleapis.com/auth/content": "Manage your product listings and accounts for Google Shopping"},
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -68,7 +58,7 @@
         "description": "Returns information about the authenticated user.",
         "operationId": "content.accounts.authinfo",
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AccountsAuthInfoResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -96,7 +86,7 @@
         "operationId": "content.accounts.custombatch",
         "parameters": [{"description": "Flag to run the request in dry-run mode.", "in": "query", "name": "dryRun", "type": "boolean"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AccountsCustomBatchRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AccountsCustomBatchResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["accounts"]
       }
     },
@@ -114,7 +104,7 @@
         "operationId": "content.accountstatuses.custombatch",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AccountstatusesCustomBatchRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AccountstatusesCustomBatchResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["accountstatuses"]
       }
     },
@@ -133,7 +123,7 @@
         "operationId": "content.accounttax.custombatch",
         "parameters": [{"description": "Flag to run the request in dry-run mode.", "in": "query", "name": "dryRun", "type": "boolean"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AccounttaxCustomBatchRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AccounttaxCustomBatchResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["accounttax"]
       }
     },
@@ -151,7 +141,7 @@
         "operationId": "content.datafeeds.custombatch",
         "parameters": [{"description": "Flag to run the request in dry-run mode.", "in": "query", "name": "dryRun", "type": "boolean"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/DatafeedsCustomBatchRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/DatafeedsCustomBatchResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["datafeeds"]
       }
     },
@@ -169,7 +159,7 @@
         "operationId": "content.datafeedstatuses.custombatch",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/DatafeedstatusesCustomBatchRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/DatafeedstatusesCustomBatchResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["datafeedstatuses"]
       }
     },
@@ -188,7 +178,7 @@
         "operationId": "content.inventory.custombatch",
         "parameters": [{"description": "Flag to run the request in dry-run mode.", "in": "query", "name": "dryRun", "type": "boolean"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/InventoryCustomBatchRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/InventoryCustomBatchResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["inventory"]
       }
     },
@@ -207,7 +197,7 @@
         "operationId": "content.orders.custombatch",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/OrdersCustomBatchRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OrdersCustomBatchResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["orders"]
       }
     },
@@ -226,7 +216,7 @@
         "operationId": "content.products.custombatch",
         "parameters": [{"description": "Flag to run the request in dry-run mode.", "in": "query", "name": "dryRun", "type": "boolean"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ProductsCustomBatchRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ProductsCustomBatchResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["products"]
       }
     },
@@ -248,7 +238,7 @@
           {"description": "Flag to include full product data in the results of this request. The default value is false.", "in": "query", "name": "includeAttributes", "type": "boolean"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ProductstatusesCustomBatchResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["productstatuses"]
       }
     },
@@ -267,7 +257,7 @@
         "operationId": "content.shippingsettings.custombatch",
         "parameters": [{"description": "Flag to run the request in dry-run mode.", "in": "query", "name": "dryRun", "type": "boolean"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ShippingsettingsCustomBatchRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ShippingsettingsCustomBatchResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["shippingsettings"]
       }
     },
@@ -281,7 +271,7 @@
           {"description": "The token returned by the previous request.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AccountsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -302,7 +292,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Account"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Account"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["accounts"]
       }
     },
@@ -317,7 +307,7 @@
           {"description": "The ID of the managing account.", "in": "path", "name": "merchantId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["accounts"]
       },
       "get": {
@@ -328,7 +318,7 @@
           {"description": "The ID of the account.", "in": "path", "name": "accountId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Account"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -350,7 +340,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Account"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Account"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["accounts"]
       },
       "put": {
@@ -363,7 +353,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Account"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Account"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["accounts"]
       }
     },
@@ -391,7 +381,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AccountsClaimWebsiteResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["accounts"]
       }
     },
@@ -405,7 +395,7 @@
           {"description": "The token returned by the previous request.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AccountstatusesListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["accountstatuses"]
       },
       "parameters": [
@@ -427,7 +417,7 @@
           {"description": "The ID of the account.", "in": "path", "name": "accountId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AccountStatus"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["accountstatuses"]
       },
       "parameters": [
@@ -450,7 +440,7 @@
           {"description": "The token returned by the previous request.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AccounttaxListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["accounttax"]
       },
       "parameters": [
@@ -472,7 +462,7 @@
           {"description": "The ID of the account for which to get/update account tax settings.", "in": "path", "name": "accountId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AccountTax"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["accounttax"]
       },
       "parameters": [
@@ -494,7 +484,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AccountTax"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AccountTax"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["accounttax"]
       },
       "put": {
@@ -507,7 +497,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/AccountTax"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AccountTax"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["accounttax"]
       }
     },
@@ -521,7 +511,7 @@
           {"description": "The token returned by the previous request.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/DatafeedsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["datafeeds"]
       },
       "parameters": [
@@ -542,7 +532,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Datafeed"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Datafeed"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["datafeeds"]
       }
     },
@@ -556,7 +546,7 @@
           {"description": "Flag to run the request in dry-run mode.", "in": "query", "name": "dryRun", "type": "boolean"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["datafeeds"]
       },
       "get": {
@@ -564,7 +554,7 @@
         "operationId": "content.datafeeds.get",
         "parameters": [{"in": "path", "name": "merchantId", "required": true, "type": "string"}, {"in": "path", "name": "datafeedId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Datafeed"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["datafeeds"]
       },
       "parameters": [
@@ -586,7 +576,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Datafeed"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Datafeed"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["datafeeds"]
       },
       "put": {
@@ -599,7 +589,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Datafeed"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Datafeed"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["datafeeds"]
       }
     },
@@ -613,7 +603,7 @@
           {"description": "The token returned by the previous request.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/DatafeedstatusesListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["datafeedstatuses"]
       },
       "parameters": [
@@ -630,9 +620,24 @@
       "get": {
         "description": "Retrieves the status of a datafeed from your Merchant Center account. This method can only be called for non-multi-client accounts.",
         "operationId": "content.datafeedstatuses.get",
-        "parameters": [{"in": "path", "name": "merchantId", "required": true, "type": "string"}, {"in": "path", "name": "datafeedId", "required": true, "type": "string"}],
+        "parameters": [
+          {
+            "description": "The country for which to get the datafeed status. If this parameter is provided then language must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {"in": "path", "name": "datafeedId", "required": true, "type": "string"},
+          {
+            "description": "The language for which to get the datafeed status. If this parameter is provided then country must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.",
+            "in": "query",
+            "name": "language",
+            "type": "string"
+          },
+          {"in": "path", "name": "merchantId", "required": true, "type": "string"}
+        ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/DatafeedStatus"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["datafeedstatuses"]
       },
       "parameters": [
@@ -666,7 +671,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/InventorySetRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/InventorySetResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["inventory"]
       }
     },
@@ -708,7 +713,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OrdersListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["orders"]
       },
       "parameters": [
@@ -730,7 +735,7 @@
           {"description": "The ID of the order.", "in": "path", "name": "orderId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Order"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["orders"]
       },
       "parameters": [
@@ -762,7 +767,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/OrdersAcknowledgeRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OrdersAcknowledgeResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["orders"]
       }
     },
@@ -785,7 +790,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/OrdersCancelRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OrdersCancelResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["orders"]
       }
     },
@@ -808,7 +813,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/OrdersCancelLineItemRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OrdersCancelLineItemResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["orders"]
       }
     },
@@ -831,7 +836,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/OrdersRefundRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OrdersRefundResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["orders"]
       }
     },
@@ -854,7 +859,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/OrdersReturnLineItemRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OrdersReturnLineItemResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["orders"]
       }
     },
@@ -877,7 +882,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/OrdersShipLineItemsRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OrdersShipLineItemsResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["orders"]
       }
     },
@@ -900,7 +905,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/OrdersUpdateMerchantOrderIdRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OrdersUpdateMerchantOrderIdResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["orders"]
       }
     },
@@ -923,7 +928,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/OrdersUpdateShipmentRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OrdersUpdateShipmentResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["orders"]
       }
     },
@@ -936,7 +941,7 @@
           {"description": "The merchant order id to be looked for.", "in": "path", "name": "merchantOrderId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OrdersGetByMerchantOrderIdResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["orders"]
       },
       "parameters": [
@@ -965,7 +970,7 @@
           {"description": "The token returned by the previous request.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ProductsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["products"]
       },
       "parameters": [
@@ -986,7 +991,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Product"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Product"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["products"]
       }
     },
@@ -1000,7 +1005,7 @@
           {"description": "Flag to run the request in dry-run mode.", "in": "query", "name": "dryRun", "type": "boolean"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["products"]
       },
       "get": {
@@ -1011,7 +1016,7 @@
           {"description": "The ID of the product.", "in": "path", "name": "productId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Product"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["products"]
       },
       "parameters": [
@@ -1041,7 +1046,7 @@
           {"description": "The token returned by the previous request.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ProductstatusesListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["productstatuses"]
       },
       "parameters": [
@@ -1064,7 +1069,7 @@
           {"description": "The ID of the product.", "in": "path", "name": "productId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ProductStatus"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["productstatuses"]
       },
       "parameters": [
@@ -1087,7 +1092,7 @@
           {"description": "The token returned by the previous request.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ShippingsettingsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["shippingsettings"]
       },
       "parameters": [
@@ -1109,7 +1114,7 @@
           {"description": "The ID of the account for which to get/update shipping settings.", "in": "path", "name": "accountId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ShippingSettings"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["shippingsettings"]
       },
       "parameters": [
@@ -1131,7 +1136,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ShippingSettings"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ShippingSettings"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["shippingsettings"]
       },
       "put": {
@@ -1144,7 +1149,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ShippingSettings"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ShippingSettings"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["shippingsettings"]
       }
     },
@@ -1154,7 +1159,7 @@
         "operationId": "content.shippingsettings.getsupportedcarriers",
         "parameters": [{"description": "The ID of the account for which to retrieve the supported carriers.", "in": "path", "name": "merchantId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ShippingsettingsGetSupportedCarriersResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["shippingsettings"]
       },
       "parameters": [
@@ -1185,7 +1190,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/OrdersCreateTestOrderRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OrdersCreateTestOrderResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["orders"]
       }
     },
@@ -1207,7 +1212,7 @@
           {"description": "The ID of the test order to modify.", "in": "path", "name": "orderId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OrdersAdvanceTestOrderResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["orders"]
       }
     },
@@ -1220,7 +1225,7 @@
           {"description": "The name of the template to retrieve.", "enum": ["template1", "template1a", "template1b", "template2"], "in": "path", "name": "templateName", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OrdersGetTestOrderTemplateResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"], "Oauth2c": ["https://www.googleapis.com/auth/content"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/content"]}],
         "tags": ["orders"]
       },
       "parameters": [
@@ -1250,7 +1255,12 @@
         "reviewsUrl": {"description": "URL for individual seller reviews, i.e., reviews for each child account.", "type": "string"},
         "sellerId": {"description": "Client-specific, locally-unique, internal ID for the child account.", "type": "string"},
         "users": {"description": "Users with access to the account. Every account (except for subaccounts) must have at least one admin user.", "items": {"$ref": "#/definitions/AccountUser"}, "type": "array"},
-        "websiteUrl": {"description": "The merchant's website.", "type": "string"}
+        "websiteUrl": {"description": "The merchant's website.", "type": "string"},
+        "youtubeChannelLinks": {
+          "description": "List of linked YouTube channels that are active or pending approval. To create a new link request, add a new link with status active to the list. It will remain in a pending state until approved or rejected in the YT Creator Studio interface. To delete an active link, or to cancel a link request, remove it from the list.",
+          "items": {"$ref": "#/definitions/AccountYouTubeChannelLink"},
+          "type": "array"
+        }
       },
       "type": "object"
     },
@@ -1339,6 +1349,16 @@
       "type": "object"
     },
     "AccountUser": {"properties": {"admin": {"description": "Whether user is an admin.", "type": "boolean"}, "emailAddress": {"description": "User's email address.", "type": "string"}}, "type": "object"},
+    "AccountYouTubeChannelLink": {
+      "properties": {
+        "channelId": {"description": "Channel ID.", "type": "string"},
+        "status": {
+          "description": "Status of the link between this Merchant Center account and the YouTube channel. Upon retrieval, it represents the actual status of the link and can be either active if it was approved in YT Creator Studio or pending if it's pending approval. Upon insertion, it represents the intended status of the link. Re-uploading a link with status active when it's still pending or with status pending when it's already active will have no effect: the status will remain unchanged. Re-uploading a link with deprecated status inactive is equivalent to not submitting the link at all and will delete the link if it was active or cancel the link request if it was pending.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AccountsAuthInfoResponse": {
       "properties": {
         "accountIdentifiers": {
@@ -1497,16 +1517,21 @@
       "description": "Datafeed configuration data.",
       "properties": {
         "attributeLanguage": {"description": "The two-letter ISO 639-1 language in which the attributes are defined in the data feed.", "type": "string"},
-        "contentLanguage": {"description": "The two-letter ISO 639-1 language of the items in the feed. Must be a valid language for targetCountry.", "type": "string"},
+        "contentLanguage": {"description": "[DEPRECATED] Please use target.language instead. The two-letter ISO 639-1 language of the items in the feed. Must be a valid language for targetCountry.", "type": "string"},
         "contentType": {"description": "The type of data feed. For product inventory feeds, only feeds for local stores, not online stores, are supported.", "type": "string"},
         "fetchSchedule": {"$ref": "#/definitions/DatafeedFetchSchedule", "description": "Fetch schedule for the feed file."},
         "fileName": {"description": "The filename of the feed. All feeds must have a unique file name.", "type": "string"},
         "format": {"$ref": "#/definitions/DatafeedFormat", "description": "Format of the feed file."},
         "id": {"description": "The ID of the data feed.", "format": "int64", "type": "string"},
-        "intendedDestinations": {"description": "The list of intended destinations (corresponds to checked check boxes in Merchant Center).", "items": {"type": "string"}, "type": "array"},
+        "intendedDestinations": {
+          "description": "[DEPRECATED] Please use target.includedDestination instead. The list of intended destinations (corresponds to checked check boxes in Merchant Center).",
+          "items": {"type": "string"},
+          "type": "array"
+        },
         "kind": {"default": "content#datafeed", "description": "Identifies what kind of resource this is. Value: the fixed string \"content#datafeed\".", "type": "string"},
         "name": {"description": "A descriptive name of the data feed.", "type": "string"},
-        "targetCountry": {"description": "The country where the items in the feed will be included in the search index, represented as a CLDR territory code.", "type": "string"}
+        "targetCountry": {"description": "[DEPRECATED] Please use target.country instead. The country where the items in the feed will be included in the search index, represented as a CLDR territory code.", "type": "string"},
+        "targets": {"description": "The targets this feed should apply to (country, language, destinations).", "items": {"$ref": "#/definitions/DatafeedTarget"}, "type": "array"}
       },
       "type": "object"
     },
@@ -1539,11 +1564,13 @@
     "DatafeedStatus": {
       "description": "The status of a datafeed, i.e., the result of the last retrieval of the datafeed computed asynchronously when the feed processing is finished.",
       "properties": {
+        "country": {"description": "The country for which the status is reported, represented as a  CLDR territory code.", "type": "string"},
         "datafeedId": {"description": "The ID of the feed for which the status is reported.", "format": "uint64", "type": "string"},
         "errors": {"description": "The list of errors occurring in the feed.", "items": {"$ref": "#/definitions/DatafeedStatusError"}, "type": "array"},
         "itemsTotal": {"description": "The number of items in the feed that were processed.", "format": "uint64", "type": "string"},
         "itemsValid": {"description": "The number of items in the feed that were valid.", "format": "uint64", "type": "string"},
         "kind": {"default": "content#datafeedStatus", "description": "Identifies what kind of resource this is. Value: the fixed string \"content#datafeedStatus\".", "type": "string"},
+        "language": {"description": "The two-letter ISO 639-1 language for which the status is reported.", "type": "string"},
         "lastUploadDate": {"description": "The last date at which the feed was uploaded.", "type": "string"},
         "processingStatus": {"description": "The processing status of the feed.", "type": "string"},
         "warnings": {"description": "The list of errors occurring in the feed.", "items": {"$ref": "#/definitions/DatafeedStatusError"}, "type": "array"}
@@ -1566,6 +1593,19 @@
         "itemId": {"description": "The ID of the example item.", "type": "string"},
         "lineNumber": {"description": "Line number in the data feed where the example is found.", "format": "uint64", "type": "string"},
         "value": {"description": "The problematic value.", "type": "string"}
+      },
+      "type": "object"
+    },
+    "DatafeedTarget": {
+      "properties": {
+        "country": {"description": "The country where the items in the feed will be included in the search index, represented as a  CLDR territory code.", "type": "string"},
+        "excludedDestinations": {"description": "The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center).", "items": {"type": "string"}, "type": "array"},
+        "includedDestinations": {
+          "description": "The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in the excluded_destination field.",
+          "items": {"type": "string"},
+          "type": "array"
+        },
+        "language": {"description": "The two-letter ISO 639-1 language of the items in the feed. Must be a valid language for targetCountryLanguage.country.", "type": "string"}
       },
       "type": "object"
     },
@@ -1613,7 +1653,9 @@
       "description": "A batch entry encoding a single non-batch datafeedstatuses request.",
       "properties": {
         "batchId": {"description": "An entry ID, unique within the batch request.", "format": "uint32", "type": "integer"},
-        "datafeedId": {"description": "The ID of the data feed to get or delete.", "format": "uint64", "type": "string"},
+        "country": {"description": "The country for which to get the datafeed status. If this parameter is provided then language must also be provided. Note that for multi-target datafeeds this parameter is required.", "type": "string"},
+        "datafeedId": {"description": "The ID of the data feed to get.", "format": "uint64", "type": "string"},
+        "language": {"description": "The language for which to get the datafeed status. If this parameter is provided then country must also be provided. Note that for multi-target datafeeds this parameter is required.", "type": "string"},
         "merchantId": {"description": "The ID of the managing account.", "format": "uint64", "type": "string"},
         "method": {"type": "string"}
       },
@@ -1934,7 +1976,7 @@
         "expirationYear": {"description": "The card expiration year (4-digit, e.g. 2015).", "format": "int32", "type": "integer"},
         "lastFourDigits": {"description": "The last four digits of the card number.", "type": "string"},
         "phoneNumber": {"description": "The billing phone number.", "type": "string"},
-        "type": {"description": "The type of instrument (VISA, Mastercard, etc).", "type": "string"}
+        "type": {"description": "The type of instrument.\n\nAcceptable values are:  \n- \"AMEX\" \n- \"DISCOVER\" \n- \"JCB\" \n- \"MASTERCARD\" \n- \"UNIONPAY\" \n- \"VISA\" \n- \"\"", "type": "string"}
       },
       "type": "object"
     },

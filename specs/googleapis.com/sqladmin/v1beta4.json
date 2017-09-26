@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Creates and configures Cloud SQL instances, which provide fully-managed MySQL databases.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Cloud SQL Administration",
     "version": "v1beta4",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://cloud.google.com/_static/images/new-gcp-logo.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/sqladmin/v1beta4/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/sqladmin/v1beta4/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "sqladmin"
@@ -21,17 +19,9 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {"https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services", "https://www.googleapis.com/auth/sqlservice.admin": "Manage your Google SQL Service instances"},
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {"https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services", "https://www.googleapis.com/auth/sqlservice.admin": "Manage your Google SQL Service instances"},
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -57,10 +47,7 @@
         "operationId": "sql.flags.list",
         "parameters": [{"description": "Database version for flag retrieval. Flags are specific to the database version.", "in": "query", "name": "databaseVersion", "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/FlagsListResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["flags"]
       },
       "parameters": [
@@ -84,10 +71,7 @@
           {"description": "Project ID of the project for which to list Cloud SQL instances.", "in": "path", "name": "project", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/InstancesListResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["instances"]
       },
       "parameters": [
@@ -107,10 +91,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/DatabaseInstance"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["instances"]
       }
     },
@@ -123,10 +104,7 @@
           {"description": "Cloud SQL instance ID. This does not include the project ID.", "in": "path", "name": "instance", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["instances"]
       },
       "get": {
@@ -137,10 +115,7 @@
           {"description": "Database instance ID. This does not include the project ID.", "in": "path", "name": "instance", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/DatabaseInstance"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["instances"]
       },
       "parameters": [
@@ -161,10 +136,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/DatabaseInstance"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["instances"]
       },
       "put": {
@@ -176,10 +148,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/DatabaseInstance"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["instances"]
       }
     },
@@ -194,10 +163,7 @@
           {"description": "A previously-returned page token representing part of the larger set of results to view.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/BackupRunsListResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["backupRuns"]
       },
       "parameters": [
@@ -218,10 +184,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/BackupRun"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["backupRuns"]
       }
     },
@@ -235,10 +198,7 @@
           {"description": "The ID of the Backup Run to delete. To find a Backup Run ID, use the list method.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["backupRuns"]
       },
       "get": {
@@ -250,10 +210,7 @@
           {"description": "The ID of this Backup Run.", "in": "path", "name": "id", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/BackupRun"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["backupRuns"]
       },
       "parameters": [
@@ -285,10 +242,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/InstancesCloneRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["instances"]
       }
     },
@@ -311,10 +265,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SslCertsCreateEphemeralRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SslCert"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["sslCerts"]
       }
     },
@@ -327,10 +278,7 @@
           {"description": "Cloud SQL instance ID. This does not include the project ID.", "in": "path", "name": "instance", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/DatabasesListResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["databases"]
       },
       "parameters": [
@@ -351,10 +299,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Database"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["databases"]
       }
     },
@@ -368,10 +313,7 @@
           {"description": "Name of the database to be deleted in the instance.", "in": "path", "name": "database", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["databases"]
       },
       "get": {
@@ -383,10 +325,7 @@
           {"description": "Name of the database in the instance.", "in": "path", "name": "database", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Database"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["databases"]
       },
       "parameters": [
@@ -408,10 +347,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Database"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["databases"]
       },
       "put": {
@@ -424,10 +360,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Database"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["databases"]
       }
     },
@@ -450,7 +383,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/InstancesExportRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["instances"]
       }
     },
@@ -473,10 +406,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/InstancesFailoverRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["instances"]
       }
     },
@@ -499,7 +429,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/InstancesImportRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["instances"]
       }
     },
@@ -521,10 +451,7 @@
           {"description": "Cloud SQL read replica instance name.", "in": "path", "name": "instance", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["instances"]
       }
     },
@@ -546,10 +473,7 @@
           {"description": "Cloud SQL instance ID. This does not include the project ID.", "in": "path", "name": "instance", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["instances"]
       }
     },
@@ -571,10 +495,7 @@
           {"description": "Cloud SQL instance ID. This does not include the project ID.", "in": "path", "name": "instance", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["instances"]
       }
     },
@@ -597,10 +518,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/InstancesRestoreBackupRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["instances"]
       }
     },
@@ -613,10 +531,7 @@
           {"description": "Cloud SQL instance ID. This does not include the project ID.", "in": "path", "name": "instance", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SslCertsListResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["sslCerts"]
       },
       "parameters": [
@@ -637,10 +552,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SslCertsInsertRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SslCertsInsertResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["sslCerts"]
       }
     },
@@ -654,10 +566,7 @@
           {"description": "Sha1 FingerPrint.", "in": "path", "name": "sha1Fingerprint", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["sslCerts"]
       },
       "get": {
@@ -669,10 +578,7 @@
           {"description": "Sha1 FingerPrint.", "in": "path", "name": "sha1Fingerprint", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SslCert"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["sslCerts"]
       },
       "parameters": [
@@ -703,10 +609,7 @@
           {"description": "Cloud SQL read replica instance name.", "in": "path", "name": "instance", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["instances"]
       }
     },
@@ -728,10 +631,7 @@
           {"description": "Cloud SQL read replica instance name.", "in": "path", "name": "instance", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["instances"]
       }
     },
@@ -754,10 +654,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/InstancesTruncateLogRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["instances"]
       }
     },
@@ -772,10 +669,7 @@
           {"description": "Name of the user in the instance.", "in": "query", "name": "name", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["users"]
       },
       "get": {
@@ -786,10 +680,7 @@
           {"description": "Database instance ID. This does not include the project ID.", "in": "path", "name": "instance", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UsersListResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["users"]
       },
       "parameters": [
@@ -810,10 +701,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/User"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["users"]
       },
       "put": {
@@ -827,10 +715,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/User"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["users"]
       }
     },
@@ -845,10 +730,7 @@
           {"description": "A previously-returned page token representing part of the larger set of results to view.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OperationsListResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["operations"]
       },
       "parameters": [
@@ -870,10 +752,7 @@
           {"description": "Instance operation ID.", "in": "path", "name": "operation", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["operations"]
       },
       "parameters": [
@@ -892,10 +771,7 @@
         "operationId": "sql.tiers.list",
         "parameters": [{"description": "Project ID of the project for which to list tiers.", "in": "path", "name": "project", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TiersListResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"], "Oauth2c": ["https://www.googleapis.com/auth/sqlservice.admin"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/sqlservice.admin"]}],
         "tags": ["tiers"]
       },
       "parameters": [

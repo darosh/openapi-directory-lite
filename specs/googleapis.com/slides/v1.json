@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "An API for creating and editing Google Slides presentations.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Google Slides",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://slides.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://slides.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "slides"
@@ -21,7 +19,7 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {
         "https://www.googleapis.com/auth/drive": "View and manage the files in your Google Drive",
@@ -31,21 +29,6 @@
         "https://www.googleapis.com/auth/spreadsheets": "View and manage your spreadsheets in Google Drive",
         "https://www.googleapis.com/auth/spreadsheets.readonly": "View your Google Spreadsheets"
       },
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {
-        "https://www.googleapis.com/auth/drive": "View and manage the files in your Google Drive",
-        "https://www.googleapis.com/auth/drive.readonly": "View the files in your Google Drive",
-        "https://www.googleapis.com/auth/presentations": "View and manage your Google Slides presentations",
-        "https://www.googleapis.com/auth/presentations.readonly": "View your Google Slides presentations",
-        "https://www.googleapis.com/auth/spreadsheets": "View and manage your spreadsheets in Google Drive",
-        "https://www.googleapis.com/auth/spreadsheets.readonly": "View your Google Spreadsheets"
-      },
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -92,10 +75,7 @@
         "operationId": "slides.presentations.create",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Presentation"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Presentation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/presentations"], "Oauth2c": ["https://www.googleapis.com/auth/presentations"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/drive"]}, {"Oauth2": ["https://www.googleapis.com/auth/presentations"]}],
         "tags": ["presentations"]
       }
     },
@@ -106,10 +86,10 @@
         "parameters": [{"description": "The ID of the presentation to retrieve.", "in": "path", "name": "presentationId", "required": true, "type": "string", "x-reservedExpansion": true}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Presentation"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/presentations"], "Oauth2c": ["https://www.googleapis.com/auth/presentations"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/presentations.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/presentations.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/drive"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/presentations"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/presentations.readonly"]}
         ],
         "tags": ["presentations"]
       },
@@ -139,10 +119,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Page"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/presentations"], "Oauth2c": ["https://www.googleapis.com/auth/presentations"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/presentations.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/presentations.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/drive"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/presentations"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/presentations.readonly"]}
         ],
         "tags": ["presentations"]
       },
@@ -180,10 +160,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Thumbnail"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/presentations"], "Oauth2c": ["https://www.googleapis.com/auth/presentations"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/presentations.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/presentations.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/drive"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/presentations"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/presentations.readonly"]}
         ],
         "tags": ["presentations"]
       },
@@ -228,11 +208,11 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/BatchUpdatePresentationResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/drive"], "Oauth2c": ["https://www.googleapis.com/auth/drive"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/drive.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/presentations"], "Oauth2c": ["https://www.googleapis.com/auth/presentations"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/spreadsheets"], "Oauth2c": ["https://www.googleapis.com/auth/spreadsheets"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/spreadsheets.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/spreadsheets.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/drive"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/drive.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/presentations"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/spreadsheets"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/spreadsheets.readonly"]}
         ],
         "tags": ["presentations"]
       }

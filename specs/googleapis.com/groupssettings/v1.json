@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Lets you manage permission levels and related settings of a group.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Groups Settings",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/groupssettings/v1/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/groupssettings/v1/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "groupssettings"
@@ -21,17 +19,9 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {"https://www.googleapis.com/auth/apps.groups.settings": "View and manage the settings of a G Suite group"},
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {"https://www.googleapis.com/auth/apps.groups.settings": "View and manage the settings of a G Suite group"},
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -57,7 +47,7 @@
         "operationId": "groupsSettings.groups.get",
         "parameters": [{"description": "The resource ID", "in": "path", "name": "groupUniqueId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Groups"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/apps.groups.settings"], "Oauth2c": ["https://www.googleapis.com/auth/apps.groups.settings"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/apps.groups.settings"]}],
         "tags": ["groups"]
       },
       "parameters": [
@@ -74,7 +64,7 @@
         "operationId": "groupsSettings.groups.patch",
         "parameters": [{"description": "The resource ID", "in": "path", "name": "groupUniqueId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Groups"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Groups"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/apps.groups.settings"], "Oauth2c": ["https://www.googleapis.com/auth/apps.groups.settings"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/apps.groups.settings"]}],
         "tags": ["groups"]
       },
       "put": {
@@ -82,7 +72,7 @@
         "operationId": "groupsSettings.groups.update",
         "parameters": [{"description": "The resource ID", "in": "path", "name": "groupUniqueId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Groups"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Groups"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/apps.groups.settings"], "Oauth2c": ["https://www.googleapis.com/auth/apps.groups.settings"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/apps.groups.settings"]}],
         "tags": ["groups"]
       }
     }

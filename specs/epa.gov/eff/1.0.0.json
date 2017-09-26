@@ -382,7 +382,7 @@
         "PermFeatureTypeCode": {"description": "The code indicating the type of permitted feature (e.g., EXO)", "example": "EXO", "title": "Permit Feature Type Code", "type": "string"},
         "PermFeatureTypeDesc": {"description": "The description indicating the type of permitted feature (e.g., External Outfall, Internal Outfall, Sum)", "example": "External Outfall", "title": "Permit Feature Type", "type": "string"}
       },
-      "required": ["PermFeatureNmbr", "PermFeatureTypeCode", "Parameters", "PermFeatureTypeDesc"],
+      "required": ["PermFeatureNmbr", "PermFeatureTypeCode", "PermFeatureTypeDesc", "Parameters"],
       "type": "object"
     },
     "eff1_Results": {

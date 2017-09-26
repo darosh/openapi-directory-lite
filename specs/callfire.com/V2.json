@@ -3596,7 +3596,7 @@
       "properties": {"name": {"description": "Name of a sound to create", "type": "string"}, "toNumber": {"description": "Phone number in E.164 11-digit format to call to record a sound.  Example: 12132000384", "type": "string"}},
       "type": "object"
     },
-    "CallList": {"allOf": [{"$ref": "#/definitions/ItemList"}, {"properties": {"items": {"items": {"$ref": "#/definitions/Call"}, "type": "array"}}, "type": "object"}], "description": "~"},
+    "CallList": {"description": "~", "properties": {"items": {"description": "~", "items": {"$ref": "#/definitions/Call"}, "type": "array"}}, "type": "object"},
     "CallPage": {
       "description": "~",
       "properties": {
@@ -3677,7 +3677,7 @@
       },
       "type": "object"
     },
-    "CallRecordingList": {"allOf": [{"$ref": "#/definitions/ItemList"}, {"properties": {"items": {"items": {"$ref": "#/definitions/CallRecording"}, "type": "array"}}, "type": "object"}], "description": "~"},
+    "CallRecordingList": {"description": "~", "properties": {"items": {"description": "~", "items": {"$ref": "#/definitions/CallRecording"}, "type": "array"}}, "type": "object"},
     "CallTrackingConfig": {
       "description": "Call tracking configuration allows you track incoming calls, analyze, respond to customers using sms or voice replies. For more information see [call tracking page](https://www.callfire.com/products/call-tracking)",
       "properties": {
@@ -4267,7 +4267,7 @@
       },
       "type": "object"
     },
-    "TextList": {"allOf": [{"$ref": "#/definitions/ItemList"}, {"properties": {"items": {"items": {"$ref": "#/definitions/Text"}, "type": "array"}}, "type": "object"}], "description": "~"},
+    "TextList": {"description": "~", "properties": {"items": {"description": "~", "items": {"$ref": "#/definitions/Text"}, "type": "array"}}, "type": "object"},
     "TextPage": {
       "description": "~",
       "properties": {
@@ -4372,5 +4372,6 @@
       },
       "type": "object"
     }
-  }
+  },
+  "x-sample-basepath": "https://raw.githubusercontent.com/CallFire/callfire-api-samples/master/2.0"
 }

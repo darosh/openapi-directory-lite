@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Enables services that service consumers want to use on Google Cloud Platform, lists the available or enabled services, or disables services that service consumers no longer use.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Google Service User",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://serviceuser.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://serviceuser.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "serviceuser"
@@ -21,25 +19,13 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services",
         "https://www.googleapis.com/auth/cloud-platform.read-only": "View your data across Google Cloud Platform services",
         "https://www.googleapis.com/auth/service.management": "Manage your Google API service configuration"
       },
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {
-        "https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services",
-        "https://www.googleapis.com/auth/cloud-platform.read-only": "View your data across Google Cloud Platform services",
-        "https://www.googleapis.com/auth/service.management": "Manage your Google API service configuration"
-      },
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -74,10 +60,7 @@
           {"description": "Requested size of the next page of data.", "in": "query", "name": "pageSize", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SearchServicesResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
         "tags": ["services"]
       },
       "parameters": [
@@ -127,10 +110,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/DisableServiceRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/service.management"], "Oauth2c": ["https://www.googleapis.com/auth/service.management"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/service.management"]}],
         "tags": ["projects"]
       }
     },
@@ -165,10 +145,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/EnableServiceRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/service.management"], "Oauth2c": ["https://www.googleapis.com/auth/service.management"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/service.management"]}],
         "tags": ["projects"]
       }
     },
@@ -182,10 +159,7 @@
           {"description": "Requested size of the next page of data.", "in": "query", "name": "pageSize", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListEnabledServicesResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
         "tags": ["projects"]
       },
       "parameters": [
@@ -310,7 +284,7 @@
       "description": "A backend rule provides configuration for an individual API element.",
       "properties": {
         "address": {"description": "The address of the API backend.", "type": "string"},
-        "deadline": {"description": "The number of seconds to wait for a response from a request.  The\ndefault depends on the deployment context.", "format": "double", "type": "number"},
+        "deadline": {"description": "The number of seconds to wait for a response from a request.  The default\ndeadline for gRPC is infinite (no deadline) and HTTP requests is 5 seconds.", "format": "double", "type": "number"},
         "minDeadline": {"description": "Minimum deadline in seconds needed for this method. Calls having deadline\nvalue lower than this will be rejected.", "format": "double", "type": "number"},
         "selector": {"description": "Selects the methods to which this rule applies.\n\nRefer to selector for syntax details.", "type": "string"}
       },
@@ -776,7 +750,7 @@
     "Operation": {
       "description": "This resource represents a long-running operation that is the result of a\nnetwork API call.",
       "properties": {
-        "done": {"description": "If the value is `false`, it means the operation is still in progress.\nIf true, the operation is completed, and either `error` or `response` is\navailable.", "type": "boolean"},
+        "done": {"description": "If the value is `false`, it means the operation is still in progress.\nIf `true`, the operation is completed, and either `error` or `response` is\navailable.", "type": "boolean"},
         "error": {"$ref": "#/definitions/Status", "description": "The error result of the operation in case of failure or cancellation."},
         "metadata": {
           "additionalProperties": {"description": "Properties of the object. Contains field @type with type URL."},
