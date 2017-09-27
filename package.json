@@ -1,7 +1,7 @@
 {
   "name": "openapi-directory-lite",
   "description": "Lite version of OpenAPI Directory API",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "bugs": {
     "url": "https://github.com/darosh/openapi-directory-lite/issues"
   },
@@ -36,6 +36,7 @@
   "scripts": {
     "init": "napa",
     "search:docs": "node --max_old_space_size=4096 build/search/docs.js",
+    "search:docs:preprocess": "node --max_old_space_size=4096 build/search/preprocess-docs.js",
     "search:index": "node build/search/search.js",
     "search:words": "node build/search/words.js",
     "specs": "node build/specs/build.js",

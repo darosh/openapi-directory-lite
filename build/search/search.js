@@ -1,9 +1,14 @@
 var lunr = require('lunr');
 var fs = require('fs');
-var data = require('../../search/docs.json');
+var data = require('../../search/preprocessed.json');
+
+process.on('SIGINT', function() {
+  save();
+  process.exit();
+});
 
 const index = lunr(function () {
-  this.use(remove);
+  // this.use(remove);
   this.ref('i');
   this.field('x');
 
@@ -22,15 +27,16 @@ const index = lunr(function () {
   console.log('(' + first + ', ' + last + ') => [' + begin + ', ' + end + ']');
 
   for (var i = begin; i <= end; i++) {
-    var json = data[i];
-    console.log(json.k + ' #' + (i + 1));
+    var json = {i: data[i].index, x: data[i].text};
+    console.log(data[i].key + ' #' + (i + 1));
     this.add(json);
   }
 });
 
-var ser = index.toJSON();
-
-fs.writeFileSync('./search/index.json', JSON.stringify(ser));
+function save() {
+  var ser = index.toJSON();
+  fs.writeFileSync('./search/index.json', JSON.stringify(ser));
+}
 
 function remove(builder) {
   var pipelineFunction = function (token) {

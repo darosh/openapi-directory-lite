@@ -2,34 +2,66 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>OpenAPI Directory Light</title>
+  <title>OpenAPI Directory Light - Search Test</title>
+  <style>
+    body {
+      padding: 0 20px 20px 20px;
+    }
+
+    table {
+      border-collapse: collapse;
+      margin-top: 24px;
+    }
+
+    td, th {
+      border: 1px solid #888;
+      vertical-align: top;
+      padding: 4px 8px;
+      text-align: left;
+    }
+
+    .short {
+      max-width: 200px;
+      min-width: 160px;
+      word-break: break-all;
+    }
+
+    [v-cloak] {
+      display: none;
+    }
+  </style>
 </head>
 <body>
-<div id="app">
-  <h1>lunr.js search test</h1>
-  <input v-if="search && index" type="text" v-model="filter">
+<div id="app" v-cloak>
+  <h1>OpenAPI Directory Light &mdash; Search Test</h1>
+  <div v-if="search && index">
+    <p><input v-if="search && index" v-model="filter">
+    Single wildcard (*) for all indexed keys. Tilde (~) for edit distance fuzzy matching for example <i>bee~1</i>.</p>
+  </div>
   <p v-else>Loading&hellip;</p>
-  <table v-if="result" >
+  <table v-if="result">
     <thead>
-      <tr>
-        <th>Id</th>
-        <th>Key</th>
-        <th>Title</th>
-        <th>Score</th>
-        <th>Keys</th>
-      </tr>
+    <tr>
+      <th>#</th>
+      <th>Id</th>
+      <th class="short">Key</th>
+      <th class="short">Title</th>
+      <th>Score</th>
+      <th>Keys</th>
+    </tr>
     </thead>
     <tbody>
-      <tr v-if="result" v-for="(r, k) in result">
-        <td>{{r.ref}}</td>
-        <td><a :href="link(keys[r.ref])" target="_blank">{{keys[r.ref]}}</a></td>
-        <td>{{index.specs[keys[r.ref]].title}}</td>
-        <td>{{Math.round(r.score * 1000) / 1000}}</td>
-        <td>{{Object.keys(r.matchData.metadata).join(', ')}}</td>
-      </tr>
+    <tr v-if="result" v-for="(r, k) in result">
+      <td>{{k + 1}}</td>
+      <td>{{r.ref}}</td>
+      <td class="short"><a :href="link(keys[r.ref])" target="_blank">{{keys[r.ref]}}</a></td>
+      <td class="short">{{index.specs[keys[r.ref]].title}}</td>
+      <td>{{Math.round(r.score * 1000) / 1000}}</td>
+      <td>{{Object.keys(r.matchData.metadata).join(', ')}}</td>
+    </tr>
     </tbody>
   </table>
-  </div>
+</div>
 </div>
 <script src="https://unpkg.com/vue@2.4.4/dist/vue.min.js"></script>
 <script src="https://unpkg.com/axios@0.16.2/dist/axios.min.js"></script>
@@ -64,8 +96,8 @@
       }
     },
     methods: {
-      link (key) {
-        return './specs/' + key.split(':').concat(this.index.specs[key].version).join('/') + '.json'
+      link(key) {
+        return '../specs/' + key.split(':').concat(this.index.specs[key].version).join('/') + '.json'
       }
     }
   });

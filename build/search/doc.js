@@ -5,7 +5,7 @@ const converter = new Converter();
 
 converter.setFlavor('github');
 
-function text(html) {
+function htmlText(html) {
   let TEXT = '';
   const sax = new SAXParser();
 
@@ -18,40 +18,20 @@ function text(html) {
   return TEXT;
 }
 
-module.exports = function (json, i, k) {
-  var o;
+module.exports = function (json, index, key) {
+  var text;
 
   if (json.info['x-description-language'] && (json.info['x-description-language'] !== 'jp')) {
-    o = json.info.title
+    text = json.info.title
   } else {
-    o = iterate(json).map(t => text(converter.makeHtml(t))).join('\n\n');
+    text = iterate(json).map(t => htmlText(converter.makeHtml(t))).join('\n\n');
   }
 
-  var x = o.replace(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&/=]*)/gi, ' ');
-  x = x.replace(/([a-z])([A-Z])/g, '$1 $2');
-  x = x.replace(/["—{}()[\]@_/|=.,;:\\]/g, ' ');
-  x = x.replace(/([a-z])\d+\b/g, '$1 ');
-  x = x.replace(/\b\d+([a-z])/g, ' $1');
-  x = x.replace(/\b0x[0-9a-f]+\b/ig, ' ');
-  x = x.replace(/\b\d+\b/g, ' ');
-  x = x.replace(/\b[a-z0-9]+%[a-z0-9]+\b/ig, ' ');
-  x = x.replace(/'s\b/g, ' ');
-  x = x.replace(/`s\b/g, ' ');
-  x = x.replace(/'[dv]\b/g, ' ');
-  x = x.replace(/\b_/g, ' ');
-  x = x.replace(/\b\d{8}T\d{6}Z\b/g, ' ');
-  x = x.replace(/\./g, ' . ');
-  x = x.replace(/\b\w{20,1000}\b/g, ' ');
-  x = x.replace(/\b\w\b/g, ' ');
-  x = x.replace(/\b\d\w+\b/g, ' ');
-
   return {
-    i,
-    k,
-    xl: x.length,
-    ol: o.length,
-    x,
-    o
+    index,
+    key,
+    length: text.length,
+    text
   }
 };
 

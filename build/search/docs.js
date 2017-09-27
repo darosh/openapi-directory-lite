@@ -14,7 +14,7 @@ data.filePaths().forEach((file, i) => {
 });
 
 docs.sort((a, b) => {
-  return a.ol - b.ol
+  return a.length - b.length
 });
 
 fs.writeFileSync('search/docs.json', JSON.stringify(docs, null, 2));
