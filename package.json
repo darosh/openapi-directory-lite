@@ -34,10 +34,11 @@
     "url": "git+https://github.com/darosh/openapi-directory-lite.git"
   },
   "scripts": {
-    "build": "node build.js",
     "init": "napa",
-    "search": "node build-search.js",
-    "test": "node test.js",
-    "words": "node build-words.js"
+    "search:docs": "node --max_old_space_size=4096 build/search/docs.js",
+    "search:index": "node build/search/search.js",
+    "search:words": "node build/search/words.js",
+    "specs": "node build/specs/build.js",
+    "test": "node test/index.js"
   }
 }

@@ -18,16 +18,16 @@ function text(html) {
   return TEXT;
 }
 
-module.exports = function (json, i) {
-  var x;
+module.exports = function (json, i, k) {
+  var o;
 
   if (json.info['x-description-language'] && (json.info['x-description-language'] !== 'jp')) {
-    x = json.info.title
+    o = json.info.title
   } else {
-    x = iterate(json).map(t => text(converter.makeHtml(t))).join('\n\n');
+    o = iterate(json).map(t => text(converter.makeHtml(t))).join('\n\n');
   }
 
-  x = x.replace(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&/=]*)/gi, ' ');
+  var x = o.replace(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&/=]*)/gi, ' ');
   x = x.replace(/([a-z])([A-Z])/g, '$1 $2');
   x = x.replace(/["—{}()[\]@_/|=.,;:\\]/g, ' ');
   x = x.replace(/([a-z])\d+\b/g, '$1 ');
@@ -47,7 +47,11 @@ module.exports = function (json, i) {
 
   return {
     i,
-    x
+    k,
+    xl: x.length,
+    ol: o.length,
+    x,
+    o
   }
 };
 

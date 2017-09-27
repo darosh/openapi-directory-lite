@@ -46,12 +46,12 @@
       result: null
     },
     created() {
-      axios.get('./search.json').then(res => {
+      axios.get('./index.json').then(res => {
         Object.freeze(res.data);
-        window.idx = this.search = res.data;
+        this.search = res.data;
         this.idx = this.idx || Object.freeze(lunr.Index.load(this.search));
       });
-      axios.get('./index.json').then(res => {
+      axios.get('../index.json').then(res => {
         Object.freeze(res.data);
         this.index = res.data;
         this.keys = Object.keys(res.data.specs);
