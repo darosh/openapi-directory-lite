@@ -5,8 +5,7 @@
 ## Features
 
 * published via GitHub pages from master branch
-* entry point: https://darosh.github.io/openapi-directory-lite/index.json
-* smaller footprint than APIs.guru API: https://api.apis.guru/v2/list.json
+* entry point: https://darosh.github.io/openapi-directory-lite/index.json with smaller footprint than APIs.guru API: https://api.apis.guru/v2/list.json
 * JSON specs only (YAML is smaller, but not gzipped on GitHub pages)
 * github.io CORS
 * JavaScript API for spec api paths construction, see [index.js](./index.js) and [data.js](./data.js)
