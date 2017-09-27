@@ -19,36 +19,28 @@ function text(html) {
 }
 
 module.exports = function (json, i) {
-  // var d = json.info.description ? text(converter.makeHtml(json.info.description)).replace(/([a-z])([A-Z])/g, '$1 $2') : null;
-  var m;
+  var x;
 
   if (json.info['x-description-language'] && (json.info['x-description-language'] !== 'jp')) {
-    m = json.info.title
+    x = json.info.title
   } else {
-    m = text(converter.makeHtml(iterate(json).join('\n\n')));
+    x = iterate(json).map(t => text(converter.makeHtml(t))).join('\n\n');
   }
 
-  // if(m.length > 250) {
-  //   m = m.substr(0, 250)
-  // }
-
-  m = m.replace(/([a-z])([A-Z])/g, '$1 $2');
-  m = m.replace(/([a-z])[_/|=]([a-z])/g, '$1 $2');
-  m = m.replace(/([a-z])\d+\b/g, '$1 ');
-  m = m.replace(/\b0x[0-9a-f]+\b/ig, ' ');
-  m = m.replace(/\b\d+\b/g, ' ');
-  m = m.replace(/'s\b/g, ' ');
-  m = m.replace(/\b_/g, ' ');
-  m = m.replace(/\b\d{8}T\d{6}Z\b/g, ' ');
-  m = m.replace(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi, ' ');
-  m = m.replace(/\./g, '. ');
+  x = x.replace(/([a-z])([A-Z])/g, '$1 $2');
+  x = x.replace(/([a-z])[_/|=.()]([a-z])/ig, '$1 $2');
+  x = x.replace(/([a-z])\d+\b/g, '$1 ');
+  x = x.replace(/\b0x[0-9a-f]+\b/ig, ' ');
+  x = x.replace(/\b\d+\b/g, ' ');
+  x = x.replace(/'s\b/g, ' ');
+  x = x.replace(/\b_/g, ' ');
+  x = x.replace(/\b\d{8}T\d{6}Z\b/g, ' ');
+  x = x.replace(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi, ' ');
+  x = x.replace(/\./g, '. ');
 
   return {
     i,
-    // t: json.info.title,
-    // d,
-    x: m
-    // m
+    x
   }
 };
 
