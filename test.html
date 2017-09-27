@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>OpenAPI Directory Light</title>
+</head>
+<body>
+<div id="app">
+  <h1>lunr.js search test</h1>
+  <input v-if="search && index" type="text" v-model="filter">
+  <p v-else>Loading&hellip;</p>
+  <table v-if="result" >
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Key</th>
+        <th>Title</th>
+        <th>Score</th>
+        <th>Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-if="result" v-for="(r, k) in result">
+        <td>{{r.ref}}</td>
+        <td><a :href="link(keys[r.ref])" target="_blank">{{keys[r.ref]}}</a></td>
+        <td>{{index.specs[keys[r.ref]].title}}</td>
+        <td>{{r.score}}</td>
+        <td>{{r.matchData.metadata}}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+<script src="https://unpkg.com/vue@2.4.4/dist/vue.min.js"></script>
+<script src="https://unpkg.com/axios@0.16.2/dist/axios.min.js"></script>
+<script src="https://unpkg.com/lunr@2.1.3/lunr.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      filter: '',
+      search: null,
+      index: null,
+      keys: null,
+      idx: null,
+      result: null
+    },
+    created() {
+      axios.get('./search.json').then(res => {
+        Object.freeze(res.data);
+        window.idx = this.search = res.data;
+        this.idx = this.idx || Object.freeze(lunr.Index.load(this.search));
+      });
+      axios.get('./index.json').then(res => {
+        Object.freeze(res.data);
+        this.index = res.data;
+        this.keys = Object.keys(res.data.specs);
+        this.keys.sort()
+      });
+    },
+    watch: {
+      filter(value) {
+        this.result = this.idx.search(value)
+      }
+    },
+    methods: {
+      link (key) {
+        return './specs/' + key.split(':').concat(this.index.specs[key].version).join('/') + '.json'
+      }
+    }
+  });
+</script>
+</body>
+</html>

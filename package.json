@@ -37,6 +37,7 @@
     "build": "node build.js",
     "init": "napa",
     "search": "node build-search.js",
-    "test": "node test.js"
+    "test": "node test.js",
+    "words": "node build-words.js"
   }
 }
