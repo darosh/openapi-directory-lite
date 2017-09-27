@@ -12,9 +12,8 @@ const index = lunr(function () {
   this.field('x');
 
   data.filePaths().forEach((file, i) => {
-    console.log(file.key + ' #' + i);
+    console.log(file.key + ' #' + (i+1));
     var json = require(file.path);
-
     var d = doc(json, keys.indexOf(file.key));
     this.add(d)
   });
@@ -28,12 +27,6 @@ function remove(builder) {
   var pipelineFunction = function (token) {
     var str = token.toString();
 
-    // if (/0x[0-9a-f]+/i.test(str) || /^\d+$/.test(str) || /\d{8}T\d{6}Z/i.test(str) || /[<>[\]{}().,;:"+=_#@|?~$%^&*\/\\]/.test(str) || (str.length > 19) || /https?:\/\//.test(str)) {
-    //   return token.update(function () {
-    //     return '';
-    //   })
-    // } else
-
     if (/[`']$/.test(str)) {
       return token.update(function () {
         return str.replace(/[`']$/, '');
@@ -41,14 +34,6 @@ function remove(builder) {
     }
 
     return token;
-
-    // else if (/[a-z]\d+$/.test(str)) {
-    //     return token.update(function () {
-    //       return str.replace(/\d+$/, '');
-    //     });
-    //   } else {
-    //     return token;
-    //   }
   };
 
   lunr.Pipeline.registerFunction(pipelineFunction, 'remove');
