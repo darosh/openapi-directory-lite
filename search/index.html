@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>OpenAPI Directory Light - Search Test</title>
+  <title>OpenAPI Directory Light - Full text search test</title>
   <style>
     body {
       padding: 0 20px 20px 20px;
@@ -33,7 +33,7 @@
 </head>
 <body>
 <div id="app" v-cloak>
-  <h1>OpenAPI Directory Light &mdash; Search Test</h1>
+  <h1>OpenAPI Directory Light &mdash; Full text search test</h1>
   <div v-if="search && index">
     <p><input v-if="search && index" v-model="filter">
     Single wildcard (*) for all indexed keys. Tilde (~) for edit distance fuzzy matching for example <i>bee~1</i>.</p>
