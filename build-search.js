@@ -8,28 +8,15 @@ keys.sort();
 
 const index = lunr(function () {
   this.use(remove);
-  // this.use(lunr.trimmer);
   this.ref('i');
-  // this.metadataWhitelist = ['position'];
   this.field('x');
-  // this.field('d');
-  // this.field('m');
-
-  var pre = 0
-  var add = 0
 
   data.filePaths().forEach((file, i) => {
-    console.log(file.key + ' #' + i)
+    console.log(file.key + ' #' + i);
     var json = require(file.path);
 
-    var t = Date.now()
     var d = doc(json, keys.indexOf(file.key));
-    var p = Date.now()
-    pre += p - t
-    // console.log(d);
     this.add(d)
-    add += Date.now() - p
-    console.log(pre, add)
   });
 });
 
@@ -66,5 +53,4 @@ function remove(builder) {
 
   lunr.Pipeline.registerFunction(pipelineFunction, 'remove');
   builder.pipeline.before(lunr.stemmer, pipelineFunction);
-  // builder.searchPipeline.before(lunr.stemmer, pipelineFunction);
 };
