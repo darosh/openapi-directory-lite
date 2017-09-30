@@ -21,7 +21,7 @@ function htmlText(html) {
 module.exports = function (json, index, key) {
   var text;
 
-  if (json.info['x-description-language'] && (json.info['x-description-language'] !== 'jp')) {
+  if (json.info['x-description-language'] && (json.info['x-description-language'] !== 'en')) {
     text = json.info.title
   } else {
     text = iterate(json).map(t => htmlText(converter.makeHtml(t))).join('\n\n');

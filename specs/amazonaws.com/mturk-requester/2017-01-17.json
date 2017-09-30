@@ -1056,7 +1056,7 @@
       "type": "object",
       "properties": {
         "WorkerId": {"$ref": "#/definitions/CustomerId", "description": "The ID of the Worker to whom the bonus was paid."},
-        "BonusAmount": {"$ref": "#/definitions/NumericValue"},
+        "BonusAmount": {"$ref": "#/definitions/CurrencyAmount"},
         "AssignmentId": {"$ref": "#/definitions/EntityId", "description": "The ID of the assignment associated with this bonus payment."},
         "Reason": {"$ref": "#/definitions/String", "description": "The Reason text given when the bonus was granted, if any."},
         "GrantTime": {"$ref": "#/definitions/Timestamp", "description": "The date and time of when the bonus was granted."}
@@ -1069,7 +1069,7 @@
     "CountryParameters": {"type": "string", "minLength": 2, "maxLength": 2},
     "CreateAdditionalAssignmentsForHITRequest": {
       "type": "object",
-      "required": ["HITId"],
+      "required": ["HITId", "NumberOfAdditionalAssignments"],
       "properties": {
         "HITId": {"$ref": "#/definitions/EntityId", "description": "The ID of the HIT to extend."},
         "NumberOfAdditionalAssignments": {"$ref": "#/definitions/Integer", "description": "The number of additional assignments to request for this HIT."},
@@ -1097,7 +1097,7 @@
           "$ref": "#/definitions/Long",
           "description": " The amount of time, in seconds, that a Worker has to complete the HIT after accepting it. If a Worker does not complete the assignment within the specified duration, the assignment is considered abandoned. If the HIT is still active (that is, its lifetime has not elapsed), the assignment becomes available for other users to find and accept. "
         },
-        "Reward": {"$ref": "#/definitions/NumericValue", "description": " The amount of money the Requester will pay a Worker for successfully completing the HIT. "},
+        "Reward": {"$ref": "#/definitions/CurrencyAmount", "description": " The amount of money the Requester will pay a Worker for successfully completing the HIT. "},
         "Title": {
           "$ref": "#/definitions/String",
           "description": " The title of the HIT. A title should be short and descriptive about the kind of task the HIT contains. On the Amazon Mechanical Turk web site, the HIT title appears in search results, and everywhere the HIT is mentioned. "
@@ -1151,7 +1151,7 @@
           "$ref": "#/definitions/Long",
           "description": " The amount of time, in seconds, that a Worker has to complete the HIT after accepting it. If a Worker does not complete the assignment within the specified duration, the assignment is considered abandoned. If the HIT is still active (that is, its lifetime has not elapsed), the assignment becomes available for other users to find and accept. "
         },
-        "Reward": {"$ref": "#/definitions/NumericValue", "description": " The amount of money the Requester will pay a Worker for successfully completing the HIT. "},
+        "Reward": {"$ref": "#/definitions/CurrencyAmount", "description": " The amount of money the Requester will pay a Worker for successfully completing the HIT. "},
         "Title": {
           "$ref": "#/definitions/String",
           "description": " The title of the HIT. A title should be short and descriptive about the kind of task the HIT contains. On the Amazon Mechanical Turk web site, the HIT title appears in search results, and everywhere the HIT is mentioned. "
@@ -1247,6 +1247,7 @@
       }
     },
     "CreateWorkerBlockResponse": {"type": "object", "properties": {}},
+    "CurrencyAmount": {"type": "string", "pattern": "^[0-9]+(\\.)?[0-9]{0,2}$", "description": "A string representing a currency amount."},
     "CustomerId": {"type": "string", "pattern": "^A[A-Z0-9]+$", "minLength": 1, "maxLength": 64},
     "CustomerIdList": {"type": "array", "items": {"$ref": "#/definitions/CustomerId"}},
     "DeleteHITRequest": {"type": "object", "required": ["HITId"], "properties": {"HITId": {"$ref": "#/definitions/EntityId", "description": "The ID of the HIT to be deleted."}}},
@@ -1280,7 +1281,7 @@
     "EventTypeList": {"type": "array", "items": {"$ref": "#/definitions/EventType"}},
     "ExceptionMessage": {"type": "string"},
     "GetAccountBalanceRequest": {"type": "object", "properties": {}},
-    "GetAccountBalanceResponse": {"type": "object", "properties": {"AvailableBalance": {"$ref": "#/definitions/NumericValue"}, "OnHoldBalance": {"$ref": "#/definitions/NumericValue"}}},
+    "GetAccountBalanceResponse": {"type": "object", "properties": {"AvailableBalance": {"$ref": "#/definitions/CurrencyAmount"}, "OnHoldBalance": {"$ref": "#/definitions/CurrencyAmount"}}},
     "GetAssignmentRequest": {"type": "object", "required": ["AssignmentId"], "properties": {"AssignmentId": {"$ref": "#/definitions/EntityId", "description": "The ID of the Assignment to be retrieved."}}},
     "GetAssignmentResponse": {
       "type": "object",
@@ -1331,7 +1332,7 @@
         },
         "HITStatus": {"$ref": "#/definitions/HITStatus", "description": "The status of the HIT and its assignments. Valid Values are Assignable | Unassignable | Reviewable | Reviewing | Disposed. "},
         "MaxAssignments": {"$ref": "#/definitions/Integer", "description": "The number of times the HIT can be accepted and completed before the HIT becomes unavailable. "},
-        "Reward": {"$ref": "#/definitions/NumericValue"},
+        "Reward": {"$ref": "#/definitions/CurrencyAmount"},
         "AutoApprovalDelayInSeconds": {
           "$ref": "#/definitions/Long",
           "description": "The amount of time, in seconds, after the Worker submits an assignment for the HIT that the results are automatically approved by Amazon Mechanical Turk. This is the amount of time the Requester has to reject an assignment submitted by a Worker before the assignment is auto-approved and the Worker is paid. "
@@ -1355,6 +1356,7 @@
     },
     "HITLayoutParameter": {
       "type": "object",
+      "required": ["Name", "Value"],
       "properties": {
         "Name": {"$ref": "#/definitions/String", "description": " The name of the parameter in the HITLayout. "},
         "Value": {"$ref": "#/definitions/String", "description": "The value substituted for the parameter referenced in the HITLayout. "}
@@ -1556,13 +1558,13 @@
     "Long": {"type": "integer"},
     "NotificationSpecification": {
       "type": "object",
-      "required": ["Destination", "Transport"],
+      "required": ["Destination", "Transport", "Version", "EventTypes"],
       "properties": {
         "Destination": {
           "$ref": "#/definitions/String",
-          "description": " The destination for notification messages. or email notifications (if Transport is Email), this is an email address. For Amazon Simple Queue Service (Amazon SQS) notifications (if Transport is SQS), this is the URL for your Amazon SQS queue. "
+          "description": "<p> The target for notification messages. The Destination’s format is determined by the specified Transport: </p> <ul> <li> <p>When Transport is Email, the Destination is your email address.</p> </li> <li> <p>When Transport is SQS, the Destination is your queue URL.</p> </li> <li> <p>When Transport is SNS, the Destination is the ARN of your topic.</p> </li> </ul>"
         },
-        "Transport": {"$ref": "#/definitions/NotificationTransport", "description": " The method Amazon Mechanical Turk uses to send the notification. Valid Values: Email | SQS. "},
+        "Transport": {"$ref": "#/definitions/NotificationTransport", "description": " The method Amazon Mechanical Turk uses to send the notification. Valid Values: Email | SQS | SNS. "},
         "Version": {"$ref": "#/definitions/String", "description": "The version of the Notification API to use. Valid value is 2006-05-05."},
         "EventTypes": {
           "$ref": "#/definitions/EventTypeList",
@@ -1571,7 +1573,7 @@
       },
       "description": "The NotificationSpecification data structure describes a HIT event notification for a HIT type."
     },
-    "NotificationTransport": {"type": "string", "enum": ["Email", "SQS"]},
+    "NotificationTransport": {"type": "string", "enum": ["Email", "SQS", "SNS"]},
     "NotifyWorkersFailureCode": {"type": "string", "enum": ["SoftFailure", "HardFailure"]},
     "NotifyWorkersFailureStatus": {
       "type": "object",
@@ -1601,7 +1603,6 @@
         }
       }
     },
-    "NumericValue": {"type": "string", "pattern": "^[0-9]+(\\.)?[0-9]*$", "description": "A string representing a numeric value."},
     "PaginationToken": {
       "type": "string",
       "description": "If the previous response was incomplete (because there is more data to retrieve), Amazon Mechanical Turk returns a pagination token in the response. You can use this pagination token to retrieve the next set of results. ",
@@ -1729,7 +1730,7 @@
     "QualificationTypeStatus": {"type": "string", "enum": ["Active", "Inactive"]},
     "RejectAssignmentRequest": {
       "type": "object",
-      "required": ["AssignmentId"],
+      "required": ["AssignmentId", "RequesterFeedback"],
       "properties": {
         "AssignmentId": {"$ref": "#/definitions/EntityId", "description": " The ID of the assignment. The assignment must correspond to a HIT created by the Requester. "},
         "RequesterFeedback": {"$ref": "#/definitions/String", "description": " A message for the Worker, which the Worker can see in the Status section of the web site. "}
@@ -1768,6 +1769,7 @@
     "ReviewActionStatus": {"type": "string", "enum": ["Intended", "Succeeded", "Failed", "Cancelled"]},
     "ReviewPolicy": {
       "type": "object",
+      "required": ["PolicyName"],
       "properties": {
         "PolicyName": {"$ref": "#/definitions/String", "description": " Name of a Review Policy: SimplePlurality/2011-09-01 or ScoreMyKnownAnswers/2011-09-01 "},
         "Parameters": {"$ref": "#/definitions/PolicyParameterList", "description": "Name of the parameter from the Review policy."}
@@ -1806,11 +1808,11 @@
     "ReviewableHITStatus": {"type": "string", "enum": ["Reviewable", "Reviewing"]},
     "SendBonusRequest": {
       "type": "object",
-      "required": ["WorkerId", "BonusAmount", "AssignmentId"],
+      "required": ["WorkerId", "BonusAmount", "AssignmentId", "Reason"],
       "properties": {
         "WorkerId": {"$ref": "#/definitions/CustomerId", "description": "The ID of the Worker being paid the bonus."},
         "BonusAmount": {
-          "$ref": "#/definitions/NumericValue",
+          "$ref": "#/definitions/CurrencyAmount",
           "description": " The Bonus amount is a US Dollar amount specified using a string (for example, \"5\" represents $5.00 USD and \"101.42\" represents $101.42 USD). Do not include currency symbols or currency codes. "
         },
         "AssignmentId": {"$ref": "#/definitions/EntityId", "description": "The ID of the assignment for which this bonus is paid."},
@@ -1848,7 +1850,7 @@
     "TurkErrorCode": {"type": "string"},
     "UpdateExpirationForHITRequest": {
       "type": "object",
-      "required": ["HITId"],
+      "required": ["HITId", "ExpireAt"],
       "properties": {"HITId": {"$ref": "#/definitions/EntityId", "description": " The HIT to update. "}, "ExpireAt": {"$ref": "#/definitions/Timestamp", "description": " The date and time at which you want the HIT to expire "}}
     },
     "UpdateExpirationForHITResponse": {"type": "object", "properties": {}},

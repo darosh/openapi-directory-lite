@@ -9,7 +9,7 @@
     "title": "Wealthport",
     "version": "1.0",
     "x-apisguru-categories": ["analytics", "machine_learning"],
-    "x-logo": {"backgroundColor": "#FFFFFF", "url": "https://pbs.twimg.com/profile_images/522665269001342977/FKB9gZgO.png"},
+    "x-logo": {"backgroundColor": "#FFFFFF", "url": "https://pbs.twimg.com/profile_images/912326535566196737/gQPnTTPZ_400x400.jpg"},
     "x-origin": [{"format": "swagger", "url": "https://wealthport.github.io/wealthport-api-docs/swagger.json", "version": "2.0"}],
     "x-providerName": "wealthport.com",
     "x-preferred": true

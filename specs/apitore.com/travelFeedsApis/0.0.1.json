@@ -7,7 +7,6 @@
     "description": "Various travel feeds.<BR />[Endpoint] https://api.apitore.com/api/36",
     "title": "Travel feeds APIs",
     "version": "0.0.1",
-    "x-description-language": "jp",
     "x-logo": {"url": "https://apitore.com/img/apis/36.jpg"},
     "x-origin": [{"format": "swagger", "url": "https://api.apitore.com/json/36", "version": "2.0"}],
     "x-providerName": "apitore.com",

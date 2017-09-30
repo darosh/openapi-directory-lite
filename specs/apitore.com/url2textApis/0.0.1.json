@@ -7,7 +7,6 @@
     "description": "Url to Text.<BR />[Endpoint] https://api.apitore.com/api/13",
     "title": "Url2Text APIs",
     "version": "0.0.1",
-    "x-description-language": "jp",
     "x-logo": {"url": "https://apitore.com/img/apis/13.jpg"},
     "x-origin": [{"format": "swagger", "url": "https://api.apitore.com/json/13", "version": "2.0"}],
     "x-providerName": "apitore.com",

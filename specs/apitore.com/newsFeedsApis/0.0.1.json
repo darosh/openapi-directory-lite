@@ -7,7 +7,6 @@
     "description": "Various news feeds.<BR />[Endpoint] https://api.apitore.com/api/34",
     "title": "News feeds APIs",
     "version": "0.0.1",
-    "x-description-language": "jp",
     "x-logo": {"url": "https://apitore.com/img/apis/34.jpg"},
     "x-origin": [{"format": "swagger", "url": "https://api.apitore.com/json/34", "version": "2.0"}],
     "x-providerName": "apitore.com",

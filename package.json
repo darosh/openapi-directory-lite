@@ -1,7 +1,7 @@
 {
   "name": "openapi-directory-lite",
   "description": "Lite version of OpenAPI Directory API",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "bugs": {
     "url": "https://github.com/darosh/openapi-directory-lite/issues"
   },
@@ -27,6 +27,9 @@
   "main": "index.js",
   "napa": {
     "openapi-directory": "APIs-guru/openapi-directory"
+  },
+  "napa-config": {
+    "cache": false
   },
   "private": true,
   "repository": {
