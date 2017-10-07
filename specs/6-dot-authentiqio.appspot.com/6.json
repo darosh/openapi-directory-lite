@@ -5,10 +5,12 @@
   "basePath": "/",
   "info": {
     "contact": {"email": "hello@authentiq.com", "name": "Authentiq team", "url": "http://authentiq.io/support"},
+    "description": "Strong authentication, without the passwords.",
     "license": {"name": "Apache 2.0", "url": "http://www.apache.org/licenses/LICENSE-2.0.html"},
     "termsOfService": "http://authentiq.com/terms/",
     "title": "Authentiq",
     "version": "6",
+    "x-apisguru-categories": ["security"],
     "x-logo": {"backgroundColor": "#F26641", "url": "https://www.authentiq.com/theme/images/authentiq-logo-a-inverse.svg"},
     "x-origin": [{"format": "swagger", "url": "https://raw.githubusercontent.com/AuthentiqID/authentiq-docs/master/docs/swagger/issuer.yaml", "version": "2.0"}],
     "x-providerName": "6-dot-authentiqio.appspot.com",
@@ -26,6 +28,7 @@
     "/key": {
       "delete": {
         "description": "Revoke an Authentiq ID using email & phone.\n\nIf called with `email` and `phone` only, a verification code \nwill be sent by email. Do a second call adding `code` to \ncomplete the revocation.\n",
+        "operationId": "key_revoke_nosecret",
         "parameters": [
           {"description": "primary email associated to Key (ID)", "in": "query", "name": "email", "required": true, "type": "string"},
           {"description": "primary phone number, international representation", "in": "query", "name": "phone", "required": true, "type": "string"},
@@ -44,6 +47,7 @@
       "post": {
         "consumes": ["application/jwt"],
         "description": "Register a new ID `JWT(sub, devtoken)`\n\nv5: `JWT(sub, pk, devtoken, ...)`\n\nSee: https://github.com/skion/authentiq/wiki/JWT-Examples\n",
+        "operationId": "key_register",
         "parameters": [{"$ref": "#/parameters/AuthentiqID"}],
         "produces": ["application/json"],
         "responses": {
@@ -57,6 +61,7 @@
     "/key/{PK}": {
       "delete": {
         "description": "Revoke an Identity (Key) with a revocation secret",
+        "operationId": "key_revoke",
         "parameters": [{"$ref": "#/parameters/PK"}, {"description": "revokation secret", "in": "query", "name": "secret", "required": true, "type": "string"}],
         "produces": ["application/json"],
         "responses": {
@@ -96,6 +101,7 @@
       "post": {
         "consumes": ["application/jwt"],
         "description": "update properties of an Authentiq ID.\n(not operational in v4; use PUT for now)\n\nv5: POST issuer-signed email & phone scopes in\na self-signed JWT\n\nSee: https://github.com/skion/authentiq/wiki/JWT-Examples\n",
+        "operationId": "key_update",
         "parameters": [{"$ref": "#/parameters/PK"}, {"$ref": "#/parameters/AuthentiqID"}],
         "produces": ["application/json"],
         "responses": {
@@ -108,6 +114,7 @@
       "put": {
         "consumes": ["application/jwt"],
         "description": "Update Authentiq ID by replacing the object.\n\nv4: `JWT(sub,email,phone)` to bind email/phone hash; \n\nv5: POST issuer-signed email & phone scopes\nand PUT to update registration `JWT(sub, pk, devtoken, ...)`\n\nSee: https://github.com/skion/authentiq/wiki/JWT-Examples\n",
+        "operationId": "key_bind",
         "parameters": [{"$ref": "#/parameters/PK"}, {"$ref": "#/parameters/AuthentiqID"}],
         "produces": ["application/json"],
         "responses": {
@@ -123,6 +130,7 @@
       "post": {
         "consumes": ["application/jwt"],
         "description": "push sign-in request\nSee: https://github.com/skion/authentiq/wiki/JWT-Examples\n",
+        "operationId": "push_login_request",
         "parameters": [{"$ref": "#/parameters/PushToken"}, {"description": "URI App will connect to", "in": "query", "name": "callback", "required": true, "type": "string"}],
         "produces": ["application/json"],
         "responses": {
@@ -137,6 +145,7 @@
       "post": {
         "consumes": ["application/jwt"],
         "description": "scope verification request\nSee: https://github.com/skion/authentiq/wiki/JWT-Examples\n",
+        "operationId": "sign_request",
         "parameters": [{"$ref": "#/parameters/Scope"}, {"description": "test only mode, using test issuer", "in": "query", "name": "test", "required": false, "type": "integer"}],
         "produces": ["application/json"],
         "responses": {
@@ -150,6 +159,7 @@
     "/scope/{job}": {
       "delete": {
         "description": "delete a verification job",
+        "operationId": "sign_delete",
         "parameters": [{"$ref": "#/parameters/JobID"}],
         "produces": ["application/json"],
         "responses": {
@@ -161,6 +171,7 @@
       },
       "get": {
         "description": "get the status / current content of a verification job",
+        "operationId": "sign_retrieve",
         "parameters": [{"$ref": "#/parameters/JobID"}],
         "produces": ["application/json", "application/jwt"],
         "responses": {
@@ -176,6 +187,7 @@
       },
       "head": {
         "description": "HEAD to get the status of a verification job",
+        "operationId": "sign_retrieve_head",
         "parameters": [{"$ref": "#/parameters/JobID"}],
         "produces": ["application/json"],
         "responses": {
@@ -189,6 +201,7 @@
       "post": {
         "consumes": ["application/json"],
         "description": "this is a scope confirmation",
+        "operationId": "sign_confirm",
         "parameters": [{"$ref": "#/parameters/JobID"}],
         "produces": ["application/json"],
         "responses": {
@@ -203,6 +216,7 @@
       "put": {
         "consumes": ["application/jwt"],
         "description": "authority updates a JWT with its signature\nSee: https://github.com/skion/authentiq/wiki/JWT-Examples\n",
+        "operationId": "sign_update",
         "parameters": [{"$ref": "#/parameters/JobID"}],
         "produces": ["application/jwt"],
         "responses": {

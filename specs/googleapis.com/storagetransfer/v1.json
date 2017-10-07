@@ -12,7 +12,7 @@
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-apisguru-categories": ["storage"],
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://storagetransfer.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://storagetransfer.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "storagetransfer"
@@ -165,20 +165,10 @@
         "tags": ["transferOperations"]
       },
       "get": {
-        "description": "Lists operations that match the specified filter in the request. If the\nserver doesn't support this method, it returns `UNIMPLEMENTED`.\n\nNOTE: the `name` binding allows API services to override the binding\nto use different resource name schemes, such as `users/*/operations`. To\noverride the binding, API services can add a binding such as\n`\"/v1/{name=users/*}/operations\"` to their service configuration.\nFor backwards compatibility, the default name includes the operations\ncollection id, however overriding users must ensure the name binding\nis the parent resource, without the operations collection id.",
-        "operationId": "storagetransfer.transferOperations.list",
-        "parameters": [
-          {
-            "description": "A list of query parameters specified as JSON text in the form of {\\\"project_id\\\" : \\\"my_project_id\\\", \\\"job_names\\\" : [\\\"jobid1\\\", \\\"jobid2\\\",...], \\\"operation_names\\\" : [\\\"opid1\\\", \\\"opid2\\\",...], \\\"transfer_statuses\\\":[\\\"status1\\\", \\\"status2\\\",...]}. Since `job_names`, `operation_names`, and `transfer_statuses` support multiple values, they must be specified with array notation. `job_names`, `operation_names`, and `transfer_statuses` are optional.",
-            "in": "query",
-            "name": "filter",
-            "type": "string"
-          },
-          {"description": "The value `transferOperations`.", "in": "path", "name": "name", "required": true, "type": "string", "x-reservedExpansion": true},
-          {"description": "The list page size. The max allowed value is 256.", "in": "query", "name": "pageSize", "type": "integer"},
-          {"description": "The list page token.", "in": "query", "name": "pageToken", "type": "string"}
-        ],
-        "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListOperationsResponse"}}},
+        "description": "Gets the latest state of a long-running operation.  Clients can use this\nmethod to poll the operation result at intervals as recommended by the API\nservice.",
+        "operationId": "storagetransfer.transferOperations.get",
+        "parameters": [{"description": "The name of the operation resource.", "in": "path", "name": "name", "required": true, "type": "string", "x-reservedExpansion": true}],
+        "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
         "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
         "tags": ["transferOperations"]
       },

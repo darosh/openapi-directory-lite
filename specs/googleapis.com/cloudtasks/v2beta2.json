@@ -10,7 +10,7 @@
     "version": "v2beta2",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://cloudtasks.googleapis.com/$discovery/rest?version=v2beta2", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://cloudtasks.googleapis.com/$discovery/rest?version=v2beta2", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "cloudtasks"
@@ -514,7 +514,7 @@
         {"$ref": "#/parameters/upload_protocol"}
       ],
       "post": {
-        "description": "Gets the access control policy for a Queue.\nReturns an empty policy if the resource exists and does not have a policy\nset.\n\nAuthorization requires the following [Google IAM](/iam) permission on the\nspecified resource parent:\n\n* `cloudtasks.queues.getIamPolicy`",
+        "description": "Gets the access control policy for a Queue.\nReturns an empty policy if the resource exists and does not have a policy\nset.\n\nAuthorization requires the following [Google IAM](/iam) permission on the\nspecified resource parent:\n\n* `cloudtasks.queues.getIamPolicy`\n",
         "operationId": "cloudtasks.projects.locations.queues.getIamPolicy",
         "parameters": [
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/GetIamPolicyRequest"}},
@@ -549,7 +549,7 @@
         {"$ref": "#/parameters/upload_protocol"}
       ],
       "post": {
-        "description": "Sets the access control policy for a Queue. Replaces any existing\npolicy.\n\nAuthorization requires the following [Google IAM](/iam) permission on the\nspecified resource parent:\n\n* `cloudtasks.queues.setIamPolicy`",
+        "description": "Sets the access control policy for a Queue. Replaces any existing\npolicy.\n\nAuthorization requires the following [Google IAM](/iam) permission on the\nspecified resource parent:\n\n* `cloudtasks.queues.setIamPolicy`\n",
         "operationId": "cloudtasks.projects.locations.queues.setIamPolicy",
         "parameters": [
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SetIamPolicyRequest"}},
@@ -584,7 +584,7 @@
         {"$ref": "#/parameters/upload_protocol"}
       ],
       "post": {
-        "description": "Returns permissions that a caller has on a Queue.\nIf the resource does not exist, this will return an empty set of\npermissions, not a google.rpc.Code.NOT_FOUND error.\n\nNote: This operation is designed to be used for building permission-aware\nUIs and command-line tools, not for authorization checking. This operation\nmay \"fail open\" without warning.",
+        "description": "Returns permissions that a caller has on a Queue.\nIf the resource does not exist, this will return an empty set of\npermissions, not a google.rpc.Code.NOT_FOUND error.\n\nNote: This operation is designed to be used for building permission-aware\nUIs and command-line tools, not for authorization checking. This operation\nmay \"fail open\" without warning.\n",
         "operationId": "cloudtasks.projects.locations.queues.testIamPermissions",
         "parameters": [
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/TestIamPermissionsRequest"}},
@@ -616,7 +616,7 @@
       "type": "object"
     },
     "AppEngineHttpRequest": {
-      "description": "App Engine HTTP request.\n\nThe message defines the HTTP request that is sent to an App Engine app when\nthe task is dispatched.\n\nThis proto can only be used for tasks in a queue which has\nQueue.app_engine_http_target set.\n\nUsing this type of target requires\n[`appengine.applications.get`](/appengine/docs/admin-api/access-control)\nGoogle IAM permission for the project\nand the following scope:\n\n`https://www.googleapis.com/auth/cloud-platform`\n\nThe task will be delivered to the App Engine app which belongs to the same\nproject as the queue. For more information, see\n[How Requests are Routed](/appengine/docs/standard/python/how-requests-are-routed)\nand how routing is affected by\n[dispatch files](/appengine/docs/python/config/dispatchref).\n\nThe AppEngineRouting used to construct the URL that the task is\ndelivered to can be set at the queue-level or task-level:\n\n*  If set, AppEngineHttpTarget.app_engine_routing_override is used for\n   all tasks in the queue, no matter what the setting is for the\n   task-level app_engine_routing.\n\n\nThe `url` that the task will be sent to is:\n\n* `url =` AppEngineRouting.host `+` AppEngineHttpRequest.relative_url\n\nThe task will be sent to a task handler by an HTTP\nrequest using the specified AppEngineHttpRequest.http_method (for example\nPOST, HTTP GET, etc). The task attempt has succeeded if the task handler\nreturns an HTTP response code in the range [200 - 299]. Error 503 is\nconsidered an App Engine system error instead of an application error.\nRequests returning error 503 will be retried regardless of retry\nconfiguration and not counted against retry counts.\nAny other response code or a failure to receive a response before the\ndeadline is a failed attempt.",
+      "description": "App Engine HTTP request.\n\nThe message defines the HTTP request that is sent to an App Engine app when\nthe task is dispatched.\n\nThis proto can only be used for tasks in a queue which has\nQueue.app_engine_http_target set.\n\nUsing AppEngineHttpRequest requires\n[`appengine.applications.get`](/appengine/docs/admin-api/access-control)\nGoogle IAM permission for the project\nand the following scope:\n\n`https://www.googleapis.com/auth/cloud-platform`\n\nThe task will be delivered to the App Engine app which belongs to the same\nproject as the queue. For more information, see\n[How Requests are Routed](/appengine/docs/standard/python/how-requests-are-routed)\nand how routing is affected by\n[dispatch files](/appengine/docs/python/config/dispatchref).\n\nThe AppEngineRouting used to construct the URL that the task is\ndelivered to can be set at the queue-level or task-level:\n\n*  If set, AppEngineHttpTarget.app_engine_routing_override is used for\n   all tasks in the queue, no matter what the setting is for the\n   task-level app_engine_routing.\n\n\nThe `url` that the task will be sent to is:\n\n* `url =` AppEngineRouting.host `+` AppEngineHttpRequest.relative_url\n\nThe task will be sent to a task handler by an HTTP\nrequest using the specified AppEngineHttpRequest.http_method (for example\nPOST, HTTP GET, etc). The task attempt has succeeded if the task handler\nreturns an HTTP response code in the range [200 - 299]. Error 503 is\nconsidered an App Engine system error instead of an application error.\nRequests returning error 503 will be retried regardless of retry\nconfiguration and not counted against retry counts.\nAny other response code or a failure to receive a response before the\ndeadline is a failed attempt.",
       "properties": {
         "appEngineRouting": {
           "$ref": "#/definitions/AppEngineRouting",
@@ -645,7 +645,7 @@
       "type": "object"
     },
     "AppEngineHttpTarget": {
-      "description": "App Engine HTTP target.\n\nThe task will be delivered to the App Engine application hostname\nspecified by its AppEngineHttpTarget and AppEngineHttpRequest.\nThe documentation for AppEngineHttpRequest explains how the\ntask's host URL is constructed.\n\nUsing this type of queue configuration requires\n[`appengine.applications.get`](/appengine/docs/admin-api/access-control)\nGoogle IAM permission for the project\nand the following scope:\n\n`https://www.googleapis.com/auth/cloud-platform`",
+      "description": "App Engine HTTP target.\n\nThe task will be delivered to the App Engine application hostname\nspecified by its AppEngineHttpTarget and AppEngineHttpRequest.\nThe documentation for AppEngineHttpRequest explains how the\ntask's host URL is constructed.\n\nUsing AppEngineHttpTarget requires\n[`appengine.applications.get`](/appengine/docs/admin-api/access-control)\nGoogle IAM permission for the project\nand the following scope:\n\n`https://www.googleapis.com/auth/cloud-platform`",
       "properties": {
         "appEngineRoutingOverride": {
           "$ref": "#/definitions/AppEngineRouting",

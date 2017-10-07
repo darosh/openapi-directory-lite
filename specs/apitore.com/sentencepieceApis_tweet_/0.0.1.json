@@ -7,6 +7,7 @@
     "description": "SentencePiece tokenizer (tweet).<BR />[Endpoint] https://api.apitore.com/api/38",
     "title": "SentencePiece APIs (tweet)",
     "version": "0.0.1",
+    "x-apisguru-categories": ["text"],
     "x-logo": {"url": "https://apitore.com/img/apis/38.jpg"},
     "x-origin": [{"format": "swagger", "url": "https://api.apitore.com/json/38", "version": "2.0"}],
     "x-providerName": "apitore.com",

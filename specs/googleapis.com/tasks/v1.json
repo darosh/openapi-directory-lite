@@ -6,14 +6,12 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Lets you manage your tasks and task lists.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Tasks",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-apisguru-categories": ["time_management"],
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/tasks/v1/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/tasks/v1/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "tasks"
@@ -22,17 +20,9 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {"https://www.googleapis.com/auth/tasks": "Manage your tasks", "https://www.googleapis.com/auth/tasks.readonly": "View your tasks"},
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {"https://www.googleapis.com/auth/tasks": "Manage your tasks", "https://www.googleapis.com/auth/tasks.readonly": "View your tasks"},
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -67,7 +57,7 @@
         "operationId": "tasks.tasks.clear",
         "parameters": [{"description": "Task list identifier.", "in": "path", "name": "tasklist", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/tasks"], "Oauth2c": ["https://www.googleapis.com/auth/tasks"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/tasks"]}],
         "tags": ["tasks"]
       }
     },
@@ -89,10 +79,7 @@
           {"description": "Lower bound for a task's last modification time (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by last modification time.", "in": "query", "name": "updatedMin", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Tasks"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/tasks"], "Oauth2c": ["https://www.googleapis.com/auth/tasks"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/tasks.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/tasks.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/tasks"]}, {"Oauth2": ["https://www.googleapis.com/auth/tasks.readonly"]}],
         "tags": ["tasks"]
       },
       "parameters": [
@@ -114,7 +101,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Task"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Task"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/tasks"], "Oauth2c": ["https://www.googleapis.com/auth/tasks"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/tasks"]}],
         "tags": ["tasks"]
       }
     },
@@ -124,7 +111,7 @@
         "operationId": "tasks.tasks.delete",
         "parameters": [{"description": "Task list identifier.", "in": "path", "name": "tasklist", "required": true, "type": "string"}, {"description": "Task identifier.", "in": "path", "name": "task", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/tasks"], "Oauth2c": ["https://www.googleapis.com/auth/tasks"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/tasks"]}],
         "tags": ["tasks"]
       },
       "get": {
@@ -132,10 +119,7 @@
         "operationId": "tasks.tasks.get",
         "parameters": [{"description": "Task list identifier.", "in": "path", "name": "tasklist", "required": true, "type": "string"}, {"description": "Task identifier.", "in": "path", "name": "task", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Task"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/tasks"], "Oauth2c": ["https://www.googleapis.com/auth/tasks"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/tasks.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/tasks.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/tasks"]}, {"Oauth2": ["https://www.googleapis.com/auth/tasks.readonly"]}],
         "tags": ["tasks"]
       },
       "parameters": [
@@ -156,7 +140,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Task"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Task"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/tasks"], "Oauth2c": ["https://www.googleapis.com/auth/tasks"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/tasks"]}],
         "tags": ["tasks"]
       },
       "put": {
@@ -168,7 +152,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Task"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Task"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/tasks"], "Oauth2c": ["https://www.googleapis.com/auth/tasks"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/tasks"]}],
         "tags": ["tasks"]
       }
     },
@@ -192,7 +176,7 @@
           {"description": "New previous sibling task identifier. If the task is moved to the first position among its siblings, this parameter is omitted. Optional.", "in": "query", "name": "previous", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Task"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/tasks"], "Oauth2c": ["https://www.googleapis.com/auth/tasks"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/tasks"]}],
         "tags": ["tasks"]
       }
     },
@@ -205,10 +189,7 @@
           {"description": "Token specifying the result page to return. Optional.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TaskLists"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/tasks"], "Oauth2c": ["https://www.googleapis.com/auth/tasks"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/tasks.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/tasks.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/tasks"]}, {"Oauth2": ["https://www.googleapis.com/auth/tasks.readonly"]}],
         "tags": ["tasklists"]
       },
       "parameters": [
@@ -225,7 +206,7 @@
         "operationId": "tasks.tasklists.insert",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/TaskList"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TaskList"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/tasks"], "Oauth2c": ["https://www.googleapis.com/auth/tasks"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/tasks"]}],
         "tags": ["tasklists"]
       }
     },
@@ -235,7 +216,7 @@
         "operationId": "tasks.tasklists.delete",
         "parameters": [{"description": "Task list identifier.", "in": "path", "name": "tasklist", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/tasks"], "Oauth2c": ["https://www.googleapis.com/auth/tasks"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/tasks"]}],
         "tags": ["tasklists"]
       },
       "get": {
@@ -243,10 +224,7 @@
         "operationId": "tasks.tasklists.get",
         "parameters": [{"description": "Task list identifier.", "in": "path", "name": "tasklist", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TaskList"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/tasks"], "Oauth2c": ["https://www.googleapis.com/auth/tasks"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/tasks.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/tasks.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/tasks"]}, {"Oauth2": ["https://www.googleapis.com/auth/tasks.readonly"]}],
         "tags": ["tasklists"]
       },
       "parameters": [
@@ -263,7 +241,7 @@
         "operationId": "tasks.tasklists.patch",
         "parameters": [{"description": "Task list identifier.", "in": "path", "name": "tasklist", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/TaskList"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TaskList"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/tasks"], "Oauth2c": ["https://www.googleapis.com/auth/tasks"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/tasks"]}],
         "tags": ["tasklists"]
       },
       "put": {
@@ -271,7 +249,7 @@
         "operationId": "tasks.tasklists.update",
         "parameters": [{"description": "Task list identifier.", "in": "path", "name": "tasklist", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/TaskList"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TaskList"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/tasks"], "Oauth2c": ["https://www.googleapis.com/auth/tasks"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/tasks"]}],
         "tags": ["tasklists"]
       }
     }

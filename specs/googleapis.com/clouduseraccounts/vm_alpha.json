@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Creates and manages users and groups for accessing Google Compute Engine virtual machines.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Cloud User Accounts",
     "version": "vm_alpha",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://cloud.google.com/_static/images/new-gcp-logo.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/clouduseraccounts/vm_alpha/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/clouduseraccounts/vm_alpha/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "clouduseraccounts"
@@ -21,7 +19,7 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services",
@@ -29,19 +27,6 @@
         "https://www.googleapis.com/auth/cloud.useraccounts": "Manage your Google Cloud User Accounts",
         "https://www.googleapis.com/auth/cloud.useraccounts.readonly": "View your Google Cloud User Accounts"
       },
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {
-        "https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services",
-        "https://www.googleapis.com/auth/cloud-platform.read-only": "View your data across Google Cloud Platform services",
-        "https://www.googleapis.com/auth/cloud.useraccounts": "Manage your Google Cloud User Accounts",
-        "https://www.googleapis.com/auth/cloud.useraccounts.readonly": "View your Google Cloud User Accounts"
-      },
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -92,10 +77,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GroupList"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
         ],
         "tags": ["groups"]
       },
@@ -113,10 +98,7 @@
         "operationId": "clouduseraccounts.groups.insert",
         "parameters": [{"description": "Project ID for this request.", "in": "path", "name": "project", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Group"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"]}],
         "tags": ["groups"]
       }
     },
@@ -129,10 +111,7 @@
           {"description": "Name of the Group resource to delete.", "in": "path", "name": "groupName", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"]}],
         "tags": ["groups"]
       },
       "get": {
@@ -144,10 +123,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Group"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
         ],
         "tags": ["groups"]
       },
@@ -180,10 +159,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/GroupsAddMemberRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"]}],
         "tags": ["groups"]
       }
     },
@@ -206,10 +182,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/GroupsRemoveMemberRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"]}],
         "tags": ["groups"]
       }
     },
@@ -223,10 +196,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Policy"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
         ],
         "tags": ["groups"]
       },
@@ -260,10 +233,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Policy"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
         ],
         "tags": ["groups"]
       }
@@ -288,10 +261,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TestPermissionsResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
         ],
         "tags": ["groups"]
       }
@@ -327,10 +300,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OperationList"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
         ],
         "tags": ["globalAccountsOperations"]
       },
@@ -353,10 +326,7 @@
           {"description": "Name of the Operations resource to delete.", "in": "path", "name": "operation", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"]}],
         "tags": ["globalAccountsOperations"]
       },
       "get": {
@@ -368,10 +338,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
         ],
         "tags": ["globalAccountsOperations"]
       },
@@ -416,10 +386,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UserList"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
         ],
         "tags": ["users"]
       },
@@ -437,10 +407,7 @@
         "operationId": "clouduseraccounts.users.insert",
         "parameters": [{"description": "Project ID for this request.", "in": "path", "name": "project", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/User"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"]}],
         "tags": ["users"]
       }
     },
@@ -454,10 +421,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Policy"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
         ],
         "tags": ["users"]
       },
@@ -491,10 +458,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Policy"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
         ],
         "tags": ["users"]
       }
@@ -519,10 +486,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TestPermissionsResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
         ],
         "tags": ["users"]
       }
@@ -536,10 +503,7 @@
           {"description": "Name of the user resource to delete.", "in": "path", "name": "user", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"]}],
         "tags": ["users"]
       },
       "get": {
@@ -551,10 +515,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/User"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
         ],
         "tags": ["users"]
       },
@@ -587,10 +551,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/PublicKey"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"]}],
         "tags": ["users"]
       }
     },
@@ -619,10 +580,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"]}],
         "tags": ["users"]
       }
     },
@@ -648,10 +606,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/LinuxGetAuthorizedKeysViewResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
         ],
         "tags": ["linux"]
       }
@@ -698,10 +656,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/LinuxGetLinuxAccountViewsResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud.useraccounts.readonly"]}
         ],
         "tags": ["linux"]
       }

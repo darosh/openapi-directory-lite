@@ -10,7 +10,7 @@
     "version": "v2",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://cloud.google.com/_static/images/new-gcp-logo.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/deploymentmanager/v2/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/deploymentmanager/v2/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "deploymentmanager"
@@ -986,7 +986,7 @@
       "description": "A rule to be applied in a Policy.",
       "properties": {
         "action": {"description": "Required", "type": "string"},
-        "conditions": {"description": "Additional restrictions that must be met", "items": {"$ref": "#/definitions/Condition"}, "type": "array"},
+        "conditions": {"description": "Additional restrictions that must be met. All conditions must pass for the rule to match.", "items": {"$ref": "#/definitions/Condition"}, "type": "array"},
         "description": {"description": "Human-readable description of the rule.", "type": "string"},
         "ins": {"description": "If one or more 'in' clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.", "items": {"type": "string"}, "type": "array"},
         "logConfigs": {"description": "The config returned to callers of tech.iam.IAM.CheckPolicy for any entries that match the LOG action.", "items": {"$ref": "#/definitions/LogConfig"}, "type": "array"},

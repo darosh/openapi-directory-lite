@@ -7,6 +7,7 @@
     "description": "Return hyponym words.<BR />[Endpoint] https://api.apitore.com/api/43",
     "title": "WordNet hyponym APIs",
     "version": "0.0.1",
+    "x-apisguru-categories": ["text"],
     "x-logo": {"url": "https://apitore.com/img/apis/43.jpg"},
     "x-origin": [{"format": "swagger", "url": "https://api.apitore.com/json/43", "version": "2.0"}],
     "x-providerName": "apitore.com",

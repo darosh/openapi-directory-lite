@@ -6,14 +6,12 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "API for access to the data within Blogger.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Blogger",
     "version": "v3",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-apisguru-categories": ["social"],
     "x-logo": {"url": "https://www.gstatic.com/images/icons/material/product/2x/blogger_64dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/blogger/v3/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/blogger/v3/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "blogger"
@@ -22,17 +20,9 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {"https://www.googleapis.com/auth/blogger": "Manage your Blogger account", "https://www.googleapis.com/auth/blogger.readonly": "View your Blogger account"},
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {"https://www.googleapis.com/auth/blogger": "Manage your Blogger account", "https://www.googleapis.com/auth/blogger.readonly": "View your Blogger account"},
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -61,10 +51,7 @@
           {"description": "Access level with which to view the blog. Note that some fields require elevated access.", "enum": ["ADMIN", "AUTHOR", "READER"], "in": "query", "name": "view", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Blog"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/blogger.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}, {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"]}],
         "tags": ["blogs"]
       },
       "parameters": [
@@ -87,10 +74,7 @@
           {"description": "Access level with which to view the blog. Note that some fields require elevated access.", "enum": ["ADMIN", "AUTHOR", "READER"], "in": "query", "name": "view", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Blog"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/blogger.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}, {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"]}],
         "tags": ["blogs"]
       },
       "parameters": [
@@ -117,10 +101,7 @@
           {"collectionFormat": "multi", "in": "query", "items": {"enum": ["emptied", "live", "pending", "spam"], "type": "string"}, "name": "status", "type": "array"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CommentList"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/blogger.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}, {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"]}],
         "tags": ["comments"]
       },
       "parameters": [
@@ -146,10 +127,7 @@
           {"description": "Access level with which to view the returned result. Note that some fields require elevated access.", "enum": ["ADMIN", "AUTHOR", "READER"], "in": "query", "name": "view", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PageList"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/blogger.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}, {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"]}],
         "tags": ["pages"]
       },
       "parameters": [
@@ -170,7 +148,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Page"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Page"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}],
         "tags": ["pages"]
       }
     },
@@ -180,7 +158,7 @@
         "operationId": "blogger.pages.delete",
         "parameters": [{"description": "The ID of the Blog.", "in": "path", "name": "blogId", "required": true, "type": "string"}, {"description": "The ID of the Page.", "in": "path", "name": "pageId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}],
         "tags": ["pages"]
       },
       "get": {
@@ -192,10 +170,7 @@
           {"enum": ["ADMIN", "AUTHOR", "READER"], "in": "query", "name": "view", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Page"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/blogger.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}, {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"]}],
         "tags": ["pages"]
       },
       "parameters": [
@@ -218,7 +193,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Page"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Page"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}],
         "tags": ["pages"]
       },
       "put": {
@@ -232,7 +207,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Page"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Page"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}],
         "tags": ["pages"]
       }
     },
@@ -251,7 +226,7 @@
         "operationId": "blogger.pages.publish",
         "parameters": [{"description": "The ID of the blog.", "in": "path", "name": "blogId", "required": true, "type": "string"}, {"description": "The ID of the page.", "in": "path", "name": "pageId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Page"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}],
         "tags": ["pages"]
       }
     },
@@ -270,7 +245,7 @@
         "operationId": "blogger.pages.revert",
         "parameters": [{"description": "The ID of the blog.", "in": "path", "name": "blogId", "required": true, "type": "string"}, {"description": "The ID of the page.", "in": "path", "name": "pageId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Page"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}],
         "tags": ["pages"]
       }
     },
@@ -283,7 +258,7 @@
           {"collectionFormat": "multi", "in": "query", "items": {"enum": ["30DAYS", "7DAYS", "all"], "type": "string"}, "name": "range", "type": "array"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Pageviews"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}],
         "tags": ["pageViews"]
       },
       "parameters": [
@@ -320,10 +295,7 @@
           {"description": "Access level with which to view the returned result. Note that some fields require escalated access.", "enum": ["ADMIN", "AUTHOR", "READER"], "in": "query", "name": "view", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PostList"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/blogger.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}, {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"]}],
         "tags": ["posts"]
       },
       "parameters": [
@@ -346,7 +318,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Post"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Post"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}],
         "tags": ["posts"]
       }
     },
@@ -361,10 +333,7 @@
           {"description": "Access level with which to view the returned result. Note that some fields require elevated access.", "enum": ["ADMIN", "AUTHOR", "READER"], "in": "query", "name": "view", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Post"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/blogger.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}, {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"]}],
         "tags": ["posts"]
       },
       "parameters": [
@@ -394,10 +363,7 @@
           {"default": "published", "description": "Sort search results", "enum": ["published", "updated"], "in": "query", "name": "orderBy", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PostList"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/blogger.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}, {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"]}],
         "tags": ["posts"]
       },
       "parameters": [
@@ -416,7 +382,7 @@
         "operationId": "blogger.posts.delete",
         "parameters": [{"description": "The ID of the Blog.", "in": "path", "name": "blogId", "required": true, "type": "string"}, {"description": "The ID of the Post.", "in": "path", "name": "postId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}],
         "tags": ["posts"]
       },
       "get": {
@@ -437,10 +403,7 @@
           {"description": "Access level with which to view the returned result. Note that some fields require elevated access.", "enum": ["ADMIN", "AUTHOR", "READER"], "in": "query", "name": "view", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Post"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/blogger.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}, {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"]}],
         "tags": ["posts"]
       },
       "parameters": [
@@ -466,7 +429,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Post"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Post"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}],
         "tags": ["posts"]
       },
       "put": {
@@ -483,7 +446,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Post"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Post"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}],
         "tags": ["posts"]
       }
     },
@@ -503,10 +466,7 @@
           {"description": "Access level with which to view the returned result. Note that some fields require elevated access.", "enum": ["ADMIN", "AUTHOR", "READER"], "in": "query", "name": "view", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CommentList"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/blogger.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}, {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"]}],
         "tags": ["comments"]
       },
       "parameters": [
@@ -529,7 +489,7 @@
           {"description": "The ID of the comment to delete.", "in": "path", "name": "commentId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}],
         "tags": ["comments"]
       },
       "get": {
@@ -548,10 +508,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Comment"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/blogger.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}, {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"]}],
         "tags": ["comments"]
       },
       "parameters": [
@@ -583,7 +540,7 @@
           {"description": "The ID of the comment to mark as not spam.", "in": "path", "name": "commentId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Comment"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}],
         "tags": ["comments"]
       }
     },
@@ -606,7 +563,7 @@
           {"description": "The ID of the comment to delete content from.", "in": "path", "name": "commentId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Comment"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}],
         "tags": ["comments"]
       }
     },
@@ -629,7 +586,7 @@
           {"description": "The ID of the comment to mark as spam.", "in": "path", "name": "commentId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Comment"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}],
         "tags": ["comments"]
       }
     },
@@ -657,7 +614,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Post"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}],
         "tags": ["posts"]
       }
     },
@@ -676,7 +633,7 @@
         "operationId": "blogger.posts.revert",
         "parameters": [{"description": "The ID of the Blog.", "in": "path", "name": "blogId", "required": true, "type": "string"}, {"description": "The ID of the Post.", "in": "path", "name": "postId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Post"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}],
         "tags": ["posts"]
       }
     },
@@ -686,10 +643,7 @@
         "operationId": "blogger.users.get",
         "parameters": [{"description": "The ID of the user to get.", "in": "path", "name": "userId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/User"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/blogger.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}, {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"]}],
         "tags": ["users"]
       },
       "parameters": [
@@ -728,10 +682,7 @@
           {"description": "Access level with which to view the blogs. Note that some fields require elevated access.", "enum": ["ADMIN", "AUTHOR", "READER"], "in": "query", "name": "view", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/BlogList"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/blogger.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}, {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"]}],
         "tags": ["blogs"]
       },
       "parameters": [
@@ -754,10 +705,7 @@
           {"description": "Maximum number of posts to pull back with the blog.", "in": "query", "name": "maxPosts", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/BlogUserInfo"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/blogger.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}, {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"]}],
         "tags": ["blogUserInfos"]
       },
       "parameters": [
@@ -788,10 +736,7 @@
           {"description": "Access level with which to view the returned result. Note that some fields require elevated access.", "enum": ["ADMIN", "AUTHOR", "READER"], "in": "query", "name": "view", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PostUserInfosList"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/blogger.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}, {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"]}],
         "tags": ["postUserInfos"]
       },
       "parameters": [
@@ -815,10 +760,7 @@
           {"description": "Maximum number of comments to pull back on a post.", "in": "query", "name": "maxComments", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PostUserInfo"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger"], "Oauth2c": ["https://www.googleapis.com/auth/blogger"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/blogger.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/blogger"]}, {"Oauth2": ["https://www.googleapis.com/auth/blogger.readonly"]}],
         "tags": ["postUserInfos"]
       },
       "parameters": [

@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Interacts with Glass users via the timeline.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Google Mirror",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/mirror/v1/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/mirror/v1/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "mirror"
@@ -21,17 +19,9 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {"https://www.googleapis.com/auth/glass.location": "View your location", "https://www.googleapis.com/auth/glass.timeline": "View and manage your Glass timeline"},
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {"https://www.googleapis.com/auth/glass.location": "View your location", "https://www.googleapis.com/auth/glass.timeline": "View and manage your Glass timeline"},
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -79,7 +69,7 @@
         "description": "Retrieves a list of contacts for the authenticated user.",
         "operationId": "mirror.contacts.list",
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ContactsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"], "Oauth2c": ["https://www.googleapis.com/auth/glass.timeline"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"]}],
         "tags": ["contacts"]
       },
       "parameters": [
@@ -96,7 +86,7 @@
         "operationId": "mirror.contacts.insert",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Contact"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Contact"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"], "Oauth2c": ["https://www.googleapis.com/auth/glass.timeline"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"]}],
         "tags": ["contacts"]
       }
     },
@@ -106,7 +96,7 @@
         "operationId": "mirror.contacts.delete",
         "parameters": [{"description": "The ID of the contact.", "in": "path", "name": "id", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"], "Oauth2c": ["https://www.googleapis.com/auth/glass.timeline"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"]}],
         "tags": ["contacts"]
       },
       "get": {
@@ -114,7 +104,7 @@
         "operationId": "mirror.contacts.get",
         "parameters": [{"description": "The ID of the contact.", "in": "path", "name": "id", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Contact"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"], "Oauth2c": ["https://www.googleapis.com/auth/glass.timeline"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"]}],
         "tags": ["contacts"]
       },
       "parameters": [
@@ -131,7 +121,7 @@
         "operationId": "mirror.contacts.patch",
         "parameters": [{"description": "The ID of the contact.", "in": "path", "name": "id", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Contact"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Contact"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"], "Oauth2c": ["https://www.googleapis.com/auth/glass.timeline"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"]}],
         "tags": ["contacts"]
       },
       "put": {
@@ -139,7 +129,7 @@
         "operationId": "mirror.contacts.update",
         "parameters": [{"description": "The ID of the contact.", "in": "path", "name": "id", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Contact"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Contact"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"], "Oauth2c": ["https://www.googleapis.com/auth/glass.timeline"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"]}],
         "tags": ["contacts"]
       }
     },
@@ -148,10 +138,7 @@
         "description": "Retrieves a list of locations for the user.",
         "operationId": "mirror.locations.list",
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/LocationsListResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/glass.location"], "Oauth2c": ["https://www.googleapis.com/auth/glass.location"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"], "Oauth2c": ["https://www.googleapis.com/auth/glass.timeline"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.location"]}, {"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"]}],
         "tags": ["locations"]
       },
       "parameters": [
@@ -170,10 +157,7 @@
         "operationId": "mirror.locations.get",
         "parameters": [{"description": "The ID of the location or latest for the last known location.", "in": "path", "name": "id", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Location"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/glass.location"], "Oauth2c": ["https://www.googleapis.com/auth/glass.location"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"], "Oauth2c": ["https://www.googleapis.com/auth/glass.timeline"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.location"]}, {"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"]}],
         "tags": ["locations"]
       },
       "parameters": [
@@ -200,7 +184,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Setting"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"], "Oauth2c": ["https://www.googleapis.com/auth/glass.timeline"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"]}],
         "tags": ["settings"]
       },
       "parameters": [
@@ -218,7 +202,7 @@
         "description": "Retrieves a list of subscriptions for the authenticated user and service.",
         "operationId": "mirror.subscriptions.list",
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SubscriptionsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"], "Oauth2c": ["https://www.googleapis.com/auth/glass.timeline"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"]}],
         "tags": ["subscriptions"]
       },
       "parameters": [
@@ -235,7 +219,7 @@
         "operationId": "mirror.subscriptions.insert",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Subscription"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Subscription"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"], "Oauth2c": ["https://www.googleapis.com/auth/glass.timeline"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"]}],
         "tags": ["subscriptions"]
       }
     },
@@ -245,7 +229,7 @@
         "operationId": "mirror.subscriptions.delete",
         "parameters": [{"description": "The ID of the subscription.", "in": "path", "name": "id", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"], "Oauth2c": ["https://www.googleapis.com/auth/glass.timeline"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"]}],
         "tags": ["subscriptions"]
       },
       "parameters": [
@@ -262,7 +246,7 @@
         "operationId": "mirror.subscriptions.update",
         "parameters": [{"description": "The ID of the subscription.", "in": "path", "name": "id", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Subscription"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Subscription"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"], "Oauth2c": ["https://www.googleapis.com/auth/glass.timeline"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"]}],
         "tags": ["subscriptions"]
       }
     },
@@ -280,10 +264,7 @@
           {"description": "If provided, only items with the given sourceItemId will be returned.", "in": "query", "name": "sourceItemId", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TimelineListResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/glass.location"], "Oauth2c": ["https://www.googleapis.com/auth/glass.location"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"], "Oauth2c": ["https://www.googleapis.com/auth/glass.timeline"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.location"]}, {"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"]}],
         "tags": ["timeline"]
       },
       "parameters": [
@@ -443,6 +424,7 @@
           "audio/vnd.nuera.ecelp7470",
           "audio/vnd.nuera.ecelp9600",
           "audio/vnd.octel.sbc",
+          "audio/vnd.presonus.multitrack",
           "audio/vnd.qcelp",
           "audio/vnd.rhetorex.32kadpcm",
           "audio/vnd.rip",
@@ -647,10 +629,7 @@
         "operationId": "mirror.timeline.insert",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/TimelineItem"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TimelineItem"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/glass.location"], "Oauth2c": ["https://www.googleapis.com/auth/glass.location"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"], "Oauth2c": ["https://www.googleapis.com/auth/glass.timeline"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.location"]}, {"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"]}],
         "tags": ["timeline"]
       }
     },
@@ -660,10 +639,7 @@
         "operationId": "mirror.timeline.delete",
         "parameters": [{"description": "The ID of the timeline item.", "in": "path", "name": "id", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/glass.location"], "Oauth2c": ["https://www.googleapis.com/auth/glass.location"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"], "Oauth2c": ["https://www.googleapis.com/auth/glass.timeline"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.location"]}, {"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"]}],
         "tags": ["timeline"]
       },
       "get": {
@@ -671,10 +647,7 @@
         "operationId": "mirror.timeline.get",
         "parameters": [{"description": "The ID of the timeline item.", "in": "path", "name": "id", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TimelineItem"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/glass.location"], "Oauth2c": ["https://www.googleapis.com/auth/glass.location"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"], "Oauth2c": ["https://www.googleapis.com/auth/glass.timeline"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.location"]}, {"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"]}],
         "tags": ["timeline"]
       },
       "parameters": [
@@ -691,10 +664,7 @@
         "operationId": "mirror.timeline.patch",
         "parameters": [{"description": "The ID of the timeline item.", "in": "path", "name": "id", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/TimelineItem"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TimelineItem"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/glass.location"], "Oauth2c": ["https://www.googleapis.com/auth/glass.location"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"], "Oauth2c": ["https://www.googleapis.com/auth/glass.timeline"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.location"]}, {"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"]}],
         "tags": ["timeline"]
       },
       "put": {
@@ -845,6 +815,7 @@
           "audio/vnd.nuera.ecelp7470",
           "audio/vnd.nuera.ecelp9600",
           "audio/vnd.octel.sbc",
+          "audio/vnd.presonus.multitrack",
           "audio/vnd.qcelp",
           "audio/vnd.rhetorex.32kadpcm",
           "audio/vnd.rip",
@@ -1049,10 +1020,7 @@
         "operationId": "mirror.timeline.update",
         "parameters": [{"description": "The ID of the timeline item.", "in": "path", "name": "id", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/TimelineItem"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TimelineItem"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/glass.location"], "Oauth2c": ["https://www.googleapis.com/auth/glass.location"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"], "Oauth2c": ["https://www.googleapis.com/auth/glass.timeline"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.location"]}, {"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"]}],
         "tags": ["timeline"]
       }
     },
@@ -1062,7 +1030,7 @@
         "operationId": "mirror.timeline.attachments.list",
         "parameters": [{"description": "The ID of the timeline item whose attachments should be listed.", "in": "path", "name": "itemId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AttachmentsListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"], "Oauth2c": ["https://www.googleapis.com/auth/glass.timeline"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"]}],
         "tags": ["timeline"]
       },
       "parameters": [
@@ -1222,6 +1190,7 @@
           "audio/vnd.nuera.ecelp7470",
           "audio/vnd.nuera.ecelp9600",
           "audio/vnd.octel.sbc",
+          "audio/vnd.presonus.multitrack",
           "audio/vnd.qcelp",
           "audio/vnd.rhetorex.32kadpcm",
           "audio/vnd.rip",
@@ -1426,7 +1395,7 @@
         "operationId": "mirror.timeline.attachments.insert",
         "parameters": [{"description": "The ID of the timeline item the attachment belongs to.", "in": "path", "name": "itemId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Attachment"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"], "Oauth2c": ["https://www.googleapis.com/auth/glass.timeline"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"]}],
         "tags": ["timeline"]
       }
     },
@@ -1439,7 +1408,7 @@
           {"description": "The ID of the attachment.", "in": "path", "name": "attachmentId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"], "Oauth2c": ["https://www.googleapis.com/auth/glass.timeline"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"]}],
         "tags": ["timeline"]
       },
       "get": {
@@ -1450,7 +1419,7 @@
           {"description": "The ID of the attachment.", "in": "path", "name": "attachmentId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Attachment"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"], "Oauth2c": ["https://www.googleapis.com/auth/glass.timeline"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/glass.timeline"]}],
         "tags": ["timeline"]
       },
       "parameters": [

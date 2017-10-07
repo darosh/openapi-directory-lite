@@ -10,7 +10,7 @@
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://servicemanagement.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://servicemanagement.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "servicemanagement"
@@ -825,6 +825,25 @@
       },
       "type": "object"
     },
+    "Billing": {
+      "description": "Billing related configuration of the service.\n\nThe following example shows how to configure monitored resources and metrics\nfor billing:\n    monitored_resources:\n    - type: library.googleapis.com/branch\n      labels:\n      - key: /city\n        description: The city where the library branch is located in.\n      - key: /name\n        description: The name of the branch.\n    metrics:\n    - name: library.googleapis.com/book/borrowed_count\n      metric_kind: DELTA\n      value_type: INT64\n    billing:\n      consumer_destinations:\n      - monitored_resource: library.googleapis.com/branch\n        metrics:\n        - library.googleapis.com/book/borrowed_count",
+      "properties": {
+        "consumerDestinations": {
+          "description": "Billing configurations for sending metrics to the consumer project.\nThere can be multiple consumer destinations per service, each one must have\na different monitored resource type. A metric can be used in at most\none consumer destination.",
+          "items": {"$ref": "#/definitions/BillingDestination"},
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BillingDestination": {
+      "description": "Configuration of a specific billing destination (Currently only support\nbill against consumer project).",
+      "properties": {
+        "metrics": {"description": "Names of the metrics to report to this billing destination.\nEach name must be defined in Service.metrics section.", "items": {"type": "string"}, "type": "array"},
+        "monitoredResource": {"description": "The monitored resource type. The type must be defined in\nService.monitored_resources section.", "type": "string"}
+      },
+      "type": "object"
+    },
     "Binding": {
       "description": "Associates `members` with a `role`.",
       "properties": {
@@ -1117,8 +1136,14 @@
           "type": "string"
         },
         "flowName": {"description": "The name of the top-level flow corresponding to this operation.\nMust be equal to the \"name\" field for a FlowName enum.", "type": "string"},
+        "operationType": {
+          "description": "Operation type which is a flow type and subtype info as that is missing in\nour datastore otherwise. This maps to the ordinal value of the enum:\njcg/api/tenant/operations/OperationNamespace.java",
+          "format": "int32",
+          "type": "integer"
+        },
         "resourceNames": {"description": "The full name of the resources that this flow is directly associated with.", "items": {"type": "string"}, "type": "array"},
-        "startTime": {"description": "The start time of the operation.", "format": "google-datetime", "type": "string"}
+        "startTime": {"description": "The start time of the operation.", "format": "google-datetime", "type": "string"},
+        "surface": {"enum": ["UNSPECIFIED_OP_SERVICE", "SERVICE_MANAGEMENT", "SERVICE_USAGE", "SERVICE_CONSUMER_MANAGEMENT"], "type": "string"}
       },
       "type": "object"
     },
@@ -1602,6 +1627,7 @@
         },
         "authentication": {"$ref": "#/definitions/Authentication", "description": "Auth configuration."},
         "backend": {"$ref": "#/definitions/Backend", "description": "API backend configuration."},
+        "billing": {"$ref": "#/definitions/Billing", "description": "Billing configuration."},
         "configVersion": {
           "description": "The semantic version of the service configuration. The config version\naffects the interpretation of the service configuration. For example,\ncertain features are enabled by default for certain config versions.\nThe latest config version is `3`.",
           "format": "uint32",

@@ -7,7 +7,7 @@
     "description": "Japanese sentiment analyzer. (tokenized by SentencePiece)<BR />[Endpoint] https://api.apitore.com/api/39",
     "title": "Sentiment APIs",
     "version": "0.0.1",
-    "x-apisguru-categories": ["developer_tools"],
+    "x-apisguru-categories": ["developer_tools", "text"],
     "x-logo": {"url": "https://apitore.com/img/apis/39.jpg"},
     "x-origin": [{"format": "swagger", "url": "https://api.apitore.com/json/39", "version": "2.0"}],
     "x-providerName": "apitore.com",

@@ -10,7 +10,7 @@
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://servicecontrol.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://servicecontrol.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "servicecontrol"
@@ -623,9 +623,12 @@
           "type": "string"
         },
         "operationName": {"description": "Fully qualified name of the operation. Reserved for future use.", "type": "string"},
-        "quotaProperties": {"$ref": "#/definitions/QuotaProperties", "description": "Represents the properties needed for quota check. Applicable only if this\noperation is for a quota check request."},
+        "quotaProperties": {
+          "$ref": "#/definitions/QuotaProperties",
+          "description": "Represents the properties needed for quota check. Applicable only if this\noperation is for a quota check request. If this is not specified, no quota\ncheck will be performed."
+        },
         "resourceContainer": {
-          "description": "The resource name of the parent of a resource in the resource hierarchy.\n\nThis can be in one of the following formats:\n    - “projects/<project-id or project-number>”\n    - “folders/<folder-id>”\n    - “organizations/<organization-id>”",
+          "description": "DO NOT USE. This field is deprecated, use \"resources\" field instead.\nThe resource name of the parent of a resource in the resource hierarchy.\n\nThis can be in one of the following formats:\n    - “projects/<project-id or project-number>”\n    - “folders/<folder-id>”\n    - “organizations/<organization-id>”",
           "type": "string"
         },
         "resources": {"description": "The resources that are involved in the operation.", "items": {"$ref": "#/definitions/ResourceInfo"}, "type": "array"},
@@ -717,14 +720,7 @@
     },
     "QuotaProperties": {
       "description": "Represents the properties needed for quota operations.",
-      "properties": {
-        "limitByIds": {
-          "additionalProperties": {"type": "string"},
-          "description": "LimitType IDs that should be used for checking quota. Key in this map\nshould be a valid LimitType string, and the value is the ID to be used. For\nexample, an entry <USER, 123> will cause all user quota limits to use 123\nas the user ID. See google/api/quota.proto for the definition of LimitType.\nCLIENT_PROJECT: Not supported.\nUSER: Value of this entry will be used for enforcing user-level quota\n      limits. If none specified, caller IP passed in the\n      servicecontrol.googleapis.com/caller_ip label will be used instead.\n      If the server cannot resolve a value for this LimitType, an error\n      will be thrown. No validation will be performed on this ID.\nDeprecated: use servicecontrol.googleapis.com/user label to send user ID.",
-          "type": "object"
-        },
-        "quotaMode": {"description": "Quota mode for this operation.", "enum": ["ACQUIRE", "ACQUIRE_BEST_EFFORT", "CHECK", "RELEASE"], "type": "string"}
-      },
+      "properties": {"quotaMode": {"description": "Quota mode for this operation.", "enum": ["ACQUIRE", "ACQUIRE_BEST_EFFORT", "CHECK", "RELEASE"], "type": "string"}},
       "type": "object"
     },
     "ReleaseQuotaRequest": {
@@ -795,7 +791,11 @@
       "description": "Metadata about the request.",
       "properties": {
         "callerIp": {
-          "description": "The IP address of the caller.\nFor caller from internet, this will be public IPv4 or IPv6 address.\nFor caller from GCE VM with external IP address, this will be the VM's\nexternal IP address. For caller from GCE VM without external IP address, if\nthe VM is in the same GCP organization (or project) as the accessed\nresource, `caller_ip` will be the GCE VM's internal IPv4 address, otherwise\nit will be redacted to \"gce-internal-ip\".\nSee https://cloud.google.com/compute/docs/vpc/ for more information.",
+          "description": "The IP address of the caller.\nFor caller from internet, this will be public IPv4 or IPv6 address.\nFor caller from a Compute Engine VM with external IP address, this\nwill be the VM's external IP address. For caller from a Compute\nEngine VM without external IP address, if the VM is in the same\norganization (or project) as the accessed resource, `caller_ip` will\nbe the VM's internal IPv4 address, otherwise the `caller_ip` will be\nredacted to \"gce-internal-ip\".\nSee https://cloud.google.com/compute/docs/vpc/ for more information.",
+          "type": "string"
+        },
+        "callerNetwork": {
+          "description": "The network of the caller.\nSet only if the network host project is part of the same GCP organization\n(or project) as the accessed resource.\nSee https://cloud.google.com/compute/docs/vpc/ for more information.\nThis is a scheme-less URI full resource name. For example:\n\n    \"//compute.googleapis.com/projects/PROJECT_ID/global/networks/NETWORK_ID\"",
           "type": "string"
         },
         "callerSuppliedUserAgent": {
@@ -806,7 +806,7 @@
       "type": "object"
     },
     "ResourceInfo": {
-      "description": "DO NOT USE.\nThis definition is not ready for use yet.",
+      "description": "Describes a resource associated with this operation.",
       "properties": {
         "resourceContainer": {
           "description": "The identifier of the parent of this resource instance.\nMust be in one of the following formats:\n    - “projects/<project-id or project-number>”\n    - “folders/<folder-id>”\n    - “organizations/<organization-id>”",

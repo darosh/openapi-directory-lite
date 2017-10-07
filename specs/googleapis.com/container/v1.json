@@ -10,7 +10,7 @@
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://cloud.google.com/_static/images/new-gcp-logo.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://container.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://container.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "container"
@@ -874,7 +874,11 @@
           "description": "Configuration for the horizontal pod autoscaling feature, which\nincreases or decreases the number of replica pods a replication controller\nhas based on the resource usage of the existing pods."
         },
         "httpLoadBalancing": {"$ref": "#/definitions/HttpLoadBalancing", "description": "Configuration for the HTTP (L7) load balancing controller addon, which\nmakes it easy to set up HTTP load balancers for services in a cluster."},
-        "kubernetesDashboard": {"$ref": "#/definitions/KubernetesDashboard", "description": "Configuration for the Kubernetes Dashboard."}
+        "kubernetesDashboard": {"$ref": "#/definitions/KubernetesDashboard", "description": "Configuration for the Kubernetes Dashboard."},
+        "networkPolicyConfig": {
+          "$ref": "#/definitions/NetworkPolicyConfig",
+          "description": "Configuration for NetworkPolicy. This only tracks whether the addon\nis enabled or not on the Master, it does not track whether network policy\nis enabled for the nodes."
+        }
       },
       "type": "object"
     },
@@ -1157,6 +1161,11 @@
       },
       "type": "object"
     },
+    "NetworkPolicyConfig": {
+      "description": "Configuration for NetworkPolicy. This only tracks whether the addon\nis enabled or not on the Master, it does not track whether network policy\nis enabled for the nodes.",
+      "properties": {"disabled": {"description": "Whether NetworkPolicy is enabled for this cluster.", "type": "boolean"}},
+      "type": "object"
+    },
     "NodeConfig": {
       "description": "Parameters that describe the nodes in a cluster.",
       "properties": {
@@ -1184,7 +1193,7 @@
           "type": "object"
         },
         "minCpuPlatform": {
-          "description": "Minimum cpu/platform to be used by this instance. The instance may be\nscheduled on the specified or newer cpu/platform. Applicable values are the\nfriendly names of CPU platforms, such as\n<code>minCpuPlatform: &quot;Intel Haswell&quot;</code> or\n<code>minCpuPlatform: &quot;Intel Sandy Bridge&quot;</code>. For more\ninformation, read <a href=\"/compute/docs/instances/specify-min-cpu-platform\">Specifying a Minimum CPU Platform</a>.",
+          "description": "Minimum CPU platform to be used by this instance. The instance may be\nscheduled on the specified or newer CPU platform. Applicable values are the\nfriendly names of CPU platforms, such as\n<code>minCpuPlatform: &quot;Intel Haswell&quot;</code> or\n<code>minCpuPlatform: &quot;Intel Sandy Bridge&quot;</code>. For more\ninformation, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)",
           "type": "string"
         },
         "oauthScopes": {
@@ -1270,7 +1279,8 @@
             "SET_LABELS",
             "SET_MASTER_AUTH",
             "SET_NODE_POOL_SIZE",
-            "SET_NETWORK_POLICY"
+            "SET_NETWORK_POLICY",
+            "SET_MAINTENANCE_POLICY"
           ],
           "type": "string"
         },
@@ -1349,7 +1359,7 @@
     "SetMasterAuthRequest": {
       "description": "SetMasterAuthRequest updates the admin password of a cluster.",
       "properties": {
-        "action": {"description": "The exact form of action to be taken on the master auth", "enum": ["UNKNOWN", "SET_PASSWORD", "GENERATE_PASSWORD"], "type": "string"},
+        "action": {"description": "The exact form of action to be taken on the master auth.", "enum": ["UNKNOWN", "SET_PASSWORD", "GENERATE_PASSWORD", "SET_USERNAME"], "type": "string"},
         "update": {"$ref": "#/definitions/MasterAuth", "description": "A description of the update."}
       },
       "type": "object"

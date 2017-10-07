@@ -10,7 +10,7 @@
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://iam.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://iam.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "iam"
@@ -140,7 +140,7 @@
         "parameters": [
           {"description": "Used to perform a consistent read-modify-write.", "in": "query", "name": "etag", "type": "string"},
           {
-            "description": "The resource name of the service account key in the following format:\n`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}/keys/{key}`.\nUsing `-` as a wildcard for the project will infer the project from\nthe account. The `account` value can be the `email` address or the\n`unique_id` of the service account.",
+            "description": "The resource name of the service account key in the following format:\n`projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`.\nUsing `-` as a wildcard for the `PROJECT_ID` will infer the project from\nthe account. The `ACCOUNT` value can be the `email` address or the\n`unique_id` of the service account.",
             "in": "path",
             "name": "name",
             "required": true,
@@ -153,11 +153,11 @@
         "tags": ["projects"]
       },
       "get": {
-        "description": "Gets the ServiceAccountKey\nby key id.",
-        "operationId": "iam.projects.serviceAccounts.keys.get",
+        "description": "Gets a Role definition.",
+        "operationId": "iam.roles.get",
         "parameters": [
           {
-            "description": "The resource name of the service account key in the following format:\n`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}/keys/{key}`.\n\nUsing `-` as a wildcard for the project will infer the project from\nthe account. The `account` value can be the `email` address or the\n`unique_id` of the service account.",
+            "description": "The resource name of the role in one of the following formats:\n`roles/{ROLE_NAME}`\n`organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`\n`projects/{PROJECT_ID}/roles/{ROLE_NAME}`",
             "in": "path",
             "name": "name",
             "required": true,
@@ -172,9 +172,9 @@
             "type": "string"
           }
         ],
-        "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ServiceAccountKey"}}},
+        "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Role"}}},
         "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
-        "tags": ["projects"]
+        "tags": ["roles"]
       },
       "parameters": [
         {"$ref": "#/parameters/access_token"},
@@ -214,15 +214,15 @@
         "description": "Updates a ServiceAccount.\n\nCurrently, only the following fields are updatable:\n`display_name` .\nThe `etag` is mandatory.",
         "operationId": "iam.projects.serviceAccounts.update",
         "parameters": [
+          {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ServiceAccount"}},
           {
-            "description": "The resource name of the service account in the following format:\n`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`.\n\nRequests using `-` as a wildcard for the project will infer the project\nfrom the `account` and the `account` value can be the `email` address or\nthe `unique_id` of the service account.\n\nIn responses the resource name will always be in the format\n`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`.",
+            "description": "The resource name of the service account in the following format:\n`projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.\n\nRequests using `-` as a wildcard for the `PROJECT_ID` will infer the\nproject from the `account` and the `ACCOUNT` value can be the `email`\naddress or the `unique_id` of the service account.\n\nIn responses the resource name will always be in the format\n`projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.",
             "in": "path",
             "name": "name",
             "required": true,
             "type": "string",
             "x-reservedExpansion": true
-          },
-          {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ServiceAccount"}}
+          }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ServiceAccount"}}},
         "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
@@ -235,20 +235,20 @@
         "operationId": "iam.projects.serviceAccounts.keys.list",
         "parameters": [
           {
-            "description": "The resource name of the service account in the following format:\n`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`.\n\nUsing `-` as a wildcard for the project, will infer the project from\nthe account. The `account` value can be the `email` address or the\n`unique_id` of the service account.",
-            "in": "path",
-            "name": "name",
-            "required": true,
-            "type": "string",
-            "x-reservedExpansion": true
-          },
-          {
             "collectionFormat": "multi",
             "description": "Filters the types of keys the user wants to include in the list\nresponse. Duplicate key types are not allowed. If no key type\nis provided, all keys are returned.",
             "in": "query",
             "items": {"enum": ["KEY_TYPE_UNSPECIFIED", "USER_MANAGED", "SYSTEM_MANAGED"], "type": "string"},
             "name": "keyTypes",
             "type": "array"
+          },
+          {
+            "description": "The resource name of the service account in the following format:\n`projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.\n\nUsing `-` as a wildcard for the `PROJECT_ID`, will infer the project from\nthe account. The `ACCOUNT` value can be the `email` address or the\n`unique_id` of the service account.",
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "type": "string",
+            "x-reservedExpansion": true
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListServiceAccountKeysResponse"}}},
@@ -274,15 +274,15 @@
         "description": "Creates a ServiceAccountKey\nand returns it.",
         "operationId": "iam.projects.serviceAccounts.keys.create",
         "parameters": [
+          {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CreateServiceAccountKeyRequest"}},
           {
-            "description": "The resource name of the service account in the following format:\n`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`.\nUsing `-` as a wildcard for the project will infer the project from\nthe account. The `account` value can be the `email` address or the\n`unique_id` of the service account.",
+            "description": "The resource name of the service account in the following format:\n`projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.\nUsing `-` as a wildcard for the `PROJECT_ID` will infer the project from\nthe account. The `ACCOUNT` value can be the `email` address or the\n`unique_id` of the service account.",
             "in": "path",
             "name": "name",
             "required": true,
             "type": "string",
             "x-reservedExpansion": true
-          },
-          {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/CreateServiceAccountKeyRequest"}}
+          }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ServiceAccountKey"}}},
         "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
@@ -368,15 +368,15 @@
         "description": "Signs a blob using a service account's system-managed private key.",
         "operationId": "iam.projects.serviceAccounts.signBlob",
         "parameters": [
+          {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SignBlobRequest"}},
           {
-            "description": "The resource name of the service account in the following format:\n`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`.\nUsing `-` as a wildcard for the project will infer the project from\nthe account. The `account` value can be the `email` address or the\n`unique_id` of the service account.",
+            "description": "The resource name of the service account in the following format:\n`projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.\nUsing `-` as a wildcard for the `PROJECT_ID` will infer the project from\nthe account. The `ACCOUNT` value can be the `email` address or the\n`unique_id` of the service account.",
             "in": "path",
             "name": "name",
             "required": true,
             "type": "string",
             "x-reservedExpansion": true
-          },
-          {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SignBlobRequest"}}
+          }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SignBlobResponse"}}},
         "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
@@ -403,15 +403,15 @@
         "description": "Signs a JWT using a service account's system-managed private key.\n\nIf no expiry time (`exp`) is provided in the `SignJwtRequest`, IAM sets an\nan expiry time of one hour by default. If you request an expiry time of\nmore than one hour, the request will fail.",
         "operationId": "iam.projects.serviceAccounts.signJwt",
         "parameters": [
+          {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SignJwtRequest"}},
           {
-            "description": "The resource name of the service account in the following format:\n`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`.\nUsing `-` as a wildcard for the project will infer the project from\nthe account. The `account` value can be the `email` address or the\n`unique_id` of the service account.",
+            "description": "The resource name of the service account in the following format:\n`projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.\nUsing `-` as a wildcard for the `PROJECT_ID` will infer the project from\nthe account. The `ACCOUNT` value can be the `email` address or the\n`unique_id` of the service account.",
             "in": "path",
             "name": "name",
             "required": true,
             "type": "string",
             "x-reservedExpansion": true
-          },
-          {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SignJwtRequest"}}
+          }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SignJwtResponse"}}},
         "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
@@ -458,7 +458,7 @@
         "description": "Lists the Roles defined on a resource.",
         "operationId": "iam.projects.roles.list",
         "parameters": [
-          {"description": "Optional limit on the number of roles to include in the response.", "in": "query", "name": "pageSize", "type": "integer"},
+          {"description": "Optional limit on the number of roles to include in the response.", "enum": ["BASIC", "FULL"], "in": "query", "name": "pageSize", "type": "integer"},
           {"description": "Optional pagination token returned in an earlier ListRolesResponse.", "in": "query", "name": "pageToken", "type": "string"},
           {
             "description": "The resource name of the parent resource in one of the following formats:\n`` (empty string) -- this refers to curated roles.\n`organizations/{ORGANIZATION_ID}`\n`projects/{PROJECT_ID}`",
@@ -797,13 +797,13 @@
       "type": "object"
     },
     "ServiceAccount": {
-      "description": "A service account in the Identity and Access Management API.\n\nTo create a service account, specify the `project_id` and the `account_id`\nfor the account.  The `account_id` is unique within the project, and is used\nto generate the service account email address and a stable\n`unique_id`.\n\nIf the account already exists, the account's resource name is returned\nin util::Status's ResourceInfo.resource_name in the format of\nprojects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}. The caller can\nuse the name in other methods to access the account.\n\nAll other methods can identify the service account using the format\n`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`.\nUsing `-` as a wildcard for the project will infer the project from\nthe account. The `account` value can be the `email` address or the\n`unique_id` of the service account.",
+      "description": "A service account in the Identity and Access Management API.\n\nTo create a service account, specify the `project_id` and the `account_id`\nfor the account.  The `account_id` is unique within the project, and is used\nto generate the service account email address and a stable\n`unique_id`.\n\nIf the account already exists, the account's resource name is returned\nin util::Status's ResourceInfo.resource_name in the format of\nprojects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}. The caller can\nuse the name in other methods to access the account.\n\nAll other methods can identify the service account using the format\n`projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.\nUsing `-` as a wildcard for the `PROJECT_ID` will infer the project from\nthe account. The `ACCOUNT` value can be the `email` address or the\n`unique_id` of the service account.",
       "properties": {
         "displayName": {"description": "Optional. A user-specified description of the service account.  Must be\nfewer than 100 UTF-8 bytes.", "type": "string"},
         "email": {"description": "@OutputOnly The email address of the service account.", "type": "string"},
         "etag": {"description": "Used to perform a consistent read-modify-write.", "format": "byte", "type": "string"},
         "name": {
-          "description": "The resource name of the service account in the following format:\n`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`.\n\nRequests using `-` as a wildcard for the project will infer the project\nfrom the `account` and the `account` value can be the `email` address or\nthe `unique_id` of the service account.\n\nIn responses the resource name will always be in the format\n`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`.",
+          "description": "The resource name of the service account in the following format:\n`projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.\n\nRequests using `-` as a wildcard for the `PROJECT_ID` will infer the\nproject from the `account` and the `ACCOUNT` value can be the `email`\naddress or the `unique_id` of the service account.\n\nIn responses the resource name will always be in the format\n`projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.",
           "type": "string"
         },
         "oauth2ClientId": {
@@ -819,7 +819,7 @@
       "description": "Represents a service account key.\n\nA service account has two sets of key-pairs: user-managed, and\nsystem-managed.\n\nUser-managed key-pairs can be created and deleted by users.  Users are\nresponsible for rotating these keys periodically to ensure security of\ntheir service accounts.  Users retain the private key of these key-pairs,\nand Google retains ONLY the public key.\n\nSystem-managed key-pairs are managed automatically by Google, and rotated\ndaily without user intervention.  The private key never leaves Google's\nservers to maximize security.\n\nPublic keys for all service accounts are also published at the OAuth2\nService Account API.",
       "properties": {
         "keyAlgorithm": {"description": "Specifies the algorithm (and possibly key size) for the key.", "enum": ["KEY_ALG_UNSPECIFIED", "KEY_ALG_RSA_1024", "KEY_ALG_RSA_2048"], "type": "string"},
-        "name": {"description": "The resource name of the service account key in the following format\n`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}/keys/{key}`.", "type": "string"},
+        "name": {"description": "The resource name of the service account key in the following format\n`projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`.", "type": "string"},
         "privateKeyData": {
           "description": "The private key data. Only provided in `CreateServiceAccountKey`\nresponses. Make sure to keep the private key data secure because it\nallows for the assertion of the service account identity.\nWhen decoded, the private key data can be used to authenticate with\nGoogle API client libraries and with\n<a href=\"/sdk/gcloud/reference/auth/activate-service-account\">gcloud\nauth activate-service-account</a>.",
           "format": "byte",

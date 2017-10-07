@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "The Resource View API allows users to create and manage logical sets of Google Compute Engine instances.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Google Compute Engine Instance Groups",
     "version": "v1beta2",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/resourceviews/v1beta2/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/resourceviews/v1beta2/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "resourceviews"
@@ -21,7 +19,7 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services",
@@ -31,21 +29,6 @@
         "https://www.googleapis.com/auth/ndev.cloudman": "View and manage your Google Cloud Platform management resources and deployment status information",
         "https://www.googleapis.com/auth/ndev.cloudman.readonly": "View your Google Cloud Platform management resources and deployment status information"
       },
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {
-        "https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services",
-        "https://www.googleapis.com/auth/cloud-platform.read-only": "View your data across Google Cloud Platform services",
-        "https://www.googleapis.com/auth/compute": "View and manage your Google Compute Engine resources",
-        "https://www.googleapis.com/auth/compute.readonly": "View your Google Compute Engine resources",
-        "https://www.googleapis.com/auth/ndev.cloudman": "View and manage your Google Cloud Platform management resources and deployment status information",
-        "https://www.googleapis.com/auth/ndev.cloudman.readonly": "View your Google Cloud Platform management resources and deployment status information"
-      },
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -78,12 +61,12 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OperationList"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman"], "Oauth2c": ["https://www.googleapis.com/auth/ndev.cloudman"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/ndev.cloudman.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman.readonly"]}
         ],
         "tags": ["zoneOperations"]
       },
@@ -108,12 +91,12 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman"], "Oauth2c": ["https://www.googleapis.com/auth/ndev.cloudman"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/ndev.cloudman.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman.readonly"]}
         ],
         "tags": ["zoneOperations"]
       },
@@ -139,12 +122,12 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ZoneViewsList"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman"], "Oauth2c": ["https://www.googleapis.com/auth/ndev.cloudman"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/ndev.cloudman.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman.readonly"]}
         ],
         "tags": ["zoneViews"]
       },
@@ -166,11 +149,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ResourceView"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman"], "Oauth2c": ["https://www.googleapis.com/auth/ndev.cloudman"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/compute"]}, {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman"]}],
         "tags": ["zoneViews"]
       }
     },
@@ -184,11 +163,7 @@
           {"description": "The name of the resource view.", "in": "path", "name": "resourceView", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman"], "Oauth2c": ["https://www.googleapis.com/auth/ndev.cloudman"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/compute"]}, {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman"]}],
         "tags": ["zoneViews"]
       },
       "get": {
@@ -201,12 +176,12 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ResourceView"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman"], "Oauth2c": ["https://www.googleapis.com/auth/ndev.cloudman"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/ndev.cloudman.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman.readonly"]}
         ],
         "tags": ["zoneViews"]
       },
@@ -240,11 +215,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ZoneViewsAddResourcesRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman"], "Oauth2c": ["https://www.googleapis.com/auth/ndev.cloudman"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/compute"]}, {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman"]}],
         "tags": ["zoneViews"]
       }
     },
@@ -268,11 +239,7 @@
           {"description": "The name of the resource if user wants to get the service information of the resource.", "in": "query", "name": "resourceName", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ZoneViewsGetServiceResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman"], "Oauth2c": ["https://www.googleapis.com/auth/ndev.cloudman"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/compute"]}, {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman"]}],
         "tags": ["zoneViews"]
       }
     },
@@ -296,11 +263,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ZoneViewsRemoveResourcesRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman"], "Oauth2c": ["https://www.googleapis.com/auth/ndev.cloudman"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/compute"]}, {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman"]}],
         "tags": ["zoneViews"]
       }
     },
@@ -326,12 +289,12 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ZoneViewsListResourcesResponse"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman"], "Oauth2c": ["https://www.googleapis.com/auth/ndev.cloudman"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/ndev.cloudman.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman.readonly"]}
         ],
         "tags": ["zoneViews"]
       },
@@ -365,11 +328,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ZoneViewsSetServiceRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman"], "Oauth2c": ["https://www.googleapis.com/auth/ndev.cloudman"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/compute"]}, {"Oauth2": ["https://www.googleapis.com/auth/ndev.cloudman"]}],
         "tags": ["zoneViews"]
       }
     }

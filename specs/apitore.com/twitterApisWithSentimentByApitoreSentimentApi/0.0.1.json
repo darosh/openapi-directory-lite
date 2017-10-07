@@ -7,6 +7,7 @@
     "description": "Call Twitter APIs with sentiment by Apitore sentiment API.<BR />[Endpoint] https://api.apitore.com/api/25",
     "title": "Twitter APIs with sentiment by Apitore sentiment",
     "version": "0.0.1",
+    "x-apisguru-categories": ["text"],
     "x-logo": {"url": "https://apitore.com/img/apis/25.jpg"},
     "x-origin": [{"format": "swagger", "url": "https://api.apitore.com/json/25", "version": "2.0"}],
     "x-providerName": "apitore.com",

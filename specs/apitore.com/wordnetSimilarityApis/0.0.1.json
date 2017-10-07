@@ -7,6 +7,7 @@
     "description": "Calculate word similarity.<BR />[Endpoint] https://api.apitore.com/api/47",
     "title": "WordNet Similarity APIs",
     "version": "0.0.1",
+    "x-apisguru-categories": ["text"],
     "x-logo": {"url": "https://apitore.com/img/apis/47.jpg"},
     "x-origin": [{"format": "swagger", "url": "https://api.apitore.com/json/47", "version": "2.0"}],
     "x-providerName": "apitore.com",

@@ -7,6 +7,7 @@
     "description": "Language detection.<BR />[Endpoint] https://api.apitore.com/api/22",
     "title": "Language Detection APIs",
     "version": "0.0.1",
+    "x-apisguru-categories": ["text"],
     "x-logo": {"url": "https://apitore.com/img/apis/22.jpg"},
     "x-origin": [{"format": "swagger", "url": "https://api.apitore.com/json/22", "version": "2.0"}],
     "x-providerName": "apitore.com",

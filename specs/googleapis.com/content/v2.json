@@ -11,7 +11,7 @@
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-apisguru-categories": ["ecommerce"],
     "x-logo": {"url": "https://cloud.google.com/_static/images/new-gcp-logo.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/content/v2/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/content/v2/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "content"
@@ -303,7 +303,7 @@
         "parameters": [
           {"description": "The ID of the account.", "in": "path", "name": "accountId", "required": true, "type": "string"},
           {"description": "Flag to run the request in dry-run mode.", "in": "query", "name": "dryRun", "type": "boolean"},
-          {"default": true, "description": "Flag to delete sub-accounts with products. The default value of false will become active on September 28, 2017.", "in": "query", "name": "force", "type": "boolean"},
+          {"default": false, "description": "Flag to delete sub-accounts with products. The default value is false.", "in": "query", "name": "force", "type": "boolean"},
           {"description": "The ID of the managing account.", "in": "path", "name": "merchantId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
@@ -1605,7 +1605,7 @@
           "items": {"type": "string"},
           "type": "array"
         },
-        "language": {"description": "The two-letter ISO 639-1 language of the items in the feed. Must be a valid language for targetCountryLanguage.country.", "type": "string"}
+        "language": {"description": "The two-letter ISO 639-1 language of the items in the feed. Must be a valid language for targets[].country.", "type": "string"}
       },
       "type": "object"
     },
@@ -1903,6 +1903,7 @@
     "OrderLineItem": {
       "properties": {
         "cancellations": {"description": "Cancellations of the line item.", "items": {"$ref": "#/definitions/OrderCancellation"}, "type": "array"},
+        "channelType": {"description": "The channel type of the order: \"purchaseOnGoogle\" or \"googleExpress\".", "type": "string"},
         "id": {"description": "The id of the line item.", "type": "string"},
         "price": {"$ref": "#/definitions/Price", "description": "Total price for the line item. For example, if two items for $10 are purchased, the total price will be $20."},
         "product": {"$ref": "#/definitions/OrderLineItemProduct", "description": "Product data from the time of the order placement."},
@@ -1962,7 +1963,7 @@
     },
     "OrderLineItemShippingDetailsMethod": {
       "properties": {
-        "carrier": {"description": "The carrier for the shipping. Optional.", "type": "string"},
+        "carrier": {"description": "The carrier for the shipping. Optional. See shipments[].carrier for a list of acceptable values.", "type": "string"},
         "maxDaysInTransit": {"description": "Maximum transit time.", "format": "uint32", "type": "integer"},
         "methodName": {"description": "The name of the shipping method.", "type": "string"},
         "minDaysInTransit": {"description": "Minimum transit time.", "format": "uint32", "type": "integer"}
@@ -2027,7 +2028,10 @@
     },
     "OrderShipment": {
       "properties": {
-        "carrier": {"description": "The carrier handling the shipment.", "type": "string"},
+        "carrier": {
+          "description": "The carrier handling the shipment.\n\nAcceptable values are:  \n- \"gsx\" \n- \"ups\" \n- \"united parcel service\" \n- \"usps\" \n- \"united states postal service\" \n- \"fedex\" \n- \"dhl\" \n- \"ecourier\" \n- \"cxt\" \n- \"google\" \n- \"on trac\" \n- \"ontrac\" \n- \"on-trac\" \n- \"on_trac\" \n- \"delvic\" \n- \"dynamex\" \n- \"lasership\" \n- \"smartpost\" \n- \"fedex smartpost\" \n- \"mpx\" \n- \"uds\" \n- \"united delivery service\"",
+          "type": "string"
+        },
         "creationDate": {"description": "Date on which the shipment has been created, in ISO 8601 format.", "type": "string"},
         "deliveryDate": {"description": "Date on which the shipment has been delivered, in ISO 8601 format. Present only if status is delievered", "type": "string"},
         "id": {"description": "The id of the shipment.", "type": "string"},
@@ -2157,8 +2161,21 @@
     },
     "OrdersCustomBatchRequestEntryShipLineItems": {
       "properties": {
-        "carrier": {"description": "The carrier handling the shipment.", "type": "string"},
+        "carrier": {"description": "Deprecated. Please use shipmentInfo instead. The carrier handling the shipment. See shipments[].carrier in the  Orders resource representation for a list of acceptable values.", "type": "string"},
         "lineItems": {"description": "Line items to ship.", "items": {"$ref": "#/definitions/OrderShipmentLineItemShipment"}, "type": "array"},
+        "shipmentId": {"description": "Deprecated. Please use shipmentInfo instead. The ID of the shipment.", "type": "string"},
+        "shipmentInfos": {
+          "description": "Shipment information. This field is repeated because a single line item can be shipped in several packages (and have several tracking IDs).",
+          "items": {"$ref": "#/definitions/OrdersCustomBatchRequestEntryShipLineItemsShipmentInfo"},
+          "type": "array"
+        },
+        "trackingId": {"description": "Deprecated. Please use shipmentInfo instead. The tracking id for the shipment.", "type": "string"}
+      },
+      "type": "object"
+    },
+    "OrdersCustomBatchRequestEntryShipLineItemsShipmentInfo": {
+      "properties": {
+        "carrier": {"description": "The carrier handling the shipment. See shipments[].carrier in the  Orders resource representation for a list of acceptable values.", "type": "string"},
         "shipmentId": {"description": "The ID of the shipment.", "type": "string"},
         "trackingId": {"description": "The tracking id for the shipment.", "type": "string"}
       },
@@ -2166,7 +2183,7 @@
     },
     "OrdersCustomBatchRequestEntryUpdateShipment": {
       "properties": {
-        "carrier": {"description": "The carrier handling the shipment. Not updated if missing.", "type": "string"},
+        "carrier": {"description": "The carrier handling the shipment. Not updated if missing. See shipments[].carrier in the  Orders resource representation for a list of acceptable values.", "type": "string"},
         "shipmentId": {"description": "The ID of the shipment.", "type": "string"},
         "status": {"description": "New status for the shipment. Not updated if missing.", "type": "string"},
         "trackingId": {"description": "The tracking id for the shipment. Not updated if missing.", "type": "string"}
@@ -2247,11 +2264,16 @@
     },
     "OrdersShipLineItemsRequest": {
       "properties": {
-        "carrier": {"description": "The carrier handling the shipment.", "type": "string"},
+        "carrier": {"description": "Deprecated. Please use shipmentInfo instead. The carrier handling the shipment. See shipments[].carrier in the  Orders resource representation for a list of acceptable values.", "type": "string"},
         "lineItems": {"description": "Line items to ship.", "items": {"$ref": "#/definitions/OrderShipmentLineItemShipment"}, "type": "array"},
         "operationId": {"description": "The ID of the operation. Unique across all operations for a given order.", "type": "string"},
-        "shipmentId": {"description": "The ID of the shipment.", "type": "string"},
-        "trackingId": {"description": "The tracking id for the shipment.", "type": "string"}
+        "shipmentId": {"description": "Deprecated. Please use shipmentInfo instead. The ID of the shipment.", "type": "string"},
+        "shipmentInfos": {
+          "description": "Shipment information. This field is repeated because a single line item can be shipped in several packages (and have several tracking IDs).",
+          "items": {"$ref": "#/definitions/OrdersCustomBatchRequestEntryShipLineItemsShipmentInfo"},
+          "type": "array"
+        },
+        "trackingId": {"description": "Deprecated. Please use shipmentInfo instead. The tracking id for the shipment.", "type": "string"}
       },
       "type": "object"
     },
@@ -2278,7 +2300,7 @@
     },
     "OrdersUpdateShipmentRequest": {
       "properties": {
-        "carrier": {"description": "The carrier handling the shipment. Not updated if missing.", "type": "string"},
+        "carrier": {"description": "The carrier handling the shipment. Not updated if missing. See shipments[].carrier in the  Orders resource representation for a list of acceptable values.", "type": "string"},
         "operationId": {"description": "The ID of the operation. Unique across all operations for a given order.", "type": "string"},
         "shipmentId": {"description": "The ID of the shipment.", "type": "string"},
         "status": {"description": "New status for the shipment. Not updated if missing.", "type": "string"},

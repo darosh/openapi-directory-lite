@@ -9,6 +9,7 @@
     "termsOfService": "https://www.authentiq.com/tos/",
     "title": "Authentiq Connect",
     "version": "1.0",
+    "x-apisguru-categories": ["security"],
     "x-logo": {"backgroundColor": "#F26641", "url": "https://www.authentiq.com/theme/images/authentiq-logo-a-inverse.svg"},
     "x-origin": [{"format": "swagger", "url": "https://raw.githubusercontent.com/AuthentiqID/authentiq-docs/master/docs/swagger/provider.yaml", "version": "2.0"}],
     "x-providerName": "authentiq.io",

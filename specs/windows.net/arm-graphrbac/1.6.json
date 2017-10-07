@@ -7,6 +7,7 @@
     "description": "The Graph RBAC Management Client",
     "title": "GraphRbacManagementClient",
     "version": "1.6",
+    "x-apisguru-categories": ["security"],
     "x-logo": {"url": "https://assets.onestore.ms/cdnfiles/onestorerolling-1606-01000/shell/v3/images/logo/microsoft.png"},
     "x-origin": [{"format": "swagger", "url": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/arm-graphrbac/1.6/swagger/graphrbac.json", "version": "2.0"}],
     "x-preferred": true,

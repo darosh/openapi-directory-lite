@@ -11,7 +11,7 @@
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-apisguru-categories": ["machine_learning"],
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://ml.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://ml.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "ml"
@@ -520,7 +520,7 @@
     "GoogleCloudMlV1__HyperparameterOutput": {
       "description": "Represents the result of a single hyperparameter tuning trial from a\ntraining job. The TrainingOutput object that is returned on successful\ncompletion of a training job with hyperparameter tuning includes a list\nof HyperparameterOutput objects, one for each successful trial.",
       "properties": {
-        "allMetrics": {"description": "All recorded object metrics for this trial.", "items": {"$ref": "#/definitions/GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric"}, "type": "array"},
+        "allMetrics": {"description": "All recorded object metrics for this trial. This field is not currently\npopulated.", "items": {"$ref": "#/definitions/GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric"}, "type": "array"},
         "finalMetric": {"$ref": "#/definitions/GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric", "description": "The final objective metric seen for this trial."},
         "hyperparameters": {"additionalProperties": {"type": "string"}, "description": "The hyperparameters given to this trial.", "type": "object"},
         "trialId": {"description": "The trial id for these results.", "type": "string"}
@@ -723,7 +723,7 @@
         "pythonModule": {"description": "Required. The Python module name to run after installing the packages.", "type": "string"},
         "region": {"description": "Required. The Google Compute Engine region to run the training job in.", "type": "string"},
         "runtimeVersion": {"description": "Optional. The Google Cloud ML runtime version to use for training.  If not\nset, Google Cloud ML will choose the latest stable version.", "type": "string"},
-        "scaleTier": {"description": "Required. Specifies the machine types, the number of replicas for workers\nand parameter servers.", "enum": ["BASIC", "STANDARD_1", "PREMIUM_1", "BASIC_GPU", "CUSTOM"], "type": "string"},
+        "scaleTier": {"description": "Required. Specifies the machine types, the number of replicas for workers\nand parameter servers.", "enum": ["BASIC", "STANDARD_1", "PREMIUM_1", "BASIC_GPU", "BASIC_TPU", "CUSTOM"], "type": "string"},
         "workerCount": {
           "description": "Optional. The number of worker replicas to use for the training job. Each\nreplica in the cluster will be of the type specified in `worker_type`.\n\nThis value can only be used when `scale_tier` is set to `CUSTOM`. If you\nset this value, you must also set `worker_type`.",
           "format": "int64",
@@ -747,7 +747,7 @@
       "type": "object"
     },
     "GoogleCloudMlV1__Version": {
-      "description": "Represents a version of the model.\n\nEach version is a trained model deployed in the cloud, ready to handle\nprediction requests. A model can have multiple versions. You can get\ninformation about all of the versions of a given model by calling\n[projects.models.versions.list](/ml-engine/reference/rest/v1/projects.models.versions/list).\n\nNext ID: 18\nLINT.IfChange",
+      "description": "Represents a version of the model.\n\nEach version is a trained model deployed in the cloud, ready to handle\nprediction requests. A model can have multiple versions. You can get\ninformation about all of the versions of a given model by calling\n[projects.models.versions.list](/ml-engine/reference/rest/v1/projects.models.versions/list).\n\nNext ID: 19\nLINT.IfChange",
       "properties": {
         "autoScaling": {
           "$ref": "#/definitions/GoogleCloudMlV1__AutoScaling",

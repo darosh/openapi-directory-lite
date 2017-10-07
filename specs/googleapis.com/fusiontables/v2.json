@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "API for working with Fusion Tables data.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Fusion Tables",
     "version": "v2",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/fusiontables/v2/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/fusiontables/v2/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "fusiontables"
@@ -21,17 +19,9 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {"https://www.googleapis.com/auth/fusiontables": "Manage your Fusion Tables", "https://www.googleapis.com/auth/fusiontables.readonly": "View your Fusion Tables"},
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {"https://www.googleapis.com/auth/fusiontables": "Manage your Fusion Tables", "https://www.googleapis.com/auth/fusiontables.readonly": "View your Fusion Tables"},
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -61,10 +51,7 @@
           {"description": "Whether typed values are returned in the (JSON) response: numbers for numeric values and parsed geometries for KML values. Default is true.", "in": "query", "name": "typed", "type": "boolean"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Sqlresponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/fusiontables.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}, {"Oauth2": ["https://www.googleapis.com/auth/fusiontables.readonly"]}],
         "tags": ["query"]
       },
       "parameters": [
@@ -85,10 +72,7 @@
           {"description": "Whether typed values are returned in the (JSON) response: numbers for numeric values and parsed geometries for KML values. Default is true.", "in": "query", "name": "typed", "type": "boolean"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Sqlresponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/fusiontables.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}, {"Oauth2": ["https://www.googleapis.com/auth/fusiontables.readonly"]}],
         "tags": ["query"]
       }
     },
@@ -101,10 +85,7 @@
           {"description": "Continuation token specifying which result page to return.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TableList"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/fusiontables.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}, {"Oauth2": ["https://www.googleapis.com/auth/fusiontables.readonly"]}],
         "tags": ["table"]
       },
       "parameters": [
@@ -121,7 +102,7 @@
         "operationId": "fusiontables.table.insert",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Table"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Table"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}],
         "tags": ["table"]
       }
     },
@@ -145,7 +126,7 @@
           {"description": "The encoding of the content. Default is UTF-8. Use auto-detect if you are unsure of the encoding.", "in": "query", "name": "encoding", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Table"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}],
         "tags": ["table"]
       }
     },
@@ -155,7 +136,7 @@
         "operationId": "fusiontables.table.delete",
         "parameters": [{"description": "ID of the table to be deleted.", "in": "path", "name": "tableId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}],
         "tags": ["table"]
       },
       "get": {
@@ -163,10 +144,7 @@
         "operationId": "fusiontables.table.get",
         "parameters": [{"description": "Identifier for the table being requested.", "in": "path", "name": "tableId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Table"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/fusiontables.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}, {"Oauth2": ["https://www.googleapis.com/auth/fusiontables.readonly"]}],
         "tags": ["table"]
       },
       "parameters": [
@@ -192,7 +170,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Table"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Table"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}],
         "tags": ["table"]
       },
       "put": {
@@ -209,7 +187,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Table"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Table"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}],
         "tags": ["table"]
       }
     },
@@ -223,10 +201,7 @@
           {"description": "Continuation token specifying which result page to return.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ColumnList"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/fusiontables.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}, {"Oauth2": ["https://www.googleapis.com/auth/fusiontables.readonly"]}],
         "tags": ["column"]
       },
       "parameters": [
@@ -243,7 +218,7 @@
         "operationId": "fusiontables.column.insert",
         "parameters": [{"description": "Table for which a new column is being added.", "in": "path", "name": "tableId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Column"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Column"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}],
         "tags": ["column"]
       }
     },
@@ -256,7 +231,7 @@
           {"description": "Name or identifier for the column being deleted.", "in": "path", "name": "columnId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}],
         "tags": ["column"]
       },
       "get": {
@@ -267,10 +242,7 @@
           {"description": "Name or identifier for the column that is being requested.", "in": "path", "name": "columnId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Column"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/fusiontables.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}, {"Oauth2": ["https://www.googleapis.com/auth/fusiontables.readonly"]}],
         "tags": ["column"]
       },
       "parameters": [
@@ -291,7 +263,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Column"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Column"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}],
         "tags": ["column"]
       },
       "put": {
@@ -303,7 +275,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Column"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Column"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}],
         "tags": ["column"]
       }
     },
@@ -325,10 +297,7 @@
           {"description": "Whether to also copy tabs, styles, and templates. Default is false.", "in": "query", "name": "copyPresentation", "type": "boolean"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Table"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/fusiontables.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}, {"Oauth2": ["https://www.googleapis.com/auth/fusiontables.readonly"]}],
         "tags": ["table"]
       }
     },
@@ -365,7 +334,7 @@
           {"description": "The index of the first line from which to start importing, inclusive. Default is 0.", "in": "query", "name": "startLine", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Import"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}],
         "tags": ["table"]
       }
     },
@@ -402,7 +371,7 @@
           {"description": "The index of the first line from which to start importing, inclusive. Default is 0.", "in": "query", "name": "startLine", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Task"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}],
         "tags": ["table"]
       }
     },
@@ -416,10 +385,7 @@
           {"description": "Continuation token specifying which result page to return. Optional.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/StyleSettingList"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/fusiontables.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}, {"Oauth2": ["https://www.googleapis.com/auth/fusiontables.readonly"]}],
         "tags": ["style"]
       },
       "parameters": [
@@ -436,7 +402,7 @@
         "operationId": "fusiontables.style.insert",
         "parameters": [{"description": "Table for which a new style is being added", "in": "path", "name": "tableId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/StyleSetting"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/StyleSetting"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}],
         "tags": ["style"]
       }
     },
@@ -449,7 +415,7 @@
           {"description": "Identifier (within a table) for the style being deleted", "in": "path", "name": "styleId", "required": true, "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}],
         "tags": ["style"]
       },
       "get": {
@@ -460,10 +426,7 @@
           {"description": "Identifier (integer) for a specific style in a table", "in": "path", "name": "styleId", "required": true, "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/StyleSetting"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/fusiontables.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}, {"Oauth2": ["https://www.googleapis.com/auth/fusiontables.readonly"]}],
         "tags": ["style"]
       },
       "parameters": [
@@ -484,7 +447,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/StyleSetting"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/StyleSetting"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}],
         "tags": ["style"]
       },
       "put": {
@@ -496,7 +459,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/StyleSetting"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/StyleSetting"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}],
         "tags": ["style"]
       }
     },
@@ -511,10 +474,7 @@
           {"description": "Index of the first result returned in the current page.", "in": "query", "name": "startIndex", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TaskList"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/fusiontables.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}, {"Oauth2": ["https://www.googleapis.com/auth/fusiontables.readonly"]}],
         "tags": ["task"]
       },
       "parameters": [
@@ -536,7 +496,7 @@
           {"description": "The identifier of the task to delete.", "in": "path", "name": "taskId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}],
         "tags": ["task"]
       },
       "get": {
@@ -547,10 +507,7 @@
           {"description": "The identifier of the task to get.", "in": "path", "name": "taskId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Task"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/fusiontables.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}, {"Oauth2": ["https://www.googleapis.com/auth/fusiontables.readonly"]}],
         "tags": ["task"]
       },
       "parameters": [
@@ -573,10 +530,7 @@
           {"description": "Continuation token specifying which results page to return. Optional.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TemplateList"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/fusiontables.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}, {"Oauth2": ["https://www.googleapis.com/auth/fusiontables.readonly"]}],
         "tags": ["template"]
       },
       "parameters": [
@@ -593,7 +547,7 @@
         "operationId": "fusiontables.template.insert",
         "parameters": [{"description": "Table for which a new template is being created", "in": "path", "name": "tableId", "required": true, "type": "string"}, {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Template"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Template"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}],
         "tags": ["template"]
       }
     },
@@ -606,7 +560,7 @@
           {"description": "Identifier for the template which is being deleted", "in": "path", "name": "templateId", "required": true, "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}],
         "tags": ["template"]
       },
       "get": {
@@ -617,10 +571,7 @@
           {"description": "Identifier for the template that is being requested", "in": "path", "name": "templateId", "required": true, "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Template"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/fusiontables.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}, {"Oauth2": ["https://www.googleapis.com/auth/fusiontables.readonly"]}],
         "tags": ["template"]
       },
       "parameters": [
@@ -641,7 +592,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Template"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Template"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}],
         "tags": ["template"]
       },
       "put": {
@@ -653,7 +604,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Template"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Template"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"], "Oauth2c": ["https://www.googleapis.com/auth/fusiontables"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/fusiontables"]}],
         "tags": ["template"]
       }
     }

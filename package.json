@@ -43,6 +43,7 @@
     "search:index": "node build/search/search.js",
     "search:words": "node build/search/words.js",
     "specs": "node build/specs/build.js",
+    "stats": "node build/stats/stats.js",
     "test": "node test/index.js"
   }
 }

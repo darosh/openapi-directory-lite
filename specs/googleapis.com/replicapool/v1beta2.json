@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "[Deprecated. Please use Instance Group Manager in Compute API] Provides groups of homogenous Compute Engine instances.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Google Compute Engine Instance Group Manager",
     "version": "v1beta2",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/replicapool/v1beta2/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/replicapool/v1beta2/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "replicapool"
@@ -21,7 +19,7 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services",
@@ -29,19 +27,6 @@
         "https://www.googleapis.com/auth/compute": "View and manage your Google Compute Engine resources",
         "https://www.googleapis.com/auth/compute.readonly": "View your Google Compute Engine resources"
       },
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {
-        "https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services",
-        "https://www.googleapis.com/auth/cloud-platform.read-only": "View your data across Google Cloud Platform services",
-        "https://www.googleapis.com/auth/compute": "View and manage your Google Compute Engine resources",
-        "https://www.googleapis.com/auth/compute.readonly": "View your Google Compute Engine resources"
-      },
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -74,10 +59,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/InstanceGroupManagerList"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]}
         ],
         "tags": ["instanceGroupManagers"]
       },
@@ -100,10 +85,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/InstanceGroupManager"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/compute"]}],
         "tags": ["instanceGroupManagers"]
       }
     },
@@ -117,10 +99,7 @@
           {"description": "Name of the Instance Group Manager resource to delete.", "in": "path", "name": "instanceGroupManager", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/compute"]}],
         "tags": ["instanceGroupManagers"]
       },
       "get": {
@@ -133,10 +112,10 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/InstanceGroupManager"}}},
         "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/compute.readonly"]}
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute"]},
+          {"Oauth2": ["https://www.googleapis.com/auth/compute.readonly"]}
         ],
         "tags": ["instanceGroupManagers"]
       },
@@ -170,10 +149,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/InstanceGroupManagersAbandonInstancesRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/compute"]}],
         "tags": ["instanceGroupManagers"]
       }
     },
@@ -197,10 +173,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/InstanceGroupManagersDeleteInstancesRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/compute"]}],
         "tags": ["instanceGroupManagers"]
       }
     },
@@ -224,10 +197,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/InstanceGroupManagersRecreateInstancesRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/compute"]}],
         "tags": ["instanceGroupManagers"]
       }
     },
@@ -251,10 +221,7 @@
           {"description": "Number of instances that should exist in this Instance Group Manager.", "in": "query", "minimum": 0, "name": "size", "required": true, "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/compute"]}],
         "tags": ["instanceGroupManagers"]
       }
     },
@@ -278,10 +245,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/InstanceGroupManagersSetInstanceTemplateRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/compute"]}],
         "tags": ["instanceGroupManagers"]
       }
     },
@@ -305,10 +269,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/InstanceGroupManagersSetTargetPoolsRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/compute"]}],
         "tags": ["instanceGroupManagers"]
       }
     },
@@ -324,10 +285,7 @@
           {"description": "Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OperationList"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/compute"]}],
         "tags": ["zoneOperations"]
       },
       "parameters": [
@@ -350,10 +308,7 @@
           {"description": "Name of the operation resource to return.", "in": "path", "name": "operation", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Operation"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/compute"], "Oauth2c": ["https://www.googleapis.com/auth/compute"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/compute"]}],
         "tags": ["zoneOperations"]
       },
       "parameters": [

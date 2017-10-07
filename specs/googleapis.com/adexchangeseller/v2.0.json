@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Accesses the inventory of Ad Exchange seller users and generates reports.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Ad Exchange Seller",
     "version": "v2.0",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.doubleclickbygoogle.com/static/core/img/doubleclick-google-logo-wide.svg"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/adexchangeseller/v2.0/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/adexchangeseller/v2.0/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "adexchangeseller"
@@ -21,17 +19,9 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {"https://www.googleapis.com/auth/adexchange.seller": "View and manage your Ad Exchange data", "https://www.googleapis.com/auth/adexchange.seller.readonly": "View your Ad Exchange data"},
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {"https://www.googleapis.com/auth/adexchange.seller": "View and manage your Ad Exchange data", "https://www.googleapis.com/auth/adexchange.seller.readonly": "View your Ad Exchange data"},
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -65,10 +55,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Accounts"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"]}, {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -87,10 +74,7 @@
         "operationId": "adexchangeseller.accounts.get",
         "parameters": [{"description": "Account to get information about. Tip: 'myaccount' is a valid ID.", "in": "path", "name": "accountId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Account"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"]}, {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -118,10 +102,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AdClients"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"]}, {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -150,10 +131,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CustomChannels"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"]}, {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -176,10 +154,7 @@
           {"description": "Custom channel to retrieve.", "in": "path", "name": "customChannelId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/CustomChannel"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"]}, {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -208,10 +183,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UrlChannels"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"]}, {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -238,10 +210,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Alerts"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"]}, {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -260,10 +229,7 @@
         "operationId": "adexchangeseller.accounts.metadata.dimensions.list",
         "parameters": [{"description": "Account with visibility to the dimensions.", "in": "path", "name": "accountId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Metadata"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"]}, {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -282,10 +248,7 @@
         "operationId": "adexchangeseller.accounts.metadata.metrics.list",
         "parameters": [{"description": "Account with visibility to the metrics.", "in": "path", "name": "accountId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Metadata"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"]}, {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -304,10 +267,7 @@
         "operationId": "adexchangeseller.accounts.preferreddeals.list",
         "parameters": [{"description": "Account owning the deals.", "in": "path", "name": "accountId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PreferredDeals"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"]}, {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -329,10 +289,7 @@
           {"description": "Preferred deal to get information about.", "in": "path", "name": "dealId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/PreferredDeal"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"]}, {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -369,10 +326,7 @@
           {"description": "Index of the first row of report data to return.", "in": "query", "maximum": 5000, "minimum": 0, "name": "startIndex", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Report"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"]}, {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -400,10 +354,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SavedReports"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"]}, {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [
@@ -428,10 +379,7 @@
           {"description": "Index of the first row of report data to return.", "in": "query", "maximum": 5000, "minimum": 0, "name": "startIndex", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Report"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller"]}, {"Oauth2": ["https://www.googleapis.com/auth/adexchange.seller.readonly"]}],
         "tags": ["accounts"]
       },
       "parameters": [

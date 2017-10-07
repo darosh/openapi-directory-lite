@@ -11,7 +11,7 @@
     "version": "v2",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://cloud.google.com/_static/images/new-gcp-logo.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://logging.googleapis.com/$discovery/rest?version=v2", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://logging.googleapis.com/$discovery/rest?version=v2", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "logging"
@@ -155,7 +155,7 @@
     "/v2/{logName}": {
       "delete": {
         "description": "Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted.",
-        "operationId": "logging.billingAccounts.logs.delete",
+        "operationId": "logging.folders.logs.delete",
         "parameters": [
           {
             "description": "Required. The resource name of the log to delete:\n\"projects/[PROJECT_ID]/logs/[LOG_ID]\"\n\"organizations/[ORGANIZATION_ID]/logs/[LOG_ID]\"\n\"billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]\"\n\"folders/[FOLDER_ID]/logs/[LOG_ID]\"\n[LOG_ID] must be URL-encoded. For example, \"projects/my-project-id/logs/syslog\", \"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity\". For more information about log names, see LogEntry.",
@@ -168,7 +168,7 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
         "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/logging.admin"]}],
-        "tags": ["billingAccounts"]
+        "tags": ["folders"]
       },
       "parameters": [
         {"$ref": "#/parameters/quotaUser"},
@@ -245,7 +245,7 @@
     "/v2/{name}": {
       "delete": {
         "description": "Deletes an exclusion.",
-        "operationId": "logging.billingAccounts.exclusions.delete",
+        "operationId": "logging.folders.exclusions.delete",
         "parameters": [
           {
             "description": "Required. The resource name of an existing exclusion to delete:\n\"projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]\"\n\"organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]\"\n\"billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]\"\n\"folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]\"\nExample: \"projects/my-project-id/exclusions/my-exclusion-id\".",
@@ -258,11 +258,11 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
         "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/logging.admin"]}],
-        "tags": ["billingAccounts"]
+        "tags": ["folders"]
       },
       "get": {
         "description": "Gets the description of an exclusion.",
-        "operationId": "logging.billingAccounts.exclusions.get",
+        "operationId": "logging.folders.exclusions.get",
         "parameters": [
           {
             "description": "Required. The resource name of an existing exclusion:\n\"projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]\"\n\"organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]\"\n\"billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]\"\n\"folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]\"\nExample: \"projects/my-project-id/exclusions/my-exclusion-id\".",
@@ -280,7 +280,7 @@
           {"Oauth2": ["https://www.googleapis.com/auth/logging.admin"]},
           {"Oauth2": ["https://www.googleapis.com/auth/logging.read"]}
         ],
-        "tags": ["billingAccounts"]
+        "tags": ["folders"]
       },
       "parameters": [
         {"$ref": "#/parameters/$.xgafv"},
@@ -299,7 +299,7 @@
       ],
       "patch": {
         "description": "Changes one or more properties of an existing exclusion.",
-        "operationId": "logging.billingAccounts.exclusions.patch",
+        "operationId": "logging.folders.exclusions.patch",
         "parameters": [
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/LogExclusion"}},
           {
@@ -319,13 +319,13 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/LogExclusion"}}},
         "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/logging.admin"]}],
-        "tags": ["billingAccounts"]
+        "tags": ["folders"]
       }
     },
     "/v2/{parent}/exclusions": {
       "get": {
         "description": "Lists all the exclusions in a parent resource.",
-        "operationId": "logging.billingAccounts.exclusions.list",
+        "operationId": "logging.folders.exclusions.list",
         "parameters": [
           {
             "description": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
@@ -355,7 +355,7 @@
           {"Oauth2": ["https://www.googleapis.com/auth/logging.admin"]},
           {"Oauth2": ["https://www.googleapis.com/auth/logging.read"]}
         ],
-        "tags": ["billingAccounts"]
+        "tags": ["folders"]
       },
       "parameters": [
         {"$ref": "#/parameters/$.xgafv"},
@@ -374,7 +374,7 @@
       ],
       "post": {
         "description": "Creates a new exclusion in a specified parent resource. Only log entries belonging to that resource can be excluded. You can have up to 10 exclusions in a resource.",
-        "operationId": "logging.billingAccounts.exclusions.create",
+        "operationId": "logging.folders.exclusions.create",
         "parameters": [
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/LogExclusion"}},
           {
@@ -388,13 +388,13 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/LogExclusion"}}},
         "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/logging.admin"]}],
-        "tags": ["billingAccounts"]
+        "tags": ["folders"]
       }
     },
     "/v2/{parent}/logs": {
       "get": {
         "description": "Lists the logs in projects, organizations, folders, or billing accounts. Only logs that have entries are listed.",
-        "operationId": "logging.billingAccounts.logs.list",
+        "operationId": "logging.folders.logs.list",
         "parameters": [
           {
             "description": "Required. The resource name that owns the logs:\n\"projects/[PROJECT_ID]\"\n\"organizations/[ORGANIZATION_ID]\"\n\"billingAccounts/[BILLING_ACCOUNT_ID]\"\n\"folders/[FOLDER_ID]\"\n",
@@ -424,7 +424,7 @@
           {"Oauth2": ["https://www.googleapis.com/auth/logging.admin"]},
           {"Oauth2": ["https://www.googleapis.com/auth/logging.read"]}
         ],
-        "tags": ["billingAccounts"]
+        "tags": ["folders"]
       },
       "parameters": [
         {"$ref": "#/parameters/quotaUser"},
@@ -507,7 +507,7 @@
     "/v2/{parent}/sinks": {
       "get": {
         "description": "Lists sinks.",
-        "operationId": "logging.billingAccounts.sinks.list",
+        "operationId": "logging.folders.sinks.list",
         "parameters": [
           {
             "description": "Required. The parent resource whose sinks are to be listed:\n\"projects/[PROJECT_ID]\"\n\"organizations/[ORGANIZATION_ID]\"\n\"billingAccounts/[BILLING_ACCOUNT_ID]\"\n\"folders/[FOLDER_ID]\"\n",
@@ -537,7 +537,7 @@
           {"Oauth2": ["https://www.googleapis.com/auth/logging.admin"]},
           {"Oauth2": ["https://www.googleapis.com/auth/logging.read"]}
         ],
-        "tags": ["billingAccounts"]
+        "tags": ["folders"]
       },
       "parameters": [
         {"$ref": "#/parameters/quotaUser"},
@@ -556,7 +556,7 @@
       ],
       "post": {
         "description": "Creates a sink that exports specified log entries to a destination. The export of newly-ingested log entries begins immediately, unless the sink's writer_identity is not permitted to write to the destination. A sink can export log entries only from the resource owning the sink.",
-        "operationId": "logging.billingAccounts.sinks.create",
+        "operationId": "logging.folders.sinks.create",
         "parameters": [
           {
             "description": "Required. The resource in which to create the sink:\n\"projects/[PROJECT_ID]\"\n\"organizations/[ORGANIZATION_ID]\"\n\"billingAccounts/[BILLING_ACCOUNT_ID]\"\n\"folders/[FOLDER_ID]\"\nExamples: \"projects/my-logging-project\", \"organizations/123456789\".",
@@ -576,13 +576,13 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/LogSink"}}},
         "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/logging.admin"]}],
-        "tags": ["billingAccounts"]
+        "tags": ["folders"]
       }
     },
     "/v2/{sinkName}": {
       "delete": {
         "description": "Deletes a sink. If the sink has a unique writer_identity, then that service account is also deleted.",
-        "operationId": "logging.billingAccounts.sinks.delete",
+        "operationId": "logging.folders.sinks.delete",
         "parameters": [
           {
             "description": "Required. The full resource name of the sink to delete, including the parent resource and the sink identifier:\n\"projects/[PROJECT_ID]/sinks/[SINK_ID]\"\n\"organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]\"\n\"billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]\"\n\"folders/[FOLDER_ID]/sinks/[SINK_ID]\"\nExample: \"projects/my-project-id/sinks/my-sink-id\".",
@@ -595,11 +595,11 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
         "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/logging.admin"]}],
-        "tags": ["billingAccounts"]
+        "tags": ["folders"]
       },
       "get": {
         "description": "Gets a sink.",
-        "operationId": "logging.billingAccounts.sinks.get",
+        "operationId": "logging.folders.sinks.get",
         "parameters": [
           {
             "description": "Required. The resource name of the sink:\n\"projects/[PROJECT_ID]/sinks/[SINK_ID]\"\n\"organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]\"\n\"billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]\"\n\"folders/[FOLDER_ID]/sinks/[SINK_ID]\"\nExample: \"projects/my-project-id/sinks/my-sink-id\".",
@@ -617,7 +617,7 @@
           {"Oauth2": ["https://www.googleapis.com/auth/logging.admin"]},
           {"Oauth2": ["https://www.googleapis.com/auth/logging.read"]}
         ],
-        "tags": ["billingAccounts"]
+        "tags": ["folders"]
       },
       "parameters": [
         {"$ref": "#/parameters/quotaUser"},
@@ -636,7 +636,7 @@
       ],
       "patch": {
         "description": "Updates a sink. This method replaces the following fields in the existing sink with values from the new sink: destination, and filter. The updated sink might also have a new writer_identity; see the unique_writer_identity field.",
-        "operationId": "logging.billingAccounts.sinks.patch",
+        "operationId": "logging.folders.sinks.patch",
         "parameters": [
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/LogSink"}},
           {
@@ -662,11 +662,11 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/LogSink"}}},
         "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/logging.admin"]}],
-        "tags": ["billingAccounts"]
+        "tags": ["folders"]
       },
       "put": {
         "description": "Updates a sink. This method replaces the following fields in the existing sink with values from the new sink: destination, and filter. The updated sink might also have a new writer_identity; see the unique_writer_identity field.",
-        "operationId": "logging.billingAccounts.sinks.update",
+        "operationId": "logging.folders.sinks.update",
         "parameters": [
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/LogSink"}},
           {
@@ -692,7 +692,7 @@
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/LogSink"}}},
         "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/logging.admin"]}],
-        "tags": ["billingAccounts"]
+        "tags": ["folders"]
       }
     }
   },
@@ -878,7 +878,7 @@
         "jsonPayload": {"additionalProperties": {"description": "Properties of the object."}, "description": "The log entry payload, represented as a structure that is expressed as a JSON object.", "type": "object"},
         "labels": {"additionalProperties": {"type": "string"}, "description": "Optional. A set of user-defined (key, value) data that provides additional information about the log entry.", "type": "object"},
         "logName": {
-          "description": "Required. The resource name of the log to which this log entry belongs:\n\"projects/[PROJECT_ID]/logs/[LOG_ID]\"\n\"organizations/[ORGANIZATION_ID]/logs/[LOG_ID]\"\n\"billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]\"\n\"folders/[FOLDER_ID]/logs/[LOG_ID]\"\n[LOG_ID] must be URL-encoded within log_name. Example: \"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity\". [LOG_ID] must be less than 512 characters long and can only include the following characters: upper and lower case alphanumeric characters, forward-slash, underscore, hyphen, and period.For backward compatibility, if log_name begins with a forward-slash, such as /projects/..., then the log entry is ingested as usual but the forward-slash is removed. Listing the log entry will not show the leading slash and filtering for a log name with a leading slash will never return any results.",
+          "description": "Required. The resource name of the log to which this log entry belongs:\n\"projects/[PROJECT_ID]/logs/[LOG_ID]\"\n\"organizations/[ORGANIZATION_ID]/logs/[LOG_ID]\"\n\"billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]\"\n\"folders/[FOLDER_ID]/logs/[LOG_ID]\"\nA project number may optionally be used in place of PROJECT_ID. The  project number is translated to its corresponding PROJECT_ID internally  and the log_name field will contain PROJECT_ID in queries and exports.[LOG_ID] must be URL-encoded within log_name. Example: \"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity\". [LOG_ID] must be less than 512 characters long and can only include the following characters: upper and lower case alphanumeric characters, forward-slash, underscore, hyphen, and period.For backward compatibility, if log_name begins with a forward-slash, such as /projects/..., then the log entry is ingested as usual but the forward-slash is removed. Listing the log entry will not show the leading slash and filtering for a log name with a leading slash will never return any results.",
           "type": "string"
         },
         "operation": {"$ref": "#/definitions/LogEntryOperation", "description": "Optional. Information about an operation associated with the log entry, if applicable."},

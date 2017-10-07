@@ -6,14 +6,12 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Lets you create, inspect, and manage goo.gl short URLs",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "URL Shortener",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-apisguru-categories": ["tools"],
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/urlshortener/v1/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/urlshortener/v1/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "urlshortener"
@@ -22,17 +20,9 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {"https://www.googleapis.com/auth/urlshortener": "Manage your goo.gl short URLs"},
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {"https://www.googleapis.com/auth/urlshortener": "Manage your goo.gl short URLs"},
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -61,7 +51,7 @@
           {"description": "Additional information to return.", "enum": ["ANALYTICS_CLICKS", "ANALYTICS_TOP_STRINGS", "FULL"], "in": "query", "name": "projection", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Url"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/urlshortener"], "Oauth2c": ["https://www.googleapis.com/auth/urlshortener"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/urlshortener"]}],
         "tags": ["url"]
       },
       "parameters": [
@@ -78,7 +68,7 @@
         "operationId": "urlshortener.url.insert",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Url"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Url"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/urlshortener"], "Oauth2c": ["https://www.googleapis.com/auth/urlshortener"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/urlshortener"]}],
         "tags": ["url"]
       }
     },
@@ -91,7 +81,7 @@
           {"description": "Token for requesting successive pages of results.", "in": "query", "name": "start-token", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UrlHistory"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/urlshortener"], "Oauth2c": ["https://www.googleapis.com/auth/urlshortener"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/urlshortener"]}],
         "tags": ["url"]
       },
       "parameters": [

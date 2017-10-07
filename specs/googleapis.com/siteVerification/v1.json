@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Verifies ownership of websites or domains with Google.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Google Site Verification",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/siteVerification/v1/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/siteVerification/v1/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "siteVerification"
@@ -21,17 +19,9 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {"https://www.googleapis.com/auth/siteverification": "Manage the list of sites and domains you control", "https://www.googleapis.com/auth/siteverification.verify_only": "Manage your new site verifications with Google"},
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {"https://www.googleapis.com/auth/siteverification": "Manage the list of sites and domains you control", "https://www.googleapis.com/auth/siteverification.verify_only": "Manage your new site verifications with Google"},
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -66,10 +56,7 @@
         "operationId": "siteVerification.webResource.getToken",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SiteVerificationWebResourceGettokenRequest"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SiteVerificationWebResourceGettokenResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/siteverification"], "Oauth2c": ["https://www.googleapis.com/auth/siteverification"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/siteverification.verify_only"], "Oauth2c": ["https://www.googleapis.com/auth/siteverification.verify_only"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/siteverification"]}, {"Oauth2": ["https://www.googleapis.com/auth/siteverification.verify_only"]}],
         "tags": ["webResource"]
       }
     },
@@ -78,7 +65,7 @@
         "description": "Get the list of your verified websites and domains.",
         "operationId": "siteVerification.webResource.list",
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SiteVerificationWebResourceListResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/siteverification"], "Oauth2c": ["https://www.googleapis.com/auth/siteverification"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/siteverification"]}],
         "tags": ["webResource"]
       },
       "parameters": [
@@ -98,10 +85,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SiteVerificationWebResourceResource"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SiteVerificationWebResourceResource"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/siteverification"], "Oauth2c": ["https://www.googleapis.com/auth/siteverification"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/siteverification.verify_only"], "Oauth2c": ["https://www.googleapis.com/auth/siteverification.verify_only"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/siteverification"]}, {"Oauth2": ["https://www.googleapis.com/auth/siteverification.verify_only"]}],
         "tags": ["webResource"]
       }
     },
@@ -111,7 +95,7 @@
         "operationId": "siteVerification.webResource.delete",
         "parameters": [{"description": "The id of a verified site or domain.", "in": "path", "name": "id", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/siteverification"], "Oauth2c": ["https://www.googleapis.com/auth/siteverification"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/siteverification"]}],
         "tags": ["webResource"]
       },
       "get": {
@@ -119,7 +103,7 @@
         "operationId": "siteVerification.webResource.get",
         "parameters": [{"description": "The id of a verified site or domain.", "in": "path", "name": "id", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SiteVerificationWebResourceResource"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/siteverification"], "Oauth2c": ["https://www.googleapis.com/auth/siteverification"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/siteverification"]}],
         "tags": ["webResource"]
       },
       "parameters": [
@@ -139,7 +123,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SiteVerificationWebResourceResource"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SiteVerificationWebResourceResource"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/siteverification"], "Oauth2c": ["https://www.googleapis.com/auth/siteverification"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/siteverification"]}],
         "tags": ["webResource"]
       },
       "put": {
@@ -150,7 +134,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SiteVerificationWebResourceResource"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SiteVerificationWebResourceResource"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/siteverification"], "Oauth2c": ["https://www.googleapis.com/auth/siteverification"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/siteverification"]}],
         "tags": ["webResource"]
       }
     }

@@ -10,7 +10,7 @@
     "version": "v2beta1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://dlp.googleapis.com/$discovery/rest?version=v2beta1", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://dlp.googleapis.com/$discovery/rest?version=v2beta1", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "dlp"
@@ -235,19 +235,19 @@
     "/v2beta1/{name}": {
       "delete": {
         "description": "This method is not supported and the server returns `UNIMPLEMENTED`.",
-        "operationId": "dlp.riskAnalysis.operations.delete",
+        "operationId": "dlp.inspect.operations.delete",
         "parameters": [{"description": "The name of the operation resource to be deleted.", "in": "path", "name": "name", "required": true, "type": "string", "x-reservedExpansion": true}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GoogleProtobufEmpty"}}},
         "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
-        "tags": ["riskAnalysis"]
+        "tags": ["inspect"]
       },
       "get": {
         "description": "Gets the latest state of a long-running operation.  Clients can use this\nmethod to poll the operation result at intervals as recommended by the API\nservice.",
-        "operationId": "dlp.riskAnalysis.operations.get",
+        "operationId": "dlp.inspect.operations.get",
         "parameters": [{"description": "The name of the operation resource.", "in": "path", "name": "name", "required": true, "type": "string", "x-reservedExpansion": true}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GoogleLongrunningOperation"}}},
         "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
-        "tags": ["riskAnalysis"]
+        "tags": ["inspect"]
       },
       "parameters": [
         {"$ref": "#/parameters/$.xgafv"},
@@ -330,14 +330,14 @@
       ],
       "post": {
         "description": "Cancels an operation. Use the `inspect.operations.get` to check whether the cancellation succeeded or the operation completed despite cancellation.",
-        "operationId": "dlp.riskAnalysis.operations.cancel",
+        "operationId": "dlp.inspect.operations.cancel",
         "parameters": [
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/GoogleLongrunningCancelOperationRequest"}},
           {"description": "The name of the operation resource to be cancelled.", "in": "path", "name": "name", "required": true, "type": "string", "x-reservedExpansion": true}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/GoogleProtobufEmpty"}}},
         "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
-        "tags": ["riskAnalysis"]
+        "tags": ["inspect"]
       }
     }
   },
@@ -521,10 +521,7 @@
       "properties": {
         "inspectConfig": {"$ref": "#/definitions/GooglePrivacyDlpV2beta1InspectConfig", "description": "Configuration for the inspector."},
         "operationConfig": {"$ref": "#/definitions/GooglePrivacyDlpV2beta1OperationConfig", "description": "Additional configuration settings for long running operations."},
-        "outputConfig": {
-          "$ref": "#/definitions/GooglePrivacyDlpV2beta1OutputStorageConfig",
-          "description": "Optional location to store findings. The bucket must already exist and\nthe Google APIs service account for DLP must have write permission to\nwrite to the given bucket.\nResults are split over multiple csv files with each file name matching\nthe pattern \"[operation_id]_[count].csv\", for example\n`3094877188788974909_1.csv`. The `operation_id` matches the\nidentifier for the Operation, and the `count` is a counter used for\ntracking the number of files written.\n\nThe CSV file(s) contain the following columns regardless of storage type\nscanned:\n- id\n- info_type\n- likelihood\n- byte size of finding\n- quote\n- timestamp\n\nFor Cloud Storage the next columns are:\n\n- file_path\n- start_offset\n\nFor Cloud Datastore the next columns are:\n\n- project_id\n- namespace_id\n- path\n- column_name\n- offset\n\nFor BigQuery the next columns are:\n\n- row_number\n- project_id\n- dataset_id\n- table_id"
-        },
+        "outputConfig": {"$ref": "#/definitions/GooglePrivacyDlpV2beta1OutputStorageConfig", "description": "Optional location to store findings."},
         "storageConfig": {"$ref": "#/definitions/GooglePrivacyDlpV2beta1StorageConfig", "description": "Specification of the data set to process."}
       },
       "type": "object"
@@ -544,7 +541,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2beta1CryptoReplaceFfxFpeConfig": {
-      "description": "Replaces an identifier with an surrogate using FPE with the FFX\nmode of operation.\nThe identifier must be encoded as ASCII.\nFor a given crypto key and context, the same identifier will be\nreplaced with the same surrogate.\nNote that a given identifier must be either the empty string or be at\nleast two characters long.",
+      "description": "Replaces an identifier with an surrogate using FPE with the FFX\nmode of operation.\nThe identifier must be representable by the US-ASCII character set.\nFor a given crypto key and context, the same identifier will be\nreplaced with the same surrogate.\nNote that a given identifier must be either the empty string or be at\nleast two characters long.",
       "properties": {
         "commonAlphabet": {"enum": ["FFX_COMMON_NATIVE_ALPHABET_UNSPECIFIED", "NUMERIC", "HEXADECIMAL", "UPPER_CASE_ALPHA_NUMERIC", "ALPHA_NUMERIC"], "type": "string"},
         "context": {
@@ -983,7 +980,10 @@
     "GooglePrivacyDlpV2beta1OutputStorageConfig": {
       "description": "Cloud repository for storing output.",
       "properties": {
-        "storagePath": {"$ref": "#/definitions/GooglePrivacyDlpV2beta1CloudStoragePath", "description": "The path to a Google Cloud Storage location to store output."},
+        "storagePath": {
+          "$ref": "#/definitions/GooglePrivacyDlpV2beta1CloudStoragePath",
+          "description": "The path to a Google Cloud Storage location to store output.\nThe bucket must already exist and\nthe Google APIs service account for DLP must have write permission to\nwrite to the given bucket.\nResults are split over multiple csv files with each file name matching\nthe pattern \"[operation_id]_[count].csv\", for example\n`3094877188788974909_1.csv`. The `operation_id` matches the\nidentifier for the Operation, and the `count` is a counter used for\ntracking the number of files written.\n\nThe CSV file(s) contain the following columns regardless of storage type\nscanned:\n- id\n- info_type\n- likelihood\n- byte size of finding\n- quote\n- timestamp\n\nFor Cloud Storage the next columns are:\n\n- file_path\n- start_offset\n\nFor Cloud Datastore the next columns are:\n\n- project_id\n- namespace_id\n- path\n- column_name\n- offset\n\nFor BigQuery the next columns are:\n\n- row_number\n- project_id\n- dataset_id\n- table_id"
+        },
         "table": {"$ref": "#/definitions/GooglePrivacyDlpV2beta1BigQueryTable", "description": "Store findings in a new table in the dataset."}
       },
       "type": "object"

@@ -6,34 +6,19 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Searches for books and manages your Google Books library.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Books",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
+    "x-apisguru-categories": ["media"],
     "x-logo": {"url": "https://www.google.com/intl/en/images/logos/books_logo_lg.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/books/v1/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/books/v1/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "books"
   },
   "externalDocs": {"url": "https://developers.google.com/books/docs/v1/getting_started"},
   "securityDefinitions": {
-    "Oauth2": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
-      "flow": "implicit",
-      "scopes": {"https://www.googleapis.com/auth/books": "Manage your books"},
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {"https://www.googleapis.com/auth/books": "Manage your books"},
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
-      "type": "oauth2"
-    }
+    "Oauth2": {"authorizationUrl": "https://accounts.google.com/o/oauth2/auth", "description": "Oauth 2.0 authentication", "flow": "implicit", "scopes": {"https://www.googleapis.com/auth/books": "Manage your books"}, "type": "oauth2"}
   },
   "parameters": {
     "alt": {"default": "json", "description": "Data format for the response.", "enum": ["json"], "in": "query", "name": "alt", "type": "string"},
@@ -84,7 +69,7 @@
           {"in": "query", "name": "upload_client_token", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/BooksCloudloadingResource"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["cloudloading"]
       }
     },
@@ -103,7 +88,7 @@
         "operationId": "books.cloudloading.deleteBook",
         "parameters": [{"description": "The id of the book to be removed.", "in": "query", "name": "volumeId", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["cloudloading"]
       }
     },
@@ -122,7 +107,7 @@
         "operationId": "books.cloudloading.updateBook",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/BooksCloudloadingResource"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/BooksCloudloadingResource"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["cloudloading"]
       }
     },
@@ -132,7 +117,7 @@
         "operationId": "books.dictionary.listOfflineMetadata",
         "parameters": [{"description": "The device/version ID from which to request the data.", "in": "query", "name": "cpksver", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Metadata"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["dictionary"]
       },
       "parameters": [
@@ -150,7 +135,7 @@
         "description": "Gets the current settings for the user.",
         "operationId": "books.myconfig.getUserSettings",
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Usersettings"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["myconfig"]
       },
       "parameters": [
@@ -183,7 +168,7 @@
           {"description": "String to identify the originator of this request.", "in": "query", "name": "source", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/DownloadAccesses"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["myconfig"]
       }
     },
@@ -209,7 +194,7 @@
           {"description": "ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.", "in": "query", "name": "locale", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/RequestAccess"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["myconfig"]
       }
     },
@@ -237,7 +222,7 @@
           {"collectionFormat": "multi", "description": "The volume(s) to request download restrictions for.", "in": "query", "items": {"type": "string"}, "name": "volumeIds", "type": "array"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Volumes"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["myconfig"]
       }
     },
@@ -256,7 +241,7 @@
         "operationId": "books.myconfig.updateUserSettings",
         "parameters": [{"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Usersettings"}}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Usersettings"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["myconfig"]
       }
     },
@@ -277,7 +262,7 @@
           {"description": "The volume to restrict annotations to.", "in": "query", "name": "volumeId", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Annotations"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["mylibrary"]
       },
       "parameters": [
@@ -300,7 +285,7 @@
           {"description": "String to identify the originator of this request.", "in": "query", "name": "source", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Annotation"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["mylibrary"]
       }
     },
@@ -322,7 +307,7 @@
           {"description": "Volume id to get the summary for.", "in": "query", "name": "volumeId", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/AnnotationsSummary"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["mylibrary"]
       }
     },
@@ -335,7 +320,7 @@
           {"description": "String to identify the originator of this request.", "in": "query", "name": "source", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["mylibrary"]
       },
       "parameters": [
@@ -356,7 +341,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Annotation"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Annotation"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["mylibrary"]
       }
     },
@@ -366,7 +351,7 @@
         "operationId": "books.mylibrary.bookshelves.list",
         "parameters": [{"description": "String to identify the originator of this request.", "in": "query", "name": "source", "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Bookshelves"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["mylibrary"]
       },
       "parameters": [
@@ -388,7 +373,7 @@
           {"description": "String to identify the originator of this request.", "in": "query", "name": "source", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Bookshelf"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["mylibrary"]
       },
       "parameters": [
@@ -421,7 +406,7 @@
           {"description": "String to identify the originator of this request.", "in": "query", "name": "source", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["mylibrary"]
       }
     },
@@ -443,7 +428,7 @@
           {"description": "String to identify the originator of this request.", "in": "query", "name": "source", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["mylibrary"]
       }
     },
@@ -473,7 +458,7 @@
           {"description": "String to identify the originator of this request.", "in": "query", "name": "source", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["mylibrary"]
       }
     },
@@ -497,7 +482,7 @@
           {"description": "String to identify the originator of this request.", "in": "query", "name": "source", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["mylibrary"]
       }
     },
@@ -516,7 +501,7 @@
           {"description": "Index of the first element to return (starts at 0)", "in": "query", "minimum": 0, "name": "startIndex", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Volumes"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["mylibrary"]
       },
       "parameters": [
@@ -539,7 +524,7 @@
           {"description": "String to identify the originator of this request.", "in": "query", "name": "source", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ReadingPosition"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["mylibrary"]
       },
       "parameters": [
@@ -575,7 +560,7 @@
           {"description": "String to identify the originator of this request.", "in": "query", "name": "source", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["mylibrary"]
       }
     },
@@ -589,7 +574,7 @@
           {"description": "String to identify the originator of this request.", "in": "query", "name": "source", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Notification"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["notification"]
       },
       "parameters": [
@@ -608,7 +593,7 @@
         "operationId": "books.onboarding.listCategories",
         "parameters": [{"description": "ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.", "in": "query", "name": "locale", "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Category"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["onboarding"]
       },
       "parameters": [
@@ -639,7 +624,7 @@
           {"description": "The value of the nextToken from the previous page.", "in": "query", "name": "pageToken", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Volume2"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["onboarding"]
       },
       "parameters": [
@@ -668,7 +653,7 @@
           {"description": "String to identify the originator of this request.", "in": "query", "name": "source", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Discoveryclusters"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["personalizedstream"]
       },
       "parameters": [
@@ -705,7 +690,7 @@
           {"description": "Volume id to exercise the offer", "in": "query", "name": "volumeId", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["promooffer"]
       }
     },
@@ -732,7 +717,7 @@
           {"description": "device serial", "in": "query", "name": "serial", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["promooffer"]
       }
     },
@@ -749,7 +734,7 @@
           {"description": "device serial", "in": "query", "name": "serial", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Offers"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["promooffer"]
       },
       "parameters": [
@@ -768,7 +753,7 @@
         "operationId": "books.series.get",
         "parameters": [{"collectionFormat": "multi", "description": "String that identifies the series", "in": "query", "items": {"type": "string"}, "name": "series_id", "required": true, "type": "array"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Series"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["series"]
       },
       "parameters": [
@@ -791,7 +776,7 @@
           {"description": "The value of the nextToken from the previous page.", "in": "query", "name": "page_token", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Seriesmembership"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["series"]
       },
       "parameters": [
@@ -813,7 +798,7 @@
           {"description": "String to identify the originator of this request.", "in": "query", "name": "source", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Bookshelves"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["bookshelves"]
       },
       "parameters": [
@@ -836,7 +821,7 @@
           {"description": "String to identify the originator of this request.", "in": "query", "name": "source", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Bookshelf"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["bookshelves"]
       },
       "parameters": [
@@ -862,7 +847,7 @@
           {"description": "Index of the first element to return (starts at 0)", "in": "query", "minimum": 0, "name": "startIndex", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Volumes"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["bookshelves"]
       },
       "parameters": [
@@ -902,7 +887,7 @@
           {"description": "Index of the first result to return (starts at 0)", "in": "query", "minimum": 0, "name": "startIndex", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Volumes"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["volumes"]
       },
       "parameters": [
@@ -943,7 +928,7 @@
           {"description": "Index of the first result to return (starts at 0)", "in": "query", "minimum": 0, "name": "startIndex", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Volumes"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["volumes"]
       },
       "parameters": [
@@ -972,7 +957,7 @@
           {"description": "String to identify the originator of this request.", "in": "query", "name": "source", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Volumes"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["volumes"]
       },
       "parameters": [
@@ -1005,7 +990,7 @@
           {"description": "String to identify the originator of this request.", "in": "query", "name": "source", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/BooksVolumesRecommendedRateResponse"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["volumes"]
       }
     },
@@ -1036,7 +1021,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Volumes"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["volumes"]
       },
       "parameters": [
@@ -1063,7 +1048,7 @@
           {"in": "query", "name": "user_library_consistent_read", "type": "boolean"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Volume"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["volumes"]
       },
       "parameters": [
@@ -1094,7 +1079,7 @@
           {"description": "String to identify the originator of this request.", "in": "query", "name": "source", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Volumes"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["volumes"]
       },
       "parameters": [
@@ -1129,7 +1114,7 @@
           {"description": "The version of the volume annotations that you are requesting.", "in": "query", "name": "volumeAnnotationsVersion", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Volumeannotations"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["layers"]
       },
       "parameters": [
@@ -1154,7 +1139,7 @@
           {"description": "String to identify the originator of this request.", "in": "query", "name": "source", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Volumeannotation"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["layers"]
       },
       "parameters": [
@@ -1187,7 +1172,7 @@
           {"description": "The requested pixel width for any images. If width is provided height must also be provided.", "in": "query", "name": "w", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Annotationsdata"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["layers"]
       },
       "parameters": [
@@ -1217,7 +1202,7 @@
           {"description": "The requested pixel width for any images. If width is provided height must also be provided.", "in": "query", "name": "w", "type": "integer"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Annotationdata"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["layers"]
       },
       "parameters": [
@@ -1242,7 +1227,7 @@
           {"description": "String to identify the originator of this request.", "in": "query", "name": "source", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Layersummaries"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["layers"]
       },
       "parameters": [
@@ -1266,7 +1251,7 @@
           {"description": "String to identify the originator of this request.", "in": "query", "name": "source", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Layersummary"}}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"], "Oauth2c": ["https://www.googleapis.com/auth/books"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/books"]}],
         "tags": ["layers"]
       },
       "parameters": [

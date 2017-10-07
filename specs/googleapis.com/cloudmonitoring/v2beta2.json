@@ -6,13 +6,12 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Accesses Google Cloud Monitoring data.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Cloud Monitoring",
     "version": "v2beta2",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
+    "x-apisguru-categories": ["monitoring"],
     "x-logo": {"url": "https://cloud.google.com/_static/images/new-gcp-logo.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/cloudmonitoring/v2beta2/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/cloudmonitoring/v2beta2/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "cloudmonitoring"
@@ -21,23 +20,12 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services",
         "https://www.googleapis.com/auth/monitoring": "View and write monitoring data for all of your Google and third-party Cloud and API projects"
       },
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {
-        "https://www.googleapis.com/auth/cloud-platform": "View and manage your data across Google Cloud Platform services",
-        "https://www.googleapis.com/auth/monitoring": "View and write monitoring data for all of your Google and third-party Cloud and API projects"
-      },
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -79,10 +67,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ListMetricDescriptorsRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListMetricDescriptorsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/monitoring"], "Oauth2c": ["https://www.googleapis.com/auth/monitoring"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/monitoring"]}],
         "tags": ["metricDescriptors"]
       },
       "parameters": [
@@ -102,10 +87,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/MetricDescriptor"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/MetricDescriptor"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/monitoring"], "Oauth2c": ["https://www.googleapis.com/auth/monitoring"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/monitoring"]}],
         "tags": ["metricDescriptors"]
       }
     },
@@ -118,10 +100,7 @@
           {"description": "Name of the metric.", "in": "path", "name": "metric", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/DeleteMetricDescriptorResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/monitoring"], "Oauth2c": ["https://www.googleapis.com/auth/monitoring"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/monitoring"]}],
         "tags": ["metricDescriptors"]
       },
       "parameters": [
@@ -185,10 +164,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ListTimeseriesRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListTimeseriesResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/monitoring"], "Oauth2c": ["https://www.googleapis.com/auth/monitoring"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/monitoring"]}],
         "tags": ["timeseries"]
       },
       "parameters": [
@@ -219,10 +195,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/WriteTimeseriesRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/WriteTimeseriesResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/monitoring"], "Oauth2c": ["https://www.googleapis.com/auth/monitoring"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/monitoring"]}],
         "tags": ["timeseries"]
       }
     },
@@ -277,10 +250,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ListTimeseriesDescriptorsRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListTimeseriesDescriptorsResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"], "Oauth2c": ["https://www.googleapis.com/auth/cloud-platform"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/monitoring"], "Oauth2c": ["https://www.googleapis.com/auth/monitoring"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/monitoring"]}],
         "tags": ["timeseriesDescriptors"]
       },
       "parameters": [

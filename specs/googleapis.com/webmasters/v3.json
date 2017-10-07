@@ -6,13 +6,12 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "View Google Search Console data for your verified sites.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "Search Console",
     "version": "v3",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
+    "x-apisguru-categories": ["search"],
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/webmasters/v3/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/webmasters/v3/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "webmasters"
@@ -21,17 +20,9 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {"https://www.googleapis.com/auth/webmasters": "View and manage Search Console data for your verified sites", "https://www.googleapis.com/auth/webmasters.readonly": "View Search Console data for your verified sites"},
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {"https://www.googleapis.com/auth/webmasters": "View and manage Search Console data for your verified sites", "https://www.googleapis.com/auth/webmasters.readonly": "View Search Console data for your verified sites"},
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -56,10 +47,7 @@
         "description": "Lists the user's Search Console sites.",
         "operationId": "webmasters.sites.list",
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SitesListResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/webmasters"], "Oauth2c": ["https://www.googleapis.com/auth/webmasters"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/webmasters.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/webmasters.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/webmasters"]}, {"Oauth2": ["https://www.googleapis.com/auth/webmasters.readonly"]}],
         "tags": ["sites"]
       },
       "parameters": [
@@ -78,7 +66,7 @@
         "operationId": "webmasters.sites.delete",
         "parameters": [{"description": "The URI of the property as defined in Search Console. Examples: http://www.example.com/ or android-app://com.example/", "in": "path", "name": "siteUrl", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/webmasters"], "Oauth2c": ["https://www.googleapis.com/auth/webmasters"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/webmasters"]}],
         "tags": ["sites"]
       },
       "get": {
@@ -86,10 +74,7 @@
         "operationId": "webmasters.sites.get",
         "parameters": [{"description": "The URI of the property as defined in Search Console. Examples: http://www.example.com/ or android-app://com.example/", "in": "path", "name": "siteUrl", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/WmxSite"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/webmasters"], "Oauth2c": ["https://www.googleapis.com/auth/webmasters"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/webmasters.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/webmasters.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/webmasters"]}, {"Oauth2": ["https://www.googleapis.com/auth/webmasters.readonly"]}],
         "tags": ["sites"]
       },
       "parameters": [
@@ -106,7 +91,7 @@
         "operationId": "webmasters.sites.add",
         "parameters": [{"description": "The URL of the site to add.", "in": "path", "name": "siteUrl", "required": true, "type": "string"}],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/webmasters"], "Oauth2c": ["https://www.googleapis.com/auth/webmasters"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/webmasters"]}],
         "tags": ["sites"]
       }
     },
@@ -128,10 +113,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SearchAnalyticsQueryRequest"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SearchAnalyticsQueryResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/webmasters"], "Oauth2c": ["https://www.googleapis.com/auth/webmasters"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/webmasters.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/webmasters.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/webmasters"]}, {"Oauth2": ["https://www.googleapis.com/auth/webmasters.readonly"]}],
         "tags": ["searchanalytics"]
       }
     },
@@ -144,10 +126,7 @@
           {"description": "A URL of a site's sitemap index. For example: http://www.example.com/sitemapindex.xml", "in": "query", "name": "sitemapIndex", "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/SitemapsListResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/webmasters"], "Oauth2c": ["https://www.googleapis.com/auth/webmasters"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/webmasters.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/webmasters.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/webmasters"]}, {"Oauth2": ["https://www.googleapis.com/auth/webmasters.readonly"]}],
         "tags": ["sitemaps"]
       },
       "parameters": [
@@ -169,7 +148,7 @@
           {"description": "The URL of the actual sitemap. For example: http://www.example.com/sitemap.xml", "in": "path", "name": "feedpath", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/webmasters"], "Oauth2c": ["https://www.googleapis.com/auth/webmasters"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/webmasters"]}],
         "tags": ["sitemaps"]
       },
       "get": {
@@ -180,10 +159,7 @@
           {"description": "The URL of the actual sitemap. For example: http://www.example.com/sitemap.xml", "in": "path", "name": "feedpath", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/WmxSitemap"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/webmasters"], "Oauth2c": ["https://www.googleapis.com/auth/webmasters"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/webmasters.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/webmasters.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/webmasters"]}, {"Oauth2": ["https://www.googleapis.com/auth/webmasters.readonly"]}],
         "tags": ["sitemaps"]
       },
       "parameters": [
@@ -203,7 +179,7 @@
           {"description": "The URL of the sitemap to add. For example: http://www.example.com/sitemap.xml", "in": "path", "name": "feedpath", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/webmasters"], "Oauth2c": ["https://www.googleapis.com/auth/webmasters"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/webmasters"]}],
         "tags": ["sitemaps"]
       }
     },
@@ -230,10 +206,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UrlCrawlErrorsCountsQueryResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/webmasters"], "Oauth2c": ["https://www.googleapis.com/auth/webmasters"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/webmasters.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/webmasters.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/webmasters"]}, {"Oauth2": ["https://www.googleapis.com/auth/webmasters.readonly"]}],
         "tags": ["urlcrawlerrorscounts"]
       },
       "parameters": [
@@ -263,10 +236,7 @@
           {"description": "The user agent type (platform) that made the request. For example: web", "enum": ["mobile", "smartphoneOnly", "web"], "in": "query", "name": "platform", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UrlCrawlErrorsSamplesListResponse"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/webmasters"], "Oauth2c": ["https://www.googleapis.com/auth/webmasters"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/webmasters.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/webmasters.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/webmasters"]}, {"Oauth2": ["https://www.googleapis.com/auth/webmasters.readonly"]}],
         "tags": ["urlcrawlerrorssamples"]
       },
       "parameters": [
@@ -303,7 +273,7 @@
           {"description": "The user agent type (platform) that made the request. For example: web", "enum": ["mobile", "smartphoneOnly", "web"], "in": "query", "name": "platform", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [{"Oauth2": ["https://www.googleapis.com/auth/webmasters"], "Oauth2c": ["https://www.googleapis.com/auth/webmasters"]}],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/webmasters"]}],
         "tags": ["urlcrawlerrorssamples"]
       },
       "get": {
@@ -329,10 +299,7 @@
           {"description": "The user agent type (platform) that made the request. For example: web", "enum": ["mobile", "smartphoneOnly", "web"], "in": "query", "name": "platform", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/UrlCrawlErrorsSample"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/webmasters"], "Oauth2c": ["https://www.googleapis.com/auth/webmasters"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/webmasters.readonly"], "Oauth2c": ["https://www.googleapis.com/auth/webmasters.readonly"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/webmasters"]}, {"Oauth2": ["https://www.googleapis.com/auth/webmasters.readonly"]}],
         "tags": ["urlcrawlerrorssamples"]
       },
       "parameters": [

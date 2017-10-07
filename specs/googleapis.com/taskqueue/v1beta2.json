@@ -6,13 +6,11 @@
   "info": {
     "contact": {"name": "Google", "url": "https://google.com"},
     "description": "Accesses a Google App Engine Pull Task Queue over REST.",
-    "license": {"name": "Creative Commons Attribution 3.0", "url": "http://creativecommons.org/licenses/by/3.0/"},
-    "termsOfService": "https://developers.google.com/terms/",
     "title": "TaskQueue",
     "version": "v1beta2",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.0.1"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/taskqueue/v1beta2/rest", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://www.googleapis.com/discovery/v1/apis/taskqueue/v1beta2/rest", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "taskqueue"
@@ -21,17 +19,9 @@
   "securityDefinitions": {
     "Oauth2": {
       "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 implicit authentication",
+      "description": "Oauth 2.0 authentication",
       "flow": "implicit",
       "scopes": {"https://www.googleapis.com/auth/taskqueue": "Manage your Tasks and Taskqueues", "https://www.googleapis.com/auth/taskqueue.consumer": "Consume Tasks from your Taskqueues"},
-      "type": "oauth2"
-    },
-    "Oauth2c": {
-      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
-      "description": "Oauth 2.0 accessCode authentication",
-      "flow": "accessCode",
-      "scopes": {"https://www.googleapis.com/auth/taskqueue": "Manage your Tasks and Taskqueues", "https://www.googleapis.com/auth/taskqueue.consumer": "Consume Tasks from your Taskqueues"},
-      "tokenUrl": "https://accounts.google.com/o/oauth2/token",
       "type": "oauth2"
     }
   },
@@ -61,10 +51,7 @@
           {"description": "Whether to get stats. Optional.", "in": "query", "name": "getStats", "type": "boolean"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/TaskQueue"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/taskqueue"], "Oauth2c": ["https://www.googleapis.com/auth/taskqueue"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/taskqueue.consumer"], "Oauth2c": ["https://www.googleapis.com/auth/taskqueue.consumer"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/taskqueue"]}, {"Oauth2": ["https://www.googleapis.com/auth/taskqueue.consumer"]}],
         "tags": ["taskqueues"]
       },
       "parameters": [
@@ -86,10 +73,7 @@
           {"description": "The id of the taskqueue to list tasks from.", "in": "path", "name": "taskqueue", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Tasks2"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/taskqueue"], "Oauth2c": ["https://www.googleapis.com/auth/taskqueue"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/taskqueue.consumer"], "Oauth2c": ["https://www.googleapis.com/auth/taskqueue.consumer"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/taskqueue"]}, {"Oauth2": ["https://www.googleapis.com/auth/taskqueue.consumer"]}],
         "tags": ["tasks"]
       },
       "parameters": [
@@ -110,10 +94,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Task"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Task"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/taskqueue"], "Oauth2c": ["https://www.googleapis.com/auth/taskqueue"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/taskqueue.consumer"], "Oauth2c": ["https://www.googleapis.com/auth/taskqueue.consumer"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/taskqueue"]}, {"Oauth2": ["https://www.googleapis.com/auth/taskqueue.consumer"]}],
         "tags": ["tasks"]
       }
     },
@@ -144,10 +125,7 @@
           }
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Tasks"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/taskqueue"], "Oauth2c": ["https://www.googleapis.com/auth/taskqueue"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/taskqueue.consumer"], "Oauth2c": ["https://www.googleapis.com/auth/taskqueue.consumer"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/taskqueue"]}, {"Oauth2": ["https://www.googleapis.com/auth/taskqueue.consumer"]}],
         "tags": ["tasks"]
       }
     },
@@ -161,10 +139,7 @@
           {"description": "The id of the task to delete.", "in": "path", "name": "task", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response"}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/taskqueue"], "Oauth2c": ["https://www.googleapis.com/auth/taskqueue"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/taskqueue.consumer"], "Oauth2c": ["https://www.googleapis.com/auth/taskqueue.consumer"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/taskqueue"]}, {"Oauth2": ["https://www.googleapis.com/auth/taskqueue.consumer"]}],
         "tags": ["tasks"]
       },
       "get": {
@@ -176,10 +151,7 @@
           {"description": "The task to get properties of.", "in": "path", "name": "task", "required": true, "type": "string"}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Task"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/taskqueue"], "Oauth2c": ["https://www.googleapis.com/auth/taskqueue"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/taskqueue.consumer"], "Oauth2c": ["https://www.googleapis.com/auth/taskqueue.consumer"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/taskqueue"]}, {"Oauth2": ["https://www.googleapis.com/auth/taskqueue.consumer"]}],
         "tags": ["tasks"]
       },
       "parameters": [
@@ -202,10 +174,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Task"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Task"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/taskqueue"], "Oauth2c": ["https://www.googleapis.com/auth/taskqueue"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/taskqueue.consumer"], "Oauth2c": ["https://www.googleapis.com/auth/taskqueue.consumer"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/taskqueue"]}, {"Oauth2": ["https://www.googleapis.com/auth/taskqueue.consumer"]}],
         "tags": ["tasks"]
       },
       "post": {
@@ -219,10 +188,7 @@
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/Task"}}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Task"}}},
-        "security": [
-          {"Oauth2": ["https://www.googleapis.com/auth/taskqueue"], "Oauth2c": ["https://www.googleapis.com/auth/taskqueue"]},
-          {"Oauth2": ["https://www.googleapis.com/auth/taskqueue.consumer"], "Oauth2c": ["https://www.googleapis.com/auth/taskqueue.consumer"]}
-        ],
+        "security": [{"Oauth2": ["https://www.googleapis.com/auth/taskqueue"]}, {"Oauth2": ["https://www.googleapis.com/auth/taskqueue.consumer"]}],
         "tags": ["tasks"]
       }
     }

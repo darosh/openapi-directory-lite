@@ -10,7 +10,7 @@
     "version": "v1b3",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
-    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.5.0"}, "format": "google", "url": "https://dataflow.googleapis.com/$discovery/rest?version=v1b3", "version": "v1"}],
+    "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://dataflow.googleapis.com/$discovery/rest?version=v1b3", "version": "v1"}],
     "x-preferred": true,
     "x-providerName": "googleapis.com",
     "x-serviceName": "dataflow"
@@ -1296,6 +1296,7 @@
       "description": "A metric value representing a distribution.",
       "properties": {
         "count": {"$ref": "#/definitions/SplitInt64", "description": "The count of the number of elements present in the distribution."},
+        "histogram": {"$ref": "#/definitions/Histogram", "description": "(Optional) Histogram of value counts for the distribution."},
         "max": {"$ref": "#/definitions/SplitInt64", "description": "The maximum value present in the distribution."},
         "min": {"$ref": "#/definitions/SplitInt64", "description": "The minimum value present in the distribution."},
         "sum": {"$ref": "#/definitions/SplitInt64", "description": "Use an int64 since we'd prefer the added precision. If overflow is a common\nproblem we can detect it and use an additional int64 or a double."},
@@ -1410,6 +1411,22 @@
       "properties": {
         "metadata": {"$ref": "#/definitions/TemplateMetadata", "description": "The template metadata describing the template name, available\nparameters, etc."},
         "status": {"$ref": "#/definitions/Status", "description": "The status of the get template request. Any problems with the\nrequest will be indicated in the error_details."}
+      },
+      "type": "object"
+    },
+    "Histogram": {
+      "description": "Histogram of value counts for a distribution.\n\nBuckets have an inclusive lower bound and exclusive upper bound and use\n\"1,2,5 bucketing\": The first bucket range is from [0,1) and all subsequent\nbucket boundaries are powers of ten multiplied by 1, 2, or 5. Thus, bucket\nboundaries are 0, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, ...\nNegative values are not supported.",
+      "properties": {
+        "bucketCounts": {
+          "description": "Counts of values in each bucket. For efficiency, prefix and trailing\nbuckets with count = 0 are elided. Buckets can store the full range of\nvalues of an unsigned long, with ULLONG_MAX falling into the 59th bucket\nwith range [1e19, 2e19).",
+          "items": {"format": "int64", "type": "string"},
+          "type": "array"
+        },
+        "firstBucketOffset": {
+          "description": "Starting index of first stored bucket. The non-inclusive upper-bound of\nthe ith bucket is given by:\n  pow(10,(i-first_bucket_offset)/3) * (1,2,5)[(i-first_bucket_offset)%3]",
+          "format": "int32",
+          "type": "integer"
+        }
       },
       "type": "object"
     },
@@ -2458,7 +2475,7 @@
       "description": "Shutdown notification from workers. This is to be sent by the shutdown\nscript of the worker VM so that the backend knows that the VM is being\nshut down.",
       "properties": {
         "reason": {
-          "description": "Optional reason to be attached for the shutdown notice.\nFor example: \"PREEMPTION\" would indicate the VM is being shut down because\nof preemption. Other possible reasons may be added in the future.",
+          "description": "The reason for the worker shutdown.\nCurrent possible values are:\n  \"UNKNOWN\": shutdown reason is unknown.\n  \"PREEMPTION\": shutdown reason is preemption.\nOther possible reasons may be added in the future.",
           "type": "string"
         }
       },
