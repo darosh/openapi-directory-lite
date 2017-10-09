@@ -26,7 +26,7 @@
   "host": "route53.amazonaws.com",
   "basePath": "/",
   "x-hasEquivalentPaths": true,
-  "schemes": ["http"],
+  "schemes": ["https", "http"],
   "consumes": ["text/xml"],
   "produces": ["text/xml"],
   "parameters": {

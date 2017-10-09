@@ -26,7 +26,7 @@
   "externalDocs": {"description": "Amazon Web Services documentation", "url": "https://aws.amazon.com/importexport/"},
   "host": "importexport.amazonaws.com",
   "basePath": "/",
-  "schemes": ["http"],
+  "schemes": ["https", "http"],
   "consumes": [],
   "produces": [],
   "parameters": {

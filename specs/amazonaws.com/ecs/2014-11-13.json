@@ -27,7 +27,7 @@
   "host": "ecs.amazonaws.com",
   "basePath": "/",
   "x-hasEquivalentPaths": true,
-  "schemes": ["http"],
+  "schemes": ["https", "http"],
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "parameters": {

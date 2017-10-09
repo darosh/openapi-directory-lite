@@ -27,7 +27,7 @@
   "host": "elasticbeanstalk.amazonaws.com",
   "basePath": "/",
   "x-hasEquivalentPaths": true,
-  "schemes": ["http"],
+  "schemes": ["https", "http"],
   "consumes": [],
   "produces": [],
   "parameters": {

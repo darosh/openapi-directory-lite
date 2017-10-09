@@ -26,7 +26,7 @@
   "host": "s3.amazonaws.com",
   "basePath": "/",
   "x-hasEquivalentPaths": true,
-  "schemes": ["http"],
+  "schemes": ["https", "http"],
   "consumes": ["text/xml"],
   "produces": ["text/xml"],
   "parameters": {"x-amz-security-token": {"name": "x-amz-security-token", "in": "header", "type": "string", "required": false}},
