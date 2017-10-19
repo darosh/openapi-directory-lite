@@ -1391,6 +1391,10 @@
         "environment": {"description": "The environment on which to filter; optional.", "enum": ["ENVIRONMENT_UNSPECIFIED", "WEB", "APP"], "type": "string"},
         "filterSetId": {"description": "The ID of the filter set; unique within the account of the filter set\nowner.\nThe value of this field is ignored in create operations.", "format": "int64", "type": "string"},
         "format": {"description": "The format on which to filter; optional.", "enum": ["FORMAT_UNSPECIFIED", "DISPLAY", "VIDEO"], "type": "string"},
+        "name": {
+          "description": "A user-defined name of the filter set. Filter set names must be unique\nglobally and match one of the patterns:\n\n- `bidders/*/filterSets/*` (for accessing bidder-level troubleshooting\ndata)\n- `bidders/*/accounts/*/filterSets/*` (for accessing buyer-level\ntroubleshooting data)",
+          "type": "string"
+        },
         "ownerAccountId": {"description": "The account ID of the buyer who owns this filter set.\nThe value of this field is ignored in create operations.", "format": "int64", "type": "string"},
         "platforms": {
           "description": "The list of platforms on which to filter; may be empty. The filters\nrepresented by multiple platforms are ORed together (i.e. if non-empty,\nresults must match any one of the platforms).",

@@ -400,14 +400,14 @@
       ],
       "post": {
         "description": "Clears a `Policy` from a resource.",
-        "operationId": "cloudresourcemanager.folders.clearOrgPolicy",
+        "operationId": "cloudresourcemanager.projects.clearOrgPolicy",
         "parameters": [
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ClearOrgPolicyRequest"}},
           {"description": "Name of the resource for the `Policy` to clear.", "in": "path", "name": "resource", "required": true, "type": "string", "x-reservedExpansion": true}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
         "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
-        "tags": ["folders"]
+        "tags": ["projects"]
       }
     },
     "/v1/{resource}:getEffectiveOrgPolicy": {
@@ -428,14 +428,14 @@
       ],
       "post": {
         "description": "Gets the effective `Policy` on a resource. This is the result of merging\n`Policies` in the resource hierarchy. The returned `Policy` will not have\nan `etag`set because it is a computed `Policy` across multiple resources.",
-        "operationId": "cloudresourcemanager.folders.getEffectiveOrgPolicy",
+        "operationId": "cloudresourcemanager.projects.getEffectiveOrgPolicy",
         "parameters": [
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/GetEffectiveOrgPolicyRequest"}},
           {"description": "The name of the resource to start computing the effective `Policy`.", "in": "path", "name": "resource", "required": true, "type": "string", "x-reservedExpansion": true}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OrgPolicy"}}},
         "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
-        "tags": ["folders"]
+        "tags": ["projects"]
       }
     },
     "/v1/{resource}:getIamPolicy": {
@@ -491,14 +491,14 @@
       ],
       "post": {
         "description": "Gets a `Policy` on a resource.\n\nIf no `Policy` is set on the resource, a `Policy` is returned with default\nvalues including `POLICY_TYPE_NOT_SET` for the `policy_type oneof`. The\n`etag` value can be used with `SetOrgPolicy()` to create or update a\n`Policy` during read-modify-write.",
-        "operationId": "cloudresourcemanager.folders.getOrgPolicy",
+        "operationId": "cloudresourcemanager.projects.getOrgPolicy",
         "parameters": [
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/GetOrgPolicyRequest"}},
           {"description": "Name of the resource the `Policy` is set on.", "in": "path", "name": "resource", "required": true, "type": "string", "x-reservedExpansion": true}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OrgPolicy"}}},
         "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
-        "tags": ["folders"]
+        "tags": ["projects"]
       }
     },
     "/v1/{resource}:listAvailableOrgPolicyConstraints": {
@@ -519,14 +519,14 @@
       ],
       "post": {
         "description": "Lists `Constraints` that could be applied on the specified resource.",
-        "operationId": "cloudresourcemanager.folders.listAvailableOrgPolicyConstraints",
+        "operationId": "cloudresourcemanager.projects.listAvailableOrgPolicyConstraints",
         "parameters": [
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ListAvailableOrgPolicyConstraintsRequest"}},
           {"description": "Name of the resource to list `Constraints` for.", "in": "path", "name": "resource", "required": true, "type": "string", "x-reservedExpansion": true}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListAvailableOrgPolicyConstraintsResponse"}}},
         "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
-        "tags": ["folders"]
+        "tags": ["projects"]
       }
     },
     "/v1/{resource}:listOrgPolicies": {
@@ -547,14 +547,14 @@
       ],
       "post": {
         "description": "Lists all the `Policies` set for a particular resource.",
-        "operationId": "cloudresourcemanager.folders.listOrgPolicies",
+        "operationId": "cloudresourcemanager.projects.listOrgPolicies",
         "parameters": [
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/ListOrgPoliciesRequest"}},
           {"description": "Name of the resource to list Policies for.", "in": "path", "name": "resource", "required": true, "type": "string", "x-reservedExpansion": true}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/ListOrgPoliciesResponse"}}},
         "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/cloud-platform.read-only"]}],
-        "tags": ["folders"]
+        "tags": ["projects"]
       }
     },
     "/v1/{resource}:setIamPolicy": {
@@ -610,14 +610,14 @@
       ],
       "post": {
         "description": "Updates the specified `Policy` on the resource. Creates a new `Policy` for\nthat `Constraint` on the resource if one does not exist.\n\nNot supplying an `etag` on the request `Policy` results in an unconditional\nwrite of the `Policy`.",
-        "operationId": "cloudresourcemanager.folders.setOrgPolicy",
+        "operationId": "cloudresourcemanager.projects.setOrgPolicy",
         "parameters": [
           {"in": "body", "name": "body", "schema": {"$ref": "#/definitions/SetOrgPolicyRequest"}},
           {"description": "Resource name of the resource to attach the `Policy`.", "in": "path", "name": "resource", "required": true, "type": "string", "x-reservedExpansion": true}
         ],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/OrgPolicy"}}},
         "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}],
-        "tags": ["folders"]
+        "tags": ["projects"]
       }
     },
     "/v1/{resource}:testIamPermissions": {

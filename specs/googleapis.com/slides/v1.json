@@ -9,6 +9,7 @@
     "title": "Google Slides",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
+    "x-apisguru-categories": ["cloud"],
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
     "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://slides.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
     "x-preferred": true,
@@ -673,6 +674,22 @@
       "properties": {"children": {"description": "The collection of elements in the group. The minimum size of a group is 2.", "items": {"$ref": "#/definitions/PageElement"}, "type": "array"}},
       "type": "object"
     },
+    "GroupObjectsRequest": {
+      "description": "Groups objects to create an object group. For example, groups PageElements to create a Group on the same page as all the children.",
+      "properties": {
+        "childrenObjectIds": {
+          "description": "The object IDs of the objects to group.\n\nOnly page elements can be grouped. There should be at least two page\nelements on the same page that are not already in another group. Some page\nelements, such as videos, tables and placeholder shapes cannot be grouped.",
+          "items": {"type": "string"},
+          "type": "array"
+        },
+        "groupObjectId": {
+          "description": "A user-supplied object ID for the group to be created.\n\nIf you specify an ID, it must be unique among all pages and page elements\nin the presentation. The ID must start with an alphanumeric character or an\nunderscore (matches regex `[a-zA-Z0-9_]`); remaining characters\nmay include those as well as a hyphen or colon (matches regex\n`[a-zA-Z0-9_-:]`).\nThe length of the ID must not be less than 5 or greater than 50.\n\nIf you don't specify an ID, a unique one is generated.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GroupObjectsResponse": {"description": "The result of grouping objects.", "properties": {"objectId": {"description": "The object ID of the created group.", "type": "string"}}, "type": "object"},
     "Image": {
       "description": "A PageElement kind representing an\nimage.",
       "properties": {
@@ -856,6 +873,17 @@
     "MasterProperties": {
       "description": "The properties of Page that are only\nrelevant for pages with page_type MASTER.",
       "properties": {"displayName": {"description": "The human-readable name of the master.", "type": "string"}},
+      "type": "object"
+    },
+    "MergeTableCellsRequest": {
+      "description": "Merges cells in a Table.",
+      "properties": {
+        "objectId": {"description": "The object ID of the table.", "type": "string"},
+        "tableRange": {
+          "$ref": "#/definitions/TableRange",
+          "description": "The table range specifying which cells of the table to merge.\n\nAny text in the cells being merged will be concatenated and stored in the\nupper-left (\"head\") cell of the range. If the range is non-rectangular\n(which can occur in some cases where the range covers cells that are\nalready merged), a 400 bad request error is returned."
+        }
+      },
       "type": "object"
     },
     "NestingLevel": {
@@ -1189,13 +1217,17 @@
         "deleteTableRow": {"$ref": "#/definitions/DeleteTableRowRequest", "description": "Deletes a row from a table."},
         "deleteText": {"$ref": "#/definitions/DeleteTextRequest", "description": "Deletes text from a shape or a table cell."},
         "duplicateObject": {"$ref": "#/definitions/DuplicateObjectRequest", "description": "Duplicates a slide or page element."},
+        "groupObjects": {"$ref": "#/definitions/GroupObjectsRequest", "description": "Groups objects, such as page elements."},
         "insertTableColumns": {"$ref": "#/definitions/InsertTableColumnsRequest", "description": "Inserts columns into a table."},
         "insertTableRows": {"$ref": "#/definitions/InsertTableRowsRequest", "description": "Inserts rows into a table."},
         "insertText": {"$ref": "#/definitions/InsertTextRequest", "description": "Inserts text into a shape or table cell."},
+        "mergeTableCells": {"$ref": "#/definitions/MergeTableCellsRequest", "description": "Merges cells in a Table."},
         "refreshSheetsChart": {"$ref": "#/definitions/RefreshSheetsChartRequest", "description": "Refreshes a Google Sheets chart."},
         "replaceAllShapesWithImage": {"$ref": "#/definitions/ReplaceAllShapesWithImageRequest", "description": "Replaces all shapes matching some criteria with an image."},
         "replaceAllShapesWithSheetsChart": {"$ref": "#/definitions/ReplaceAllShapesWithSheetsChartRequest", "description": "Replaces all shapes matching some criteria with a Google Sheets chart."},
         "replaceAllText": {"$ref": "#/definitions/ReplaceAllTextRequest", "description": "Replaces all instances of specified text."},
+        "ungroupObjects": {"$ref": "#/definitions/UngroupObjectsRequest", "description": "Ungroups objects, such as groups."},
+        "unmergeTableCells": {"$ref": "#/definitions/UnmergeTableCellsRequest", "description": "Unmerges cells in a Table."},
         "updateImageProperties": {"$ref": "#/definitions/UpdateImagePropertiesRequest", "description": "Updates the properties of an Image."},
         "updateLineProperties": {"$ref": "#/definitions/UpdateLinePropertiesRequest", "description": "Updates the properties of a Line."},
         "updatePageElementTransform": {"$ref": "#/definitions/UpdatePageElementTransformRequest", "description": "Updates the transform of a page element."},
@@ -1203,7 +1235,10 @@
         "updateParagraphStyle": {"$ref": "#/definitions/UpdateParagraphStyleRequest", "description": "Updates the styling of paragraphs within a Shape or Table."},
         "updateShapeProperties": {"$ref": "#/definitions/UpdateShapePropertiesRequest", "description": "Updates the properties of a Shape."},
         "updateSlidesPosition": {"$ref": "#/definitions/UpdateSlidesPositionRequest", "description": "Updates the position of a set of slides in the presentation."},
+        "updateTableBorderProperties": {"$ref": "#/definitions/UpdateTableBorderPropertiesRequest", "description": "Updates the properties of the table borders in a Table."},
         "updateTableCellProperties": {"$ref": "#/definitions/UpdateTableCellPropertiesRequest", "description": "Updates the properties of a TableCell."},
+        "updateTableColumnProperties": {"$ref": "#/definitions/UpdateTableColumnPropertiesRequest", "description": "Updates the properties of a Table\ncolumn."},
+        "updateTableRowProperties": {"$ref": "#/definitions/UpdateTableRowPropertiesRequest", "description": "Updates the properties of a Table row."},
         "updateTextStyle": {"$ref": "#/definitions/UpdateTextStyleRequest", "description": "Updates the styling of text within a Shape or Table."},
         "updateVideoProperties": {"$ref": "#/definitions/UpdateVideoPropertiesRequest", "description": "Updates the properties of a Video."}
       },
@@ -1220,6 +1255,7 @@
         "createTable": {"$ref": "#/definitions/CreateTableResponse", "description": "The result of creating a table."},
         "createVideo": {"$ref": "#/definitions/CreateVideoResponse", "description": "The result of creating a video."},
         "duplicateObject": {"$ref": "#/definitions/DuplicateObjectResponse", "description": "The result of duplicating an object."},
+        "groupObjects": {"$ref": "#/definitions/GroupObjectsResponse", "description": "The result of grouping objects."},
         "replaceAllShapesWithImage": {"$ref": "#/definitions/ReplaceAllShapesWithImageResponse", "description": "The result of replacing all shapes matching some criteria with an\nimage."},
         "replaceAllShapesWithSheetsChart": {"$ref": "#/definitions/ReplaceAllShapesWithSheetsChartResponse", "description": "The result of replacing all shapes matching some criteria with a Google\nSheets chart."},
         "replaceAllText": {"$ref": "#/definitions/ReplaceAllTextResponse", "description": "The result of replacing text."}
@@ -1519,13 +1555,48 @@
       "description": "A PageElement kind representing a\ntable.",
       "properties": {
         "columns": {"description": "Number of columns in the table.", "format": "int32", "type": "integer"},
+        "horizontalBorderRows": {
+          "description": "Properties of horizontal cell borders.\n\nA table's horizontal cell borders are represented as a grid. The grid has\none more row than the number of rows in the table and the same number of\ncolumns as the table. For example, if the table is 3 x 3, its horizontal\nborders will be represented as a grid with 4 rows and 3 columns.",
+          "items": {"$ref": "#/definitions/TableBorderRow"},
+          "type": "array"
+        },
         "rows": {"description": "Number of rows in the table.", "format": "int32", "type": "integer"},
         "tableColumns": {"description": "Properties of each column.", "items": {"$ref": "#/definitions/TableColumnProperties"}, "type": "array"},
         "tableRows": {
           "description": "Properties and contents of each row.\n\nCells that span multiple rows are contained in only one of these rows and\nhave a row_span greater\nthan 1.",
           "items": {"$ref": "#/definitions/TableRow"},
           "type": "array"
+        },
+        "verticalBorderRows": {
+          "description": "Properties of vertical cell borders.\n\nA table's vertical cell borders are represented as a grid. The grid has the\nsame number of rows as the table and one more column than the number of\ncolumns in the table. For example, if the table is 3 x 3, its vertical\nborders will be represented as a grid with 3 rows and 4 columns.",
+          "items": {"$ref": "#/definitions/TableBorderRow"},
+          "type": "array"
         }
+      },
+      "type": "object"
+    },
+    "TableBorderCell": {
+      "description": "The properties of each border cell.",
+      "properties": {
+        "location": {"$ref": "#/definitions/TableCellLocation", "description": "The location of the border within the border table."},
+        "tableBorderProperties": {"$ref": "#/definitions/TableBorderProperties", "description": "The border properties."}
+      },
+      "type": "object"
+    },
+    "TableBorderFill": {"description": "The fill of the border.", "properties": {"solidFill": {"$ref": "#/definitions/SolidFill", "description": "Solid fill."}}, "type": "object"},
+    "TableBorderProperties": {
+      "description": "The border styling properties of the\nTableBorderCell.",
+      "properties": {
+        "dashStyle": {"description": "The dash style of the border.", "enum": ["DASH_STYLE_UNSPECIFIED", "SOLID", "DOT", "DASH", "DASH_DOT", "LONG_DASH", "LONG_DASH_DOT"], "type": "string"},
+        "tableBorderFill": {"$ref": "#/definitions/TableBorderFill", "description": "The fill of the table border."},
+        "weight": {"$ref": "#/definitions/Dimension", "description": "The thickness of the border."}
+      },
+      "type": "object"
+    },
+    "TableBorderRow": {
+      "description": "Contents of each border row in a table.",
+      "properties": {
+        "tableBorderCells": {"description": "Properties of each border cell. When a border's adjacent table cells are\nmerged, it is not included in the response.", "items": {"$ref": "#/definitions/TableBorderCell"}, "type": "array"}
       },
       "type": "object"
     },
@@ -1582,6 +1653,17 @@
           "description": "Properties and contents of each cell.\n\nCells that span multiple columns are represented only once with a\ncolumn_span greater\nthan 1. As a result, the length of this collection does not always match\nthe number of columns of the entire table.",
           "items": {"$ref": "#/definitions/TableCell"},
           "type": "array"
+        },
+        "tableRowProperties": {"$ref": "#/definitions/TableRowProperties", "description": "Properties of the row."}
+      },
+      "type": "object"
+    },
+    "TableRowProperties": {
+      "description": "Properties of each row in a table.",
+      "properties": {
+        "minRowHeight": {
+          "$ref": "#/definitions/Dimension",
+          "description": "Minimum height of the row. The row will be rendered in the Slides editor at\na height equal to or greater than this value in order to show all the text\nin the row's cell(s)."
         }
       },
       "type": "object"
@@ -1668,6 +1750,28 @@
         },
         "height": {"description": "The positive height in pixels of the thumbnail image.", "format": "int32", "type": "integer"},
         "width": {"description": "The positive width in pixels of the thumbnail image.", "format": "int32", "type": "integer"}
+      },
+      "type": "object"
+    },
+    "UngroupObjectsRequest": {
+      "description": "Ungroups objects, such as groups.",
+      "properties": {
+        "objectIds": {
+          "description": "The object IDs of the objects to ungroup.\n\nOnly groups that are not inside other\ngroups can be ungrouped. All the groups\nshould be on the same page. The group itself is deleted. The visual sizes\nand positions of all the children are preserved.",
+          "items": {"type": "string"},
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "UnmergeTableCellsRequest": {
+      "description": "Unmerges cells in a Table.",
+      "properties": {
+        "objectId": {"description": "The object ID of the table.", "type": "string"},
+        "tableRange": {
+          "$ref": "#/definitions/TableRange",
+          "description": "The table range specifying which cells of the table to unmerge.\n\nAll merged cells in this range will be unmerged, and cells that are already\nunmerged will not be affected. If the range has no merged cells, the\nrequest will do nothing. If there is text in any of the merged cells, the\ntext will remain in the upper-left (\"head\") cell of the resulting block of\nunmerged cells."
+        }
       },
       "type": "object"
     },
@@ -1762,6 +1866,28 @@
       },
       "type": "object"
     },
+    "UpdateTableBorderPropertiesRequest": {
+      "description": "Updates the properties of the table borders in a Table.",
+      "properties": {
+        "borderPosition": {
+          "description": "The border position in the table range the updates should apply to. If a\nborder position is not specified, the updates will apply to all borders in\nthe table range.",
+          "enum": ["ALL", "BOTTOM", "INNER", "INNER_HORIZONTAL", "INNER_VERTICAL", "LEFT", "OUTER", "RIGHT", "TOP"],
+          "type": "string"
+        },
+        "fields": {
+          "description": "The fields that should be updated.\n\nAt least one field must be specified. The root `tableBorderProperties` is\nimplied and should not be specified. A single `\"*\"` can be used as\nshort-hand for listing every field.\n\nFor example to update the table border solid fill color, set\n`fields` to `\"tableBorderFill.solidFill.color\"`.\n\nTo reset a property to its default value, include its field name in the\nfield mask but leave the field itself unset.",
+          "format": "google-fieldmask",
+          "type": "string"
+        },
+        "objectId": {"description": "The object ID of the table.", "type": "string"},
+        "tableBorderProperties": {"$ref": "#/definitions/TableBorderProperties", "description": "The table border properties to update."},
+        "tableRange": {
+          "$ref": "#/definitions/TableRange",
+          "description": "The table range representing the subset of the table to which the updates\nare applied. If a table range is not specified, the updates will apply to\nthe entire table."
+        }
+      },
+      "type": "object"
+    },
     "UpdateTableCellPropertiesRequest": {
       "description": "Update the properties of a TableCell.",
       "properties": {
@@ -1776,6 +1902,41 @@
           "$ref": "#/definitions/TableRange",
           "description": "The table range representing the subset of the table to which the updates\nare applied. If a table range is not specified, the updates will apply to\nthe entire table."
         }
+      },
+      "type": "object"
+    },
+    "UpdateTableColumnPropertiesRequest": {
+      "description": "Updates the properties of a Table column.",
+      "properties": {
+        "columnIndices": {
+          "description": "The list of zero-based indices specifying which columns to update. If no\nindices are provided, all columns in the table will be updated.",
+          "items": {"format": "int32", "type": "integer"},
+          "type": "array"
+        },
+        "fields": {
+          "description": "The fields that should be updated.\n\nAt least one field must be specified. The root `tableColumnProperties` is\nimplied and should not be specified. A single `\"*\"` can be used as\nshort-hand for listing every field.\n\nFor example to update the column width, set `fields` to `\"column_width\"`.\n\nIf '\"column_width\"' is included in the field mask but the property is left\nunset, the column width will default to 406,400 EMU (32 points).",
+          "format": "google-fieldmask",
+          "type": "string"
+        },
+        "objectId": {"description": "The object ID of the table.", "type": "string"},
+        "tableColumnProperties": {
+          "$ref": "#/definitions/TableColumnProperties",
+          "description": "The table column properties to update.\n\nIf the value of `table_column_properties#column_width` in the request is\nless than 406,400 EMU (32 points), a 400 bad request error is returned."
+        }
+      },
+      "type": "object"
+    },
+    "UpdateTableRowPropertiesRequest": {
+      "description": "Updates the properties of a Table row.",
+      "properties": {
+        "fields": {
+          "description": "The fields that should be updated.\n\nAt least one field must be specified. The root `tableRowProperties` is\nimplied and should not be specified. A single `\"*\"` can be used as\nshort-hand for listing every field.\n\nFor example to update the minimum row height, set `fields` to\n`\"min_row_height\"`.\n\nIf '\"min_row_height\"' is included in the field mask but the property is\nleft unset, the minimum row height will default to 0.",
+          "format": "google-fieldmask",
+          "type": "string"
+        },
+        "objectId": {"description": "The object ID of the table.", "type": "string"},
+        "rowIndices": {"description": "The list of zero-based indices specifying which rows to update. If no\nindices are provided, all rows in the table will be updated.", "items": {"format": "int32", "type": "integer"}, "type": "array"},
+        "tableRowProperties": {"$ref": "#/definitions/TableRowProperties", "description": "The table row properties to update."}
       },
       "type": "object"
     },

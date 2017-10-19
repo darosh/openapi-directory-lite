@@ -10,7 +10,7 @@
     "title": "Commerce Taxonomy",
     "version": "v1_beta.0.0",
     "x-apisguru-categories": ["ecommerce"],
-    "x-logo": {"backgroundColor": "#FFFFFF", "url": "https://pbs.twimg.com/profile_images/667048357307662338/PzXHlU9N_400x400.png"},
+    "x-logo": {"backgroundColor": "#FFFFFF", "url": "https://pbs.twimg.com/profile_images/854751952239853568/BdT5xkFG_400x400.jpg"},
     "x-origin": [{"format": "swagger", "url": "https://developer.ebay.com/api-docs/master/commerce/taxonomy/openapi/2/commerce_taxonomy_v1_beta.json", "version": "2.0"}],
     "x-providerName": "ebay.com",
     "x-serviceName": "commerce-taxonomy",

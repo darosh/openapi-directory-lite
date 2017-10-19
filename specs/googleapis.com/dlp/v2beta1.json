@@ -9,6 +9,7 @@
     "title": "DLP",
     "version": "v2beta1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
+    "x-apisguru-categories": ["cloud"],
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
     "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://dlp.googleapis.com/$discovery/rest?version=v2beta1", "version": "v1"}],
     "x-preferred": true,
@@ -557,6 +558,17 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2beta1CustomInfoType": {
+      "description": "Custom information type provided by the user. Used to find domain-specific\nsensitive information configurable to the data in question.",
+      "properties": {
+        "dictionary": {"$ref": "#/definitions/GooglePrivacyDlpV2beta1Dictionary", "description": "Dictionary-based custom info type."},
+        "infoType": {
+          "$ref": "#/definitions/GooglePrivacyDlpV2beta1InfoType",
+          "description": "Info type configuration. All custom info types must have configurations\nthat do not conflict with built-in info types or other custom info types."
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2beta1DatastoreKey": {
       "description": "Record key for a finding in Cloud Datastore.",
       "properties": {"entityKey": {"$ref": "#/definitions/GooglePrivacyDlpV2beta1Key", "description": "Datastore entity key."}},
@@ -608,6 +620,11 @@
         "items": {"items": {"$ref": "#/definitions/GooglePrivacyDlpV2beta1ContentItem"}, "type": "array"},
         "summaries": {"description": "A review of the transformations that took place for each item.", "items": {"$ref": "#/definitions/GooglePrivacyDlpV2beta1DeidentificationSummary"}, "type": "array"}
       },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2beta1Dictionary": {
+      "description": "Custom information type based on a dictionary of words or phrases. This can\nbe used to match sensitive information specific to the data, such as a list\nof employee IDs or job titles.",
+      "properties": {"wordList": {"$ref": "#/definitions/GooglePrivacyDlpV2beta1WordList", "description": "List of words or phrases to search for."}},
       "type": "object"
     },
     "GooglePrivacyDlpV2beta1EntityId": {
@@ -749,6 +766,7 @@
     "GooglePrivacyDlpV2beta1InspectConfig": {
       "description": "Configuration description of the scanning process.\nWhen used with redactContent only info_types and min_likelihood are currently\nused.",
       "properties": {
+        "customInfoTypes": {"description": "Custom info types provided by the user.", "items": {"$ref": "#/definitions/GooglePrivacyDlpV2beta1CustomInfoType"}, "type": "array"},
         "excludeTypes": {"description": "When true, excludes type information of the findings.", "type": "boolean"},
         "includeQuote": {"description": "When true, a contextual quote from the data that triggered a finding is\nincluded in the response; see Finding.quote.", "type": "boolean"},
         "infoTypeLimits": {"description": "Configuration of findings limit given for specified info types.", "items": {"$ref": "#/definitions/GooglePrivacyDlpV2beta1InfoTypeLimit"}, "type": "array"},
@@ -1217,6 +1235,17 @@
       "properties": {
         "count": {"description": "How many times the value is contained in the field.", "format": "int64", "type": "string"},
         "value": {"$ref": "#/definitions/GooglePrivacyDlpV2beta1Value", "description": "A value contained in the field in question."}
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2beta1WordList": {
+      "description": "Message defining a list of words or phrases to search for in the data.",
+      "properties": {
+        "words": {
+          "description": "Words or phrases defining the dictionary. No word can be shorter than 3\ncharacters in length. To match, there must be whitespace or punctuation\naround the targeted string. [required]",
+          "items": {"type": "string"},
+          "type": "array"
+        }
       },
       "type": "object"
     },

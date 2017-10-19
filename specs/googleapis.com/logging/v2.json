@@ -10,6 +10,7 @@
     "title": "Stackdriver Logging",
     "version": "v2",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
+    "x-apisguru-categories": ["cloud"],
     "x-logo": {"url": "https://cloud.google.com/_static/images/new-gcp-logo.png"},
     "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://logging.googleapis.com/$discovery/rest?version=v2", "version": "v1"}],
     "x-preferred": true,
@@ -1029,7 +1030,10 @@
       "description": "Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type's existing data unusable.",
       "properties": {
         "description": {"description": "A detailed description of the metric, which can be used in documentation.", "type": "string"},
-        "displayName": {"description": "A concise name for the metric, which can be displayed in user interfaces. Use sentence case without an ending period, for example \"Request count\".", "type": "string"},
+        "displayName": {
+          "description": "A concise name for the metric, which can be displayed in user interfaces. Use sentence case without an ending period, for example \"Request count\". This field is optional but it is recommended to be set for any metrics associated with user-visible concepts, such as Quota.",
+          "type": "string"
+        },
         "labels": {
           "description": "The set of labels that can be used to describe a specific instance of this metric type. For example, the appengine.googleapis.com/http/server/response_latencies metric type has a label for the HTTP response code, response_code, so you can look at latencies for successful responses or just for responses that failed.",
           "items": {"$ref": "#/definitions/LabelDescriptor"},
@@ -1040,10 +1044,7 @@
           "enum": ["METRIC_KIND_UNSPECIFIED", "GAUGE", "DELTA", "CUMULATIVE"],
           "type": "string"
         },
-        "name": {
-          "description": "The resource name of the metric descriptor. Depending on the implementation, the name typically includes: (1) the parent resource name that defines the scope of the metric type or of its data; and (2) the metric's URL-encoded type, which also appears in the type field of this descriptor. For example, following is the resource name of a custom metric within the GCP project my-project-id:\n\"projects/my-project-id/metricDescriptors/custom.googleapis.com%2Finvoice%2Fpaid%2Famount\"\n",
-          "type": "string"
-        },
+        "name": {"description": "The resource name of the metric descriptor.", "type": "string"},
         "type": {
           "description": "The metric type, including its DNS name prefix. The type is not URL-encoded. All user-defined custom metric types have the DNS name custom.googleapis.com. Metric types should use a natural hierarchical grouping. For example:\n\"custom.googleapis.com/invoice/paid/amount\"\n\"appengine.googleapis.com/http/server/response_latencies\"\n",
           "type": "string"

@@ -426,14 +426,18 @@
     "SafeSearchAnnotation": {
       "description": "Set of features pertaining to the image, computed by computer vision\nmethods over safe-search verticals (for example, adult, spoof, medical,\nviolence).",
       "properties": {
-        "adult": {"description": "Represents the adult content likelihood for the image.", "enum": ["UNKNOWN", "VERY_UNLIKELY", "UNLIKELY", "POSSIBLE", "LIKELY", "VERY_LIKELY"], "type": "string"},
+        "adult": {
+          "description": "Represents the adult content likelihood for the image. Adult content may\ncontain elements such as nudity, pornographic images or cartoons, or\nsexual activities.",
+          "enum": ["UNKNOWN", "VERY_UNLIKELY", "UNLIKELY", "POSSIBLE", "LIKELY", "VERY_LIKELY"],
+          "type": "string"
+        },
         "medical": {"description": "Likelihood that this is a medical image.", "enum": ["UNKNOWN", "VERY_UNLIKELY", "UNLIKELY", "POSSIBLE", "LIKELY", "VERY_LIKELY"], "type": "string"},
         "spoof": {
           "description": "Spoof likelihood. The likelihood that an modification\nwas made to the image's canonical version to make it appear\nfunny or offensive.",
           "enum": ["UNKNOWN", "VERY_UNLIKELY", "UNLIKELY", "POSSIBLE", "LIKELY", "VERY_LIKELY"],
           "type": "string"
         },
-        "violence": {"description": "Violence likelihood.", "enum": ["UNKNOWN", "VERY_UNLIKELY", "UNLIKELY", "POSSIBLE", "LIKELY", "VERY_LIKELY"], "type": "string"}
+        "violence": {"description": "Likelihood that this image contains violent content.", "enum": ["UNKNOWN", "VERY_UNLIKELY", "UNLIKELY", "POSSIBLE", "LIKELY", "VERY_LIKELY"], "type": "string"}
       },
       "type": "object"
     },

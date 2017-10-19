@@ -9,6 +9,7 @@
     "title": "Google Cloud Speech",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
+    "x-apisguru-categories": ["machine_learning"],
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
     "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://speech.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
     "x-preferred": true,
@@ -311,7 +312,7 @@
       "description": "Alternative hypotheses (a.k.a. n-best list).",
       "properties": {
         "confidence": {
-          "description": "*Output-only* The confidence estimate between 0.0 and 1.0. A higher number\nindicates an estimated greater likelihood that the recognized words are\ncorrect. This field is typically provided only for the top hypothesis, and\nonly for `is_final=true` results. Clients should not rely on the\n`confidence` field as it is not guaranteed to be accurate or consistent.\nThe default of 0.0 is a sentinel value indicating `confidence` was not set.",
+          "description": "*Output-only* The confidence estimate between 0.0 and 1.0. A higher number\nindicates an estimated greater likelihood that the recognized words are\ncorrect. This field is typically provided only for the top hypothesis, and\nonly for `is_final=true` results. Clients should not rely on the\n`confidence` field as it is not guaranteed to be accurate, or even set, in\nany of the results.\nThe default of 0.0 is a sentinel value indicating `confidence` was not set.",
           "format": "float",
           "type": "number"
         },

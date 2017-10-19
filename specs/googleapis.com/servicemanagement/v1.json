@@ -9,6 +9,7 @@
     "title": "Google Service Management",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
+    "x-apisguru-categories": ["cloud"],
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
     "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://servicemanagement.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
     "x-preferred": true,
@@ -826,7 +827,7 @@
       "type": "object"
     },
     "Billing": {
-      "description": "Billing related configuration of the service.\n\nThe following example shows how to configure monitored resources and metrics\nfor billing:\n    monitored_resources:\n    - type: library.googleapis.com/branch\n      labels:\n      - key: /city\n        description: The city where the library branch is located in.\n      - key: /name\n        description: The name of the branch.\n    metrics:\n    - name: library.googleapis.com/book/borrowed_count\n      metric_kind: DELTA\n      value_type: INT64\n    billing:\n      consumer_destinations:\n      - monitored_resource: library.googleapis.com/branch\n        metrics:\n        - library.googleapis.com/book/borrowed_count",
+      "description": "Billing related configuration of the service.\n\nThe following example shows how to configure monitored resources and metrics\nfor billing:\n\n    monitored_resources:\n    - type: library.googleapis.com/branch\n      labels:\n      - key: /city\n        description: The city where the library branch is located in.\n      - key: /name\n        description: The name of the branch.\n    metrics:\n    - name: library.googleapis.com/book/borrowed_count\n      metric_kind: DELTA\n      value_type: INT64\n    billing:\n      consumer_destinations:\n      - monitored_resource: library.googleapis.com/branch\n        metrics:\n        - library.googleapis.com/book/borrowed_count",
       "properties": {
         "consumerDestinations": {
           "description": "Billing configurations for sending metrics to the consumer project.\nThere can be multiple consumer destinations per service, each one must have\na different monitored resource type. A metric can be used in at most\none consumer destination.",
@@ -1363,7 +1364,10 @@
       "description": "Defines a metric type and its schema. Once a metric descriptor is created,\ndeleting or altering it stops data collection and makes the metric type's\nexisting data unusable.",
       "properties": {
         "description": {"description": "A detailed description of the metric, which can be used in documentation.", "type": "string"},
-        "displayName": {"description": "A concise name for the metric, which can be displayed in user interfaces.\nUse sentence case without an ending period, for example \"Request count\".", "type": "string"},
+        "displayName": {
+          "description": "A concise name for the metric, which can be displayed in user interfaces.\nUse sentence case without an ending period, for example \"Request count\".\nThis field is optional but it is recommended to be set for any metrics\nassociated with user-visible concepts, such as Quota.",
+          "type": "string"
+        },
         "labels": {
           "description": "The set of labels that can be used to describe a specific\ninstance of this metric type. For example, the\n`appengine.googleapis.com/http/server/response_latencies` metric\ntype has a label for the HTTP response code, `response_code`, so\nyou can look at latencies for successful responses or just\nfor responses that failed.",
           "items": {"$ref": "#/definitions/LabelDescriptor"},
@@ -1374,10 +1378,7 @@
           "enum": ["METRIC_KIND_UNSPECIFIED", "GAUGE", "DELTA", "CUMULATIVE"],
           "type": "string"
         },
-        "name": {
-          "description": "The resource name of the metric descriptor. Depending on the\nimplementation, the name typically includes: (1) the parent resource name\nthat defines the scope of the metric type or of its data; and (2) the\nmetric's URL-encoded type, which also appears in the `type` field of this\ndescriptor. For example, following is the resource name of a custom\nmetric within the GCP project `my-project-id`:\n\n    \"projects/my-project-id/metricDescriptors/custom.googleapis.com%2Finvoice%2Fpaid%2Famount\"",
-          "type": "string"
-        },
+        "name": {"description": "The resource name of the metric descriptor.", "type": "string"},
         "type": {
           "description": "The metric type, including its DNS name prefix. The type is not\nURL-encoded.  All user-defined custom metric types have the DNS name\n`custom.googleapis.com`.  Metric types should use a natural hierarchical\ngrouping. For example:\n\n    \"custom.googleapis.com/invoice/paid/amount\"\n    \"appengine.googleapis.com/http/server/response_latencies\"",
           "type": "string"
@@ -1582,18 +1583,22 @@
           "type": "string"
         },
         "metric": {
-          "description": "The name of the metric this quota limit applies to. The quota limits with\nthe same metric will be checked together during runtime. The metric must be\ndefined within the service config.\n\nUsed by metric-based quotas only.",
+          "description": "The name of the metric this quota limit applies to. The quota limits with\nthe same metric will be checked together during runtime. The metric must be\ndefined within the service config.",
           "type": "string"
         },
         "name": {
-          "description": "Name of the quota limit. The name is used to refer to the limit when\noverriding the default limit on per-consumer basis.\n\nFor metric-based quota limits, the name must be provided, and it must be\nunique within the service. The name can only include alphanumeric\ncharacters as well as '-'.\n\nThe maximum length of the limit name is 64 characters.\n\nThe name of a limit is used as a unique identifier for this limit.\nTherefore, once a limit has been put into use, its name should be\nimmutable. You can use the display_name field to provide a user-friendly\nname for the limit. The display name can be evolved over time without\naffecting the identity of the limit.",
+          "description": "Name of the quota limit.\n\nThe name must be provided, and it must be unique within the service. The\nname can only include alphanumeric characters as well as '-'.\n\nThe maximum length of the limit name is 64 characters.",
           "type": "string"
         },
         "unit": {
-          "description": "Specify the unit of the quota limit. It uses the same syntax as\nMetric.unit. The supported unit kinds are determined by the quota\nbackend system.\n\nThe [Google Service Control](https://cloud.google.com/service-control)\nsupports the following unit components:\n* One of the time intevals:\n  * \"/min\"  for quota every minute.\n  * \"/d\"  for quota every 24 hours, starting 00:00 US Pacific Time.\n  * Otherwise the quota won't be reset by time, such as storage limit.\n* One and only one of the granted containers:\n  * \"/{project}\" quota for a project\n\nHere are some examples:\n* \"1/min/{project}\" for quota per minute per project.\n\nNote: the order of unit components is insignificant.\nThe \"1\" at the beginning is required to follow the metric unit syntax.\n\nUsed by metric-based quotas only.",
+          "description": "Specify the unit of the quota limit. It uses the same syntax as\nMetric.unit. The supported unit kinds are determined by the quota\nbackend system.\n\nHere are some examples:\n* \"1/min/{project}\" for quota per minute per project.\n\nNote: the order of unit components is insignificant.\nThe \"1\" at the beginning is required to follow the metric unit syntax.",
           "type": "string"
         },
-        "values": {"additionalProperties": {"format": "int64", "type": "string"}, "description": "Tiered limit values, currently only STANDARD is supported.", "type": "object"}
+        "values": {
+          "additionalProperties": {"format": "int64", "type": "string"},
+          "description": "Tiered limit values. You must specify this as a key:value pair, with an\ninteger value that is the maximum number of requests allowed for the\nspecified unit. Currently only STANDARD is supported.",
+          "type": "object"
+        }
       },
       "type": "object"
     },
@@ -1840,7 +1845,10 @@
       "properties": {
         "allowUnregisteredCalls": {"description": "True, if the method allows unregistered calls; false otherwise.", "type": "boolean"},
         "selector": {"description": "Selects the methods to which this rule applies. Use '*' to indicate all\nmethods in all APIs.\n\nRefer to selector for syntax details.", "type": "string"},
-        "skipServiceControl": {"description": "True, if the method should skip service control. If so, no control plane\nfeature (like quota and billing) will be enabled.", "type": "boolean"}
+        "skipServiceControl": {
+          "description": "True, if the method should skip service control. If so, no control plane\nfeature (like quota and billing) will be enabled.\nThis flag is used by ESP to allow some Endpoints customers to bypass\nGoogle internal checks.",
+          "type": "boolean"
+        }
       },
       "type": "object"
     },

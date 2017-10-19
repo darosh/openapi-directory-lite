@@ -9,6 +9,7 @@
     "title": "Manufacturer Center",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
+    "x-apisguru-categories": ["marketing"],
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
     "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://manufacturers.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
     "x-preferred": true,
@@ -183,14 +184,14 @@
         "productLine": {"description": "The name of the group of products related to the product. For more\ninformation, see\nhttps://support.google.com/manufacturers/answer/6124116#productline.", "type": "string"},
         "productName": {"description": "The canonical name of the product. For more information, see\nhttps://support.google.com/manufacturers/answer/6124116#productname.", "type": "string"},
         "productPageUrl": {"description": "The URL of the detail page of the product. For more information, see\nhttps://support.google.com/manufacturers/answer/6124116#productpage.", "type": "string"},
-        "productType": {"description": "The category of the product. For more information, see\nhttps://support.google.com/manufacturers/answer/6124116#producttype.", "items": {"type": "string"}, "type": "array"},
+        "productType": {"description": "The type or category of the product. For more information, see\nhttps://support.google.com/manufacturers/answer/6124116#producttype.", "items": {"type": "string"}, "type": "array"},
         "releaseDate": {"description": "The release date of the product. For more information, see\nhttps://support.google.com/manufacturers/answer/6124116#release.", "type": "string"},
         "scent": {"description": "The scent of the product. For more information, see\n https://support.google.com/manufacturers/answer/6124116#scent.", "type": "string"},
         "size": {"description": "The size of the product. For more information, see\nhttps://support.google.com/manufacturers/answer/6124116#size.", "type": "string"},
         "sizeSystem": {"description": "The size system of the product. For more information, see\nhttps://support.google.com/manufacturers/answer/6124116#sizesystem.", "type": "string"},
         "sizeType": {"description": "The size type of the product. For more information, see\nhttps://support.google.com/manufacturers/answer/6124116#sizetype.", "type": "string"},
         "suggestedRetailPrice": {"$ref": "#/definitions/Price", "description": "The suggested retail price (MSRP) of the product. For more information,\nsee https://support.google.com/manufacturers/answer/6124116#price."},
-        "targetAccountId": {"description": "The target account id. Should only be used in the accounts of the data\npartners.", "format": "int64", "type": "string"},
+        "targetClientId": {"description": "The target client id. Should only be used in the accounts of the data\npartners.", "type": "string"},
         "theme": {"description": "The theme of the product. For more information, see\nhttps://support.google.com/manufacturers/answer/6124116#theme.", "type": "string"},
         "title": {"description": "The title of the product. For more information, see\nhttps://support.google.com/manufacturers/answer/6124116#title.", "type": "string"},
         "videoLink": {"description": "The videos of the product. For more information, see\nhttps://support.google.com/manufacturers/answer/6124116#video.", "items": {"type": "string"}, "type": "array"}
@@ -227,7 +228,7 @@
         "imageUrl": {"description": "The URL of the image. For crawled images, this is the provided URL. For\nuploaded images, this is a serving URL from Google if the image has been\nprocessed successfully.", "type": "string"},
         "status": {
           "description": "The status of the image.\n@OutputOnly",
-          "enum": ["STATUS_UNSPECIFIED", "PENDING_PROCESSING", "PENDING_CRAWL", "OK", "ROBOTED", "XROBOTED", "CRAWL_ERROR", "PROCESSING_ERROR", "DECODING_ERROR", "TOO_BIG", "CRAWL_SKIPPED"],
+          "enum": ["STATUS_UNSPECIFIED", "PENDING_PROCESSING", "PENDING_CRAWL", "OK", "ROBOTED", "XROBOTED", "CRAWL_ERROR", "PROCESSING_ERROR", "DECODING_ERROR", "TOO_BIG", "CRAWL_SKIPPED", "HOSTLOADED", "HTTP_404"],
           "type": "string"
         },
         "type": {"description": "The type of the image, i.e., crawled or uploaded.\n@OutputOnly", "enum": ["TYPE_UNSPECIFIED", "CRAWLED", "UPLOADED"], "type": "string"}

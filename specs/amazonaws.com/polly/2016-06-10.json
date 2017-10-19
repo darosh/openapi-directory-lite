@@ -356,6 +356,7 @@
         "Justin",
         "Kendra",
         "Kimberly",
+        "Matthew",
         "Salli",
         "Conchita",
         "Enrique",
@@ -385,7 +386,8 @@
         "Tatyana",
         "Astrid",
         "Filiz",
-        "Vicki"
+        "Vicki",
+        "Takumi"
       ]
     },
     "VoiceList": {"type": "array", "items": {"$ref": "#/definitions/Voice"}},

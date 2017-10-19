@@ -9,6 +9,7 @@
     "title": "Google Service Control",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
+    "x-apisguru-categories": ["cloud"],
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
     "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://servicecontrol.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
     "x-preferred": true,
@@ -278,7 +279,7 @@
         "allocateInfo": {"$ref": "#/definitions/AllocateInfo", "description": "WARNING: DO NOT use this field until this warning message is removed."},
         "operationId": {"description": "The same operation_id value used in the AllocateQuotaRequest. Used for\nlogging and diagnostics purposes.", "type": "string"},
         "quotaMetrics": {
-          "description": "Quota metrics to indicate the result of allocation. Depending on the\nrequest, one or more of the following metrics will be included:\n\n1. For rate quota, per quota group or per quota metric incremental usage\nwill be specified using the following delta metric:\n  \"serviceruntime.googleapis.com/api/consumer/quota_used_count\"\n\n2. For allocation quota, per quota metric total usage will be specified\nusing the following gauge metric:\n  \"serviceruntime.googleapis.com/allocation/consumer/quota_used_count\"\n\n3. For both rate quota and allocation quota, the quota limit reached\ncondition will be specified using the following boolean metric:\n  \"serviceruntime.googleapis.com/quota/exceeded\"\n\n4. For allocation quota, value for each quota limit associated with\nthe metrics will be specified using the following gauge metric:\n  \"serviceruntime.googleapis.com/quota/limit\"",
+          "description": "Quota metrics to indicate the result of allocation. Depending on the\nrequest, one or more of the following metrics will be included:\n\n1. Per quota group or per quota metric incremental usage will be specified\nusing the following delta metric :\n  \"serviceruntime.googleapis.com/api/consumer/quota_used_count\"\n\n2. The quota limit reached condition will be specified using the following\nboolean metric :\n  \"serviceruntime.googleapis.com/quota/exceeded\"",
           "items": {"$ref": "#/definitions/MetricValueSet"},
           "type": "array"
         },
@@ -296,9 +297,9 @@
           "type": "array"
         },
         "metadata": {
+          "additionalProperties": {"description": "Properties of the object."},
           "description": "Other service-specific data about the request, response, and other\ninformation associated with the current audited event.",
-          "items": {"additionalProperties": {"description": "Properties of the object."}, "type": "object"},
-          "type": "array"
+          "type": "object"
         },
         "methodName": {
           "description": "The name of the service method or operation.\nFor API calls, this should be the name of the API method.\nFor example,\n\n    \"google.datastore.v1.Datastore.RunQuery\"\n    \"google.logging.v1.LoggingService.DeleteLog\"",
@@ -702,7 +703,7 @@
         },
         "labels": {"additionalProperties": {"type": "string"}, "description": "Labels describing the operation.", "type": "object"},
         "methodName": {
-          "description": "Fully qualified name of the API method for which this quota operation is\nrequested. This name is used for matching quota rules or metric rules and\nbilling status rules defined in service configuration. This field is not\nrequired if the quota operation is performed on non-API resources.\n\nExample of an RPC method name:\n    google.example.library.v1.LibraryService.CreateShelf",
+          "description": "Fully qualified name of the API method for which this quota operation is\nrequested. This name is used for matching quota rules or metric rules and\nbilling status rules defined in service configuration.\n\nThis field should not be set if any of the following is true:\n(1) the quota operation is performed on non-API resources.\n(2) quota_metrics is set because the caller is doing quota override.\n\nExample of an RPC method name:\n    google.example.library.v1.LibraryService.CreateShelf",
           "type": "string"
         },
         "operationId": {
@@ -710,7 +711,7 @@
           "type": "string"
         },
         "quotaMetrics": {
-          "description": "Represents information about this operation. Each MetricValueSet\ncorresponds to a metric defined in the service configuration.\nThe data type used in the MetricValueSet must agree with\nthe data type specified in the metric definition.\n\nWithin a single operation, it is not allowed to have more than one\nMetricValue instances that have the same metric names and identical\nlabel value combinations. If a request has such duplicated MetricValue\ninstances, the entire request is rejected with\nan invalid argument error.",
+          "description": "Represents information about this operation. Each MetricValueSet\ncorresponds to a metric defined in the service configuration.\nThe data type used in the MetricValueSet must agree with\nthe data type specified in the metric definition.\n\nWithin a single operation, it is not allowed to have more than one\nMetricValue instances that have the same metric names and identical\nlabel value combinations. If a request has such duplicated MetricValue\ninstances, the entire request is rejected with\nan invalid argument error.\n\nThis field is mutually exclusive with method_name.",
           "items": {"$ref": "#/definitions/MetricValueSet"},
           "type": "array"
         },

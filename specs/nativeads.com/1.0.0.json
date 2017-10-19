@@ -6,6 +6,7 @@
     "description": "This is a Native Ads Publisher API it provides same functionality as Native Ads Publisher Account GUI.\n",
     "title": "Native Ads Publisher",
     "version": "1.0.0",
+    "x-apisguru-categories": ["marketing"],
     "x-logo": {"url": "https://api.nativeads.com/docs/publisher/images/nativeads-logo.png"},
     "x-origin": [{"format": "swagger", "url": "https://api.nativeads.com/docs/publisher/swagger.json", "version": "2.0"}],
     "x-providerName": "nativeads.com",

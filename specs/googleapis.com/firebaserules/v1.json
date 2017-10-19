@@ -9,6 +9,7 @@
     "title": "Firebase Rules",
     "version": "v1",
     "x-apiClientRegistration": {"url": "https://console.developers.google.com"},
+    "x-apisguru-categories": ["backend"],
     "x-logo": {"url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"},
     "x-origin": [{"converter": {"url": "https://github.com/lucybot/api-spec-converter", "version": "2.6.0"}, "format": "google", "url": "https://firebaserules.googleapis.com/$discovery/rest?version=v1", "version": "v1"}],
     "x-preferred": true,
@@ -53,18 +54,18 @@
   "paths": {
     "/v1/{name}": {
       "delete": {
-        "description": "Delete a `Release` by resource name.",
-        "operationId": "firebaserules.projects.releases.delete",
-        "parameters": [{"description": "Resource name for the `Release` to delete.\n\nFormat: `projects/{project_id}/releases/{release_id}`", "in": "path", "name": "name", "required": true, "type": "string", "x-reservedExpansion": true}],
+        "description": "Delete a `Ruleset` by resource name.\n\nIf the `Ruleset` is referenced by a `Release` the operation will fail.",
+        "operationId": "firebaserules.projects.rulesets.delete",
+        "parameters": [{"description": "Resource name for the ruleset to delete.\n\nFormat: `projects/{project_id}/rulesets/{ruleset_id}`", "in": "path", "name": "name", "required": true, "type": "string", "x-reservedExpansion": true}],
         "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Empty"}}},
         "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/firebase"]}],
         "tags": ["projects"]
       },
       "get": {
-        "description": "Get a `Release` by name.",
-        "operationId": "firebaserules.projects.releases.get",
-        "parameters": [{"description": "Resource name of the `Release`.\n\nFormat: `projects/{project_id}/releases/{release_id}`", "in": "path", "name": "name", "required": true, "type": "string", "x-reservedExpansion": true}],
-        "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Release"}}},
+        "description": "Get a `Ruleset` by name including the full `Source` contents.",
+        "operationId": "firebaserules.projects.rulesets.get",
+        "parameters": [{"description": "Resource name for the ruleset to get.\n\nFormat: `projects/{project_id}/rulesets/{ruleset_id}`", "in": "path", "name": "name", "required": true, "type": "string", "x-reservedExpansion": true}],
+        "responses": {"200": {"description": "Successful response", "schema": {"$ref": "#/definitions/Ruleset"}}},
         "security": [{"Oauth2": ["https://www.googleapis.com/auth/cloud-platform"]}, {"Oauth2": ["https://www.googleapis.com/auth/firebase"]}, {"Oauth2": ["https://www.googleapis.com/auth/firebase.readonly"]}],
         "tags": ["projects"]
       },
