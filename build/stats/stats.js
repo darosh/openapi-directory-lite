@@ -48,6 +48,7 @@ paths.forEach(p => {
   r.language = spec.info['x-description-language']
   r.month = added.replace(/-\d\dT.*/, '')
   r.year = parseInt(added.replace(/-\d\d/, ''), 10)
+  r.month = parseInt(added.replace(/-/, ''), 10)
   arr.push(r)
 })
 
