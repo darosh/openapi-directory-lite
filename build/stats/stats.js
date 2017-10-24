@@ -42,6 +42,7 @@ paths.forEach(p => {
   r.paths = Object.keys(spec.paths).length
   r.methods = getMethods(spec)
   r.categories = spec.info['x-apisguru-categories']
+  r.language = spec.info['x-description-language']
   arr.push(r)
 })
 
