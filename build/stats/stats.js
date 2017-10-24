@@ -2,6 +2,7 @@ const fs = require('fs')
 const _ = require('lodash')
 const compactJson = require('json-stringify-pretty-compact')
 const data = require('../../data')
+const list = require('../../list.json')
 const paths = data.filePaths()
 
 const textFields = {
@@ -27,6 +28,8 @@ paths.forEach(p => {
   const spec = JSON.parse(fs.readFileSync(p.path, 'utf8'))
   removeText(spec)
 
+  const added = list[p.key].versions[list[p.key].preferred].added
+
   const r = {}
   r.key = p.key.split(':')
   r.root = r.key[0].replace(/.*\.([a-z]+)$/i, '$1')
@@ -43,6 +46,8 @@ paths.forEach(p => {
   r.methods = getMethods(spec)
   r.categories = spec.info['x-apisguru-categories']
   r.language = spec.info['x-description-language']
+  r.month = added.replace(/-\d\dT.*/, '')
+  r.year = parseInt(added.replace(/-\d\d/, ''), 10)
   arr.push(r)
 })
 
